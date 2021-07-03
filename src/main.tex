@@ -3,7 +3,7 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass[
-    11pt, % The default document font size, options: 10pt, 11pt, 12pt
+    11pt,
 %oneside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
     english, % ngerman for German
     singlespacing, % Single line spacing, alternatives: onehalfspacing or doublespacing
@@ -16,6 +16,7 @@
     headsepline, % Uncomment to get a line under the header
 %chapterinoneline, % Uncomment to place the chapter title next to the number on one line
 %consistentlayout, % Uncomment to change the layout of the declaration, abstract and acknowledgements pages to match the default layout
+oneside, % uncomment for clear page spacing between sections
 ]{MastersDoctoralThesis} % The class file specifying the document structure
 
 \usepackage[utf8]{inputenc} % Required for inputting international characters
@@ -112,7 +113,7 @@
             \vfill
 
             {\large \today}\\[4cm] % Date
-%\includegraphics{Logo} % University/department logo - uncomment to place it
+            %\includegraphics{Logo} % University/department logo - uncomment to place it
 
             \vfill
         \end{center}
@@ -179,7 +180,7 @@
 %	LIST OF CONTENTS/FIGURES/TABLES PAGES
 %----------------------------------------------------------------------------------------
 
-%    \tableofcontents % Prints the main table of contents
+    \tableofcontents % Prints the main table of contents
 %
 %    \listoffigures % Prints the list of figures
 %
@@ -241,12 +242,11 @@
 
 % Include the chapters of the thesis as separate files from the Chapters folder
 % Uncomment the lines as you write the chapters
-
-    %\include{Chapters/Chapter1}
-%\include{Chapters/Chapter2} 
-%\include{Chapters/Chapter3}
-%\include{Chapters/Chapter4} 
-%\include{Chapters/Chapter5} 
+    \include{Chapters/Chapter1}
+    %\include{Chapters/Chapter2}
+    %\include{Chapters/Chapter3}
+    %\include{Chapters/Chapter4}
+    %\include{Chapters/Chapter5}
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES

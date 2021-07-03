@@ -16,7 +16,7 @@
     headsepline, % Uncomment to get a line under the header
 %chapterinoneline, % Uncomment to place the chapter title next to the number on one line
 %consistentlayout, % Uncomment to change the layout of the declaration, abstract and acknowledgements pages to match the default layout
-oneside, % uncomment for clear page spacing between sections
+    oneside, % uncomment for clear page spacing between sections
 ]{MastersDoctoralThesis} % The class file specifying the document structure
 
 \usepackage[utf8]{inputenc} % Required for inputting international characters
@@ -57,7 +57,7 @@ oneside, % uncomment for clear page spacing between sections
 
 \subject{Biological Sciences} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
 \keywords{} % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
-\university{\href{https://www.wsb.pl/english/}{Wyzsza Szkola Bankowa w Poznaniu}} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
+\university{Wyzsza Szkola Bankowa w Poznaniu} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
 \department{Department of Computer Science} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
 \group{Wyzsza Szkola Bankowa w Poznaniu} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
 \faculty{Computer Science} % Your faculty's name and URL, this is used in the title page and abstract, print it elsewhere with \facname
@@ -80,7 +80,7 @@ oneside, % uncomment for clear page spacing between sections
 
     \begin{titlepage}
         \begin{center}
-
+            \includegraphics[width=0.5\textwidth]{wsb_logo} \\ % University/department logo - uncomment to place it
             \vspace*{.06\textheight}
             {\scshape\LARGE \univname\par}\vspace{1.5cm} % University name
             \textsc{\Large Bachelor Thesis}\\[0.5cm] % Thesis type
@@ -92,7 +92,7 @@ oneside, % uncomment for clear page spacing between sections
             \begin{minipage}[t]{0.4\textwidth}
                 \begin{flushleft}
                     \large
-                    \emph{Author:}\\
+                    \emph{Authors:}\\
                     \authorname % Author name - remove the \href bracket to remove the link
                 \end{flushleft}
             \end{minipage}
@@ -113,7 +113,6 @@ oneside, % uncomment for clear page spacing between sections
             \vfill
 
             {\large \today}\\[4cm] % Date
-            %\includegraphics{Logo} % University/department logo - uncomment to place it
 
             \vfill
         \end{center}
@@ -125,7 +124,8 @@ oneside, % uncomment for clear page spacing between sections
 
     \begin{declaration}
         \addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
-        \noindent I, \authorname, declare that this thesis titled, \enquote{\ttitle} and the work presented in it are my own. I confirm that:
+        \noindent I, \authorname, declare that this thesis titled, \enquote{\ttitle} and the work presented in it are my own.
+        I confirm that:
 
         \begin{itemize}
             \item This work was done wholly or mainly while in candidature for a research degree at this University.
@@ -144,8 +144,75 @@ oneside, % uncomment for clear page spacing between sections
         \rule[0.5em]{25em}{0.5pt} % This prints a line to write the date
     \end{declaration}
 
-    \clearpage
+%----------------------------------------------------------------------------------------
+%	PARTNER DETAILS PAGE
+%----------------------------------------------------------------------------------------
+    \begin{partnerdetailspage}
+        \textbf{A1. Mentor's details} \\
 
+        \begin{tabular}{|p{5cm}|p{5cm}|}
+            \hline
+            First name and surname & Szymon Murawski \\
+            \hline
+            Degree                 &                 \\
+            \hline
+            Date and signature     &                 \\
+            \hline
+            \multicolumn{2}{c}{\vspace{0.5cm}} \\
+        \end{tabular}
+
+        \textbf{A2. Team members' details} \\
+
+        \begin{tabular}{|p{5cm}|p{5cm}|}
+            \hline
+            First name and surname & \\
+            \hline
+            Course of study        & \\
+            \hline
+            Type of study program  & \\
+            \hline
+            Date and signature     & \\
+            \hline
+
+            \multicolumn{2}{c}{\vspace{0.5cm}} \\
+
+            \hline
+            First name and surname & \\
+            \hline
+            Course of study        & \\
+            \hline
+            Type of study program  & \\
+            \hline
+            Date and signature     & \\
+            \hline
+
+            \multicolumn{2}{c}{\vspace{0.5cm}} \\
+
+            \hline
+            First name and surname & \\
+            \hline
+            Course of study        & \\
+            \hline
+            Type of study program  & \\
+            \hline
+            Date and signature     & \\
+            \hline
+
+            \multicolumn{2}{c}{\vspace{0.5cm}} \\
+
+            \hline
+            First name and surname & \\
+            \hline
+            Course of study        & \\
+            \hline
+            Type of study program  & \\
+            \hline
+            Date and signature     & \\
+            \hline
+        \end{tabular}
+    \end{partnerdetailspage}
+
+    \clearpage
 %----------------------------------------------------------------------------------------
 %	QUOTATION PAGE
 %----------------------------------------------------------------------------------------

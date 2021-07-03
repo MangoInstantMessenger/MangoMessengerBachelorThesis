@@ -455,6 +455,29 @@ KOMA-script documentation for details.}]{fancyhdr}
 }
 
 %----------------------------------------------------------------------------------------
+%	PARTNER DETAILS PAGE
+%----------------------------------------------------------------------------------------
+
+\newcommand{\partnerdetails}{Partner Details}
+\providecaptionname{american,australian,british,canadian,english,newzealand,UKenglish,USenglish}{\partnerdetails}{Partner Details} % Declaration of Authorship text for English countries
+\providecaptionname{german,ngerman,austrian,naustrian}{\partnerdetails}{Eidesstattliche Erkl\"arung}
+% Declaration of Authorship text for Germanic countries
+
+\ifbool{consistentlayout}{
+	\DeclareDocumentEnvironment{partnerdetailspage}{}{
+		\addchap*{\partnerdetails}
+		}{}%
+}{
+	\DeclareDocumentEnvironment{partnerdetailspage}{}{
+		\checktoopen
+		\tttypeout{\partnerdetails}
+		\thispagestyle{plain}
+		\null\vfil
+		{\noindent\huge\bfseries\partnerdetails\par\vspace{10pt}}
+		}{}
+}
+
+%----------------------------------------------------------------------------------------
 %	DEDICATION PAGE DESIGN
 %----------------------------------------------------------------------------------------
 

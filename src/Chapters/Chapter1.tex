@@ -1,6 +1,6 @@
 % Chapter 1
 
-\chapter{Modern Messengers' threat analysis}\label{ch:modern-messengers'-threat-analysis}
+\chapter{Introduction}\label{ch:introduction}
 
 %----------------------------------------------------------------------------------------
 
@@ -12,5 +12,49 @@
 
 %----------------------------------------------------------------------------------------
 
+
 \section{General overview}\label{sec:general-overview}
+In recent years, instant messaging systems have gained more and more popularity as a new means of communication over the Internet.
+Instant messengers allow their users to exchange text messages but, unlike email, the sender and the recipient
+of a message are online at the same time.
+In this respect communicating via an instant messaging system is more similar to using telephone than mail.
+Security is increasingly becoming an important issue.
+People want to retain their privacy.
+Communications should not be overheard, copied, blocked or modified by a third party.
+However, the Internet is known to be weak and vulnerable with respect to privacy.
+There is a considerable effort being made to incorporate security into the existing communication systems and to
+create new secure communication tools.
+Another important issue is scalability.
+The scalability of a system is its ability to handle large numbers of users distributed over geographically
+large areas without notably affecting the overall performance of the system.
+With the growing popularity of the Internet and the increasing number of users, systems that have not been designed
+to be scalable currently show some performance problems.
+For example, some very popular Web services, such as the Polish site of a very popular TV program "Big Brother",
+simply cannot handle all the requests of the people willing to access those pages.
+There exist many instant messaging systems.\ The most popular ones, such as ICQ or MSN Messenger, can handle vast
+numbers of users and are reasonably scalable.
+However, they are reported to have major security flaws.
+Some other instant messengers, such as Iris, implemented most often as research projects claim to be secure.
+On the other hand, those systems suffer from scalability problems.
+The main goal of my project was to create an instant messaging system which would be both secure and scalable.
+Additionally, I wanted this system to have a reasonable set of functionalities.
+In other words, we have to provide everything that is necessary to make it a convenient tool without overloading
+it with all the bells and whistles that can be found in commercial applications.
+The project was done in the context of Globe, a distributed system being developed at the Vrije Universiteit,
+whose main concern is scalability.
+My instant messenger uses one of the Globe services, namely the Location Service, to locate its users in the Internet.
+
+\section{Mango messenger system functionality overview}\label{sec:general-im-functionality-overview}
+Prior the implementation of any application, it is vital to define the main functionalities it will provide.
+In this section, we define a set of the main functionalities provided by Mango Messenger system.
+
+\subsection{User privacy service}\label{subsec:user-privacy-service}
+
+See chapter Overall security problems
+
+\subsection{Instant messaging service}\label{subsec:instant-messaging-service}
+
+See chapter Instant messaging service
+
+Chapter [number] gives a detailed overview of functional and non-functional requirements.
 

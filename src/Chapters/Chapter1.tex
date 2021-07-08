@@ -13,48 +13,47 @@
 %----------------------------------------------------------------------------------------
 
 
-\section{General overview}\label{sec:general-overview}
-In recent years, instant messaging systems have gained more and more popularity as a new means of communication over the Internet.
-Instant messengers allow their users to exchange text messages but, unlike email, the sender and the recipient
-of a message are online at the same time.
-In this respect communicating via an instant messaging system is more similar to using telephone than mail.
-Security is increasingly becoming an important issue.
-People want to retain their privacy.
-Communications should not be overheard, copied, blocked or modified by a third party.
-However, the Internet is known to be weak and vulnerable with respect to privacy.
-There is a considerable effort being made to incorporate security into the existing communication systems and to
-create new secure communication tools.
-Another important issue is scalability.
-The scalability of a system is its ability to handle large numbers of users distributed over geographically
-large areas without notably affecting the overall performance of the system.
-With the growing popularity of the Internet and the increasing number of users, systems that have not been designed
-to be scalable currently show some performance problems.
-For example, some very popular Web services, such as the Polish site of a very popular TV program "Big Brother",
-simply cannot handle all the requests of the people willing to access those pages.
-There exist many instant messaging systems.\ The most popular ones, such as ICQ or MSN Messenger, can handle vast
-numbers of users and are reasonably scalable.
-However, they are reported to have major security flaws.
-Some other instant messengers, such as Iris, implemented most often as research projects claim to be secure.
-On the other hand, those systems suffer from scalability problems.
-The main goal of my project was to create an instant messaging system which would be both secure and scalable.
-Additionally, I wanted this system to have a reasonable set of functionalities.
-In other words, we have to provide everything that is necessary to make it a convenient tool without overloading
-it with all the bells and whistles that can be found in commercial applications.
-The project was done in the context of Globe, a distributed system being developed at the Vrije Universiteit,
-whose main concern is scalability.
-My instant messenger uses one of the Globe services, namely the Location Service, to locate its users in the Internet.
+\section{General overview of IM systems}\label{sec:general-overview-of-im-system}
+Nowadays, the Instant Messaging Systems (IMS) became the most widely-used and convenient way of communication between people via Internet.
+These systems offer a simple and inexpensive way to continuance existing relationships and forming new by providing an attractive
+means for sharing information and digital social interactions.
+The quick development of IMS and the widening of their popularity sometimes moves the focus from possible security risks.
+In the worst case, IMS exposes vulnerable to security and privacy channels to hackers and intruders [1] [2].
+In existing IMS, there are multiple privacy and security issues that need to be resolved in order to protect user's confidential
+information and shared data via these messaging applications [3].
+Source [3] gives an analysis of Telegram Messenger and the related MTProto Protocol with cryptography
+behind Telegram.
+Moreover, an overview of current security status for some major IMS is provided.
+Meanwhile, the researchers in [6] discussed types of threats on privacy of IMS and ranges of thereat effects for both, user and provider.
+In this thesis, the most major security threats of IMS is described.
+In order to reflect best practices we provide a prototype-application written as example.
 
-\section{Mango messenger system functionality overview}\label{sec:general-im-functionality-overview}
-Prior the implementation of any application, it is vital to define the main functionalities it will provide.
-In this section, we define a set of the main functionalities provided by Mango Messenger system.
 
-\subsection{User privacy service}\label{subsec:user-privacy-service}
+\section{Security vulnerabilities of IM systems}\label{sec:security-vulnerabilities-of-im-systems}
+There are numerous risks associated with the use of IM and as with any form of electronic communication one must take certain steps to mitigate those risks.
+Such risks include:
 
-See chapter Overall security problems
+\subsection{Revealing confidential information}\label{subsec:revealing-confidential-information}
+Revealing confidential information over an unsecured delivery channel.
+Public Instant Messaging transmits unencrypted information, so it should never be used for sensitive or confidential information.
+The information is on the Internet and may be accessed by anyone.
 
-\subsection{Instant messaging service}\label{subsec:instant-messaging-service}
+\subsection{Spreading viruses and worms}\label{subsec:spreading-viruses-and-worms}
+Instant Message (IM) programs are fast becoming a preferred method for launching network viruses and worms.
+The lack of built-in security, the ability to download files and built-in "buddy list" of recipients create an
+environment in which viruses and worms can spread quickly.
+The threat is growing so fast that IM is quickly catching up to e-mail as a primary point of attack.
 
-See chapter Instant messaging service
+\subsection{Exposing the network to backdoor Trojans}\label{subsec:exposing-the-network-to-backdoor-trojans}
 
-Chapter [number] gives a detailed overview of functional and non-functional requirements.
+\subsection{Denial of Service Attacks}\label{subsec:denial-of-service-attacks}
+
+\subsection{Hijacking Sessions}\label{subsec:hijacking-sessions}
+Hijacking Sessions - Information received by IM is not authenticated.
+There is no way to verify that a message really originated from the sender with whom the recipient
+believes he or she is communicating during the session.
+Chat sessions can be hijacked and users can be impersonated.
+
+\subsection{Legal Liability resulting from downloading copyrighted materials}\label{subsec:legal-liability-resulting-from-downloading-copyrighted-materials}
+
 

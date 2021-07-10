@@ -1,1 +1,59 @@
 \chapter{Secure IMS Implementation}\label{ch:secure-ims-implementation}
+
+
+\section{Application architecture and UML modeling}\label{sec:application-architecture-and-uml-modeling}
+
+\subsection{Motivation}\label{subsec:motivation}
+As a programmers, I believe all we have faced the cases of crucial over-engineering during the implementation of some software product.
+For the programmer, it is a vital point to follow two separated, but closely related software development principles, such that
+KISS (Keep It Simple and Stupid), and YAGNI (You Aren't Gonna Need It).
+As the main topic of our thesis is the security and privacy aspects of Instant Messaging Systems, we consider following
+previously discussed principles KISS and YAGNI and use a well-known Monolithic architecture.
+One would suggest to use nowadays popular Microservice Architecture, thinking about scalability,
+an ability of the system to handle large numbers of users distributed over geographically large areas without notably affecting
+the overall performance of the system.
+However, the effect of Microservices is felt only for quite large and complex systems, not the case of Instant Messaging System
+we implement in chapter [number].
+It is worthless to divide the functional requirements, discussed in section [number] into microservices and that's central point
+in motivation to use Monolithic Architecture.
+Following plot demonstrates the relation between complexity of system and architecture.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{monolith_vs_microservice}
+    \caption{Relation between system complexity and architectures. Source: https://martinfowler.com/bliki/MicroservicePremium.html}
+    \label{fig:monolith_vs_microservice}
+\end{figure}
+
+\subsection{Initial concept diagram and discussion}\label{subsec:initial-concept-diagram}
+
+\subsection{Planned technologies}\label{subsec:planned-technologies}
+
+\subsection{Monolith Architecture: Cons and Props}\label{subsec:monolith-architecture:-cons-and-props}
+
+A monolith is built as a large system with a single code base and deployed as a single unit, usually behind a load balancer.
+It typically consists of four major components: a user interface, business logic, a data interface and a database.
+
+Monoliths offer several advantages, particularly when it comes to operational overhead requirements.
+Here are some of those basic benefits:
+
+Simplicity: Monolithic architectures are simple to build, test and deploy.
+These apps can scale horizontally, in one direction, by running several copies of the application behind a load balancer.
+Cross-cutting concerns: With a single codebase, monolithic apps can easily handle cross-cutting concerns, such as logging,
+configuration management and performance monitoring.
+Performance: Components in a monolith typically share memory which is faster than service-to-service communications using IPC or other mechanisms.
+
+But one major drawback of monolithic architectures is tight coupling.
+Over time, monolithic components become tightly coupled and entangled.
+This coupling effects management, scalability and continuous deployment.
+Other cons that stem from tight coupling include:
+
+Reliability: An error in any of the modules in the application can bring the entire application down.
+Updates: Due to a single large codebase and tight coupling, the entire application would have to deploy for each update.
+Technology stack: A monolithic application must use the same technology stack throughout.
+Changes to the technology stack are expensive, both in terms of the time and cost involved.
+
+Add here about CQRS
+
+As the main concern we focus on is webb application, in the ongoing sections we discuss a details of both, front-end and back-end
+development of our project -- Mango Messenger.

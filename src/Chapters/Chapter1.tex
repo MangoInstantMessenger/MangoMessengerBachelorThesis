@@ -14,9 +14,10 @@
 
 
 \section{General overview of IM systems}\label{sec:general-overview-of-im-system}
-Nowadays, the Instant Messaging Systems (IMS) became the most widely-used and convenient way of communication between people via Internet.
-These systems offer a simple and inexpensive way to continuance existing relationships and forming new by providing an attractive
-means for sharing information and digital social interactions.
+Nowadays, the Instant Messaging Systems (IMS) became the most widely-used and convenient way of communication between
+people via Internet.
+These systems offer a simple and inexpensive way to continuance existing relationships and forming new by providing an
+attractive means for sharing information and digital social interactions.
 The quick development of IMS and the widening of their popularity sometimes moves the focus from possible security risks.
 In the worst case, IMS exposes vulnerable to security and privacy channels to hackers and intruders [1] [2].
 In existing IMS, there are multiple privacy and security issues that need to be resolved in order to protect user's confidential
@@ -24,18 +25,21 @@ information and shared data via these messaging applications [3].
 Source [3] gives an analysis of Telegram Messenger and the related MTProto Protocol with cryptography
 behind Telegram.
 Moreover, an overview of current security status for some major IMS is provided.
-Meanwhile, the researchers in [6] discussed types of threats on privacy of IMS and ranges of thereat effects for both, user and provider.
+Meanwhile, the researchers in [6] discussed types of threats on privacy of IMS and ranges of thereat effects for both,
+user and provider.
 In this thesis, the most major security threats of IMS is described.
 In order to reflect best practices we provide a prototype-application written as example.
 
 
 \section{Security vulnerabilities of IM systems}\label{sec:security-vulnerabilities-of-im-systems}
-There are numerous risks associated with the use of IM and as with any form of electronic communication one must take certain steps to mitigate those risks.
+There are numerous risks associated with the use of IM and as with any form of electronic communication one must take
+certain steps to mitigate those risks.
 Such risks include:
 
 \subsection{Revealing confidential information}\label{subsec:revealing-confidential-information}
 Revealing confidential information over an unsecured delivery channel.
-Public Instant Messaging transmits unencrypted information, so it should never be used for sensitive or confidential information.
+Public Instant Messaging transmits unencrypted information, so it should never be used for sensitive or confidential
+information.
 The information is on the Internet and may be accessed by anyone.
 
 \subsection{Spreading viruses and worms}\label{subsec:spreading-viruses-and-worms}
@@ -48,12 +52,65 @@ The threat is growing so fast that IM is quickly catching up to e-mail as a prim
 
 \subsection{Denial of Service Attacks}\label{subsec:denial-of-service-attacks}
 
-\subsection{Hijacking Sessions}\label{subsec:hijacking-sessions}
-Hijacking Sessions - Information received by IM is not authenticated.
-There is no way to verify that a message really originated from the sender with whom the recipient
-believes he or she is communicating during the session.
-Chat sessions can be hijacked and users can be impersonated.
+In computing, a denial-of-service attack (DoS attack) is a cyber-attack in which the perpetrator seeks to make a machine or
+network resource unavailable to its intended users by temporarily or indefinitely disrupting services of a host connected
+to the Internet.
+Denial of service is typically accomplished by flooding the targeted machine or resource with superfluous requests in
+an attempt to overload systems and prevent some or all legitimate requests from being fulfilled.[1]
+In a distributed denial-of-service attack (DDoS attack), the incoming traffic flooding the victim originates from
+many different sources.
+This effectively makes it impossible to stop the attack simply by blocking a single source.
+A DoS or DDoS attack is analogous to a group of people crowding the entry door of a shop, making it hard for legitimate
+customers to enter, thus disrupting trade.
 
-\subsection{Legal Liability resulting from downloading copyrighted materials}\label{subsec:legal-liability-resulting-from-downloading-copyrighted-materials}
+Criminal perpetrators of DoS attacks often target sites or services hosted on high-profile web servers such as banks or
+credit card payment gateways.
+Revenge, blackmail[2][3][4] and activism[5] can motivate these attacks.
+
+\subsection{Hijacking Sessions}\label{subsec:hijacking-sessions}
+In computer science, session hijacking, sometimes also known as cookie hijacking is the exploitation of a valid computer
+session—sometimes also called a session key—to gain unauthorized access to information or services in a computer system.
+In particular, it is used to refer to the theft of a magic cookie used to authenticate a user to a remote server.
+It has particular relevance to web developers, as the HTTP cookies[1] used to maintain a session on many web sites
+can be easily stolen by an attacker using an intermediary computer or with access to the saved cookies on the victim's
+computer (see HTTP cookie theft).
+After successfully stealing appropriate session cookies an adversary might use the Pass the Cookie technique to perform
+session hijacking. [2]
+Cookie hijacking is commonly used against client authentication on the internet.[3] Modern web browsers use cookie
+protection mechanisms to protect the web from being attacked.[3]
+
+A popular method is using source-routed IP packets.
+This allows an attacker at point B on the network to participate in a conversation between A and C by encouraging the
+IP packets to pass through B's machine.
+
+If source-routing is turned off, the attacker can use "blind" hijacking, whereby it guesses the responses of the two
+machines.
+Thus, the attacker can send a command, but can never see the response.
+However, a common command would be to set a password allowing access from elsewhere on the net.
+
+An attacker can also be "inline" between A and C using a sniffing program to watch the conversation.
+This is known as a "man-in-the-middle attack".
+
+\subsection{Copyright infringement}\label{subsec:copyright-infringement}
+Copyright infringement (at times referred to as piracy) is the use of works protected by copyright law without
+permission for a usage where such permission is required, thereby infringing certain exclusive rights granted to the
+copyright holder, such as the right to reproduce, distribute, display or perform the protected work, or to make
+derivative works.
+The copyright holder is typically the work's creator, or a publisher or other business to whom copyright has been assigned.
+Copyright holders routinely invoke legal and technological measures to prevent and penalize copyright infringement.
+
+Copyright infringement disputes are usually resolved through direct negotiation, a notice and take down process, or
+litigation in civil court.
+Egregious or large-scale commercial infringement, especially when it involves counterfeiting, is sometimes prosecuted
+via the criminal justice system.
+Shifting public expectations, advances in digital technology and the increasing reach of the Internet have led to such
+widespread, anonymous infringement that copyright-dependent industries now focus less on pursuing individuals who seek
+and share copyright-protected content online,[citation needed] and more on expanding copyright law to recognize and
+penalize, as indirect infringers, the service providers and software distributors who are said to facilitate and
+encourage individual acts of infringement by others.
+
+Estimates of the actual economic impact of copyright infringement vary widely and depend on other factors.
+Nevertheless, copyright holders, industry representatives, and legislators have long characterized copyright
+infringement as piracy or theft – language which some US courts now regard as pejorative or otherwise contentious.[1][2][3]
 
 

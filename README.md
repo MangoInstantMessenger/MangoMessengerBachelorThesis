@@ -7,13 +7,14 @@
 - Install Intellij IDEA Ultimate (https://www.jetbrains.com/idea/download/#section=windows)
 - Activate Intellij IDEA Ultimate, you should have student license
 - Install TeXiFy IDEA plugin (https://plugins.jetbrains.com/plugin/9473-texify-idea)
+- Clone this repository locally: git clone https://github.com/kolosovpetro/BachelorsThesis.git
 - Open diploma-document.iml in IDEA
 - Configure Inverse Search in IDEA for SumatraPDF, Tool -> LaTeX -> Configure Inverse Search
 - Compile it, Shift + F10
 
 ## Git flow
 - Each task is assigned a number (MANGO-ID)
-- Tasks are at Trello board https://trello.com/b/F4N6Afg7/api-docs
+- Tasks are at Trello board https://trello.com/b/5kdQBsYE/bachelor-thesis-trello
 - There are two main branches: master, develop
 - Develop will be merged with master when diploma will be ready
 - In order to contribute:

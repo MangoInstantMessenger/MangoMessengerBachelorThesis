@@ -3,22 +3,38 @@
 
 \section{Web API Documentation}\label{sec:web-api-documentation}
 
-\begin{document}
-    \subsection{Auth}\label{subsec:auth}
-    \begin{itemize}
-        \item \begin{lstlisting}[language=json,firstnumber=1,label={lst:lstlisting}]
-{"menu": {
-  "id": "file",
-  "value": "File",
-  "popup": {
-    "menuitem": [
-      {"value": "New", "onclick": "CreateNewDoc()"},
-      {"value": "Open", "onclick": "OpenDoc()"},
-      {"value": "Close", "onclick": "CloseDoc()"}
-    ]
-  }
-}}
-        \end{lstlisting}
-    \end{itemize}
+\subsection{Auth}\label{subsec:auth}
+\begin{itemize}
+    \item Endpoint: /api/auth/register.
 
-\end{document}
+    Description: Registers user in a messenger.
+
+    Request type: POST
+
+    Payload:
+
+    \begin{spverbatim}
+    {
+        "phoneNumber": "string",
+        "email": "string",
+        "displayName": "string",
+        "password": "string",
+        "verificationMethod": 1,
+        "termsAccepted": true
+    }
+    \end{spverbatim}
+
+    Response:
+
+    \begin{spverbatim}
+    {
+        "message": "SUCCESS",
+        "success": true
+    }
+    \end{spverbatim}
+
+    Response codes: 200, 401, 415
+
+    Response messages:
+
+\end{itemize}

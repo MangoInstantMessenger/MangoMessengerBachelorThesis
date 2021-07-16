@@ -1,3 +1,40 @@
 \chapter{Mango Messenger}\label{ch:mango-messenger}
 
+
 \section{Web API Documentation}\label{sec:web-api-documentation}
+
+\subsection{Auth}\label{subsec:auth}
+\begin{itemize}
+    \item Endpoint: /api/auth/register.
+
+    Description: Registers user in a messenger.
+
+    Request type: POST
+
+    Payload:
+
+    \begin{spverbatim}
+    {
+        "phoneNumber": "string",
+        "email": "string",
+        "displayName": "string",
+        "password": "string",
+        "verificationMethod": 1,
+        "termsAccepted": true
+    }
+    \end{spverbatim}
+
+    Response:
+
+    \begin{spverbatim}
+    {
+        "message": "SUCCESS",
+        "success": true
+    }
+    \end{spverbatim}
+
+    Response codes: 200, 401, 415
+
+    Response messages:
+
+\end{itemize}

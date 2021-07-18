@@ -7,48 +7,40 @@
 \begin{itemize}
         %% Register Endpoint
     \item \textbf{Endpoint}: /api/auth/register.
-
-    \textbf{Description}: Registers user in a messenger.
-
-    \textbf{Request type}: POST
-
-    \textbf{Payload}:
-
-    \begin{spverbatim}
-    {
-        "phoneNumber": "string",
-        "email": "string",
-        "displayName": "string",
-        "password": "string",
-        "verificationMethod": integer,
-        "termsAccepted": true
-    }
-    \end{spverbatim}
-
-    \textbf{Response example}:
-
-    \begin{spverbatim}
-    {
-        "message": "SUCCESS",
-        "success": true
-    }
-    \end{spverbatim}
-
-    \textbf{Response codes}: 200, 400
-
-    \textbf{Response messages}:
-    \begin{enumerate}
-        \item Success.
-        \item User already registered.
-        \item Weak password.
-        \item Invalid email.
-        \item Invalid verification method.
-        \item Invalid display name.
-        \item Phone occupied.
-    \end{enumerate}
+    \begin{itemize}
+        \item \textbf{Description}: Registers user in a messenger.
+        \item \textbf{Request type}: POST
+        \item \textbf{Request body}:
+        \begin{spverbatim}
+        {
+            "phoneNumber": "string",
+            "email": "string",
+            "displayName": "string",
+            "password": "string",
+            "verificationMethod": number,
+            "termsAccepted": boolean
+        }
+        \end{spverbatim}
+        \item  \textbf{Response example}:
+        \begin{spverbatim}
+        {
+            "message": "SUCCESS",
+            "success": true
+        }
+        \end{spverbatim}
+        \item \textbf{Response codes}: 200 Success, 400 Bad Request
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User already registered.
+            \item Weak password.
+            \item Invalid email.
+            \item Invalid verification method.
+            \item Invalid display name.
+            \item Phone occupied.
+        \end{enumerate}
+    \end{itemize}
     %% Register Endpoint
-
-    \pagebreak
 
     %% Verify Email Endpoint
     \item \textbf{Endpoint}: api/auth/verify-email
@@ -83,8 +75,6 @@
         \item Email already verified.
     \end{enumerate}
     %% Verify Email Endpoint
-
-    \vspace{5mm}
 
     %% Login Endpoint
     \item \textbf{Endpoint}: api/auth/login
@@ -123,8 +113,6 @@
     \end{enumerate}
     %% Login Endpoint
 
-    \pagebreak
-
     %% Verify Phone Endpoint
     \item \textbf{Endpoint}: api/auth/verify-phone
 
@@ -158,8 +146,6 @@
         \item Phone already verified
     \end{enumerate}
     %% Verify Phone Endpoint
-
-    \vspace{5mm}
 
     %% Refresh Token Endpoint
     \item \textbf{Endpoint}: api/auth/refresh-token
@@ -196,8 +182,6 @@
     \end{enumerate}
     %% Refresh Token Endpoint
 
-    \pagebreak
-
     %% Logout Endpoint
     \item \textbf{Endpoint}: api/auth/logout
 
@@ -231,8 +215,6 @@
         \item Invalid or empty refresh token.
     \end{enumerate}
     %% Logout Endpoint
-
-    \vspace{4mm}
 
     %% Logout All Endpoint
     \item \textbf{Endpoint}: api/auth/logout-all
@@ -313,8 +295,6 @@
     \end{enumerate}
     %% Get Chats Endpoint
 
-    \pagebreak
-
     %% Create Group
     \item \textbf{Endpoint}: api/chats/group
 
@@ -349,8 +329,6 @@
     \end{enumerate}
     %% Create Group
 
-    \vspace{5mm}
-
     %% Direct Chat Endpoint
     \item \textbf{Endpoint}: api/chats/direct-chat
 
@@ -384,10 +362,8 @@
     \end{enumerate}
     %% Direct Chat Endpoint
 
-    \vspace{5mm}
-
     %% Group Join Endpoint
-    \item \textbf{Endpoint}: api/chats/group/join/{chatId}
+    \item \textbf{Endpoint}: api/chats/group/join/\{chatId\}
 
     \textbf{Description}: Creates new group of specified type.
 
@@ -416,8 +392,6 @@
         \item User not found.
     \end{enumerate}
         %% Group Join Endpoint
-
-    \pagebreak
 \end{itemize}
 
 \subsection{Messages}\label{subsec: messages}
@@ -451,11 +425,9 @@
         \item Success.
         \item User not found.
     \end{enumerate}
-        %% Get Chat Messages Endpoint
+    %% Get Chat Messages Endpoint
 
-    \pagebreak
-
-        %% Send Message Endpoint
+    %% Send Message Endpoint
     \item \textbf{Endpoint}: /api/messages
 
     \textbf{Description}: Sends message to particular chat
@@ -476,11 +448,11 @@
     \begin{spverbatim}
     {
         "chatMessage": {
-            "userDisplayName": "string",
-            "messageText": "string",
-            "sentAt": "time-stamp",
-            "editedAt": "time-stamp"
-        },
+        "userDisplayName": "string",
+        "messageText": "string",
+        "sentAt": "time-stamp",
+        "editedAt": "time-stamp"
+    },
         "message": "SUCCESS",
         "success": true
     }
@@ -493,11 +465,11 @@
         \item Success.
         \item User not found.
     \end{enumerate}
-        %% Send Message Endpoint
+    %% Send Message Endpoint
 
     \pagebreak
 
-        %% Edit Message Endpoint
+    %% Edit Message Endpoint
     \item \textbf{Endpoint}: /api/messages
 
     \textbf{Description}: Updates particular message
@@ -529,12 +501,10 @@
         \item Success.
         \item User not found.
     \end{enumerate}
-        %% Edit Message Endpoint
+    %% Edit Message Endpoint
 
-    \vspace{5mm}
-    
     %% Delete Message Endpoint
-    \item \textbf{Endpoint}: /api/messages/{messageId}
+    \item \textbf{Endpoint}: /api/messages/\{messageId\}
 
     \textbf{Description}: Updates particular message
 
@@ -562,14 +532,12 @@
         \item Success.
         \item User not found.
     \end{enumerate}
-    %% Delete Message Endpoint
-
-    \pagebreak
+        %% Delete Message Endpoint
 \end{itemize}
 
 \subsection{User}\label{subsec:user}
 \begin{itemize}
-    %% Get User Endpoint
+        %% Get User Endpoint
     \item \textbf{Endpoint}: /api/users/{userId}
 
     \textbf{Description}: Updates particular message
@@ -587,11 +555,11 @@
     \begin{spverbatim}
     {
         "user": {
-            "username": "string",
-            "displayName": "string",
-            "bio": "string",
-            "image": "string"
-        },
+        "username": "string",
+        "displayName": "string",
+        "bio": "string",
+        "image": "string"
+    },
         "message": "SUCCESS",
         "success": true
     }
@@ -604,7 +572,5 @@
         \item Success.
         \item User not found.
     \end{enumerate}
-    %% Get User Endpoint
-
-    \pagebreak
+        %% Get User Endpoint
 \end{itemize}

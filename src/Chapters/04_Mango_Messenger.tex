@@ -45,209 +45,227 @@
     %% Verify Email Endpoint
     \item \textbf{Endpoint}: api/auth/verify-email
 
-    \textbf{Description}: Sends verification request.
-    User receives confirmation link via email.
+    \begin{itemize}
 
-    \textbf{Request type}: GET
+        \item \textbf{Description}: Sends verification request.
+        User receives confirmation link via email.
 
-    \textbf{Parameters}:
+        \item \textbf{Request type}: GET
 
-    \begin{enumerate}
-        \item Email (required)
-        \item User ID (required)
-    \end{enumerate}
+        \item \textbf{Parameters}:
 
-    \textbf{Response example}:
+        \begin{enumerate}
+            \item Email (required)
+            \item User ID (required)
+        \end{enumerate}
 
-    \begin{spverbatim}
-    {
-        "message": "SUCCESS",
-        "success": true
-    }
-    \end{spverbatim}
+        \item \textbf{Response example}:
 
-    \textbf{Response codes}: 200, 400
+        \begin{spverbatim}
+        {
+            "message": "SUCCESS",
+            "success": true
+        }
+        \end{spverbatim}
 
-    \textbf{Response messages}:
-    \begin{enumerate}
-        \item Success.
-        \item Invalid user ID.
-        \item Email already verified.
-    \end{enumerate}
+        \item \textbf{Response codes}: 200, 400
+
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item Invalid user id.
+            \item Email already verified.
+        \end{enumerate}
+
+    \end{itemize}
     %% Verify Email Endpoint
 
     %% Login Endpoint
     \item \textbf{Endpoint}: api/auth/login
 
-    \textbf{Description}: Performs login to the messenger.
-    Returns: Access token, Refresh Token ID.
+    \begin{itemize}
 
-    \textbf{Request type}: POST
+        \item \textbf{Description}: Performs login to the messenger.
 
-    \textbf{Payload}:
+        \item \textbf{Request type}: POST
 
-    \begin{spverbatim}
-    {
-        "email": "string",
-        "password": "string"
-    }
-    \end{spverbatim}
+        \item \textbf{Payload}:
 
-    \textbf{Response example}:
+        \begin{spverbatim}
+        {
+            "email": "string",
+            "password": "string"
+        }
+        \end{spverbatim}
 
-    \begin{spverbatim}
-    {
-        "accessToken": "string",
-        "refreshTokenId": "string",
-        "message": "SUCCESS",
-        "success": true
-    }
-    \end{spverbatim}
+        \item \textbf{Response example}:
 
-    \textbf{Response codes}: 200, 400
+        \begin{spverbatim}
+        {
+            "accessToken": "string",
+            "refreshTokenId": "string",
+            "message": "SUCCESS",
+            "success": true
+        }
+        \end{spverbatim}
 
-    \textbf{Response messages}:
-    \begin{enumerate}
-        \item Success.
-        \item Invalid credentials.
-    \end{enumerate}
+        \item \textbf{Response codes}: 200, 400
+
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item Invalid credentials.
+        \end{enumerate}
+    \end{itemize}
     %% Login Endpoint
 
     %% Verify Phone Endpoint
     \item \textbf{Endpoint}: api/auth/verify-phone
+    \begin{itemize}
 
-    \textbf{Description}: Sends SMS to user phone.
+        \item \textbf{Description}: Sends SMS to user phone.
 
-    \textbf{Request type}: POST
+        \item \textbf{Request type}: POST
 
-    \textbf{Payload}:
+        \item \textbf{Payload}:
 
-    \begin{spverbatim}
-    {
-        "confirmationCode": integer
-    }
-    \end{spverbatim}
+        \begin{spverbatim}
+        {
+            "confirmationCode": integer
+        }
+        \end{spverbatim}
 
-    \textbf{Response example}:
+        \item \textbf{Response example}:
 
-    \begin{spverbatim}
-    {
-        "message": "SUCCESS",
-        "success": true
-    }
-    \end{spverbatim}
+        \begin{spverbatim}
+        {
+            "message": "SUCCESS",
+            "success": true
+        }
+        \end{spverbatim}
 
-    \textbf{Response codes}: 200, 400
+        \item \textbf{Response codes}: 200, 400
 
-    \textbf{Response messages}:
-    \begin{enumerate}
-        \item Success.
-        \item Invalid or expired.
-        \item Phone already verified
-    \end{enumerate}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item Invalid or expired.
+            \item Phone already verified
+        \end{enumerate}
+    \end{itemize}
     %% Verify Phone Endpoint
 
     %% Refresh Token Endpoint
     \item \textbf{Endpoint}: api/auth/refresh-token
 
-    \textbf{Description}: Refreshes user's existing refresh token and access token.
+    \begin{itemize}
 
-    \textbf{Request type}: POST
+        \item \textbf{Description}: Refreshes user's existing refresh token and access token.
 
-    \textbf{Payload}:
+        \item \textbf{Request type}: POST
 
-    \begin{spverbatim}
-    {
-        "refreshTokenId": "string"
-    }
-    \end{spverbatim}
+        \item \textbf{Payload}:
 
-    \textbf{Response example}:
+        \begin{spverbatim}
+        {
+            "refreshTokenId": "string"
+        }
+        \end{spverbatim}
 
-    \begin{spverbatim}
-    {
-        "refreshTokenId": "string",
-        "accessToken": "string",
-        "message": "SUCCESS",
-        "success": true
-    }
-    \end{spverbatim}
 
-    \textbf{Response codes}: 200, 400, 401
+        \item \textbf{Response example}:
 
-    \textbf{Response messages}:
-    \begin{enumerate}
-        \item Success.
-        \item Invalid or empty refresh token.
-    \end{enumerate}
+        \begin{spverbatim}
+        {
+            "refreshTokenId": "string",
+            "accessToken": "string",
+            "message": "SUCCESS",
+            "success": true
+        }
+        \end{spverbatim}
+
+        \item \textbf{Response codes}: 200, 400, 401
+
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item Invalid or empty refresh token.
+        \end{enumerate}
+    \end{itemize}
     %% Refresh Token Endpoint
 
     %% Logout Endpoint
     \item \textbf{Endpoint}: api/auth/logout
 
-    \textbf{Description}: Logs out from current device.
+    \begin{itemize}
 
-    \textbf{Request type}: POST
+        \item \textbf{Description}: Logs out from current device.
 
-    \textbf{Payload}:
+        \item \textbf{Request type}: POST
 
-    \begin{spverbatim}
-    {
-        "refreshTokenId": "string"
-    }
-    \end{spverbatim}
+        \item \textbf{Payload}:
 
-    \textbf{Response example}:
+        \begin{spverbatim}
+        {
+            "refreshTokenId": "string"
+        }
+        \end{spverbatim}
 
-    \begin{spverbatim}
-    {
-        "message": "SUCCESS",
-        "success": true
-    }
-    \end{spverbatim}
+        \item \textbf{Response example}:
 
-    \textbf{Response codes}: 200, 400, 401
+        \begin{spverbatim}
+        {
+            "message": "SUCCESS",
+            "success": true
+        }
+        \end{spverbatim}
 
-    \textbf{Response messages}:
-    \begin{enumerate}
-        \item Success.
-        \item User not found.
-        \item Invalid or empty refresh token.
-    \end{enumerate}
+        \item \textbf{Response codes}: 200, 400, 401
+
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+            \item Invalid or empty refresh token.
+        \end{enumerate}
+    \end{itemize}
     %% Logout Endpoint
 
     %% Logout All Endpoint
     \item \textbf{Endpoint}: api/auth/logout-all
 
-    \textbf{Description}: Logs out from all devices.
+    \begin{itemize}
 
-    \textbf{Request type}: POST
+        \item \textbf{Description}: Logs out from all devices.
 
-    \textbf{Payload}:
+        \item \textbf{Request type}: POST
 
-    \begin{spverbatim}
-    {
-        "refreshTokenId": "string"
-    }
-    \end{spverbatim}
+        \item \textbf{Payload}:
 
-    \textbf{Response example}:
+        \begin{spverbatim}
+        {
+            "refreshTokenId": "string"
+        }
+        \end{spverbatim}
 
-    \begin{spverbatim}
-    {
-        "message": "SUCCESS",
-        "success": true
-    }
-    \end{spverbatim}
+        \item \textbf{Response example}:
 
-    \textbf{Response codes}: 200, 400, 401
+        \begin{spverbatim}
+        {
+            "message": "SUCCESS",
+            "success": true
+        }
+        \end{spverbatim}
 
-    \textbf{Response messages}:
-    \begin{enumerate}
-        \item Success.
-        \item User not found.
-        \item Invalid or empty refresh token.
-    \end{enumerate}
+        \item \textbf{Response codes}: 200, 400, 401
+
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+            \item Invalid or empty refresh token.
+        \end{enumerate}
+    \end{itemize}
         %% Logout All Endpoint
 
 \end{itemize}
@@ -256,141 +274,149 @@
 \begin{itemize}
         %% Get Chats Endpoint
     \item \textbf{Endpoint}: api/chats
+    \begin{itemize}
 
-    \textbf{Description}: Returns list of all user's chats.
+        \item \textbf{Description}: Returns list of all user's chats.
 
-    \textbf{Request type}: GET
+        \item \textbf{Request type}: GET
 
-    \textbf{Response example}:
+        \item \textbf{Response example}:
 
-    \begin{spverbatim}
-    {
-        "chats": [
-            {
-            "title": "First Chat",
-            "image": null,
-            "lastMessageAuthor": "maintester@gmail.com",
-            "lastMessage": "Second message",
-            "lastMessageAt": "2021-07-06T19:41:23.597931"
-        },
-            {
-            "title": "Second Chat",
-            "image": null,
-            "lastMessageAuthor": null,
-            "lastMessage": null,
-            "lastMessageAt": null
+        \begin{spverbatim}
+        {
+            "chats": [
+                {
+                "title": "First Chat",
+                "image": null,
+                "lastMessageAuthor": "maintester@gmail.com",
+                "lastMessage": "Second message",
+                "lastMessageAt": "2021-07-06T19:41:23.597931"
+            },
+                {
+                "title": "Second Chat",
+                "image": null,
+                "lastMessageAuthor": null,
+                "lastMessage": null,
+                "lastMessageAt": null
+            }
+            ],
+            "message": "SUCCESS",
+            "success": true
         }
-        ],
-        "message": "SUCCESS",
-        "success": true
-    }
-    \end{spverbatim}
+        \end{spverbatim}
 
-    \textbf{Response codes}: 200, 400, 401
+        \item \textbf{Response codes}: 200, 400, 401
 
-    \textbf{Response messages}:
-    \begin{enumerate}
-        \item Success.
-        \item User not found.
-    \end{enumerate}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+        \end{enumerate}
+    \end{itemize}
     %% Get Chats Endpoint
 
     %% Create Group
     \item \textbf{Endpoint}: api/chats/group
 
-    \textbf{Description}: Creates new group of specified type.
+    \begin{itemize}
+        \item \textbf{Description}: Creates new group of specified type.
 
-    \textbf{Request type}: POST
+        \item \textbf{Request type}: POST
 
-    \textbf{Payload}:
+        \item \textbf{Payload}:
 
-    \begin{spverbatim}
-    {
-        "groupType": integer,
-        "groupTitle": "string"
-    }
-    \end{spverbatim}
+        \begin{spverbatim}
+        {
+            "groupType": integer,
+            "groupTitle": "string"
+        }
+        \end{spverbatim}
 
-    \textbf{Response example}:
+        \item \textbf{Response example}:
 
-    \begin{spverbatim}
-    {
-        "message": "SUCCESS",
-        "success": true
-    }
-    \end{spverbatim}
+        \begin{spverbatim}
+        {
+            "message": "SUCCESS",
+            "success": true
+        }
+        \end{spverbatim}
 
-    \textbf{Response codes}: 200, 400, 401
+        \item \textbf{Response codes}: 200, 400, 401
 
-    \textbf{Response messages}:
-    \begin{enumerate}
-        \item Success.
-        \item User not found.
-    \end{enumerate}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+        \end{enumerate}
+    \end{itemize}
     %% Create Group
 
     %% Direct Chat Endpoint
     \item \textbf{Endpoint}: api/chats/direct-chat
 
-    \textbf{Description}: Creates new group of specified type.
+    \begin{itemize}
+        \item \textbf{Description}: Creates new group of specified type.
 
-    \textbf{Request type}: POST
+        \item \textbf{Request type}: POST
 
-    \textbf{Payload}:
+        \item \textbf{Payload}:
 
-    \begin{spverbatim}
-    {
-        "partnerId": "string"
-    }
-    \end{spverbatim}
+        \begin{spverbatim}
+        {
+            "partnerId": "string"
+        }
+        \end{spverbatim}
 
-    \textbf{Response example}:
+        \item \textbf{Response example}:
 
-    \begin{spverbatim}
-    {
-        "message": "SUCCESS",
-        "success": true
-    }
-    \end{spverbatim}
+        \begin{spverbatim}
+        {
+            "message": "SUCCESS",
+            "success": true
+        }
+        \end{spverbatim}
 
-    \textbf{Response codes}: 200, 400, 401
+        \item \textbf{Response codes}: 200, 400, 401
 
-    \textbf{Response messages}:
-    \begin{enumerate}
-        \item Success.
-        \item User not found.
-    \end{enumerate}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+        \end{enumerate}
+    \end{itemize}
     %% Direct Chat Endpoint
 
     %% Group Join Endpoint
     \item \textbf{Endpoint}: api/chats/group/join/\{chatId\}
 
-    \textbf{Description}: Creates new group of specified type.
+    \begin{itemize}
+        \item \textbf{Description}: Creates new group of specified type.
 
-    \textbf{Request type}: POST
+        \item \textbf{Request type}: POST
 
-    \textbf{Parameters}:
+        \item \textbf{Parameters}:
 
-    \begin{enumerate}
-        \item Chat id (required).
-    \end{enumerate}
+        \begin{enumerate}
+            \item Chat id (required).
+        \end{enumerate}
 
-    \textbf{Response example}:
+        \item \textbf{Response example}:
 
-    \begin{spverbatim}
-    {
-        "message": "SUCCESS",
-        "success": true
-    }
-    \end{spverbatim}
+        \begin{spverbatim}
+        {
+            "message": "SUCCESS",
+            "success": true
+        }
+        \end{spverbatim}
 
-    \textbf{Response codes}: 200, 400, 401
+        \item \textbf{Response codes}: 200, 400, 401
 
-    \textbf{Response messages}:
-    \begin{enumerate}
-        \item Success.
-        \item User not found.
-    \end{enumerate}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+        \end{enumerate}
+    \end{itemize}
         %% Group Join Endpoint
 \end{itemize}
 
@@ -399,139 +425,144 @@
         %% Get Chat Messages Endpoint
     \item \textbf{Endpoint}: /api/messages/{chatId}
 
-    \textbf{Description}: Returns chat including messages by chat ID.
+    \begin{itemize}
+        \item \textbf{Description}: Returns chat including messages by chat id.
 
-    \textbf{Request type}: GET
 
-    \textbf{Parameters}:
-    \begin{enumerate}
-        \item Chat id (required).
-    \end{enumerate}
+        \item \textbf{Request type}: GET
 
-    \textbf{Response example}:
+        \item \textbf{Parameters}:
+        \begin{enumerate}
+            \item Chat id (required).
+        \end{enumerate}
 
-    \begin{spverbatim}
-    {
-        "messages": [],
-        "message": "SUCCESS",
-        "success": true
-    }
-    \end{spverbatim}
+        \item \textbf{Response example}:
 
-    \textbf{Response codes}: 200, 400, 401
+        \begin{spverbatim}
+        {
+            "messages": [],
+            "message": "SUCCESS",
+            "success": true
+        }
+        \end{spverbatim}
 
-    \textbf{Response messages}:
-    \begin{enumerate}
-        \item Success.
-        \item User not found.
-    \end{enumerate}
+        \item \textbf{Response codes}: 200, 400, 401
+
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+        \end{enumerate}
+    \end{itemize}
     %% Get Chat Messages Endpoint
 
     %% Send Message Endpoint
     \item \textbf{Endpoint}: /api/messages
 
-    \textbf{Description}: Sends message to particular chat
+    \begin{itemize}
+        \item \textbf{Description}: Sends message to particular chat
 
-    \textbf{Request type}: POST
+        \item \textbf{Request type}: POST
 
-    \textbf{Payload}:
+        \item \textbf{Payload}:
 
-    \begin{spverbatim}
-    {
-        "content": "hello world",
-        "chatId": 4
-    }
-    \end{spverbatim}
+        \begin{spverbatim}
+        {
+            "content": "hello world",
+            "chatId": 4
+        }
+        \end{spverbatim}
 
-    \textbf{Response example}:
+        \item \textbf{Response example}:
 
-    \begin{spverbatim}
-    {
-        "chatMessage": {
-        "userDisplayName": "string",
-        "messageText": "string",
-        "sentAt": "time-stamp",
-        "editedAt": "time-stamp"
-    },
-        "message": "SUCCESS",
-        "success": true
-    }
-    \end{spverbatim}
+        \begin{spverbatim}
+        {
+            "chatMessage": {
+            "userDisplayName": "string",
+            "messageText": "string",
+            "sentAt": "time-stamp",
+            "editedAt": "time-stamp"
+        },
+            "message": "SUCCESS",
+            "success": true
+        }
+        \end{spverbatim}
 
-    \textbf{Response codes}: 200, 400, 401
+        \item \textbf{Response codes}: 200, 400, 401
 
-    \textbf{Response messages}:
-    \begin{enumerate}
-        \item Success.
-        \item User not found.
-    \end{enumerate}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+        \end{enumerate}
+    \end{itemize}
     %% Send Message Endpoint
-
-    \pagebreak
 
     %% Edit Message Endpoint
     \item \textbf{Endpoint}: /api/messages
 
-    \textbf{Description}: Updates particular message
+    \begin{itemize}
+        \item \textbf{Description}: Updates particular message
 
-    \textbf{Request type}: PUT
+        \item \textbf{Request type}: PUT
 
-    \textbf{Payload}:
+        \item \textbf{Payload}:
 
-    \begin{spverbatim}
-    {
-        "messageId": 2,
-        "modifiedText": "text"
-    }
-    \end{spverbatim}
+        \begin{spverbatim}
+        {
+            "messageId": 2,
+            "modifiedText": "text"
+        }
+        \end{spverbatim}
 
-    \textbf{Response example}:
+        \item \textbf{Response example}:
 
-    \begin{spverbatim}
-    {
-        "message": "SUCCESS",
-        "success": true
-    }
-    \end{spverbatim}
+        \begin{spverbatim}
+        {
+            "message": "SUCCESS",
+            "success": true
+        }
+        \end{spverbatim}
 
-    \textbf{Response codes}: 200, 400, 401
+        \item \textbf{Response codes}: 200, 400, 401
 
-    \textbf{Response messages}:
-    \begin{enumerate}
-        \item Success.
-        \item User not found.
-    \end{enumerate}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+        \end{enumerate}
+    \end{itemize}
     %% Edit Message Endpoint
 
     %% Delete Message Endpoint
     \item \textbf{Endpoint}: /api/messages/\{messageId\}
 
-    \textbf{Description}: Updates particular message
-
-    \textbf{Request type}: DELETE
-
-    \textbf{Parameters}:
-
     \begin{itemize}
-        \item Message id (required).
+        \item \textbf{Description}: Updates particular message
+
+        \item \textbf{Request type}: DELETE
+
+        \item \textbf{Parameters}:
+
+        \begin{itemize}
+            \item Message id (required).
+        \end{itemize}
+
+        \item \textbf{Response example}:
+
+        \begin{sverbatim}
+        {
+            "message": "SUCCESS",
+            "success": true
+        }
+        \end{sverbatim}
+
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+        \end{enumerate}
     \end{itemize}
-
-    \textbf{Response example}:
-
-    \begin{spverbatim}
-    {
-        "message": "SUCCESS",
-        "success": true
-    }
-    \end{spverbatim}
-
-    \textbf{Response codes}: 200, 400, 401
-
-    \textbf{Response messages}:
-    \begin{enumerate}
-        \item Success.
-        \item User not found.
-    \end{enumerate}
         %% Delete Message Endpoint
 \end{itemize}
 
@@ -539,38 +570,40 @@
 \begin{itemize}
         %% Get User Endpoint
     \item \textbf{Endpoint}: /api/users/{userId}
+    \begin{itemize}
 
-    \textbf{Description}: Updates particular message
+        \item \textbf{Description}: Updates particular message
 
-    \textbf{Request type}: GET
+        \item \textbf{Request type}: GET
 
-    \textbf{Parameters}:
+        \item \textbf{Parameters}:
 
-    \begin{enumerate}
-        \item User id (required).
-    \end{enumerate}
+        \begin{enumerate}
+            \item User id (required).
+        \end{enumerate}
 
-    \textbf{Response example}:
+        \item \textbf{Response example}:
 
-    \begin{spverbatim}
-    {
-        "user": {
-        "username": "string",
-        "displayName": "string",
-        "bio": "string",
-        "image": "string"
-    },
-        "message": "SUCCESS",
-        "success": true
-    }
-    \end{spverbatim}
+        \begin{spverbatim}
+        {
+            "user": {
+            "username": "string",
+            "displayName": "string",
+            "bio": "string",
+            "image": "string"
+        },
+            "message": "SUCCESS",
+            "success": true
+        }
+        \end{spverbatim}
 
-    \textbf{Response codes}: 200, 400, 401
+        \item \textbf{Response codes}: 200, 400, 401
 
-    \textbf{Response messages}:
-    \begin{enumerate}
-        \item Success.
-        \item User not found.
-    \end{enumerate}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+        \end{enumerate}
+    \end{itemize}
         %% Get User Endpoint
 \end{itemize}

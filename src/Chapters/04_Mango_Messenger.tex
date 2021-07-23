@@ -229,18 +229,20 @@
         {
             "chats": [
                 {
-                "title": "First Chat",
-                "image": null,
-                "lastMessageAuthor": "maintester@gmail.com",
-                "lastMessage": "Second message",
-                "lastMessageAt": "2021-07-06T19:41:23.597931"
+                    "chatId": integer,
+                    "title": "First Chat",
+                    "image": null,
+                    "lastMessageAuthor": "maintester@gmail.com",
+                    "lastMessage": "Second message",
+                    "lastMessageAt": "2021-07-06T19:41:23.597931"
                 },
                 {
-                "title": "Second Chat",
-                "image": null,
-                "lastMessageAuthor": null,
-                "lastMessage": null,
-                "lastMessageAt": null
+                    "chatId": integer,
+                    "title": "Second Chat",
+                    "image": null,
+                    "lastMessageAuthor": null,
+                    "lastMessage": null,
+                    "lastMessageAt": null
                 }
             ],
             "message": "SUCCESS",
@@ -264,10 +266,17 @@
         \item \textbf{Request body}:
         \begin{spverbatim}
         {
-            "groupType": integer,
+            "groupType": integer [1,4]
             "groupTitle": "string"
         }
         \end{spverbatim}
+        \item \textbf{Chat types}:
+        \begin{enumerate}
+            \item DirectChat -- Chat between two people
+            \item PrivateChannel -- Channel that can be joined only via invite link from owner or one of the members
+            \item PublicChannel -- Channel that can be joined and messaged by anyone, unless person is not in blacklist
+            \item ReadOnlyChannel -- Channel that can be joined by anyone, but any member except owner or moderator cannot send messages there
+        \end{enumerate}
         \item \textbf{Response example}:
         \begin{spverbatim}
         {
@@ -318,7 +327,7 @@
         \item \textbf{Request type}: POST
         \item \textbf{Parameters}:
         \begin{enumerate}
-            \item Chat id (required).
+            \item Chat ID (required).
         \end{enumerate}
         \item \textbf{Response example}:
         \begin{spverbatim}
@@ -406,7 +415,7 @@
         \item \textbf{Request body}:
         \begin{spverbatim}
         {
-            "messageId": 2,
+            "messageId": integer,
             "modifiedText": "text"
         }
         \end{spverbatim}

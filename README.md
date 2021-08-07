@@ -12,6 +12,9 @@
 - Configure Inverse Search in IDEA for SumatraPDF, Tool -> LaTeX -> Configure Inverse Search
 - Compile it, Shift + F10
 
+## Links
+- Figma: https://www.figma.com/file/cGtLvO1JuJgWmnzaSbM8Re/Mango-Thesis-Screens
+
 ## Git flow
 - Each task is assigned a number (MANGO-ID)
 - Tasks are at Trello board https://trello.com/b/5kdQBsYE/bachelor-thesis-trello

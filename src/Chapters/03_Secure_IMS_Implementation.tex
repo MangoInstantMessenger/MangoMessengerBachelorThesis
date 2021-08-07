@@ -20,42 +20,85 @@ Following plot demonstrates the relation between complexity of system and archit
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{monolith_vs_microservice}
+    \includegraphics[width=1\textwidth]{Pictures/monolith_vs_microservice}
     \caption{Relation between system complexity and architectures. Source: https://martinfowler.com/bliki/MicroservicePremium.html}
     \label{fig:monolith_vs_microservice}
 \end{figure}
 
 \subsection{Initial concept diagram and discussion}\label{subsec:initial-concept-diagram}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Pictures/monolith_architecture}
+    \caption{Monolithic architecture diagram. Source: }\label{fig:figure2}
+\end{figure}
 
-\subsection{Planned technologies}\label{subsec:planned-technologies}
+\subsection{Application layers}\label{subsec:application-layers}
+\begin{itemize}
+    \item Presentation
+    \item Application Logic
+    \item Business Logic
+    \item Data Access Object (DAO)
+    \item Database (DB)
+\end{itemize}
 
 \subsection{Monolith Architecture: Cons and Props}\label{subsec:monolith-architecture:-cons-and-props}
 
 A monolith is built as a large system with a single code base and deployed as a single unit, usually behind a load balancer.
 It typically consists of four major components: a user interface, business logic, a data interface and a database.
-
 Monoliths offer several advantages, particularly when it comes to operational overhead requirements.
 Here are some of those basic benefits:
 
-Simplicity: Monolithic architectures are simple to build, test and deploy.
-These apps can scale horizontally, in one direction, by running several copies of the application behind a load balancer.
-Cross-cutting concerns: With a single codebase, monolithic apps can easily handle cross-cutting concerns, such as logging,
-configuration management and performance monitoring.
-Performance: Components in a monolith typically share memory which is faster than service-to-service communications using IPC or other mechanisms.
-
+\begin{itemize}
+    \item \textbf{Simplicity.} Monolithic architectures are simple to build, test and deploy.
+    These apps can scale horizontally, in one direction, by running several copies of the application behind a load balancer.
+    Cross-cutting concerns: With a single codebase, monolithic apps can easily handle cross-cutting concerns, such as logging,
+    configuration management and performance monitoring.
+    Another advantage associated with the simplicity of monolithic apps is easier deployment.
+    When it comes to monolithic applications, you do not have to handle many deployments – just one file or directory.
+    \item \textbf{Performance.} Components in a monolith typically share memory which is faster than service-to-service communications using
+    IPC or other mechanisms.
+    \item \textbf{Easier debugging and testing.}
+    In contrast to the microservices architecture, monolithic applications are much easier to debug and test.
+    Since a monolithic app is a single indivisible unit, you can run end-to-end testing much faster.
+    \item \textbf{Easier development.} As long as the monolithic approach is a standard way of building applications,
+    any engineering team has the right knowledge and capabilities to develop a monolithic application.
+\end{itemize}
 But one major drawback of monolithic architectures is tight coupling.
 Over time, monolithic components become tightly coupled and entangled.
 This coupling effects management, scalability and continuous deployment.
 Other cons that stem from tight coupling include:
 
-Reliability: An error in any of the modules in the application can bring the entire application down.
-Updates: Due to a single large codebase and tight coupling, the entire application would have to deploy for each update.
-Technology stack: A monolithic application must use the same technology stack throughout.
-Changes to the technology stack are expensive, both in terms of the time and cost involved.
+\begin{itemize}
+    \item \textbf{Understanding.} When a monolithic application scales up, it becomes too complicated to understand.
+    Also, a complex system of code within one application is hard to manage.
+    \item \textbf{Reliability.} An error in any of the modules in the application can bring the entire application down.
+    \item \textbf{Updates.} Due to a single large codebase and tight coupling, the entire application would have to deploy
+    for each update.
+    \item \textbf{Technology stack.} A monolithic application must use the same technology stack throughout.
+    Changes to the technology stack are expensive, both in terms of the time and cost involved.
+    \item \textbf{Scalability.} You cannot scale components independently, only the whole application.
+\end{itemize}
 
-Add here about CQRS
+\subsection{Decoupling Monolith using CQRS}\label{subsec:decoupling-monolith-using-cqrs}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Pictures/cqrs}
+    \caption{CQRS Conceptual diagram. Source: https://martinfowler.com/bliki/CQRS.html}\label{fig:figure}
+\end{figure}
 
-As the main concern we focus on is webb application, in the ongoing sections we discuss a details of both, front-end and back-end
-development of our project -- Mango Messenger.
+\subsection{Discussion on JWT Authentication}\label{subsec:discussion-on-jwt-authentication}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Pictures/jwt_auth_scheme}
+    \caption{CQRS Conceptual diagram. Source: https://martinfowler.com/bliki/CQRS.html}\label{fig:figure3}
+\end{figure}
 
-\section{Security aspects of HTTPS protocol}
+\subsection{Planned technologies}\label{subsec:planned-technologies}
+Fill with technologies from readme file.
+
+
+\section{Security aspects of HTTPS protocol}\label{sec:security-aspects-of-https-protocol}
+General discussion on HTTP here.
+
+\subsection{Diffie-Hellman Protocol}\label{subsec:diffie-hellman-protocol}
+Diffie hellman protocol discussion here.

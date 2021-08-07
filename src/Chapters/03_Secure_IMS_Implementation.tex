@@ -29,10 +29,17 @@ Following plot demonstrates the relation between complexity of system and archit
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{monolith_architecture}
-    \caption{CQRS Conceptual diagram. Source: https://martinfowler.com/bliki/CQRS.html}\label{fig:figure2}
+    \caption{Monolithic architecture diagram. Source: }\label{fig:figure2}
 \end{figure}
 
 \subsection{Application layers}\label{subsec:application-layers}
+\begin{itemize}
+    \item Presentation
+    \item Application Logic
+    \item Business Logic
+    \item Data Access Object (DAO)
+    \item Database (DB)
+\end{itemize}
 
 \subsection{Monolith Architecture: Cons and Props}\label{subsec:monolith-architecture:-cons-and-props}
 
@@ -80,9 +87,11 @@ Other cons that stem from tight coupling include:
 \end{figure}
 
 \subsection{Discussion on JWT Authentication}\label{subsec:discussion-on-jwt-authentication}
-\begin{itemize}
-    \item Basics of JWT Authentication
-\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{jwt_auth_scheme}
+    \caption{CQRS Conceptual diagram. Source: https://martinfowler.com/bliki/CQRS.html}\label{fig:figure3}
+\end{figure}
 
 \subsection{Planned technologies}\label{subsec:planned-technologies}
 Fill with technologies from readme file.

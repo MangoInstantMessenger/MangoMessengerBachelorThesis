@@ -34,11 +34,11 @@ Following plot demonstrates the relation between complexity of system and archit
 
 \subsection{Application layers}\label{subsec:application-layers}
 \begin{itemize}
-    \item Presentation Layer
-    \item Application Logic
-    \item Business Logic
-    \item Data Access Layer
-    \item Database
+    \item \textbf{Presentation Layer.} Responsible for external communication, e.g.\ API gateway, front-end application etc.
+    \item \textbf{Application Logic.} Responsible for interaction with user, for instance email sender, realtime notification service etc.
+    \item \textbf{Business Logic.} Keeps application business logics, request handlers etc.
+    \item \textbf{Data Access Layer.} Interface of interaction with database.
+    \item \textbf{Database.} Simply, database itself.\ For instance, Relational, NoSQL, Cache database etc.
 \end{itemize}
 
 \subsection{Monolith Architecture: Cons and Props}\label{subsec:monolith-architecture:-cons-and-props}
@@ -80,6 +80,12 @@ Other cons that stem from tight coupling include:
 \end{itemize}
 
 \subsection{Decoupling Monolith using CQRS}\label{subsec:decoupling-monolith-using-cqrs}
+Answer the questions:
+\begin{itemize}
+    \item What is CQRS?
+    \item Why do we use CQRS?
+    \item How CQRS helps us to decouple monolith?
+\end{itemize}
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Pictures/cqrs.pdf}

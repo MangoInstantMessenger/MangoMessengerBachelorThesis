@@ -1,4 +1,9 @@
+
 # Mango Messenger Diploma Thesis
+
+![Build](https://img.shields.io/badge/Build-succeeded-brightgreen)
+[![Trello board](https://img.shields.io/badge/Task%20Board-Trello-blue)](https://trello.com/b/5kdQBsYE/bachelor-thesis-trello)
+[![Contributors](https://img.shields.io/badge/Contributors-2-red)](https://github.com/kolosovpetro/MangoAPI/graphs/contributors)
 
 ## Build
 - Install MikTeX (https://miktex.org/download)
@@ -16,7 +21,7 @@
 - Figma: https://www.figma.com/file/cGtLvO1JuJgWmnzaSbM8Re/Mango-Thesis-Screens
 
 ## Git flow
-- Each task is assigned a number (MANGO-ID)
+- Each task is assigned a number (THESIS-ID)
 - Tasks are at Trello board https://trello.com/b/5kdQBsYE/bachelor-thesis-trello
 - There are two main branches: master, develop
 - Develop will be merged with master when diploma will be ready

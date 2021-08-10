@@ -1,3 +1,4 @@
+
 \chapter{Architectural aspects of Instant Messaging System}\label{ch:secure-ims-implementation}
 
 
@@ -113,8 +114,101 @@ Answer the questions:
     \item \textbf{JWT Bearer}: \href{https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer/5.0.7?_src=template}{Microsoft Jwt Bearer}
     \item \textbf{Swagger Library}: \href{https://www.nuget.org/packages/Swashbuckle.AspNetCore/5.6.3?_src=template}{Swashbuckle 6.1.4}
 \end{itemize}
+
+
 \section{Security aspects of HTTPS protocol}\label{sec:security-aspects-of-https-protocol}
 General discussion on HTTP here.
 
 \subsection{Diffie-Hellman Protocol}\label{subsec:diffie-hellman-protocol}
-Diffie hellman protocol discussion here.
+
+Diffie–Hellman key exchange is a method of securely exchanging cryptographic keys over a public channel and was one of the first public-key protocols
+as conceived by Ralph Merkle and named after Whitefield Diffie and Martin Hellman.
+DH is one of the earliest practical examples of public key exchange implemented within the field of cryptography.
+
+Published in 1976 by Diffie and Hellman, this is the earliest publicly known work that proposed the idea of a private key and a corresponding public key.
+
+Traditionally, secure encrypted communication between two parties required that they first exchange keys by some secure physical means,
+such as paper key lists transported by a trusted courier.
+The Diffie–Hellman key exchange method allows two parties that have no prior knowledge of
+each other to jointly establish a shared secret key over an insecure channel.
+This key can then be used to encrypt subsequent communications using a symmetric-key cipher.
+
+Although Diffie–Hellman key agreement itself is a non-authenticated key-agreement protocol, it provides the basis for a variety of authenticated protocols,
+and is used to provide forward secrecy in Transport Layer Security's ephemeral modes (referred to as EDH or DHE depending on the cipher suite).
+
+\textbf{Description}:
+
+Diffie–Hellman key exchange establishes a shared secret between two parties that can be used for secret communication for exchanging data over a public network.
+An analogy illustrates the concept of public key exchange by using colors instead of very large numbers:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Pictures/Diffie-Hellman.pdf}
+    \caption{Illustration of the concept behind Diffie–Hellman key exchange}\label{fig:figure4}
+\end{figure}
+
+The process begins by having the two parties, Alice and Bob, publicly agree on an arbitrary starting color that does not need to be kept secret (but should be different every time).
+In this example, the color is yellow.
+Each person also selects a secret color that they keep to themselves – in this case, red and blue-green.
+The crucial part of the process is that Alice and Bob each mix their own secret color together with their mutually shared color, resulting in orange-tan and light-blue mixtures respectively, and then publicly exchange the two mixed colors.
+Finally, each of them mixes the color they received from the partner with their own private color.
+The result is a final color mixture (yellow-brown in this case) that is identical to the partner's final color mixture.
+
+If a third party listened to the exchange, it would only know the common color (yellow) and the first mixed colors (orange-tan and light-blue),
+but it would be difficult for this party to determine the final secret color (yellow-brown).
+Bringing the analogy back to a real-life exchange using large numbers rather than colors, this determination is computationally expensive.
+It is impossible to compute in a practical amount of time even for modern supercomputers.
+
+\textbf{Cryptographic explanation}:
+\newline
+The simplest and the original implementation of the protocol uses the multiplicative group of integers modulo p, where p is prime, and g is a primitive root modulo p.
+These two values are chosen in this way to ensure that the resulting shared secret can take on any value from 1 to p–1.
+Here is an example of the protocol, with non-secret values in \textcolor{blue}{blue}, and secret values in \textcolor{red}{red}.
+\newline
+\begin{enumerate}
+    \item Alice and Bob publicly agree to use a modulus \textcolor{blue}{p = 23} and base \textcolor{blue}{g = 5} (which is a primitive root modulo 23).
+
+    \item Alice chooses a secret integer $\textcolor{red}{a} = 4$, then sends Bob $\textcolor{blue}{A} = \textcolor{blue}{g}^{\textcolor{red}{a}} \, mod  \, \textcolor{blue}{p}$
+    \begin{itemize}
+        \item $\textcolor{blue}{A} = \textcolor{blue}{5}^{\textcolor{red}{4}} \, mod  \, \textcolor{blue}{23} = \textcolor{blue}{4}$
+    \end{itemize}
+
+    \item Bob chooses a secret integer $\textcolor{red}{b} = 3$, then sends Alice $\textcolor{blue}{B} = \textcolor{blue}{g}^{\textcolor{red}{b}} \, mod  \, \textcolor{blue}{p}$
+    \begin{itemize}
+        \item $\textcolor{blue}{B} = \textcolor{blue}{5}^{\textcolor{red}{3}} \, mod  \, \textcolor{blue}{23} = \textcolor{blue}{10}$
+    \end{itemize}
+
+    \item Alice computes $\textcolor{red}{s} = \textcolor{blue}{B}^{\textcolor{red}{a}} \, mod \, p$
+    \begin{itemize}
+        \item $\textcolor{red}{s} = \textcolor{blue}{10}^{\textcolor{red}{4}} \, mod \, \textcolor{blue}{23} = \textcolor{red}{18}$
+    \end{itemize}
+
+    \item Bob computes $\textcolor{red}{s} = \textcolor{blue}{A}^{\textcolor{red}{b}} \, mod \, p$
+    \begin{itemize}
+        \item $\textcolor{red}{s} = \textcolor{blue}{4}^{\textcolor{red}{3}} \, mod \, \textcolor{blue}{23} = \textcolor{red}{18}$
+    \end{itemize}
+
+    \item Alice and Bob now share a secret (the number 18).
+\end{enumerate}
+
+Both Alice and Bob have arrived at the same values because under mod p:
+\newline
+\newline
+$\textcolor{blue}{A}^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{p} = \textcolor{blue}{g}^{\textcolor{red}{ab}} \, mod \, \textcolor{blue}{p} = \textcolor{blue}{g}^{\textcolor{red}{ba}} \, mod \, \textcolor{blue}{p} = \textcolor{blue}{B}^{\textcolor{red}{a}} \, mod \, \textcolor{blue}{p}$
+\newline
+More specifically:
+\newline
+\newline
+$(\textcolor{blue}{g}^{\textcolor{red}{a}} \, mod \, \textcolor{blue}{p})^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{p} = (\textcolor{blue}{g}^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{p})^{\textcolor{red}{a}}$
+\newline
+
+Only a and b are kept secret.
+All the other values – p, g, ga mod p, and gb mod p – are sent in the clear.
+The strength of the scheme comes from the fact that gab mod p = gba mod p take extremely long times to compute by any known algorithm just from the knowledge of p, g, ga mod p, and gb mod p.
+Once Alice and Bob compute the shared secret they can use it as an encryption key, known only to them, for sending messages across the same open communications channel.
+
+Of course, much larger values of a, b, and p would be needed to make this example secure, since there are only 23 possible results of n mod 23.
+However, if p is a prime of at least 600 digits, then even the fastest modern computers using the fastest known algorithm cannot find a given only g, p and ga mod p.
+Such a problem is called the discrete logarithm problem.
+The computation of ga mod p is known as modular exponentiation and can be done efficiently even for large numbers.
+Note that g need not be large at all, and in practice is usually a small integer (like 2, 3, ...).

@@ -80,17 +80,71 @@ Other cons that stem from tight coupling include:
 \end{itemize}
 
 \subsection{Decoupling Monolith using CQRS}\label{subsec:decoupling-monolith-using-cqrs}
+As it stated in previous section, monolithic architecture provides a quite strong coupling between application
+components.
+Moreover, as monolith grow horizontally, its services layer grows as well.
+This process leads to very huge code base which is very difficult to support and extend.
+We attach the following
+\href{https://github.com/smartstore/SmartStoreNET/blob/4.x/src/Presentation/SmartStore.Web/Controllers/CatalogHelper.cs}
+{link}
+as an example of such approach.
+To avoid the natural results of monolithic architecture, that are huge classes for thousands lines, we have to dive into design patterns.
+Precisely, the mediator pattern would help to decouple the service layer from presentation layer.
+Mediator -- is a behavioral design pattern that lets you reduce chaotic dependencies between objects.
+The pattern restricts direct communications between the objects and forces them to collaborate only via a mediator object.
+In other words, mediator allows the communication between two entities, such that entities doesn't know each other.
+The Mediator pattern suggests that you should cease all direct communication between the components which you want to make
+independent of each other.
+Instead, these components must collaborate indirectly, by calling a special mediator object that redirects the calls to
+appropriate components.
+As a result, the components depend only on a single mediator class instead of being coupled to dozens of their colleagues.
+
+In context of .NET platform there are multiple implementation of the Mediator, the most widely known and used is the
+\href{https://github.com/jbogard/MediatR}{MediatR}, which we use in our project.
+
+Another, yet popular approach is the CQRS, which stands for Command-Query Responsibility Segregation.
+In brief, it stands that read (query) and write (command) requests should be segregated by their responsibilities.
+The CQRS approach in couple with Mediator greatly helps to solve the coupling problem of the monolith architecture.
+So what is CQRS precisely?
+According to Martin Fowler [INSERTREF],
+It's a pattern that first described by Greg Young [INSERTREF].
+At its heart is the notion that you can use a different model to update information than the model you use to read information.
+For some situations, this separation can be valuable, but beware that for most systems CQRS adds risky complexity.
+The mainstream approach people use for interacting with an information system is to treat it as a CRUD datastore.
+By this meant that we have mental model of some record structure where we can create new records, read records,
+update existing records, and delete records when we're done with them.
+In the simplest case, our interactions are all about storing and retrieving these records.
+As our needs become more sophisticated we steadily move away from that model.
+We may want to look at the information in a different way to the record store, perhaps collapsing multiple records into one,
+or forming virtual records by combining information for different places.
+On the update side we may find validation rules that only allow certain combinations of data to be stored, or may even infer
+data to be stored that's different from that we provide.
+For instance, the idea of command-query segregation is displayed at the following image
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Pictures/cqrs.pdf}
+    \caption{CQRS Conceptual diagram. Source: https://martinfowler.com/bliki/CQRS.html}\label{fig:figure}
+\end{figure}
+
+Despite these benefits, you should be very cautious about using CQRS.
+Many information systems fit well with the notion of an information base that is updated in the same way that it's read,
+adding CQRS to such a system can add significant complexity.
+I've certainly seen cases where it's made a significant drag on productivity, adding an unwarranted amount of risk to the
+project, even in the hands of a capable team.
+So while CQRS is a pattern that's good to have in the toolbox, beware that it is difficult to use well and you can easily
+chop off important bits if you mishandle it.
+
+As a short conclusion, we may state that CQRS and Mediator pattern will not entirely solve the coupling problems the monolith,
+however will make project much more simplistic and intuitively understood.
+It is worth to keep is simple,
+even relatively simple project may grow to the sizes of universe without proper architectural solutions.
 Answer the questions:
 \begin{itemize}
     \item What is CQRS?
     \item Why do we use CQRS?
     \item How CQRS helps us to decouple monolith?
 \end{itemize}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{Pictures/cqrs.pdf}
-    \caption{CQRS Conceptual diagram. Source: https://martinfowler.com/bliki/CQRS.html}\label{fig:figure}
-\end{figure}
 
 \subsection{Discussion on JWT Authentication}\label{subsec:discussion-on-jwt-authentication}
 \begin{figure}[H]

@@ -1,4 +1,3 @@
-
 \chapter{Architectural aspects of Instant Messaging System}\label{ch:secure-ims-implementation}
 
 
@@ -212,3 +211,55 @@ However, if p is a prime of at least 600 digits, then even the fastest modern co
 Such a problem is called the discrete logarithm problem.
 The computation of ga mod p is known as modular exponentiation and can be done efficiently even for large numbers.
 Note that g need not be large at all, and in practice is usually a small integer (like 2, 3, ...).
+\newline
+\textbf{Secrecy Chart}:
+\newline
+The chart below depicts who knows what, again with non-secret values in \textcolor{blue}{blue}, and secret values in \textcolor{red}{red}.
+Here Eve is an eavesdropper – she watches what is sent between Alice and Bob, but she does not alter the contents of their communications.
+
+\begin{itemize}
+    \item \textcolor{blue}{g} = public (prime) base, known to Alice, Bob, and Eve. $\textcolor{blue}{g = 5}$
+    \item \textcolor{blue}{p} = public (prime) modulus, known to Alice, Bob, and Eve. $\textcolor{blue}{p = 23}$
+    \item \textcolor{red}{a} = Alice's private key, known only to Alice. $\textcolor{red}{a = 6}$
+    \item \textcolor{red}{b} = Bob's private key known only to Bob. $\textcolor{red}{b = 15}$
+    \item \textcolor{blue}{A} = Alice's public key, known to Alice, Bob, and Eve. $\textcolor{blue}{A = g}^{\textcolor{red}{a}} \, mod \, \textcolor{blue}{p = 8}$
+    \item \textcolor{blue}{B} = Bob's public key, known to Alice, Bob, and Eve. $\textcolor{blue}{B = g}^{\textcolor{red}{a}} \, mod \, \textcolor{blue}{p = 8}$
+\end{itemize}
+
+\pagebreak
+\begin{center}
+    \begin{table}
+        \begin{tabular}{|c|c|c|c|c|c|}
+            \hline
+            \multicolumn{2}{|c|}{Alice} & \multicolumn{2}{c|}{Bob} & \multicolumn{2}{c|}{Eve}
+            \cr \hline
+            known & unknown & known & unknown & known & unknown
+            \cr \hline
+            $\textcolor{blue}{p = 23}$ &  & $\textcolor{blue}{p = 23}$  & & $\textcolor{blue}{p = 23}$ &
+            \cr \hline
+            $\textcolor{blue}{g = 5}$ & & $\textcolor{blue}{g = 5}$ & & $\textcolor{blue}{g = 5}$ &
+            \cr \hline
+            $\textcolor{red}{a = 6}$ & $\textcolor{red}{b}$ & $\textcolor{red}{b = 15}$ & $\textcolor{red}{a}$ & & $\textcolor{red}{a, b}$
+            \cr \hline
+            $\textcolor{blue}{A = 5}^{\textcolor{red}{a}} \, mod \, \textcolor{blue}{23}$ & & $\textcolor{blue}{B = 5}^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{23}$ & & &
+            \cr \hline
+            $\textcolor{blue}{A = 5}^{\textcolor{red}{6}} \, mod \, \textcolor{blue}{23} = \textcolor{blue}{8}$ & & $\textcolor{blue}{B = 5}^{\textcolor{red}{15}} \, mod \, \textcolor{blue}{23} = \textcolor{blue}{19}$ & & &
+            \cr \hline
+            $\textbf{\textcolor{blue}{B}} = \textbf{\textcolor{blue}{19}}$ & & $\textbf{\textcolor{blue}{A}} = \textbf{\textcolor{blue}{8}}$ & & $\textcolor{blue}{A} = \textcolor{blue}{8}$, $\textcolor{blue}{B} = \textcolor{blue}{19}$ &
+            \cr \hline
+            $\textbf{\textcolor{red}{s}} = \textcolor{blue}{B}^{\textcolor{red}{a}} \, mod \, \textcolor{blue}{23}$ &  & $\textbf{\textcolor{red}{s}} = \textcolor{blue}{A}^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{23}$ & & &
+            \cr \hline
+            $\textbf{\textcolor{red}{s}} = \textcolor{blue}{19}^{\textcolor{red}{6}} \, mod \, \textcolor{blue}{23} = \textcolor{red}{2}$ &  & $\textbf{\textcolor{red}{s}} = \textcolor{blue}{A}^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{23} = \textcolor{red}{2}$ & & &
+            \cr \hline
+
+        \end{tabular}
+        \label{tab:table}
+    \end{table}
+\end{center}
+
+Now \textcolor{red}{s} is the shared secret key and it is known to both Alice and Bob, but not to Eve.
+Note that it is not helpful for Eve to compute \textcolor{blue}{AB}, which equals $\textcolor{blue}{g}^{\textcolor{red}{a} + \textcolor{red}{b}} \, mod \, \textcolor{blue}{p}$.
+
+Note: It should be difficult for Alice to solve for Bob's private key or for Bob to solve for Alice's private key.
+If it is not difficult for Alice to solve for Bob's private key (or vice versa), Eve may simply substitute her own private / public key pair, plug Bob's public key into her private key, produce a fake shared secret key, and solve for Bob's private key (and use that to solve for the shared secret key.
+Eve may attempt to choose a public / private key pair that will make it easy for her to solve for Bob's private key).

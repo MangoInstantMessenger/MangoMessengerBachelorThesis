@@ -154,6 +154,72 @@ Answer the questions:
 \end{figure}
 
 \subsection{Database Structure and related comments}\label{subsec:database-structure-and-related-comments}
+As a next topic to uncover goes the one related to the database structure.
+Proper database structure is to be of very high priority, since it influences on the project as a whole,
+starting from performance point of view and many other aspects.
+When we say performance, we mean such a design of database that there is an opportunity to include required indexes,
+depending on regularity of any particular request.
+So, as the main topic of current thesis is implementation of Instant messaging system, we can list the following
+general entities to be added to database schema.
+
+\begin{itemize}
+    \item \textbf{Users.} Table stores information about user.
+    Contains following columns:
+    \begin{itemize}
+        \item Id VARCHAR(36) -- Id of the user, Guid.
+        \item UserName VARCHAR(50) -- Unique Username.
+        \item NormalizedUserName VARCHAR(50) -- Unique Username in upper case.
+        \item DisplayName VARCHAR(50) -- Name of the user, displayed to others.
+        \item Bio VARCHAR(250) -- User's short biography, visible to others.
+        \item Image VARCHAR(36) -- User's profile picture, visible to others.
+        \item Email VARCHAR(120) -- User's email address, not public.
+        \item EmailConfirmed BOOLEAN -- Flag that indicates if user has confirmed his email address.
+        \item PhoneNumber VARCHAR(50) -- User's phone number.
+        \item PhoneNumberConfirmed BOOLEAN -- Flag that indicates if user has confirmed his phone number.
+        \item PhoneVerificationCode INTEGER -- Code sent to user in order to confirm phone number.
+        \item PasswordHash VARCHAR(60) -- Hashed password.
+        \item CreatedAt DATETIME -- Indicates the date and time user has been registered.
+        \item UpdatedAt DATETIME -- Indicates the date and time user has updated his record.
+    \end{itemize}
+    \item \textbf{Chats.} In order to communicate with other people it is essentially to have a chat room.
+    Our implementation provides chat rooms of the four types.
+    Direct chat -- chat room between only two members.
+    Public channel -- chat room for multiple members, each member can send and read messages.\ It displayed in search results.
+    Readonly channel -- channel for multiple members, however only the owner can send messages.\ It displayed in search results.
+    Private channel -- channel for multiple members, can be joined only by invite link.
+    Each user can have a numerous various chats, however, each chat has a multiple members, at least 2 as the case of direct chat.
+    Therefore, we consider a many-to-many relation between user and chats via intermediate table UserChats.
+    We discuss UserChats relation in foregoing part.
+    Continuing with Chats table, it contains the following columns:
+    \begin{itemize}
+        \item Id VARCHAR(36) -- Id of the chat, Guid.
+        \item ChatInfoId VARCHAR(36) -- Since we have a four types of channels, which has a common subset of data,
+        the different data is moved to another table, so it could be joined depending on chat type.
+        For instance, any chat type except direct one would require to join additional data in order to display the chat properly.
+        \item Title VARCHAR(50) -- Simply, the title of the chat.
+        \item Image VARCHAR(36) -- Picture of the chat.\ Displayed in search results etc.
+        \item ChatType ENUM -- The type of the chat, e.g direct chat, public channel, readonly channel, private channel.
+        \item CreatedAt DATETIME -- Indicates the date and time chat has been created.
+        \item UpdatedAt DATETIME -- Indicates the date and time chat has been updated.
+    \end{itemize}
+    \item \textbf{UserChats.} Table that considered as composite key of the many-to-many relation between Users and Chats tables.
+    Over that, contains an enum value that indicates user's role in the chat.
+    We assume the following user roles in the system:
+    \begin{itemize}
+        \item Owner -- the creator of the chat.
+         Has an ultimate privileges.
+        \item Administrator -- designated by the owner user, which has adjustable privileges.
+        \item Moderator -- designated by administrator user, which has adjustable privileges.
+        \item User -- default role assigned to the user on join the chat.
+    \end{itemize}
+    Despite that, the UserChats table contains the following columns:
+    \begin{itemize}
+        \item ChatId VARCHAR(36) -- Foreign key to the Chats table, Guid.
+        \item UserId VARCHAR(36) -- Foreign key to the Users table, Guid.
+        \item RoleId ENUM -- Indicates the user role in the chat, e.g Owner, Administrator, Moderator, User.
+    \end{itemize}
+\end{itemize}
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Pictures/DB_diagram}

@@ -2,6 +2,7 @@
 # Mango Messenger Diploma Thesis
 
 ![Build](https://img.shields.io/badge/Build-succeeded-brightgreen)
+![License](https://img.shields.io/badge/License-MIT-%23bfc400)
 [![Trello board](https://img.shields.io/badge/Task%20Board-Trello-blue)](https://trello.com/b/5kdQBsYE/bachelor-thesis-trello)
 [![Contributors](https://img.shields.io/badge/Contributors-2-red)](https://github.com/kolosovpetro/MangoAPI/graphs/contributors)
 

@@ -6,9 +6,9 @@
 \subsection{Auth}\label{subsec:auth}
 \begin{itemize}
         %% Register Endpoint
-    \item \textbf{Endpoint}: /api/auth/register.
+    \item \textbf{Endpoint}: /api/auth/register
     \begin{itemize}
-        \item \textbf{Description}: Registers user in a messenger.
+        \item \textbf{Description}: Registers user in a messenger
         \item \textbf{Request type}: POST
         \item \textbf{Request body}:
         \begin{spverbatim}
@@ -22,13 +22,37 @@
         }
         \end{spverbatim}
         \item  \textbf{Response example}:
+
+        \textbf{200 Success}:
+
         \begin{spverbatim}
         {
             "message": "SUCCESS",
             "success": true
         }
         \end{spverbatim}
-        \item \textbf{Response codes}: 200 Success, 400 BadRequest
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
         \item \textbf{Response messages}:
         \begin{enumerate}
             \item Success.
@@ -49,19 +73,54 @@
         \item \textbf{Description}: Sends verification request.
         User receives confirmation link via email.
         \item \textbf{Request type}: GET
-        \item \textbf{Parameters}:
-        \begin{enumerate}
-            \item Email (required)
-            \item User ID (required)
-        \end{enumerate}
-        \item \textbf{Response example}:
+        \begin{spverbatim}
+        {
+            "email": "string",
+            "userId": "string"
+        }
+        \end{spverbatim}
+        \item  \textbf{Response example}:
+
+        \textbf{200 Success}:
+
         \begin{spverbatim}
         {
             "message": "SUCCESS",
             "success": true
         }
         \end{spverbatim}
-        \item \textbf{Response codes}: 200 Success, 400 BadRequest
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": false
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": false
+        }
+        \end{spverbatim}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User already registered.
+            \item Weak password.
+            \item Invalid email.
+            \item Invalid verification method.
+            \item Invalid display name.
+            \item Phone occupied.
+        \end{enumerate}
         \item \textbf{Response messages}:
         \begin{enumerate}
             \item Success.
@@ -70,6 +129,59 @@
         \end{enumerate}
     \end{itemize}
     %% Verify Email Endpoint
+
+    %% Verify Phone Endpoint
+    \item \textbf{Endpoint}: api/auth/verify-phone
+    \begin{itemize}
+        \item \textbf{Description}: Sends SMS to user phone.
+        \item \textbf{Request type}: POST
+        \item \textbf{Request body}:
+        \begin{spverbatim}
+        {
+            "confirmationCode": 0,
+            "userId": "string"
+        }
+        \end{spverbatim}
+        \item  \textbf{Response example}:
+
+        \textbf{200 Success}:
+
+        \begin{spverbatim}
+        {
+            "message": "SUCCESS",
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": false
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": false
+        }
+        \end{spverbatim}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item Invalid or expired.
+            \item Phone already verified
+        \end{enumerate}
+    \end{itemize}
+    %% Verify Phone Endpoint
 
     %% Login Endpoint
     \item \textbf{Endpoint}: api/auth/login
@@ -84,16 +196,40 @@
             "password": "string"
         }
         \end{spverbatim}
-        \item \textbf{Response example}:
+        \item  \textbf{Response example}:
+
+        \textbf{200 Success}:
+
         \begin{spverbatim}
         {
-            "accessToken": "string",
             "refreshTokenId": "string",
-            "message": "SUCCESS",
+            "accessToken": "string",
+            "message": "string",
             "success": true
         }
         \end{spverbatim}
-        \item \textbf{Response codes}: 200 Success, 400 BadRequest
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": false
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": false
+        }
+        \end{spverbatim}
         \item \textbf{Response messages}:
         \begin{enumerate}
             \item Success.
@@ -102,33 +238,6 @@
     \end{itemize}
     %% Login Endpoint
 
-    %% Verify Phone Endpoint
-    \item \textbf{Endpoint}: api/auth/verify-phone
-    \begin{itemize}
-        \item \textbf{Description}: Sends SMS to user phone.
-        \item \textbf{Request type}: POST
-        \item \textbf{Request body}:
-        \begin{spverbatim}
-        {
-            "confirmationCode": integer
-        }
-        \end{spverbatim}
-        \item \textbf{Response example}:
-        \begin{spverbatim}
-        {
-            "message": "SUCCESS",
-            "success": true
-        }
-        \end{spverbatim}
-        \item \textbf{Response codes}: 200 Success, 400 BadRequest
-        \item \textbf{Response messages}:
-        \begin{enumerate}
-            \item Success.
-            \item Invalid or expired.
-            \item Phone already verified
-        \end{enumerate}
-    \end{itemize}
-    %% Verify Phone Endpoint
 
     %% Refresh Token Endpoint
     \item \textbf{Endpoint}: api/auth/refresh-token
@@ -141,16 +250,40 @@
             "refreshTokenId": "string"
         }
         \end{spverbatim}
-        \item \textbf{Response example}:
+        \item  \textbf{Response example}:
+
+        \textbf{200 Success}:
+
         \begin{spverbatim}
         {
             "refreshTokenId": "string",
             "accessToken": "string",
-            "message": "SUCCESS",
+            "message": "string",
             "success": true
         }
         \end{spverbatim}
-        \item \textbf{Response codes}: 200 Success, 400 BadRequest
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": false
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": false
+        }
+        \end{spverbatim}
         \item \textbf{Response messages}:
         \begin{enumerate}
             \item Success.
@@ -170,14 +303,38 @@
             "refreshTokenId": "string"
         }
         \end{spverbatim}
-        \item \textbf{Response example}:
+        \item  \textbf{Response example}:
+
+        \textbf{200 Success}:
+
         \begin{spverbatim}
         {
             "message": "SUCCESS",
             "success": true
         }
         \end{spverbatim}
-        \item \textbf{Response codes}: 200 Success, 400 BadRequest, 401 Unauthorized
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
         \item \textbf{Response messages}:
         \begin{enumerate}
             \item Success.
@@ -198,20 +355,38 @@
             "refreshTokenId": "string"
         }
         \end{spverbatim}
-        \item \textbf{Response example}:
+        \item  \textbf{Response example}:
+
+        \textbf{200 Success}:
+
         \begin{spverbatim}
         {
             "message": "SUCCESS",
             "success": true
         }
         \end{spverbatim}
-        \item \textbf{Response codes}: 200 Success, 400 BadRequest, 401 Unauthorized
-        \item \textbf{Response messages}:
-        \begin{enumerate}
-            \item Success.
-            \item User not found.
-            \item Invalid or empty refresh token.
-        \end{enumerate}
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
     \end{itemize}
         %% Logout All Endpoint
 
@@ -225,31 +400,50 @@
         \item \textbf{Description}: Returns list of all user's chats.
         \item \textbf{Request type}: GET
         \item \textbf{Response example}:
+
+        \textbf{200 Success}:
+
         \begin{spverbatim}
         {
             "chats": [
                 {
-                    "chatId": integer,
-                    "title": "First Chat",
-                    "image": null,
-                    "lastMessageAuthor": "maintester@gmail.com",
-                    "lastMessage": "Second message",
-                    "lastMessageAt": "2021-07-06T19:41:23.597931"
-                },
-                {
-                    "chatId": integer,
-                    "title": "Second Chat",
-                    "image": null,
-                    "lastMessageAuthor": null,
-                    "lastMessage": null,
-                    "lastMessageAt": null
-                }
+                "chatId": "string",
+                "title": "string",
+                "image": "string",
+                "lastMessageAuthor": "string",
+                "lastMessage": "string",
+                "lastMessageAt": "string",
+                "membersCount": 0,
+                "isMember": true
+            }
             ],
-            "message": "SUCCESS",
+            "message": "string",
             "success": true
         }
         \end{spverbatim}
-        \item \textbf{Response codes}: 200 Success, 400 BadRequest, 401 Unauthorized
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
         \item \textbf{Response messages}:
         \begin{enumerate}
             \item Success.
@@ -258,7 +452,7 @@
     \end{itemize}
     %% Get Chats Endpoint
 
-    %% Create Group
+    %% Create Group Endpoint
     \item \textbf{Endpoint}: api/chats/group
     \begin{itemize}
         \item \textbf{Description}: Creates new group of specified type.
@@ -266,7 +460,7 @@
         \item \textbf{Request body}:
         \begin{spverbatim}
         {
-            "groupType": integer [1,4]
+            "groupType": 1
             "groupTitle": "string"
         }
         \end{spverbatim}
@@ -278,22 +472,48 @@
             \item ReadOnlyChannel -- Channel that can be joined by anyone, but any member except owner or moderator cannot send messages there
         \end{enumerate}
         \item \textbf{Response example}:
+
+        \textbf{200 Success}:
+
         \begin{spverbatim}
         {
-            "message": "SUCCESS",
+            "chatId": "string",
+            "message": "string",
             "success": true
         }
         \end{spverbatim}
-        \item \textbf{Response codes}: 200 Success, 400 BadRequest, 401 Unauthorized
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
         \item \textbf{Response messages}:
         \begin{enumerate}
             \item Success.
             \item User not found.
         \end{enumerate}
     \end{itemize}
-    %% Create Group
+    %% Create Group Endpoint
 
-    %% Direct Chat Endpoint
+    %% Create Direct Chat Endpoint
     \item \textbf{Endpoint}: api/chats/direct-chat
     \begin{itemize}
         \item \textbf{Description}: Creates new group of specified type.
@@ -305,49 +525,170 @@
         }
         \end{spverbatim}
         \item \textbf{Response example}:
+
+        \textbf{200 Success}:
+
         \begin{spverbatim}
         {
-            "message": "SUCCESS",
+            "chatId": "string",
+            "message": "string",
             "success": true
         }
         \end{spverbatim}
-        \item \textbf{Response codes}: 200 Success, 400 BadRequest, 401 Unauthorized
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
         \item \textbf{Response messages}:
         \begin{enumerate}
             \item Success.
             \item User not found.
         \end{enumerate}
     \end{itemize}
-    %% Direct Chat Endpoint
+    %% Create Direct Chat Endpoint
 
     %% Group Join Endpoint
     \item \textbf{Endpoint}: api/chats/group/join/\{chatId\}
     \begin{itemize}
         \item \textbf{Description}: Creates new group of specified type.
         \item \textbf{Request type}: POST
-        \item \textbf{Parameters}:
-        \begin{enumerate}
-            \item Chat ID (required).
-        \end{enumerate}
-        \item \textbf{Response example}:
+        \item \textbf{Request example}:
         \begin{spverbatim}
         {
-            "message": "SUCCESS",
+            "chatId": "string"
+        }
+        \end{spverbatim}
+
+        \item \textbf{Response example}:
+
+        \textbf{200 Success}:
+
+        \begin{spverbatim}
+        {
+            "chatId": "string",
+            "message": "string",
             "success": true
         }
         \end{spverbatim}
-        \item \textbf{Response codes}: 200 Success, 400 BadRequest, 401 Unauthorized
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
         \item \textbf{Response messages}:
         \begin{enumerate}
             \item Success.
-            \item User not found.
+            \item Group not found.
         \end{enumerate}
     \end{itemize}
-        %% Group Join Endpoint
+    %% Group Join Endpoint
+
+    %% Search Chat Endpoint
+    \item \textbf{Endpoint}: api/chats/search
+    \begin{itemize}
+        \item \textbf{Description}: Searches chats by display name.
+        \item \textbf{Request type}: GET
+        \item \textbf{Parameters}:
+        \begin{enumerate}
+            \item displayName (required)
+        \end{enumerate}
+
+        \item \textbf{Response example}:
+
+        \textbf{200 Success}:
+
+        \begin{spverbatim}
+        {
+            "chats": [
+                {
+                "chatId": "string",
+                "title": "string",
+                "image": "string",
+                "lastMessageAuthor": "string",
+                "lastMessage": "string",
+                "lastMessageAt": "string",
+                "membersCount": 0,
+                "isMember": true
+            }
+            ],
+            "message": "string",
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item Unauthorized.
+        \end{enumerate}
+    \end{itemize}
+        %% Search Chat Endpoint
+
 \end{itemize}
 
 \subsection{Messages}\label{subsec: messages}
-\begin{itemize}%% Get Chat Messages Endpoint
+
+\begin{itemize}
+        %% Get Chat Messages Endpoint
     \item \textbf{Endpoint}: /api/messages/\{chatId\}
     \begin{itemize}
         \item \textbf{Description}: Returns chat including messages by chat id.
@@ -356,15 +697,48 @@
         \begin{enumerate}
             \item Chat id (required).
         \end{enumerate}
+
         \item \textbf{Response example}:
+
+        \textbf{200 Success}:
+
         \begin{spverbatim}
         {
-            "messages": [],
-            "message": "SUCCESS",
+            "messages": [
+                {
+                "userDisplayName": "string",
+                "messageText": "string",
+                "sentAt": "string",
+                "editedAt": "string",
+                "self": true
+            }
+            ],
+            "message": "string",
             "success": true
         }
         \end{spverbatim}
-        \item \textbf{Response codes}: 200 Success, 400 BadRequest, 401 Unauthorized
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
         \item \textbf{Response messages}:
         \begin{enumerate}
             \item Success.
@@ -381,24 +755,45 @@
         \item \textbf{Request body}:
         \begin{spverbatim}
         {
-            "content": "hello world",
-            "chatId": 4
+            "messageText": "string",
+            "chatId": "string"
         }
         \end{spverbatim}
+
         \item \textbf{Response example}:
+
+        \textbf{200 Success}:
+
         \begin{spverbatim}
         {
-            "chatMessage": {
-            "userDisplayName": "string",
-            "messageText": "string",
-            "sentAt": "time-stamp",
-            "editedAt": "time-stamp"
-            },
-            "message": "SUCCESS",
+            "messageId": "string",
+            "message": "string",
             "success": true
         }
         \end{spverbatim}
-        \item \textbf{Response codes}: 200 Success, 400 BadRequest, 401 Unauthorized
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
         \item \textbf{Response messages}:
         \begin{enumerate}
             \item Success.
@@ -415,18 +810,43 @@
         \item \textbf{Request body}:
         \begin{spverbatim}
         {
-            "messageId": integer,
-            "modifiedText": "text"
+            "messageId": "string",
+            "modifiedText": "string"
         }
         \end{spverbatim}
         \item \textbf{Response example}:
+
+        \textbf{200 Success}:
+
         \begin{spverbatim}
         {
-            "message": "SUCCESS",
+            "message": "string",
             "success": true
         }
         \end{spverbatim}
-        \item \textbf{Response codes}: 200 Success, 400 BadRequest, 401 Unauthorized
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
         \item \textbf{Response messages}:
         \begin{enumerate}
             \item Success.
@@ -436,21 +856,50 @@
     %% Edit Message Endpoint
 
     %% Delete Message Endpoint
-    \item \textbf{Endpoint}: /api/messages/\{messageId\}
+    \item \textbf{Endpoint}: /api/messages
     \begin{itemize}
-        \item \textbf{Description}: Updates particular message
+        \item \textbf{Description}: Deletes particular message
         \item \textbf{Request type}: DELETE
-        \item \textbf{Parameters}:
-        \begin{itemize}
-            \item Message id (required).
-        \end{itemize}
-        \item \textbf{Response example}:
+        \item \textbf{Request body}:
+
         \begin{spverbatim}
         {
-            "message": "SUCCESS",
+            "messageId": "string"
+        }
+        \end{spverbatim}
+        \item \textbf{Response example}:
+
+        \textbf{200 Success}:
+
+        \begin{spverbatim}
+        {
+            "message": "string",
             "success": true
         }
         \end{spverbatim}
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
         \item \textbf{Response messages}:
         \begin{enumerate}
             \item Success.
@@ -465,13 +914,61 @@
         %% Get User Endpoint
     \item \textbf{Endpoint}: /api/users/\{userId\}
     \begin{itemize}
-        \item \textbf{Description}: Updates particular message
+        \item \textbf{Description}: Returns information about particular user by user ID
         \item \textbf{Request type}: GET
         \item \textbf{Parameters}:
         \begin{enumerate}
             \item User ID (required).
         \end{enumerate}
         \item \textbf{Response example}:
+
+        \textbf{200 Success}:
+
+        \begin{spverbatim}
+        {
+            "message": "string",
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+        \end{enumerate}
+    \end{itemize}
+    %% Get User Endpoint
+    %% Get Loged User Endpoint
+    \item \textbf{Endpoint}: /api/users
+    \begin{itemize}
+        \item \textbf{Description}: Returns information about current user logged in system
+        \item \textbf{Request type}: GET
+        \item \textbf{Response example}:
+
+        \textbf{200 Success}:
+
         \begin{spverbatim}
         {
             "user": {
@@ -479,17 +976,268 @@
             "displayName": "string",
             "bio": "string",
             "image": "string"
-            },
-            "message": "SUCCESS",
+        },
+            "message": "string",
             "success": true
         }
         \end{spverbatim}
-        \item \textbf{Response codes}: 200 Success, 400 BadRequest, 401 Unauthorized
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
         \item \textbf{Response messages}:
         \begin{enumerate}
             \item Success.
             \item User not found.
         \end{enumerate}
     \end{itemize}
-        %% Get User Endpoint
+    %% Get Loged User Endpoint
+    %% Search User Endpoint
+    \item \textbf{Endpoint}: /api/users/search
+    \begin{itemize}
+        \item \textbf{Description}: Searches user by display name
+        \item \textbf{Request type}: GET
+        \item \textbf{Parameters}:
+        \begin{enumerate}
+            \item displayName (required)
+        \end{enumerate}
+        \item \textbf{Response example}:
+
+        \textbf{200 Success}:
+
+        \begin{spverbatim}
+        {
+            "user": {
+            "username": "string",
+            "displayName": "string",
+            "bio": "string",
+            "image": "string"
+        },
+            "message": "string",
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+        \end{enumerate}
+    \end{itemize}
+        %% Search User Endpoint
+\end{itemize}
+
+\subsection{Contacts}\label{subsec:contacts}
+\begin{itemize}
+        %% Add Contact Endpoint
+    \item \textbf{Endpoint}: /api/contacts
+    \begin{itemize}
+        \item \textbf{Description}: Adds new contact
+        \item \textbf{Request type}: POST
+        \item \textbf{Request body}:
+        \begin{spverbatim}
+        {
+            "contactId": "string"
+        }
+        \end{spverbatim}
+
+        \item \textbf{Response example}:
+
+        \textbf{200 Success}:
+
+        \begin{spverbatim}
+        {
+            "message": "string",
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+        \end{enumerate}
+    \end{itemize}
+    %% Add Contact Endpoint
+    %% Get Contacts Endpoint
+    \item \textbf{Endpoint}: /api/contacts
+    \begin{itemize}
+        \item \textbf{Description}: Returns list of all user's contacts
+        \item \textbf{Request type}: GET
+        \item \textbf{Response example}:
+
+        \textbf{200 Success}:
+
+        \begin{spverbatim}
+        {
+            "contacts": [
+                {
+                "username": "string",
+                "displayName": "string",
+                "bio": "string",
+                "image": "string"
+            }
+            ],
+            "message": "string",
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+        \end{enumerate}
+    \end{itemize}
+        %% Get Contacts Endpoint
+\end{itemize}
+
+\subsection{User Information}
+\begin{itemize}
+        %% Update User Info Endpoint
+    \item \textbf{Endpoint}: /api/contacts
+    \begin{itemize}
+        \item \textbf{Description}: Updates current user information
+        \item \textbf{Request type}: PUT
+        \item \textbf{Request body}:
+        \begin{spverbatim}
+        {
+            "firstName": "string",
+            "lastName": "string",
+            "birthDay": "timestamp",
+            "website": "string",
+            "address": "string",
+            "facebook": "string",
+            "twitter": "string",
+            "instagram": "string",
+            "linkedIn": "string",
+            "profilePicture": "string"
+        }
+        \end{spverbatim}
+
+        \item \textbf{Response example}:
+
+        \textbf{200 Success}:
+
+        \begin{spverbatim}
+        {
+            "message": "string",
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{400 Bad Request}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \textbf{409 Conflict}:
+
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+        \end{enumerate}
+    \end{itemize}
+        %% Update User Info Endpoint
 \end{itemize}

@@ -1,22 +1,25 @@
-\chapter{Architectural aspects of Instant Messaging System}\label{ch:secure-ims-implementation}
+\chapter{Architectural aspects of the system}\label{ch:architectural-aspects-of-the-system}
 
 
-\section{Application architecture and UML modeling}\label{sec:application-architecture-and-uml-modeling}
+\section{Application architecture and related comments}\label{sec:application-architecture-and-related-comments}
 
-\subsection{Motivation}\label{subsec:motivation}
-As a programmers, I believe all we have faced the cases of crucial over-engineering during the implementation of some software product.
-For the programmer, it is a vital point to follow two separated, but closely related software development principles, such that
-KISS [INSERTREF], and YAGNI [INSERTREF].
-As the main topic of our thesis is the security and privacy aspects of Instant Messaging Systems, we consider following
-previously discussed principles KISS and YAGNI and use a well-known Monolithic architecture [INSERTREF].
-One would suggest to use nowadays popular Microservice Architecture, thinking about scalability [INSERTREF],
-an ability of the system to handle large numbers of users distributed over geographically large areas without notably affecting
-the overall performance of the system.
-However, the effect of Microservices is felt only for quite large and complex systems, not the case of Instant Messaging System
-we implement in chapter [number].
-It is worthless to divide the functional requirements, discussed in section [number] into microservices and that's central point
-in motivation to use Monolithic Architecture.
-Following plot demonstrates the relation between complexity of system and architecture.
+As a programmers, I believe all we have faced the cases of crucial over-engineering during the implementation of some
+software product.
+For the programmer, it is a vital point to follow two separated, but closely related software development principles,
+such that KISS [INSERTREF], and YAGNI [INSERTREF].
+As the main topic of our thesis is to implement Instant Messaging System following the security and privacy aspects.
+We consider to following above-mentioned development principles KISS and YAGNI and approach
+a well-known N-tier application Monolithic architecture [INSERTREF], which provides a model by which developers can
+create flexible and reusable applications.
+By segregating an application into tiers, developers acquire the option of modifying or adding a specific layer,
+instead of reworking the entire application.
+A three-tier architecture is typically composed of a presentation tier, a logic tier, and a data tier.
+One would suggest to use nowadays popular Microservices Architecture, thinking about scalability [INSERTREF],
+an ability of the system to handle large numbers of users distributed over geographically large areas without
+notably affecting the overall performance of the system.
+However, the effect of Microservices is being felt only for quite large and complex systems,
+not the case of our yet simple application.
+Following plot demonstrates this relation
 
 \begin{figure}[H]
     \centering
@@ -25,21 +28,45 @@ Following plot demonstrates the relation between complexity of system and archit
     \label{fig:monolith_vs_microservice}
 \end{figure}
 
-\subsection{Initial concept diagram and discussion}\label{subsec:initial-concept-diagram}
+In a logical multilayer architecture for an information system with an object-oriented design, the following four are the most common:
+
+\begin{itemize} % source: https://en.wikipedia.org/wiki/Multitier_architecture#cite_note-5
+    \item \textbf{Presentation Layer.} UI layer, view layer, presentation tier in multitier architecture.
+    \item \textbf{Application Logic.} Service layer[5][6] or GRASP Controller Layer [7].
+    \item \textbf{Business Logic.} Business logic layer (BLL), domain logic layer.
+    \item \textbf{Data Access Layer.} Persistence layer, logging, networking, and other services which are required to support a particular business layer.
+\end{itemize}
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Pictures/Monolith_architecture.pdf}
     \caption{Monolithic architecture diagram. Source: }\label{fig:figure2}
 \end{figure}
 
-\subsection{Application layers}\label{subsec:application-layers}
-\begin{itemize}
-    \item \textbf{Presentation Layer.} Responsible for external communication, e.g.\ API gateway, front-end application etc.
-    \item \textbf{Application Logic.} Responsible for interaction with user, for instance email sender, realtime notification service etc.
-    \item \textbf{Business Logic.} Keeps application business logics, request handlers etc.
-    \item \textbf{Data Access Layer.} Interface of interaction with database.
-    \item \textbf{Database.} Simply, database itself.\ For instance, Relational, NoSQL, Cache database etc.
-\end{itemize}
+The book Domain Driven Design describes some common uses for the above four layers, although its primary focus is the
+domain layer.[8]
+If the application architecture has no explicit distinction between the business layer and the presentation layer
+(i.e., the presentation layer is considered part of the business layer), then a traditional client-server (two-tier)
+model has been implemented.[citation needed]
+The more usual convention is that the application layer (or service layer) is considered a sublayer of the business layer,
+typically encapsulating the API definition surfacing the supported business functionality.
+The application/business layers can, in fact, be further subdivided to emphasize additional sublayers of distinct
+responsibility.
+For example, if the model–view–presenter pattern is used, the presenter sublayer might be used as an additional layer
+between the user interface layer and the business/application layer (as represented by the model sublayer).
+Some also identify a separate layer called the business infrastructure layer (BI), located between the business layer(s)
+and the infrastructure layer(s).
+It's also sometimes called the "low-level business layer" or the "business services layer".
+This layer is very general and can be used in several application tiers (e.g. a CurrencyConverter).[9]
+The infrastructure layer can be partitioned into different levels (high-level or low-level technical services).[9]
+Developers often focus on the persistence (data access) capabilities of the infrastructure layer and therefore only
+talk about the persistence layer or the data access layer (instead of an infrastructure layer or technical services layer).
+In other words, the other kind of technical services are not always explicitly thought of as part of any particular
+layer.
+A layer is on top of another, because it depends on it.
+Every layer can exist without the layers above it, and requires the layers below it to function.
+Another common view is that layers do not always strictly depend on only the adjacent layer below.
+For example, in a relaxed layered system (as opposed to a strict layered system) a layer can also depend on all the layers below it.[4]
 
 \subsection{Monolith Architecture: Cons and Props}\label{subsec:monolith-architecture:-cons-and-props}
 
@@ -146,13 +173,6 @@ Answer the questions:
     \item How CQRS helps us to decouple monolith?
 \end{itemize}
 
-\subsection{Discussion on JWT Authentication}\label{subsec:discussion-on-jwt-authentication}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{Pictures/jwt_auth_scheme.pdf}
-    \caption{CQRS Conceptual diagram. Source: https://martinfowler.com/bliki/CQRS.html}\label{fig:figure3}
-\end{figure}
-
 \subsection{Database Structure and related comments}\label{subsec:database-structure-and-related-comments}
 As a next topic to uncover goes the one related to the database structure.
 Proper database structure is to be of very high priority, since it influences on the project as a whole,
@@ -207,7 +227,7 @@ general entities to be added to database schema.
     We assume the following user roles in the system:
     \begin{itemize}
         \item Owner -- the creator of the chat.
-         Has an ultimate privileges.
+        Has an ultimate privileges.
         \item Administrator -- designated by the owner user, which has adjustable privileges.
         \item Moderator -- designated by administrator user, which has adjustable privileges.
         \item User -- default role assigned to the user on join the chat.
@@ -224,6 +244,13 @@ general entities to be added to database schema.
     \centering
     \includegraphics[width=1\textwidth]{Pictures/DB_diagram}
     \caption{Database diagram}\label{fig:figure5}
+\end{figure}
+
+\subsection{Authentication and Authorization processes}\label{subsec:authentication-and-authorization-processes}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Pictures/jwt_auth_scheme.pdf}
+    \caption{CQRS Conceptual diagram. Source: https://martinfowler.com/bliki/CQRS.html}\label{fig:figure3}
 \end{figure}
 
 \subsection{Planned technologies}\label{subsec:planned-technologies}

@@ -324,7 +324,8 @@ general entities to be added to database schema.
 \section{Security aspects of HTTPS protocol}\label{sec:security-aspects-of-https-protocol}
 General discussion on HTTP here.
 
-\subsection{Diffie-Hellman Protocol}\label{subsec:diffie-hellman-protocol}
+
+\section{Diffie-Hellman Protocol}\label{sec:diffie-hellman-protocol}
 
 Diffie–Hellman key exchange [INSERTREF] is a method of securely exchanging cryptographic keys over a public channel
 and was one of the first public-key protocols
@@ -345,7 +346,7 @@ variety of authenticated protocols,
 and is used to provide forward secrecy in Transport Layer Security's ephemeral modes
 (referred to as EDH or DHE depending on the cipher suite).
 
-\textbf{Description}:
+\subsection{Description}\label{subsec:description}
 
 Diffie–Hellman key exchange establishes a shared secret between two parties that can be used for secret communication
 for exchanging data over a public network.
@@ -372,70 +373,69 @@ Bringing the analogy back to a real-life exchange using large numbers rather tha
 computationally expensive.
 It is impossible to compute in a practical amount of time even for modern supercomputers.
 
-\textbf{Cryptographic explanation}:
-\newline
-The simplest and the original implementation of the protocol uses the multiplicative group of integers modulo p,
-where p is prime, and g is a primitive root modulo p.
-These two values are chosen in this way to ensure that the resulting shared secret can take on any value from 1 to p–1.
+\subsection{Cryptographic explanation}\label{subsec:cryptographic-explanation}
+The simplest and the original implementation of the protocol uses the multiplicative group of integers modulo $p$,
+where $p$ is prime, and $g$ is a primitive root modulo $p$.
+These two values are chosen in this way to ensure that the resulting shared secret can take on any value from $1$ to $p-1$.
 Here is an example of the protocol, with non-secret values in \textcolor{blue}{blue}, and secret values in \textcolor{red}{red}.
-\newline
 \begin{enumerate}
-    \item Alice and Bob publicly agree to use a modulus \textcolor{blue}{p = 23} and base \textcolor{blue}{g = 5} (which is a primitive root modulo 23).
+    \item Alice and Bob publicly agree to use a modulus $\textcolor{blue}{p = 23}$ and base
+    $\textcolor{blue}{g = 5}$, which is a primitive root modulo 23.
+    \item Alice chooses a secret integer $\textcolor{red}{a} = 4$, then sends the
+    Bob $\textcolor{blue}{A} = \textcolor{blue}{g}^{\textcolor{red}{a}} \, mod  \, \textcolor{blue}{p}$
+    \[
+        \textcolor{blue}{A} = \textcolor{blue}{5}^{\textcolor{red}{4}} \, mod  \, \textcolor{blue}{23} = \textcolor{blue}{4}
+    \]
 
-    \item Alice chooses a secret integer $\textcolor{red}{a} = 4$, then sends Bob $\textcolor{blue}{A} = \textcolor{blue}{g}^{\textcolor{red}{a}} \, mod  \, \textcolor{blue}{p}$
-    \begin{itemize}
-        \item $\textcolor{blue}{A} = \textcolor{blue}{5}^{\textcolor{red}{4}} \, mod  \, \textcolor{blue}{23} = \textcolor{blue}{4}$
-    \end{itemize}
-
-    \item Bob chooses a secret integer $\textcolor{red}{b} = 3$, then sends Alice $\textcolor{blue}{B} = \textcolor{blue}{g}^{\textcolor{red}{b}} \, mod  \, \textcolor{blue}{p}$
-    \begin{itemize}
-        \item $\textcolor{blue}{B} = \textcolor{blue}{5}^{\textcolor{red}{3}} \, mod  \, \textcolor{blue}{23} = \textcolor{blue}{10}$
-    \end{itemize}
+    \item Bob chooses a secret integer $\textcolor{red}{b} = 3$,
+    then sends Alice $\textcolor{blue}{B} = \textcolor{blue}{g}^{\textcolor{red}{b}} \, mod  \, \textcolor{blue}{p}$
+    \[
+        \textcolor{blue}{B} = \textcolor{blue}{5}^{\textcolor{red}{3}} \, mod  \, \textcolor{blue}{23} = \textcolor{blue}{10}
+    \]
 
     \item Alice computes $\textcolor{red}{s} = \textcolor{blue}{B}^{\textcolor{red}{a}} \, mod \, p$
-    \begin{itemize}
-        \item $\textcolor{red}{s} = \textcolor{blue}{10}^{\textcolor{red}{4}} \, mod \, \textcolor{blue}{23} = \textcolor{red}{18}$
-    \end{itemize}
+    \[
+        \textcolor{red}{s} = \textcolor{blue}{10}^{\textcolor{red}{4}} \, mod \, \textcolor{blue}{23} = \textcolor{red}{18}
+    \]
 
     \item Bob computes $\textcolor{red}{s} = \textcolor{blue}{A}^{\textcolor{red}{b}} \, mod \, p$
-    \begin{itemize}
-        \item $\textcolor{red}{s} = \textcolor{blue}{4}^{\textcolor{red}{3}} \, mod \, \textcolor{blue}{23} = \textcolor{red}{18}$
-    \end{itemize}
+    \[
+        \textcolor{red}{s} = \textcolor{blue}{4}^{\textcolor{red}{3}} \, mod \, \textcolor{blue}{23} = \textcolor{red}{18}
+    \]
 
-    \item Alice and Bob now share a secret (the number 18).
+    \item Alice and Bob now share a secret, the number $18$.
 \end{enumerate}
 
-Both Alice and Bob have arrived at the same values because under mod p:
-\newline
-\newline
-$\textcolor{blue}{A}^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{p} = \textcolor{blue}{g}^{\textcolor{red}{ab}} \, mod \, \textcolor{blue}{p} = \textcolor{blue}{g}^{\textcolor{red}{ba}} \, mod \, \textcolor{blue}{p} = \textcolor{blue}{B}^{\textcolor{red}{a}} \, mod \, \textcolor{blue}{p}$
-\newline
-More specifically:
-\newline
-\newline
-$(\textcolor{blue}{g}^{\textcolor{red}{a}} \, mod \, \textcolor{blue}{p})^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{p} = (\textcolor{blue}{g}^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{p})^{\textcolor{red}{a}}$
-\newline
+Both Alice and Bob have arrived at the same values because under mod $p$:
+\[
+    \textcolor{blue}{A}^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{p}
+    = \textcolor{blue}{g}^{\textcolor{red}{ab}} \, mod \, \textcolor{blue}{p}
+    = \textcolor{blue}{g}^{\textcolor{red}{ba}} \, mod \, \textcolor{blue}{p}
+    = \textcolor{blue}{B}^{\textcolor{red}{a}} \, mod \, \textcolor{blue}{p}
+\]
+More specifically,
+\[
+    (\textcolor{blue}{g}^{\textcolor{red}{a}} \, mod \, \textcolor{blue}{p})^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{p}
+    = (\textcolor{blue}{g}^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{p})^{\textcolor{red}{a}}
+\]
 
-Only a and b are kept secret.
-All the other values – p, g, ga mod p, and gb mod p – are sent in the clear.
-The strength of the scheme comes from the fact that gab mod p = gba mod p take extremely long times to compute by any
-known algorithm just from the knowledge of p, g, ga mod p, and gb mod p.
+Only $a$ and $b$ are kept secret.
+All the other values: $p$, $g$, $ga \; mod \; p$, and $gb\; mod \; p$ are sent in the clear.
+The strength of the scheme comes from the fact that $gab \; mod \; p = gba \; mod \; p$ take extremely long times to compute by any
+known algorithm just from the knowledge of $p, g, ga \; mod \; p$, and $gb \; mod \; p$.
 Once Alice and Bob compute the shared secret they can use it as an encryption key, known only to them, for sending
 messages across the same open communications channel.
-
-Of course, much larger values of a, b, and p would be needed to make this example secure, since there are only 23 possible
-results of n mod 23.
-However, if p is a prime of at least 600 digits, then even the fastest modern computers using the fastest known algorithm
-cannot find a given only g, p and ga mod p.
+Of course, much larger values of $a, b$, and $p$ would be needed to make this example secure, since there are only $23$ possible
+results of $n \; mod \; 23$.
+However, if $p$ is a prime of at least 600 digits, then even the fastest modern computers using the fastest known algorithm
+cannot find a given only $p, g, ga \; mod \; p$, and $gb \; mod \; p$.
 Such a problem is called the discrete logarithm problem [INSERTREF].
-The computation of ga mod p is known as modular exponentiation and can be done efficiently even for large numbers.
-Note that g need not be large at all, and in practice is usually a small integer (like 2, 3, ...).
-\newline
-\textbf{Secrecy Chart}:
-\newline
+The computation of $ga \; mod \; p$ is known as modular exponentiation and can be done efficiently even for large numbers.
+Note that $g$ need not be large at all, and in practice is usually a small integer, like $2, 3, \cdots$.
+
+\subsection{Secrecy Chart}\label{subsec:secrecy-chart}
 The chart below depicts who knows what, again with non-secret values in \textcolor{blue}{blue}, and secret values in \textcolor{red}{red}.
 Here Eve is an eavesdropper – she watches what is sent between Alice and Bob, but she does not alter the contents of their communications.
-
 \begin{itemize}
     \item \textcolor{blue}{g} = public (prime) base, known to Alice, Bob, and Eve. $\textcolor{blue}{g = 5}$
     \item \textcolor{blue}{p} = public (prime) modulus, known to Alice, Bob, and Eve. $\textcolor{blue}{p = 23}$
@@ -445,7 +445,6 @@ Here Eve is an eavesdropper – she watches what is sent between Alice and Bob, 
     \item \textcolor{blue}{B} = Bob's public key, known to Alice, Bob, and Eve. $\textcolor{blue}{B = g}^{\textcolor{red}{a}} \, mod \, \textcolor{blue}{p = 8}$
 \end{itemize}
 
-\pagebreak
 \begin{center}
     \begin{table}
         \begin{tabular}{|c|c|c|c|c|c|}
@@ -475,12 +474,10 @@ Here Eve is an eavesdropper – she watches what is sent between Alice and Bob, 
         \label{tab:table}
     \end{table}
 \end{center}
-
 Now \textcolor{red}{s} is the shared secret key and it is known to both Alice and Bob, but not to Eve.
 Note that it is not helpful for Eve to compute \textcolor{blue}{AB}, which equals
 $\textcolor{blue}{g}^{\textcolor{red}{a} + \textcolor{red}{b}} \, mod \, \textcolor{blue}{p}$.
-
-Note: It should be difficult for Alice to solve for Bob's private key or for Bob to solve for Alice's private key.
+Note that it should be difficult for Alice to solve for Bob's private key or for Bob to solve for Alice's private key.
 If it is not difficult for Alice to solve for Bob's private key (or vice versa), Eve may simply substitute her own
 private / public key pair, plug Bob's public key into her private key, produce a fake shared secret key, and solve for
 Bob's private key (and use that to solve for the shared secret key.

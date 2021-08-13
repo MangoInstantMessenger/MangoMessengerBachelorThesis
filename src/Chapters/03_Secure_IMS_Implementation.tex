@@ -201,6 +201,25 @@ general entities to be added to database schema.
         \item CreatedAt DATETIME -- Indicates the date and time user has been registered.
         \item UpdatedAt DATETIME -- Indicates the date and time user has updated his record.
     \end{itemize}
+    \item \textbf{UserPersonalInformation.}
+    \begin{itemize}
+        \item UserId VARCHAR(36) -- Foreign key to the Users table, Guid.
+        \item FirstName VARCHAR(120) -- First name of user.
+        \item LastName VARCHAR(120) -- Last name of user.
+        \item BirthDay DATETIME -- Birth day of user.
+        \item WebSite VARCHAR(120) -- Web site of user.
+        \item Address VARCHAR(120) -- Residence address of user.
+        \item Facebook VARCHAR(120) -- Facebook nickname of user.
+        \item Twitter VARCHAR(120) -- Twitter nickname of user.
+        \item Instagram VARCHAR(120) -- Instagram nickname of user.
+        \item LinkedIn VARCHAR(120) -- LinkedIn nickname of user.
+        \item ProfilePicture IMAGE -- Avatar of user.
+    \end{itemize}
+    \item \textbf{UserContacts.}
+    \begin{itemize}
+        \item ContactId VARCHAR(36) -- User id from contact, Guid.
+        \item UserId VARCHAR(36) -- User id from current user, Guid.
+    \end{itemize}
     \item \textbf{Chats.} In order to communicate with other people it is essentially to have a chat room.
     Our implementation provides chat rooms of the four types.
     Direct chat -- chat room between only two members.
@@ -237,6 +256,31 @@ general entities to be added to database schema.
         \item ChatId VARCHAR(36) -- Foreign key to the Chats table, Guid.
         \item UserId VARCHAR(36) -- Foreign key to the Users table, Guid.
         \item RoleId ENUM -- Indicates the user role in the chat, e.g Owner, Administrator, Moderator, User.
+    \end{itemize}
+    \item \textbf{Chat Info.}
+    \begin{itemize}
+        \item Id VARCHAR(36) -- Id of the chat information, Guid.
+        \item Description VARCHAR(120) -- Description of the chat.
+        \item Tag VARCHAR(20) -- Chat link.
+        \item MembersCount INTEGER -- Count of members in the chat.
+    \end{itemize}
+    \item \textbf{Messages.}
+    \begin{itemize}
+        \item Id VARCHAR(36) -- Id of the message, Guid.
+        \item ChatId VARCHAR(36) -- Foreign key to the Chats table, Guid.
+        \item UserId VARCHAR(36) -- Foreign key to the Users table, Guid.
+        \item Content VARCHAR -- Content of the message
+        \item IsRead BOOLEAN -- %%Fill
+        \item CreateAt DATETIME -- Time when the message was created
+        \item UpdatedAt DATETIME -- Time when the message was updated
+    \end{itemize}
+    \item \textbf{Refresh Tokens.}
+    \begin{itemize}
+        \item Id VARCHAR(36) -- Id of the token, Guid.
+        \item UserId VARCHAR(39) -- Foreign key to the Users table, Guid.
+        \item RefreshToken VARCHAR(60) -- Refreshed access token, using for authorization.
+        \item Expires DATETIME -- Expiration date of refresh token
+        \item CreatedAt DATETIME -- Date when token was created
     \end{itemize}
 \end{itemize}
 

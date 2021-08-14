@@ -1,8 +1,3 @@
-\chapter{Architectural aspects of the system}\label{ch:architectural-aspects-of-the-system}
-
-
-\section{Application architecture and related comments}\label{sec:application-architecture-and-related-comments}
-
 As a programmers, I believe all we have faced the cases of crucial over-engineering during the implementation of some
 software product.
 For the programmer, it is a vital point to follow two separated, but closely related software development principles,
@@ -166,12 +161,6 @@ As a short conclusion, we may state that CQRS and Mediator pattern will not enti
 however will make project much more simplistic and intuitively understood.
 It is worth to keep is simple,
 even relatively simple project may grow to the sizes of universe without proper architectural solutions.
-Answer the questions:
-\begin{itemize}
-    \item What is CQRS?
-    \item Why do we use CQRS?
-    \item How CQRS helps us to decouple monolith?
-\end{itemize}
 
 \subsection{Database Structure and related comments}\label{subsec:database-structure-and-related-comments}
 As a next topic to uncover goes the one related to the database structure.
@@ -184,9 +173,9 @@ general entities to be added to database schema.
 
 \begin{itemize}
     \item \textbf{Users.} Table stores information about user.
-    Contains following columns:
+    Table contains following columns:
     \begin{itemize}
-        \item Id VARCHAR(36) -- Id of the user, Guid.
+        \item Id VARCHAR(36) -- Id of the user, primary key, Guid.
         \item UserName VARCHAR(50) -- Unique Username.
         \item NormalizedUserName VARCHAR(50) -- Unique Username in upper case.
         \item DisplayName VARCHAR(50) -- Name of the user, displayed to others.
@@ -201,7 +190,9 @@ general entities to be added to database schema.
         \item CreatedAt DATETIME -- Indicates the date and time user has been registered.
         \item UpdatedAt DATETIME -- Indicates the date and time user has updated his record.
     \end{itemize}
-    \item \textbf{UserPersonalInformation.}
+    \item \textbf{User Personal Information.} Table stores additional but not required info about user.
+    Relation one-to-one with Users, foreign key is UserId, Guid.
+    Table contains following columns:
     \begin{itemize}
         \item UserId VARCHAR(36) -- Foreign key to the Users table, Guid.
         \item FirstName VARCHAR(120) -- First name of user.
@@ -213,12 +204,14 @@ general entities to be added to database schema.
         \item Twitter VARCHAR(120) -- Twitter nickname of user.
         \item Instagram VARCHAR(120) -- Instagram nickname of user.
         \item LinkedIn VARCHAR(120) -- LinkedIn nickname of user.
-        \item ProfilePicture IMAGE -- Avatar of user.
+        \item ProfilePicture VARCHAR(36) -- Avatar of user.
     \end{itemize}
-    \item \textbf{UserContacts.}
+    \item \textbf{UserContacts.} Table stores the contacts of current user.
+    Relation between tables Users and UserContacts is one-to-many, foreign key UserId.
+    Table contains following columns:
     \begin{itemize}
-        \item ContactId VARCHAR(36) -- User id from contact, Guid.
-        \item UserId VARCHAR(36) -- User id from current user, Guid.
+        \item ContactId VARCHAR(36) -- Id of current user's contact, Guid.
+        \item UserId VARCHAR(36) -- Id of current user, Guid.
     \end{itemize}
     \item \textbf{Chats.} In order to communicate with other people it is essentially to have a chat room.
     Our implementation provides chat rooms of the four types.
@@ -231,7 +224,7 @@ general entities to be added to database schema.
     We discuss UserChats relation in foregoing part.
     Continuing with Chats table, it contains the following columns:
     \begin{itemize}
-        \item Id VARCHAR(36) -- Id of the chat, Guid.
+        \item Id VARCHAR(36) -- Id of the chat, primary key, Guid.
         \item ChatInfoId VARCHAR(36) -- Since we have a four types of channels, which has a common subset of data,
         the different data is moved to another table, so it could be joined depending on chat type.
         For instance, any chat type except direct one would require to join additional data in order to display the chat properly.
@@ -257,36 +250,46 @@ general entities to be added to database schema.
         \item UserId VARCHAR(36) -- Foreign key to the Users table, Guid.
         \item RoleId ENUM -- Indicates the user role in the chat, e.g Owner, Administrator, Moderator, User.
     \end{itemize}
-    \item \textbf{Chat Info.}
+    \item \textbf{Chat Info.} Table contains additional data related to the chat.
+    This table is created since that we have four types of chats, namely, direct chat, public channel, readonly channel, private channel.
+    These four types has a common data between each other.
+    Common data between chat types is Chats table itself.
+    However, all chat types except direct chat requires an additional data to be displayed, that is Chat Info.
+    Contains following columns:
     \begin{itemize}
-        \item Id VARCHAR(36) -- Id of the chat information, Guid.
+        \item Id VARCHAR(36) -- Id of the chat information, primary key, Guid.
         \item Description VARCHAR(120) -- Description of the chat.
         \item Tag VARCHAR(20) -- Chat link.
         \item MembersCount INTEGER -- Count of members in the chat.
     \end{itemize}
-    \item \textbf{Messages.}
+    \item \textbf{Messages.} Table that keeps messages and related data.
+    Each chat has a multiple messages, however one message must belong only to single and defined chat,
+    therefore relation between Chats and Messages is one-to-many, foreign key ChatId.
+    From other side, each User has a multiple messages, however single message should belong to single author,
+    therefore, we consider one-to-mane relation between Users and Messages, foreign key UserId.
+    Messages table contains following columns:
     \begin{itemize}
-        \item Id VARCHAR(36) -- Id of the message, Guid.
+        \item Id VARCHAR(36) -- Id of the message, primary key, Guid.
         \item ChatId VARCHAR(36) -- Foreign key to the Chats table, Guid.
         \item UserId VARCHAR(36) -- Foreign key to the Users table, Guid.
-        \item Content VARCHAR -- Content of the message
-        \item IsRead BOOLEAN -- %%Fill
-        \item CreateAt DATETIME -- Time when the message was created
-        \item UpdatedAt DATETIME -- Time when the message was updated
+        \item Content VARCHAR -- Content of the message.
+        \item IsRead BOOLEAN -- Indicates whenever message has been read by another user.
+        \item CreateAt DATETIME -- Time when the message has been created.
+        \item UpdatedAt DATETIME -- Time when the message has been updated.
     \end{itemize}
-    \item \textbf{Refresh Tokens.}
+    \item \textbf{Refresh Tokens.} Table stores refresh tokens.
     \begin{itemize}
-        \item Id VARCHAR(36) -- Id of the token, Guid.
+        \item Id VARCHAR(36) -- Id of the token, primary key, Guid.
         \item UserId VARCHAR(39) -- Foreign key to the Users table, Guid.
-        \item RefreshToken VARCHAR(60) -- Refreshed access token, using for authorization.
+        \item RefreshToken VARCHAR(60) -- Refresh token itself.
         \item Expires DATETIME -- Expiration date of refresh token
-        \item CreatedAt DATETIME -- Date when token was created
+        \item CreatedAt DATETIME -- Date when token has been created
     \end{itemize}
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{Pictures/DB_diagram}
+    \includegraphics[width=1.2\textwidth]{Pictures/DB_diagram}
     \caption{Database diagram}\label{fig:figure5}
 \end{figure}
 
@@ -300,180 +303,18 @@ general entities to be added to database schema.
 \subsection{Planned technologies}\label{subsec:planned-technologies}
 \begin{itemize}
     \item \textbf{SDK}: \href{https://dotnet.microsoft.com/download/dotnet/5.0}{.NET Core 5.0}
-    \item \textbf{DBMS}: \href{https://www.postgresql.org/}{PostgreSQL 13}
-    \item \textbf{CI}: \href{https://docs.github.com/en/actions}{GitHub Actions}
-    \item \textbf{ORM}: \href{https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/5.0.7?_src=template}{Entity Framework Core 5.0.7}
-    \item \textbf{EF Core For PostgreSQL Provider}: \href{https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL/5.0.7?_src=template}{Npgsql.EntityFrameworkCore.PostgreSQL 5.0.7}
+    \item \textbf{SQL Database}: \href{https://www.postgresql.org/}{PostgreSQL 13}
+    \item \textbf{Continuous Integration}: \href{https://docs.github.com/en/actions}{GitHub Actions}
+    \item \textbf{Object-Relational Mapping}: \href{https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/5.0.7?_src=template}{Entity Framework Core 5.0.7}
+    \item \textbf{PostgreSQL Provider}: \href{https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL/5.0.7?_src=template}{Npgsql.EntityFrameworkCore.PostgreSQL 5.0.7}
     \item \textbf{Mediator Pattern Library} \href{https://www.nuget.org/packages/MediatR/9.0.0?_src=template}{MediatR 9.0.0}
     \item \textbf{Validation Library}: \href{https://www.nuget.org/packages/FluentValidation/10.2.3?_src=template}{Fluent Validation}
     \item \textbf{JWT Library}: \href{https://www.nuget.org/packages/System.IdentityModel.Tokens.Jwt}{System JWT 6.8.0}
     \item \textbf{JWT Auxiliary Library}: \href{https://www.nuget.org/packages/System.IdentityModel.Tokens}{System Tokens 6.11.1}
     \item \textbf{JWT Bearer}: \href{https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer/5.0.7?_src=template}{Microsoft Jwt Bearer}
     \item \textbf{Swagger Library}: \href{https://www.nuget.org/packages/Swashbuckle.AspNetCore/5.6.3?_src=template}{Swashbuckle 6.1.4}
+    \item \textbf{Real-time Communication}: SignalR
+    \item \textbf{Unit Testing}: NUnit
+    \item \textbf{Unit Testing}: Moq
+    \item \textbf{Unit Testing Auxiliary}: FluentAssertions
 \end{itemize}
-
-
-\section{Security aspects of HTTPS protocol}\label{sec:security-aspects-of-https-protocol}
-General discussion on HTTP here.
-
-\subsection{Diffie-Hellman Protocol}\label{subsec:diffie-hellman-protocol}
-
-Diffie–Hellman key exchange [INSERTREF] is a method of securely exchanging cryptographic keys over a public channel
-and was one of the first public-key protocols
-as conceived by Ralph Merkle and named after Whitefield Diffie and Martin Hellman.
-DH is one of the earliest practical examples of public key exchange implemented within the field of cryptography.
-
-Published in 1976 by Diffie and Hellman, this is the earliest publicly known work that proposed the idea of a private
-key and a corresponding public key.
-
-Traditionally, secure encrypted communication between two parties required that they first exchange keys by some secure physical means,
-such as paper key lists transported by a trusted courier.
-The Diffie–Hellman key exchange method allows two parties that have no prior knowledge of
-each other to jointly establish a shared secret key over an insecure channel.
-This key can then be used to encrypt subsequent communications using a symmetric-key cipher.
-
-Although Diffie–Hellman key agreement itself is a non-authenticated key-agreement protocol, it provides the basis for a
-variety of authenticated protocols,
-and is used to provide forward secrecy in Transport Layer Security's ephemeral modes
-(referred to as EDH or DHE depending on the cipher suite).
-
-\textbf{Description}:
-
-Diffie–Hellman key exchange establishes a shared secret between two parties that can be used for secret communication
-for exchanging data over a public network.
-An analogy illustrates the concept of public key exchange by using colors instead of very large numbers:
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{Pictures/Diffie-Hellman.pdf}
-    \caption{Illustration of the concept behind Diffie–Hellman key exchange}\label{fig:figure4}
-\end{figure}
-
-The process begins by having the two parties, Alice and Bob, publicly agree on an arbitrary starting color that does
-not need to be kept secret (but should be different every time).
-In this example, the color is yellow.
-Each person also selects a secret color that they keep to themselves – in this case, red and blue-green.
-The crucial part of the process is that Alice and Bob each mix their own secret color together with their mutually
-shared color, resulting in orange-tan and light-blue mixtures respectively, and then publicly exchange the two mixed colors.
-Finally, each of them mixes the color they received from the partner with their own private color.
-The result is a final color mixture (yellow-brown in this case) that is identical to the partner's final color mixture.
-
-If a third party listened to the exchange, it would only know the common color (yellow) and the first mixed colors
-(orange-tan and light-blue), but it would be difficult for this party to determine the final secret color (yellow-brown).
-Bringing the analogy back to a real-life exchange using large numbers rather than colors, this determination is
-computationally expensive.
-It is impossible to compute in a practical amount of time even for modern supercomputers.
-
-\textbf{Cryptographic explanation}:
-\newline
-The simplest and the original implementation of the protocol uses the multiplicative group of integers modulo p,
-where p is prime, and g is a primitive root modulo p.
-These two values are chosen in this way to ensure that the resulting shared secret can take on any value from 1 to p–1.
-Here is an example of the protocol, with non-secret values in \textcolor{blue}{blue}, and secret values in \textcolor{red}{red}.
-\newline
-\begin{enumerate}
-    \item Alice and Bob publicly agree to use a modulus \textcolor{blue}{p = 23} and base \textcolor{blue}{g = 5} (which is a primitive root modulo 23).
-
-    \item Alice chooses a secret integer $\textcolor{red}{a} = 4$, then sends Bob $\textcolor{blue}{A} = \textcolor{blue}{g}^{\textcolor{red}{a}} \, mod  \, \textcolor{blue}{p}$
-    \begin{itemize}
-        \item $\textcolor{blue}{A} = \textcolor{blue}{5}^{\textcolor{red}{4}} \, mod  \, \textcolor{blue}{23} = \textcolor{blue}{4}$
-    \end{itemize}
-
-    \item Bob chooses a secret integer $\textcolor{red}{b} = 3$, then sends Alice $\textcolor{blue}{B} = \textcolor{blue}{g}^{\textcolor{red}{b}} \, mod  \, \textcolor{blue}{p}$
-    \begin{itemize}
-        \item $\textcolor{blue}{B} = \textcolor{blue}{5}^{\textcolor{red}{3}} \, mod  \, \textcolor{blue}{23} = \textcolor{blue}{10}$
-    \end{itemize}
-
-    \item Alice computes $\textcolor{red}{s} = \textcolor{blue}{B}^{\textcolor{red}{a}} \, mod \, p$
-    \begin{itemize}
-        \item $\textcolor{red}{s} = \textcolor{blue}{10}^{\textcolor{red}{4}} \, mod \, \textcolor{blue}{23} = \textcolor{red}{18}$
-    \end{itemize}
-
-    \item Bob computes $\textcolor{red}{s} = \textcolor{blue}{A}^{\textcolor{red}{b}} \, mod \, p$
-    \begin{itemize}
-        \item $\textcolor{red}{s} = \textcolor{blue}{4}^{\textcolor{red}{3}} \, mod \, \textcolor{blue}{23} = \textcolor{red}{18}$
-    \end{itemize}
-
-    \item Alice and Bob now share a secret (the number 18).
-\end{enumerate}
-
-Both Alice and Bob have arrived at the same values because under mod p:
-\newline
-\newline
-$\textcolor{blue}{A}^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{p} = \textcolor{blue}{g}^{\textcolor{red}{ab}} \, mod \, \textcolor{blue}{p} = \textcolor{blue}{g}^{\textcolor{red}{ba}} \, mod \, \textcolor{blue}{p} = \textcolor{blue}{B}^{\textcolor{red}{a}} \, mod \, \textcolor{blue}{p}$
-\newline
-More specifically:
-\newline
-\newline
-$(\textcolor{blue}{g}^{\textcolor{red}{a}} \, mod \, \textcolor{blue}{p})^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{p} = (\textcolor{blue}{g}^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{p})^{\textcolor{red}{a}}$
-\newline
-
-Only a and b are kept secret.
-All the other values – p, g, ga mod p, and gb mod p – are sent in the clear.
-The strength of the scheme comes from the fact that gab mod p = gba mod p take extremely long times to compute by any
-known algorithm just from the knowledge of p, g, ga mod p, and gb mod p.
-Once Alice and Bob compute the shared secret they can use it as an encryption key, known only to them, for sending
-messages across the same open communications channel.
-
-Of course, much larger values of a, b, and p would be needed to make this example secure, since there are only 23 possible
-results of n mod 23.
-However, if p is a prime of at least 600 digits, then even the fastest modern computers using the fastest known algorithm
-cannot find a given only g, p and ga mod p.
-Such a problem is called the discrete logarithm problem [INSERTREF].
-The computation of ga mod p is known as modular exponentiation and can be done efficiently even for large numbers.
-Note that g need not be large at all, and in practice is usually a small integer (like 2, 3, ...).
-\newline
-\textbf{Secrecy Chart}:
-\newline
-The chart below depicts who knows what, again with non-secret values in \textcolor{blue}{blue}, and secret values in \textcolor{red}{red}.
-Here Eve is an eavesdropper – she watches what is sent between Alice and Bob, but she does not alter the contents of their communications.
-
-\begin{itemize}
-    \item \textcolor{blue}{g} = public (prime) base, known to Alice, Bob, and Eve. $\textcolor{blue}{g = 5}$
-    \item \textcolor{blue}{p} = public (prime) modulus, known to Alice, Bob, and Eve. $\textcolor{blue}{p = 23}$
-    \item \textcolor{red}{a} = Alice's private key, known only to Alice. $\textcolor{red}{a = 6}$
-    \item \textcolor{red}{b} = Bob's private key known only to Bob. $\textcolor{red}{b = 15}$
-    \item \textcolor{blue}{A} = Alice's public key, known to Alice, Bob, and Eve. $\textcolor{blue}{A = g}^{\textcolor{red}{a}} \, mod \, \textcolor{blue}{p = 8}$
-    \item \textcolor{blue}{B} = Bob's public key, known to Alice, Bob, and Eve. $\textcolor{blue}{B = g}^{\textcolor{red}{a}} \, mod \, \textcolor{blue}{p = 8}$
-\end{itemize}
-
-\pagebreak
-\begin{center}
-    \begin{table}
-        \begin{tabular}{|c|c|c|c|c|c|}
-            \hline
-            \multicolumn{2}{|c|}{Alice} & \multicolumn{2}{c|}{Bob} & \multicolumn{2}{c|}{Eve}
-            \cr \hline
-            known & unknown & known & unknown & known & unknown
-            \cr \hline
-            $\textcolor{blue}{p = 23}$ & & $\textcolor{blue}{p = 23}$  & & $\textcolor{blue}{p = 23}$ &
-            \cr \hline
-            $\textcolor{blue}{g = 5}$ & & $\textcolor{blue}{g = 5}$ & & $\textcolor{blue}{g = 5}$ &
-            \cr \hline
-            $\textcolor{red}{a = 6}$ & $\textcolor{red}{b}$ & $\textcolor{red}{b = 15}$ & $\textcolor{red}{a}$ & & $\textcolor{red}{a, b}$
-            \cr \hline
-            $\textcolor{blue}{A = 5}^{\textcolor{red}{a}} \, mod \, \textcolor{blue}{23}$ & & $\textcolor{blue}{B = 5}^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{23}$ & & &
-            \cr \hline
-            $\textcolor{blue}{A = 5}^{\textcolor{red}{6}} \, mod \, \textcolor{blue}{23} = \textcolor{blue}{8}$ & & $\textcolor{blue}{B = 5}^{\textcolor{red}{15}} \, mod \, \textcolor{blue}{23} = \textcolor{blue}{19}$ & & &
-            \cr \hline
-            $\textbf{\textcolor{blue}{B}} = \textbf{\textcolor{blue}{19}}$ & & $\textbf{\textcolor{blue}{A}} = \textbf{\textcolor{blue}{8}}$ & & $\textcolor{blue}{A} = \textcolor{blue}{8}$, $\textcolor{blue}{B} = \textcolor{blue}{19}$ &
-            \cr \hline
-            $\textbf{\textcolor{red}{s}} = \textcolor{blue}{B}^{\textcolor{red}{a}} \, mod \, \textcolor{blue}{23}$ & & $\textbf{\textcolor{red}{s}} = \textcolor{blue}{A}^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{23}$ & & &
-            \cr \hline
-            $\textbf{\textcolor{red}{s}} = \textcolor{blue}{19}^{\textcolor{red}{6}} \, mod \, \textcolor{blue}{23} = \textcolor{red}{2}$ & & $\textbf{\textcolor{red}{s}} = \textcolor{blue}{A}^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{23} = \textcolor{red}{2}$ & & &
-            \cr \hline
-
-        \end{tabular}
-        \label{tab:table}
-    \end{table}
-\end{center}
-
-Now \textcolor{red}{s} is the shared secret key and it is known to both Alice and Bob, but not to Eve.
-Note that it is not helpful for Eve to compute \textcolor{blue}{AB}, which equals
-$\textcolor{blue}{g}^{\textcolor{red}{a} + \textcolor{red}{b}} \, mod \, \textcolor{blue}{p}$.
-
-Note: It should be difficult for Alice to solve for Bob's private key or for Bob to solve for Alice's private key.
-If it is not difficult for Alice to solve for Bob's private key (or vice versa), Eve may simply substitute her own
-private / public key pair, plug Bob's public key into her private key, produce a fake shared secret key, and solve for
-Bob's private key (and use that to solve for the shared secret key.
-Eve may attempt to choose a public / private key pair that will make it easy for her to solve for Bob's private key).

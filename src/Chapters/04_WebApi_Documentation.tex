@@ -1,0 +1,79 @@
+\chapter{Web API Documentation}\label{ch:web-api-documentation}
+
+
+\section{Auth}\label{sec:auth}
+\input{Chapters/documentation_auth_section}
+
+
+\section{Chats}\label{sec:chats}
+\input{Chapters/documentation_chats_section}
+
+
+\section{Messages}\label{sec:messages}
+\input{Chapters/documentation_messages_section}
+
+
+\section{User}\label{sec:user}
+\input{Chapters/documentation_user_section}
+
+
+\section{Contacts}\label{sec:contacts}
+\input{Chapters/documentation_contacts_section}
+
+
+\section{User Information}\label{sec:user-information}
+\begin{itemize}
+    %% Update User Info Endpoint
+    \item \textbf{Endpoint}: /api/contacts
+    \begin{itemize}
+        \item \textbf{Description}: Updates current user information
+        \item \textbf{Request type}: PUT
+        \item \textbf{Request body}:
+        \begin{spverbatim}
+        {
+            "firstName": "string",
+            "lastName": "string",
+            "birthDay": "timestamp",
+            "website": "string",
+            "address": "string",
+            "facebook": "string",
+            "twitter": "string",
+            "instagram": "string",
+            "linkedIn": "string",
+            "profilePicture": "string"
+        }
+        \end{spverbatim}
+        \item \textbf{Response example}:
+        \textbf{200 Success}:
+        \begin{spverbatim}
+        {
+            "message": "string",
+            "success": true
+        }
+        \end{spverbatim}
+        \textbf{400 Bad Request}:
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+        \textbf{409 Conflict}:
+        \begin{spverbatim}
+        {
+            "errorMessage": "string",
+            "errorDetails": "string",
+            "statusCode": 0,
+            "success": true
+        }
+        \end{spverbatim}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+        \end{enumerate}
+    \end{itemize}
+    %% Update User Info Endpoint
+\end{itemize}

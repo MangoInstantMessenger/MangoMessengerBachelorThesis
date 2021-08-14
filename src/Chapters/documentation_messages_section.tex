@@ -9,40 +9,42 @@
             \item Chat id (required).
         \end{enumerate}
         \item \textbf{Response example}:
-        \textbf{200 Success}:
-        \begin{spverbatim}
-        {
-            "messages": [
-                {
-                "userDisplayName": "string",
-                "messageText": "string",
-                "sentAt": "string",
-                "editedAt": "string",
-                "self": true
+        \begin{itemize}
+            \item \textbf{200 Success}:
+            \begin{spverbatim}
+            {
+                "messages": [
+                    {
+                        "userDisplayName": "string",
+                        "messageText": "string",
+                        "sentAt": "string",
+                        "editedAt": "string",
+                        "self": true
+                    }
+                ],
+                "message": "string",
+                "success": true
             }
-            ],
-            "message": "string",
-            "success": true
-        }
-        \end{spverbatim}
-        \textbf{400 Bad Request}:
-        \begin{spverbatim}
-        {
-            "errorMessage": "string",
-            "errorDetails": "string",
-            "statusCode": 0,
-            "success": true
-        }
-        \end{spverbatim}
-        \textbf{409 Conflict}:
-        \begin{spverbatim}
-        {
-            "errorMessage": "string",
-            "errorDetails": "string",
-            "statusCode": 0,
-            "success": true
-        }
-        \end{spverbatim}
+            \end{spverbatim}
+            \item \textbf{400 Bad Request}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{409 Conflict}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+        \end{itemize}
         \item \textbf{Response messages}:
         \begin{enumerate}
             \item Success.
@@ -59,37 +61,39 @@
         \item \textbf{Request body}:
         \begin{spverbatim}
         {
-            "messageText": "string",
-            "chatId": "string"
-        }
-        \end{spverbatim}
-        \item \textbf{Response example}:
-        \textbf{200 Success}:
-        \begin{spverbatim}
-        {
             "messageId": "string",
             "message": "string",
             "success": true
         }
         \end{spverbatim}
-        \textbf{400 Bad Request}:
-        \begin{spverbatim}
-        {
-            "errorMessage": "string",
-            "errorDetails": "string",
-            "statusCode": 0,
-            "success": true
-        }
-        \end{spverbatim}
-        \textbf{409 Conflict}:
-        \begin{spverbatim}
-        {
-            "errorMessage": "string",
-            "errorDetails": "string",
-            "statusCode": 0,
-            "success": true
-        }
-        \end{spverbatim}
+        \item \textbf{Response example}:
+        \begin{itemize}
+            \item \textbf{200 Success}:
+            \begin{spverbatim}
+            {
+                "message": "SUCCESS",
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{400 Bad Request}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{409 Conflict}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+        \end{itemize}
         \item \textbf{Response messages}:
         \begin{enumerate}
             \item Success.
@@ -111,31 +115,33 @@
         }
         \end{spverbatim}
         \item \textbf{Response example}:
-        \textbf{200 Success}:
-        \begin{spverbatim}
-        {
-            "message": "string",
-            "success": true
-        }
-        \end{spverbatim}
-        \textbf{400 Bad Request}:
-        \begin{spverbatim}
-        {
-            "errorMessage": "string",
-            "errorDetails": "string",
-            "statusCode": 0,
-            "success": true
-        }
-        \end{spverbatim}
-        \textbf{409 Conflict}:
-        \begin{spverbatim}
-        {
-            "errorMessage": "string",
-            "errorDetails": "string",
-            "statusCode": 0,
-            "success": true
-        }
-        \end{spverbatim}
+        \begin{itemize}
+            \item \textbf{200 Success}:
+            \begin{spverbatim}
+            {
+                "message": "SUCCESS",
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{400 Bad Request}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{409 Conflict}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+        \end{itemize}
         \item \textbf{Response messages}:
         \begin{enumerate}
             \item Success.
@@ -156,31 +162,33 @@
         }
         \end{spverbatim}
         \item \textbf{Response example}:
-        \textbf{200 Success}:
-        \begin{spverbatim}
-        {
-            "message": "string",
-            "success": true
-        }
-        \end{spverbatim}
-        \textbf{400 Bad Request}:
-        \begin{spverbatim}
-        {
-            "errorMessage": "string",
-            "errorDetails": "string",
-            "statusCode": 0,
-            "success": true
-        }
-        \end{spverbatim}
-        \textbf{409 Conflict}:
-        \begin{spverbatim}
-        {
-            "errorMessage": "string",
-            "errorDetails": "string",
-            "statusCode": 0,
-            "success": true
-        }
-        \end{spverbatim}
+        \begin{itemize}
+            \item \textbf{200 Success}:
+            \begin{spverbatim}
+            {
+                "message": "SUCCESS",
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{400 Bad Request}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{409 Conflict}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+        \end{itemize}
         \item \textbf{Response messages}:
         \begin{enumerate}
             \item Success.

@@ -23,67 +23,16 @@ The most popular way of writing a user story is with the following formula:
 
 
 \section{Modules}\label{sec:modules}
-
+\begin{itemize}
+    \item \textbf{M01. Web Client} –- Web version of the Mango Messenger that allows user to use the
+    product without having actual app on the Phone/Desktop/Tablet.
+    \item \textbf{M02. Mobile Client} –- mobile version of the Mango Messenger (Android/iOS).
+    \item \textbf{M03. Desktop Client} –- Desktop version of the Mango Messenger (Windows/Linux/MacOS).
+    \item \textbf{M04. Web API} –- Service that will allow developers to create their own clients.
+\end{itemize}
 
 \section{Functional requirements}\label{sec:functional-requirements}
-To compete with successful and commonly used instant messaging platforms, your service has to offer great functionality.
-So first, let’s define the core features of a messaging app.
-
-\begin{itemize}
-    \item Registration, Authorization, Authentication
-    \item Sending messages and media to individuals
-    \item Manage contacts
-    \item Creating groups
-    \item Viewing message history
-\end{itemize}
-Note that Authentication [INSERTREF] means confirming your own identity, whereas Authorization [INSERTREF] means being allowed access to the
-particular part of the system.
-
-\subsection{Registration, Authorization, Authentication}\label{subsec:registration-authorization-authentication}
-\begin{itemize}
-    \item As an unregistered user, I want to tap “sign up” so that I can see the registration form.
-    \item As an unregistered user, I want to use my phone number to register so that my account is tied to my phone number.
-    \item As an unregistered user, I want to add a display name so that other users can find my account not only by my phone number.
-    \item As an unregistered user, I want to receive the registration confirmation via SMS so that I can activate my account.
-    \item As an unregistered user, I want to receive the registration confirmation via Email so that I can activate my account.
-    \item As a registered user, I want to authorize myself using both combinations email-password and phone-password, so that I see the specified form with two inputs.
-    \item As a registered user, I want to tap "logout", so that only current device will be logged out.
-    \item As a registered user, I want to tap "logout all", so that all my authorized devices will be logged out.
-    \item As a registered user, I want my session on each device to be 7 days, so that after 7 days of inactivity device will be logged out automatically.
-    \item As a registered user, I want reset password, so that my password will change
-\end{itemize}
-
-\subsection{Manage contacts feature user stories}\label{subsec:manage-contacts-feature-user-stories}
-\begin{itemize}
-    \item As a registered user, I want to be able to add other users as contacts, so that each user profile has a dedicated button.
-    \item As a registered user, I want to be able to blacklist other users and do not receive any messages and notification from them,
-    so that each user profile has a dedicated button.
-\end{itemize}
-
-\subsection{Sending messages and media feature user stories}\label{subsec:sending-messages-and-media-feature-user-stories}
-\begin{itemize}
-    \item As a registered user, I want to send a text message so that another user gets a notification and sees my message.
-    \item As a registered user, I want to see the status of a sent message so that I know if it’s been seen.
-    \item As a registered user, I want to tap "details of message" -> "edit" on my message, so that edit the message sent by me.
-    \item As a registered user, I want to tap "details of message" -> "delete" on message, so that delete the message.
-\end{itemize}
-
-\subsection{Creating groups feature user stories}\label{subsec:creating-groups-feature-user-stories}
-\begin{itemize}
-    \item As a registered user, I want to tap "details" -> "create group" in sidebar so that create a new group.
-    \item As a registered user, I want to tap "details" -> "new chat" in sidebar, so that create a new direct chat with specified user.
-    \item As a registered user, I want to join public groups, so that there is a button "join" on chat layout.
-    \item As a registered user, I want to start secret chats with users from my contact list so that we can send messages that stay only on our devices.
-    \item As a registered user, I want my secret chats to be device-specific so that I can see a secret chat only on the device that I used to start this chat.
-    \item As a member of a secret chat, I want my secret messages to be protected from forwarding so that secret messages stay in secret chats.
-    \item As a member of a secret chat, I want to get a notification when another member of the secret chat takes a screenshot of it.
-\end{itemize}
-
-\subsection{Viewing message history feature user stories}\label{subsec:viewing-message-history-feature-user-stories}
-\begin{itemize}
-    \item As a registered user, I want to be able to view a message history of particular chat, so that there is a list of messages of specified chat.
-\end{itemize}
-
+\input{Chapters/functional-requirements}
 
 \section{Non-functional requirements}\label{sec:non-functional-requirements}
 \begin{itemize}

@@ -11,7 +11,7 @@
 Hypertext Transfer Protocol Secure (HTTPS) is an extension of the Hypertext Transfer Protocol (HTTP).
 It is used for secure communication over a computer network, and is widely used on the Internet.[1][2]
 In HTTPS, the communication protocol is encrypted using Transport Layer Security (TLS) or, formerly, Secure Sockets Layer (SSL).
-The protocol is therefore also referred to as HTTP over TLS,[3] or HTTP over SSL.
+The protocol is therefore also referred to as HTTP over TLS,[3] or HTTP over SSL\@.
 The principal motivations for HTTPS are authentication of the accessed website, and protection of the privacy and integrity
 of the exchanged data while in transit.
 It protects against man-in-the-middle attacks, and the bidirectional encryption of communications between a client and
@@ -26,6 +26,26 @@ secure accounts;
 and to keep user communications, identity, and web browsing private.[7]
 
 \subsection{What is an SSL Certificate?}\label{subsec:what-is-an-ssl-certificate?}
+SSL certificates are what enable websites to move from HTTP to HTTPS, which is more secure.
+An SSL certificate is a data file hosted in a website's origin server.
+SSL certificates make SSL/TLS encryption possible, and they contain the website's public key and the website's identity,
+along with related information.
+Devices attempting to communicate with the origin server will reference this file to obtain the public key and verify
+the server's identity.
+The private key is kept secret and secure.
+SSL certificates include:
+\begin{itemize}
+    \item The domain name that the certificate was issued for
+    \item Which person, organization, or device it was issued to
+    \item Which certificate authority issued it
+    \item The certificate authority's digital signature
+    \item Associated sub-domains
+    \item Issue date of the certificate
+    \item Expiration date of the certificate
+    \item The public key (the private key is kept secret)
+\end{itemize}
+The public and private keys used for SSL are essentially long strings of characters used for encrypting and decrypting data.
+Data encrypted with the public key can only be decrypted with the private key, and vice versa.
 
 \subsection{Discussion on E2E Encryption over HTTPS Protocol}\label{subsec:discussion-on-e2e-encryption-over-https-protocol}
 

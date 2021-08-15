@@ -272,7 +272,7 @@ general entities to be added to database schema.
         \item Id VARCHAR(36) -- Id of the message, primary key, Guid.
         \item ChatId VARCHAR(36) -- Foreign key to the Chats table, Guid.
         \item UserId VARCHAR(36) -- Foreign key to the Users table, Guid.
-        \item Content VARCHAR -- Content of the message.
+        \item Content VARCHAR(300) -- Content of the message.
         \item IsRead BOOLEAN -- Indicates whenever message has been read by another user.
         \item CreateAt DATETIME -- Time when the message has been created.
         \item UpdatedAt DATETIME -- Time when the message has been updated.
@@ -292,7 +292,7 @@ Following diagram demonstrates the database structure.
     \includegraphics[width=1.2\textwidth]{Pictures/DB_diagram}
     \caption{Database diagram}\label{fig:figure5}
 \end{figure}
-Over whole entoties, we prefer to use universally unique identifier (UUID) or namely globally unique identifier (GUID),
+Over whole data entities, we prefer to use universally unique identifier (UUID) or namely globally unique identifier (GUID),
 a 128-bit label used for information in computer systems.
 Simply, because it does not force us to keep a sequence on database side.
 Sequence -- is a special entity provided in PostgreSQL relational databases.

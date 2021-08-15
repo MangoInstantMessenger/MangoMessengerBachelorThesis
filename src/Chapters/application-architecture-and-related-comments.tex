@@ -259,7 +259,7 @@ general entities to be added to database schema.
     \begin{itemize}
         \item Id VARCHAR(36) -- Id of the chat information, primary key, Guid.
         \item Description VARCHAR(120) -- Description of the chat.
-        \item Tag VARCHAR(20) -- Chat link.
+        \item Tag VARCHAR(20) -- Uniqu identifier of the chat.
         \item MembersCount INTEGER -- Count of members in the chat.
     \end{itemize}
     \item \textbf{Messages.} Table that keeps messages and related data.
@@ -282,16 +282,26 @@ general entities to be added to database schema.
         \item Id VARCHAR(36) -- Id of the token, primary key, Guid.
         \item UserId VARCHAR(39) -- Foreign key to the Users table, Guid.
         \item RefreshToken VARCHAR(60) -- Refresh token itself.
-        \item Expires DATETIME -- Expiration date of refresh token
-        \item CreatedAt DATETIME -- Date when token has been created
+        \item Expires DATETIME -- Expiration date of refresh token.
+        \item CreatedAt DATETIME -- Date when token has been created.
     \end{itemize}
 \end{itemize}
-
+Following diagram demonstrates the database structure.
 \begin{figure}[H]
     \centering
     \includegraphics[width=1.2\textwidth]{Pictures/DB_diagram}
     \caption{Database diagram}\label{fig:figure5}
 \end{figure}
+Over whole entoties, we prefer to use universally unique identifier (UUID) or namely globally unique identifier (GUID),
+a 128-bit label used for information in computer systems.
+Simply, because it does not force us to keep a sequence on database side.
+Sequence -- is a special entity provided in PostgreSQL relational databases.
+It is responsible for generating unique values and sometimes causes a problems during migration of the databse.
+But still, are GUID identifiers are really always unique?
+Well, each generated GUID is not guaranteed to be unique, the total number of unique keys $2^{128}$ or $3.4 \times 10^{38}$
+is so large that the probability of the same number being generated twice is very small.
+For example, consider the observable universe, which contains about $5 \times 10^{22}$ stars.
+Every star could then have $6.8 \times 10^{15}$ universally unique GUIDs [\cite{GuidSo}].
 
 \subsection{Authentication and Authorization processes}\label{subsec:authentication-and-authorization-processes}
 In this section we describe the processes of Authentication and Authorization in the system.

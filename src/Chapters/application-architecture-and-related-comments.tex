@@ -251,15 +251,18 @@ general entities to be added to database schema.
         \item RoleId ENUM -- Indicates the user role in the chat, e.g Owner, Administrator, Moderator, User.
     \end{itemize}
     \item \textbf{Chat Info.} Table contains additional data related to the chat.
-    This table is created since that we have four types of chats, namely, direct chat, public channel, readonly channel, private channel.
+    This table is created since that we have four types of chats, namely, direct chat, public channel,
+    readonly channel, private channel.
     These four types has a common data between each other.
     Common data between chat types is Chats table itself.
-    However, all chat types except direct chat requires an additional data to be displayed, that is Chat Info.
+    One would advise to store the chats in a single table per chat type, however it is very costly approach, since there
+    would be at least four joins per request.
+    Note that every chat type except direct chat requires an additional data to be displayed, that is Chat Info.
     Contains following columns:
     \begin{itemize}
         \item Id VARCHAR(36) -- Id of the chat information, primary key, Guid.
         \item Description VARCHAR(120) -- Description of the chat.
-        \item Tag VARCHAR(20) -- Chat link.
+        \item Tag VARCHAR(20) -- Uniqu identifier of the chat.
         \item MembersCount INTEGER -- Count of members in the chat.
     \end{itemize}
     \item \textbf{Messages.} Table that keeps messages and related data.
@@ -272,7 +275,7 @@ general entities to be added to database schema.
         \item Id VARCHAR(36) -- Id of the message, primary key, Guid.
         \item ChatId VARCHAR(36) -- Foreign key to the Chats table, Guid.
         \item UserId VARCHAR(36) -- Foreign key to the Users table, Guid.
-        \item Content VARCHAR -- Content of the message.
+        \item Content VARCHAR(300) -- Content of the message.
         \item IsRead BOOLEAN -- Indicates whenever message has been read by another user.
         \item CreateAt DATETIME -- Time when the message has been created.
         \item UpdatedAt DATETIME -- Time when the message has been updated.
@@ -282,16 +285,28 @@ general entities to be added to database schema.
         \item Id VARCHAR(36) -- Id of the token, primary key, Guid.
         \item UserId VARCHAR(39) -- Foreign key to the Users table, Guid.
         \item RefreshToken VARCHAR(60) -- Refresh token itself.
-        \item Expires DATETIME -- Expiration date of refresh token
-        \item CreatedAt DATETIME -- Date when token has been created
+        \item Expires DATETIME -- Expiration date of refresh token.
+        \item CreatedAt DATETIME -- Date when token has been created.
     \end{itemize}
 \end{itemize}
-
+Following diagram demonstrates the database structure.
 \begin{figure}[H]
     \centering
     \includegraphics[width=1.2\textwidth]{Pictures/DB_diagram}
     \caption{Database diagram}\label{fig:figure5}
 \end{figure}
+Over whole data entities, we prefer to use universally unique identifier (UUID) or namely globally unique identifier (GUID),
+a 128-bit label used for information in computer systems.
+Simply, because it does not force us to keep a sequence on database side.
+Sequence -- is a special entity provided in PostgreSQL relational databases.
+It is responsible for generating unique values and sometimes causes a problems during migration of the databse.
+But still, are GUID identifiers are really always unique?
+Well, each generated GUID is not guaranteed to be unique, the total number of unique keys $2^{128}$ or $3.4 \times 10^{38}$
+is so large that the probability of the same number being generated twice is very small.
+For example, consider the observable universe, which contains about $5 \times 10^{22}$ stars.
+Every star could then have $6.8 \times 10^{15}$ universally unique GUIDs.
+If you are scared of the same GUID values then put two of them next to each other.
+If you are too paranoid then put three [\cite{GuidSo}].
 
 \subsection{Authentication and Authorization processes}\label{subsec:authentication-and-authorization-processes}
 In this section we describe the processes of Authentication and Authorization in the system.
@@ -349,25 +364,13 @@ The following diagram shows how a JWT is obtained and used to access APIs or res
     \includegraphics[width=1\textwidth]{Pictures/jwt_auth_scheme.pdf}
     \caption{JWT Authentication principle diagram.}\label{fig:figure3}
 \end{figure}
-
-\subsection{Planned technologies}\label{subsec:planned-technologies}
+JWT is quite simple and straightforward way to authorize particular person to the system's part.
+However, what is about security, does it provide enough level of security?
+Not really is.
+When the JWT token is stolen, there is no way to revoke it.
+Only the thing is to wait while token expires by himself, after its predefined lifetime.
+A few basic rules about JWT usage [\cite{RDegges}]
 \begin{itemize}
-    \item \textbf{SDK}: \href{https://dotnet.microsoft.com/download/dotnet/5.0}{.NET Core 5.0}
-    \item \textbf{SQL Database}: \href{https://www.postgresql.org/}{PostgreSQL 13}
-    \item \textbf{Continuous Integration}: \href{https://docs.github.com/en/actions}{GitHub Actions}
-    \item \textbf{Object-Relational Mapping}: \href{https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/5.0.7?_src=template}{Entity Framework Core 5.0.7}
-    \item \textbf{PostgreSQL Provider}: \href{https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL/5.0.7?_src=template}{Npgsql.EntityFrameworkCore.PostgreSQL 5.0.7}
-    \item \textbf{Mediator Pattern Library} \href{https://www.nuget.org/packages/MediatR/9.0.0?_src=template}{MediatR 9.0.0}
-    \item \textbf{Validation Library}: \href{https://www.nuget.org/packages/FluentValidation/10.2.3?_src=template}{Fluent Validation}
-    \item \textbf{JWT Library}: \href{https://www.nuget.org/packages/System.IdentityModel.Tokens.Jwt}{System JWT 6.8.0}
-    \item \textbf{JWT Auxiliary Library}: \href{https://www.nuget.org/packages/System.IdentityModel.Tokens}{System Tokens 6.11.1}
-    \item \textbf{JWT Bearer}: \href{https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer/5.0.7?_src=template}{Microsoft Jwt Bearer}
-    \item \textbf{Swagger Library}: \href{https://www.nuget.org/packages/Swashbuckle.AspNetCore/5.6.3?_src=template}{Swashbuckle 6.1.4}
-    \item \textbf{Real-time Communication}: SignalR
-    \item \textbf{Unit Testing}: NUnit
-    \item \textbf{Unit Testing}: Moq
-    \item \textbf{Unit Testing Auxiliary}: FluentAssertions
-    \item \textbf{Static Code Analysis}: SonarQube
-    \item \textbf{FrontEnd Development}: Angular 11.2.7
-    \item \textbf{Containerization}: Docker
+    \item JWT should have a short lifetime (few seconds).
+    \item JWT should be used in a single time, e.g JWT per request.
 \end{itemize}

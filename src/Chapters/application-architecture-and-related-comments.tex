@@ -361,6 +361,16 @@ The following diagram shows how a JWT is obtained and used to access APIs or res
     \includegraphics[width=1\textwidth]{Pictures/jwt_auth_scheme.pdf}
     \caption{JWT Authentication principle diagram.}\label{fig:figure3}
 \end{figure}
+JWT is quite simple and straightforward way to authorize particular person to the system's part.
+However, what is about security, does it provide enough level of security?
+Not really is.
+When the JWT token is stolen, there is no way to revoke it.
+Only the thing is to wait while token expires by himself, after its predefined lifetime.
+A few basic rules about JWT usage [\cite{RDegges}]
+\begin{itemize}
+    \item JWT should have a short lifetime (few seconds).
+    \item JWT should be used in a single time, e.g JWT per request.
+\end{itemize}
 
 \subsection{Planned technologies}\label{subsec:planned-technologies}
 \begin{itemize}

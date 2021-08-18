@@ -149,6 +149,15 @@ For instance, the idea of command-query segregation is displayed at the followin
     \caption{CQRS Conceptual diagram. Source: https://martinfowler.com/bliki/CQRS.html}\label{fig:figure}
 \end{figure}
 
+\begin{enumerate}
+    \item User makes a change in UI\@.
+    \item Application routes information to command model.
+    \item Command model executes validation and business logic.
+    \item Command model updates the database.
+    \item Query model reads from database.
+    \item Query service update presentation from query model.
+\end{enumerate}
+
 Despite these benefits, you should be very cautious about using CQRS.
 Many information systems fit well with the notion of an information base that is updated in the same way that it's read,
 adding CQRS to such a system can add significant complexity.

@@ -1,15 +1,15 @@
 As a programmers, I believe all we have faced the cases of crucial over-engineering during the implementation of some
 software product.
 For the programmer, it is a vital point to follow two separated, but closely related software development principles,
-such that KISS [INSERTREF], and YAGNI [INSERTREF].
+such that KISS [\cite{alwin2016kiss}], and YAGNI [\cite{da2018evolution}].
 As the main topic of our thesis is to implement Instant Messaging System following the security and privacy aspects.
 We consider to following above-mentioned development principles KISS and YAGNI and approach
-a well-known N-tier application Monolithic architecture [INSERTREF], which provides a model by which developers can
+a well-known N-tier application Monolithic architecture [\cite{bucchiarone2018monolithic}], which provides a model by which developers can
 create flexible and reusable applications.
 By segregating an application into tiers, developers acquire the option of modifying or adding a specific layer,
 instead of reworking the entire application.
 A three-tier architecture is typically composed of a presentation tier, a logic tier, and a data tier.
-One would suggest to use nowadays popular Microservices Architecture, thinking about scalability [INSERTREF],
+One would suggest to use nowadays popular Microservices Architecture, thinking about scalability [\cite{brataas2004exploring}],
 an ability of the system to handle large numbers of users distributed over geographically large areas without
 notably affecting the overall performance of the system.
 However, the effect of Microservices is being felt only for quite large and complex systems,
@@ -27,8 +27,9 @@ In a logical multilayer architecture for an information system with an object-or
 
 \begin{itemize} % source: https://en.wikipedia.org/wiki/Multitier_architecture#cite_note-5
     \item \textbf{Presentation Layer.} UI layer, view layer, presentation tier in multitier architecture.
-    \item \textbf{Application Logic.} Service layer [INSERTREF] [INSERTREF] or GRASP Controller Layer [INSERTREF].
-    \item \textbf{Business Logic.} Business logic layer (BLL), domain logic layer.
+    \item \textbf{Application Logic.} Service layer [\cite{ji2009intelligent, swetina2014toward}]
+    or GRASP Controller Layer [\cite{okada2006vision}].
+    \item \textbf{Business Logic.} Business logic layer, domain logic layer.
     \item \textbf{Data Access Layer.} Persistence layer, logging, networking, and other services which are required
     to support a particular business layer.
 \end{itemize}
@@ -40,30 +41,28 @@ In a logical multilayer architecture for an information system with an object-or
 \end{figure}
 
 The book Domain Driven Design describes some common uses for the above four layers, although its primary focus is the
-domain layer [INSERTREF].
-If the application architecture has no explicit distinction between the business layer and the presentation layer
-(i.e., the presentation layer is considered part of the business layer), then a traditional client-server (two-tier)
-model has been implemented.[citation needed]
-The more usual convention is that the application layer (or service layer) is considered a sublayer of the business layer,
+domain layer [\cite{solvberg2010domain}].
+If the application architecture has no explicit distinction between the business layer and the presentation layer,
+then a traditional client-server model has been implemented.
+The presentation layer is considered part of the business layer.
+The more usual convention is that the application layer is considered a sublayer of the business layer,
 typically encapsulating the API definition surfacing the supported business functionality.
-The application/business layers can, in fact, be further subdivided to emphasize additional sublayers of distinct
+The application/business layers can, in fact, be further subdivided to emphasize additional sub-layers of distinct
 responsibility.
 For example, if the model–view–presenter pattern is used, the presenter sublayer might be used as an additional layer
-between the user interface layer and the business/application layer (as represented by the model sublayer).
-Some also identify a separate layer called the business infrastructure layer (BI), located between the business layer(s)
-and the infrastructure layer(s).
-It's also sometimes called the "low-level business layer" or the "business services layer".
-This layer is very general and can be used in several application tiers (e.g. a CurrencyConverter).[9]
-The infrastructure layer can be partitioned into different levels (high-level or low-level technical services).[9]
-Developers often focus on the persistence (data access) capabilities of the infrastructure layer and therefore only
-talk about the persistence layer or the data access layer (instead of an infrastructure layer or technical services layer).
-In other words, the other kind of technical services are not always explicitly thought of as part of any particular
-layer.
+between the user interface layer and the business/application layer, as represented by the model sublayer.
+Some also identify a separate layer called the business infrastructure layer, located between the business layer
+and the infrastructure layer.
+It's also sometimes called the \textit{low-level business layer} or the \textit{business services layer}.
+The infrastructure layer can be partitioned into different levels, high-level or low-level technical services [\cite{dennis2018mcapl}].
+Developers often focus on the persistence capabilities of the infrastructure layer and therefore only
+talk about the persistence layer or the data access layer instead of an infrastructure layer or technical services layer.
+In other words, the other kind of technical services are not always explicitly thought of as part of any particular layer.
 A layer is on top of another, because it depends on it.
 Every layer can exist without the layers above it, and requires the layers below it to function.
 Another common view is that layers do not always strictly depend on only the adjacent layer below.
-For example, in a relaxed layered system (as opposed to a strict layered system) a layer can also depend on all
-the layers below it [INSERTREF].
+For example, in a relaxed layered system, a layer can also depend on all the layers below it [\cite{anon2014building}].
+Relaxed layered system may be considered as opposed to a strict layered system.
 
 \subsection{Monolith Architecture: Cons and Props}\label{subsec:monolith-architecture:-cons-and-props}
 
@@ -80,7 +79,7 @@ Here are some of those basic benefits:
     Another advantage associated with the simplicity of monolithic apps is easier deployment.
     When it comes to monolithic applications, you do not have to handle many deployments – just one file or directory.
     \item \textbf{Performance.} Components in a monolith typically share memory which is faster than service-to-service
-    communications using IPC [INSERTREF] or other mechanisms.
+    communications using IPC [\cite{proctor1999linux}] or other mechanisms.
     \item \textbf{Easier debugging and testing.}
     In contrast to the microservices architecture, monolithic applications are much easier to debug and test.
     Since a monolithic app is a single indivisible unit, you can run end-to-end testing much faster.
@@ -111,9 +110,10 @@ We attach the following
 \href{https://github.com/smartstore/SmartStoreNET/blob/4.x/src/Presentation/SmartStore.Web/Controllers/CatalogHelper.cs}
 {link}
 as an example of such approach.
-To avoid the natural results of monolithic architecture, that are huge classes for thousands lines, we have to dive into design patterns.
+To avoid the natural results of monolithic architecture, that are huge classes for thousands lines, we have to dive into
+design patterns [\cite{rising1998design}].
 Precisely, the mediator design pattern would help to decouple the service layer from presentation layer.
-Mediator -- is a behavioral design pattern [INSERTREF] that lets you reduce chaotic dependencies between objects.
+Mediator -- is a behavioral design pattern [\cite{rasche2016building}] that lets you reduce chaotic dependencies between objects.
 The pattern restricts direct communications between the objects and forces them to collaborate only via a mediator object.
 In other words, mediator allows the communication between two entities, such that entities doesn't know each other.
 The Mediator pattern suggests that you should cease all direct communication between the components which you want to make
@@ -127,8 +127,8 @@ Another, yet popular approach is the CQRS, which stands for Command-Query Respon
 In brief, it stands that read (query) and write (command) requests should be segregated by their responsibilities.
 The CQRS approach in couple with Mediator greatly helps to solve the coupling problem of the monolith architecture.
 So what is CQRS precisely?
-According to Martin Fowler [INSERTREF],
-It's a pattern that first described by Greg Young [INSERTREF].
+According to \href{https://martinfowler.com/bliki/CQRS.html}{Martin Fowler},
+it is a pattern that first described by Greg Young [\cite{young2010cqrs}].
 At its heart is the notion that you can use a different model to update information than the model you use to read information.
 For some situations, this separation can be valuable, but beware that for most systems CQRS adds risky complexity.
 The mainstream approach people use for interacting with an information system is to treat it as a CRUD datastore.
@@ -157,7 +157,7 @@ For instance, the idea of command-query segregation is displayed at the followin
     \item Query service update presentation from query model.
 \end{enumerate}
 
-Despite these benefits, you should be very cautious about using CQRS.
+Despite these benefits, you should be very cautious about using CQRS\@.
 Many information systems fit well with the notion of an information base that is updated in the same way that it's read,
 adding CQRS to such a system can add significant complexity.
 I've certainly seen cases where it's made a significant drag on productivity, adding an unwarranted amount of risk to the
@@ -304,10 +304,10 @@ Following diagram demonstrates the database structure.
     \caption{Database diagram}\label{fig:figure5}
 \end{figure}
 Over whole data entities, we prefer to use universally unique identifier (UUID) or namely globally unique identifier (GUID),
-a 128-bit label used for information in computer systems.
+a 128-bit label used for information in computer systems [\cite{leach2005universally}].
 Simply, because it does not force us to keep a sequence on database side.
 Sequence -- is a special entity provided in PostgreSQL relational databases.
-It is responsible for generating unique values and sometimes causes a problems during migration of the databse.
+It is responsible for generating unique values and sometimes causes a problems during migration of the database.
 But still, are GUID identifiers are really always unique?
 Well, each generated GUID is not guaranteed to be unique, the total number of unique keys $2^{128}$ or $3.4 \times 10^{38}$
 is so large that the probability of the same number being generated twice is very small.
@@ -319,8 +319,8 @@ If you are too paranoid then put three [\cite{GuidSo}].
 \subsection{Authentication and Authorization processes}\label{subsec:authentication-and-authorization-processes}
 In this section we describe the processes of Authentication and Authorization in the system.
 It is worth to remember the meaning of Authentication and Authorization definitions.
-Authentication -- is the process of ascertaining that somebody really is who they claim to be.
-Authorization refers to rules that determine who is allowed to do what.
+Authentication -- is the process of ascertaining that somebody really is who they claim to be [\cite{burrows1989logic}].
+Authorization refers to rules that determine who is allowed to do what [\cite{fagin1978authorization}].
 For example, Adam may be authorized to create and delete databases, while Eve is only authorized to read.
 The two concepts are completely orthogonal and independent, but both are central to security design, and the
 failure to get either one correct opens up the avenue to compromise.
@@ -331,18 +331,18 @@ As to the projects concerns, we should handle multiple client applications, e.g 
 Therefore, cookie authorization doesn't fit for the project, however the JWT one surely passes.
 So, what is JSON Web Token (JWT)?
 JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely
-transmitting information between parties as a JSON object [INSERTREF].
+transmitting information between parties as a JSON object [\cite{jones2015json}].
 This information can be verified and trusted because it is digitally signed.
-JWTs can be signed using a secret (with the HMAC algorithm [INSERTREF]) or a public/private key pair using RSA or ECDSA.
+JWTs can be signed using a secret (with the HMAC algorithm [\cite{wang2004hmac}]) or a public/private key pair using RSA or ECDSA\@.
 Although JWTs can be encrypted to also provide secrecy between parties, we will focus on signed tokens.
 Signed tokens can verify the integrity of the claims contained within it, while encrypted tokens hide those claims from
 other parties.
 When tokens are signed using public/private key pairs, the signature also certifies that only the party holding the
 private key is the one that signed it.
-In its compact form, JSON Web Tokens consist of three parts separated by dots (.), which are:
+In its compact form, JSON Web Tokens consist of three parts separated by dots, which are:
 \begin{itemize}
     \item Header -- typically consists of two parts: the type of the token, which is JWT, and the signing algorithm
-    being used, such as HMAC SHA256 or RSA.
+    being used, such as HMAC SHA256 or RSA\@.
     \item Payload -- The second part of the token is the payload, which contains the claims.
     Claims are statements about an entity (typically, the user) and additional data.
     There are three types of claims: registered, public, and private claims.

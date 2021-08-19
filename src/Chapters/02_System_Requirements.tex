@@ -5,16 +5,16 @@ Prior to software module implementation, it is essentially important to define t
 Not to overcomplicate this section, we discuss the secure Instant Messaging Systems requirements from customer's prospective.
 
 There are different types of product requirements: business, functional, and non-functional.
-Business requirements [INSERTREF] typically answer how the product will address the needs of your company and its users.
+Business requirements [\cite{dilworth2007creation}] typically answer how the product will address the needs of your company and its users.
 They also reveal the business model of the app and what problems it can solve.
-Functional requirements [INSERTREF] are about functionalities that will be implemented in the app.
-Non-functional requirements describe how these functionalities will be implemented.
+Functional requirements [\cite{malan2001functional}] are about functionalities that will be implemented in the app.
+Non-functional requirements [\cite{chung2012non}] describe how these functionalities will be implemented.
 
-In this article, we only focus on functional requirements [INSERTREF].
+In this article, we only focus on functional requirements.
 In simple words, functional requirements are not ideas of how to solve problems or which technologies to use but rather
 are descriptions of software functionality.
 Mostly common and simple way to define software product's functional requirements is User Stories.
-User stories [INSERTREF] should be understandable both to developers and to you as the client, and should be written in simple words.
+User stories [\cite{cohn2004user}] should be understandable both to developers and to you as the client, and should be written in simple words.
 The most popular way of writing a user story is with the following formula:
 
 \begin{center}
@@ -24,15 +24,16 @@ The most popular way of writing a user story is with the following formula:
 
 \section{Modules}\label{sec:modules}
 \begin{itemize}
-    \item \textbf{M01. Web Client} –- Web version of the Mango Messenger that allows user to use the
-    product without having actual app on the Phone/Desktop/Tablet.
-    \item \textbf{M02. Mobile Client} –- mobile version of the Mango Messenger (Android/iOS).
-    \item \textbf{M03. Desktop Client} –- Desktop version of the Mango Messenger (Windows/Linux/MacOS).
-    \item \textbf{M04. Web API} –- Service that will allow developers to create their own clients.
+    \item \textbf{M01. Web Client} –- Web version of the Mango Messenger.
+    \item \textbf{M02. Mobile Client} –- Mobile version of the Mango Messenger for target platforms: Android, IOS\@.
+    \item \textbf{M03. Desktop Client} –- Desktop version of the Mango Messenger for target platforms Windows, Linux, MacOS\@.
+    \item \textbf{M04. Web API} –- Application Programming Interface that allows developers to create their own clients.
 \end{itemize}
+
 
 \section{Functional requirements}\label{sec:functional-requirements}
 \input{Chapters/functional-requirements}
+
 
 \section{Non-functional requirements}\label{sec:non-functional-requirements}
 \begin{itemize}
@@ -43,17 +44,17 @@ The most popular way of writing a user story is with the following formula:
     collect the user actions statistics to the log.\ If customer ever used at least 60% of the
     total number of requirements, we consider our system to be easy learnt.
     \item \textbf{NFR03.} The system should be well organized.\ To fulfill this requirement, we follow an
-    ISO 9241-161:2016 (en) Ergonomics of human-system interaction standard.
+    ISO 9241--161:2016 (en) Ergonomics of human-system interaction standard [\cite{iso2010ergonomics}].
     \item \textbf{NFR04.} The system should have well performance, which meant to respond it at
     least 1 second.\ User should have a device with at least 6 GB RAM and CPU with 1.8
     GHZ, 100 Mbps internet connection.\ Server must have the following hardware: Intel
     2.4 GHz 8 Cores server processor, 64GB DDR4 (4x16GB) memory, NVME or SAS
-    server disk with a minimum capacity of 1.6 TB.
-    \item \textbf{NFR05.} The unique, unambiguous identifier of users in the system is the username. It
-    is set in the application’s setting.
+    server disk with a minimum capacity of 1.6 TB\@.
+    \item \textbf{NFR05.} The unique, unambiguous identifier of users in the system is the username.
+    It is set in the application’s setting.
     \item \textbf{NFR06.} The UI must be well displayed with the following browsers, in the versions
-    current at the date of receipt of the system (or, depending on technical possibilities,
-    with the latest versions that support correct operation of the system):
+    current at the date of receipt of the system or, depending on technical possibilities,
+    with the latest versions that support correct operation of the system:
     \begin{itemize}
         \item Google Chrome 72.0.36.
         \item Mozilla Firefox 64.0.2.

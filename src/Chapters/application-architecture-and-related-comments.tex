@@ -183,7 +183,7 @@ general entities to be added to database schema.
     \item \textbf{Users.} Table stores information about user.
     Table contains following columns:
     \begin{itemize}
-        \item Id VARCHAR(36) -- Id of the user, primary key, Guid.
+        \item Id VARCHAR(36) -- Id of the user, primary key, GUID\@.
         \item UserName VARCHAR(50) -- Unique Username.
         \item NormalizedUserName VARCHAR(50) -- Unique Username in upper case.
         \item DisplayName VARCHAR(50) -- Name of the user, displayed to others.
@@ -199,10 +199,10 @@ general entities to be added to database schema.
         \item UpdatedAt DATETIME -- Indicates the date and time user has updated his record.
     \end{itemize}
     \item \textbf{User Personal Information.} Table stores additional but not required info about user.
-    Relation one-to-one with Users, foreign key is UserId, Guid.
+    Relation one-to-one with Users, foreign key is UserId, GUID\@.
     Table contains following columns:
     \begin{itemize}
-        \item UserId VARCHAR(36) -- Foreign key to the Users table, Guid.
+        \item UserId VARCHAR(36) -- Foreign key to the Users table, GUID\@.
         \item FirstName VARCHAR(120) -- First name of user.
         \item LastName VARCHAR(120) -- Last name of user.
         \item BirthDay DATETIME -- Birth day of user.
@@ -218,8 +218,8 @@ general entities to be added to database schema.
     Relation between tables Users and UserContacts is one-to-many, foreign key UserId.
     Table contains following columns:
     \begin{itemize}
-        \item ContactId VARCHAR(36) -- Id of current user's contact, Guid.
-        \item UserId VARCHAR(36) -- Id of current user, Guid.
+        \item ContactId VARCHAR(36) -- Id of current user's contact, GUID\@.
+        \item UserId VARCHAR(36) -- Id of current user, GUID\@.
     \end{itemize}
     \item \textbf{Chats.} In order to communicate with other people it is essentially to have a chat room.
     Our implementation provides chat rooms of the four types.
@@ -232,7 +232,7 @@ general entities to be added to database schema.
     We discuss UserChats relation in foregoing part.
     Continuing with Chats table, it contains the following columns:
     \begin{itemize}
-        \item Id VARCHAR(36) -- Id of the chat, primary key, Guid.
+        \item Id VARCHAR(36) -- Id of the chat, primary key, GUID.
         \item ChatInfoId VARCHAR(36) -- Since we have a four types of channels, which has a common subset of data,
         the different data is moved to another table, so it could be joined depending on chat type.
         For instance, any chat type except direct one would require to join additional data in order to display the chat properly.
@@ -254,8 +254,8 @@ general entities to be added to database schema.
     \end{itemize}
     Despite that, the UserChats table contains the following columns:
     \begin{itemize}
-        \item ChatId VARCHAR(36) -- Foreign key to the Chats table, Guid.
-        \item UserId VARCHAR(36) -- Foreign key to the Users table, Guid.
+        \item ChatId VARCHAR(36) -- Foreign key to the Chats table, GUID\@.
+        \item UserId VARCHAR(36) -- Foreign key to the Users table, GUID\@.
         \item RoleId ENUM -- Indicates the user role in the chat, e.g Owner, Administrator, Moderator, User.
     \end{itemize}
     \item \textbf{Chat Info.} Table contains additional data related to the chat.
@@ -268,9 +268,9 @@ general entities to be added to database schema.
     Note that every chat type except direct chat requires an additional data to be displayed, that is Chat Info.
     Contains following columns:
     \begin{itemize}
-        \item Id VARCHAR(36) -- Id of the chat information, primary key, Guid.
+        \item Id VARCHAR(36) -- Id of the chat information, primary key, GUID\@.
         \item Description VARCHAR(120) -- Description of the chat.
-        \item Tag VARCHAR(20) -- Uniqu identifier of the chat.
+        \item Tag VARCHAR(20) -- Unique identifier of the chat.
         \item MembersCount INTEGER -- Count of members in the chat.
     \end{itemize}
     \item \textbf{Messages.} Table that keeps messages and related data.
@@ -280,9 +280,9 @@ general entities to be added to database schema.
     therefore, we consider one-to-mane relation between Users and Messages, foreign key UserId.
     Messages table contains following columns:
     \begin{itemize}
-        \item Id VARCHAR(36) -- Id of the message, primary key, Guid.
-        \item ChatId VARCHAR(36) -- Foreign key to the Chats table, Guid.
-        \item UserId VARCHAR(36) -- Foreign key to the Users table, Guid.
+        \item Id VARCHAR(36) -- Id of the message, primary key, GUID\@.
+        \item ChatId VARCHAR(36) -- Foreign key to the Chats table, GUID\@.
+        \item UserId VARCHAR(36) -- Foreign key to the Users table, GUID\@.
         \item Content VARCHAR(300) -- Content of the message.
         \item IsRead BOOLEAN -- Indicates whenever message has been read by another user.
         \item CreateAt DATETIME -- Time when the message has been created.
@@ -290,8 +290,8 @@ general entities to be added to database schema.
     \end{itemize}
     \item \textbf{Refresh Tokens.} Table stores refresh tokens.
     \begin{itemize}
-        \item Id VARCHAR(36) -- Id of the token, primary key, Guid.
-        \item UserId VARCHAR(39) -- Foreign key to the Users table, Guid.
+        \item Id VARCHAR(36) -- Id of the token, primary key, GUID\@.
+        \item UserId VARCHAR(39) -- Foreign key to the Users table, GUID\@.
         \item RefreshToken VARCHAR(60) -- Refresh token itself.
         \item Expires DATETIME -- Expiration date of refresh token.
         \item CreatedAt DATETIME -- Date when token has been created.
@@ -314,7 +314,7 @@ is so large that the probability of the same number being generated twice is ver
 For example, consider the observable universe, which contains about $5 \times 10^{22}$ stars.
 Every star could then have $6.8 \times 10^{15}$ universally unique GUIDs.
 If you are scared of the same GUID values then put two of them next to each other.
-If you are too paranoid then put three [\cite{GuidSo}].
+If you are too paranoid then put three [\cite{GUIDSo}].
 
 \subsection{Authentication and Authorization processes}\label{subsec:authentication-and-authorization-processes}
 In this section we describe the processes of Authentication and Authorization in the system.

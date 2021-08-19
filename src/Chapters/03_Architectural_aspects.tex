@@ -8,23 +8,27 @@
 
 
 \section{Discussion on HTTPS Protocol}\label{sec:discussion-on-https-protocol}
-Hypertext Transfer Protocol Secure (HTTPS) is an extension of the Hypertext Transfer Protocol (HTTP).
-It is used for secure communication over a computer network, and is widely used on the Internet [INSERTREF] [INSERTREF].
-In HTTPS, the communication protocol is encrypted using Transport Layer Security (TLS) or, formerly, Secure Sockets Layer (SSL).
-The protocol is therefore also referred to as HTTP over TLS [INSERTREF] or HTTP over SSL\@.
+HTTPS stands for Hypertext Transfer Protocol Secure.
+HTTPS is an extension of the Hypertext Transfer Protocol.
+It is used for secure communication over a computer network,
+and is widely used on the Internet [\cite{lam2000secure, karayiannis2019implementing}].
+In HTTPS, the communication protocol is encrypted using Transport Layer Security [\cite{turner2014transport}]
+or, formerly, Secure Sockets Layer [\cite{weaver2006secure}].
+The protocol is therefore also referred to as HTTP over TLS or HTTP over SSL\@.
 The principal motivations for HTTPS are authentication of the accessed website, and protection of the privacy and integrity
 of the exchanged data while in transit.
-It protects against man-in-the-middle attacks, and the bidirectional encryption of communications between a client and
-server protects the communications against eavesdropping and tampering [INSERTREF] [INSERTREF].
+It protects against \textit{man-in-the-middle attacks}.
+The bidirectional encryption of communications between a client and server protects the communications against
+eavesdropping and tampering [\cite{mayer2016tlscompare, jiang2019physical}].
 The authentication aspect of HTTPS requires a trusted third party to sign server-side digital certificates.
 This was historically an expensive operation, which meant fully authenticated HTTPS connections were usually found only
 on secured payment transaction services and other secured corporate information systems on the World Wide Web.
 In 2016, a campaign by the Electronic Frontier Foundation with the support of web browser developers led to the protocol
-becoming more prevalent [INSERTREF].
+becoming more prevalent [\cite{he2014shadowcrypt}].
 HTTPS is now used more often by web users than the original non-secure HTTP, primarily to protect
 page authenticity on all types of websites;
 secure accounts;
-and to keep user communications, identity, and web browsing private [INSERTREF].
+and to keep user communications, identity, and web browsing private [\cite{rescorla2000rfc2818}].
 
 \subsection{What is an SSL Certificate?}\label{subsec:what-is-an-ssl-certificate?}
 SSL certificates are what enable websites to move from HTTP to HTTPS, which is more secure.

@@ -27,9 +27,10 @@ In a logical multilayer architecture for an information system with an object-or
 
 \begin{itemize} % source: https://en.wikipedia.org/wiki/Multitier_architecture#cite_note-5
     \item \textbf{Presentation Layer.} UI layer, view layer, presentation tier in multitier architecture.
-    \item \textbf{Application Logic.} Service layer[5][6] or GRASP Controller Layer [7].
+    \item \textbf{Application Logic.} Service layer [INSERTREF] [INSERTREF] or GRASP Controller Layer [INSERTREF].
     \item \textbf{Business Logic.} Business logic layer (BLL), domain logic layer.
-    \item \textbf{Data Access Layer.} Persistence layer, logging, networking, and other services which are required to support a particular business layer.
+    \item \textbf{Data Access Layer.} Persistence layer, logging, networking, and other services which are required
+    to support a particular business layer.
 \end{itemize}
 
 \begin{figure}[H]
@@ -39,7 +40,7 @@ In a logical multilayer architecture for an information system with an object-or
 \end{figure}
 
 The book Domain Driven Design describes some common uses for the above four layers, although its primary focus is the
-domain layer.[8]
+domain layer [INSERTREF].
 If the application architecture has no explicit distinction between the business layer and the presentation layer
 (i.e., the presentation layer is considered part of the business layer), then a traditional client-server (two-tier)
 model has been implemented.[citation needed]
@@ -61,7 +62,8 @@ layer.
 A layer is on top of another, because it depends on it.
 Every layer can exist without the layers above it, and requires the layers below it to function.
 Another common view is that layers do not always strictly depend on only the adjacent layer below.
-For example, in a relaxed layered system (as opposed to a strict layered system) a layer can also depend on all the layers below it.[4]
+For example, in a relaxed layered system (as opposed to a strict layered system) a layer can also depend on all
+the layers below it [INSERTREF].
 
 \subsection{Monolith Architecture: Cons and Props}\label{subsec:monolith-architecture:-cons-and-props}
 
@@ -77,8 +79,8 @@ Here are some of those basic benefits:
     configuration management and performance monitoring.
     Another advantage associated with the simplicity of monolithic apps is easier deployment.
     When it comes to monolithic applications, you do not have to handle many deployments – just one file or directory.
-    \item \textbf{Performance.} Components in a monolith typically share memory which is faster than service-to-service communications using
-    IPC [INSERTREF] or other mechanisms.
+    \item \textbf{Performance.} Components in a monolith typically share memory which is faster than service-to-service
+    communications using IPC [INSERTREF] or other mechanisms.
     \item \textbf{Easier debugging and testing.}
     In contrast to the microservices architecture, monolithic applications are much easier to debug and test.
     Since a monolithic app is a single indivisible unit, you can run end-to-end testing much faster.
@@ -89,7 +91,6 @@ But one major drawback of monolithic architectures is tight coupling.
 Over time, monolithic components become tightly coupled and entangled.
 This coupling effects management, scalability and continuous deployment.
 Other cons that stem from tight coupling include:
-
 \begin{itemize}
     \item \textbf{Understanding.} When a monolithic application scales up, it becomes too complicated to understand.
     Also, a complex system of code within one application is hard to manage.
@@ -111,8 +112,8 @@ We attach the following
 {link}
 as an example of such approach.
 To avoid the natural results of monolithic architecture, that are huge classes for thousands lines, we have to dive into design patterns.
-Precisely, the mediator pattern would help to decouple the service layer from presentation layer.
-Mediator -- is a behavioral design pattern that lets you reduce chaotic dependencies between objects.
+Precisely, the mediator design pattern would help to decouple the service layer from presentation layer.
+Mediator -- is a behavioral design pattern [INSERTREF] that lets you reduce chaotic dependencies between objects.
 The pattern restricts direct communications between the objects and forces them to collaborate only via a mediator object.
 In other words, mediator allows the communication between two entities, such that entities doesn't know each other.
 The Mediator pattern suggests that you should cease all direct communication between the components which you want to make
@@ -120,10 +121,8 @@ independent of each other.
 Instead, these components must collaborate indirectly, by calling a special mediator object that redirects the calls to
 appropriate components.
 As a result, the components depend only on a single mediator class instead of being coupled to dozens of their colleagues.
-
 In context of .NET platform there are multiple implementation of the Mediator, the most widely known and used is the
 \href{https://github.com/jbogard/MediatR}{MediatR}, which we use in our project.
-
 Another, yet popular approach is the CQRS, which stands for Command-Query Responsibility Segregation.
 In brief, it stands that read (query) and write (command) requests should be segregated by their responsibilities.
 The CQRS approach in couple with Mediator greatly helps to solve the coupling problem of the monolith architecture.
@@ -332,9 +331,9 @@ As to the projects concerns, we should handle multiple client applications, e.g 
 Therefore, cookie authorization doesn't fit for the project, however the JWT one surely passes.
 So, what is JSON Web Token (JWT)?
 JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely
-transmitting information between parties as a JSON object.
+transmitting information between parties as a JSON object [INSERTREF].
 This information can be verified and trusted because it is digitally signed.
-JWTs can be signed using a secret (with the HMAC algorithm) or a public/private key pair using RSA or ECDSA.
+JWTs can be signed using a secret (with the HMAC algorithm [INSERTREF]) or a public/private key pair using RSA or ECDSA.
 Although JWTs can be encrypted to also provide secrecy between parties, we will focus on signed tokens.
 Signed tokens can verify the integrity of the claims contained within it, while encrypted tokens hide those claims from
 other parties.
@@ -351,9 +350,9 @@ In its compact form, JSON Web Tokens consist of three parts separated by dots (.
     the algorithm specified in the header, and sign that.
 \end{itemize}
 Therefore, a JWT typically looks like \texttt{xxxxx.yyyyy.zzzzz}.
-Then, this JSON is Base64Url encoded to form the first part of the JWT.
+Then, this JSON is Base64Url encoded to form the first part of the JWT\@.
 How do JSON Web Tokens work?
-n authentication, when the user successfully logs in using their credentials, a JSON Web Token will be returned.
+An authentication, when the user successfully logs in using their credentials, a JSON Web Token will be returned.
 Since tokens are credentials, great care must be taken to prevent security issues.
 In general, you should not keep tokens longer than required.
 You also should not store sensitive session data in browser storage due to lack of security.

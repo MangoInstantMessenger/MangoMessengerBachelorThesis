@@ -1,3 +1,6 @@
+\chapter{Authentication and authorization}\label{ch:authentication-and-authorization}
+
+
 \section{Motivation}\label{sec:motivation}
 In this section we describe the processes of Authentication and Authorization in the system.
 It is worth to remember the meaning of Authentication and Authorization definitions.
@@ -9,9 +12,9 @@ failure to get either one correct opens up the avenue to compromise.
 In terms of web apps, very crudely speaking, authentication is when you check login credentials to see if you recognize
 a user as logged in, and authorization is when you look up in your access control whether you allow the user to view,
 edit, delete or create content.
-As to the projects concerns, we should handle multiple client applications, e.g desktop,
-web, mobile etc.
-Therefore, cookie authorization doesn't fit for the project, however the JWT one surely passes.
+Currently, there are two widely-known authentication methods, that are cookie authentication and JWT (JSON Web Token)
+authentication.
+We discuss JWTs in next section.
 
 
 \section{JWT Tokens}\label{sec:jwt-tokens}
@@ -37,6 +40,10 @@ In its compact form, JSON Web Tokens consist of three parts separated by dots, w
 \end{itemize}
 Therefore, a JWT typically looks like \texttt{xxxxx.yyyyy.zzzzz}.
 Then, this JSON is Base64Url encoded to form the first part of the JWT\@.
+
+As to the projects concerns, we should handle multiple client applications, e.g desktop,
+web, mobile etc.
+Therefore, cookie authorization doesn't fit for the project, however the JWT one surely passes.
 
 
 \section{JWT Authentication}\label{sec:jwt-authentication}

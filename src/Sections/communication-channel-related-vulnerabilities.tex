@@ -27,7 +27,7 @@ session -- sometimes also called a session key to gain unauthorized access to in
 In particular, it is used to refer to the theft of a magic cookie used to authenticate a user to a remote server.
 It has particular relevance to web developers, as the HTTP cookies used to maintain a session on many web sites
 can be easily stolen by an attacker using an intermediary computer or with access to the saved cookies on the victim's
-computer (see HTTP cookie theft).
+computer.
 After successfully stealing appropriate session cookies an adversary might use the Pass the Cookie technique to perform
 session hijacking.
 By~\cite{bugliesi2015cookiext}, the cookie hijacking is commonly used against client authentication on the internet.
@@ -42,3 +42,34 @@ However, a common command would be to set a password allowing access from elsewh
 
 An attacker can also be "inline" between A and C using a sniffing program to watch the conversation.
 This is known as a "man-in-the-middle attack" [\cite{callegati2009man}].
+
+\subsection{Cross-site request forgery}\label{subsec:cross-site-request-forgery}
+Cross-site request forgery, also known as one-click attack or session riding and abbreviated as CSRF or XSRF,
+is a type of malicious exploit of a website where unauthorized commands are submitted from a user that the web
+application trusts [\cite{barth2008robust}].
+There are many ways in which a malicious website can transmit such commands;
+specially-crafted image tags, hidden forms, and JavaScript XMLHttpRequests, for example, can all work without
+the user's interaction or even knowledge.
+Unlike cross-site scripting (XSS), which exploits the trust a user has for a particular site,
+CSRF exploits the trust that a site has in a user's browser.
+
+In a CSRF attack, an innocent end user is tricked by an attacker into submitting a web request that they did not intend.
+This may cause actions to be performed on the website that can include inadvertent client or server data leakage,
+change of session state, or manipulation of an end user's account.
+
+CSRF is also used as an abbreviation in defences against CSRF attacks, such as techniques that use header data,
+form data, or cookies, to test for and prevent such attacks.
+
+\subsection{Cross-site scripting}\label{subsec:cross-site-scripting}
+Cross-site scripting (XSS) is a type of security vulnerability typically found in web applications [\cite{vogt2007cross}].
+XSS attacks enable attackers to inject client-side scripts into web pages viewed by other users.
+A cross-site scripting vulnerability may be used by attackers to bypass access controls such as the same-origin policy.
+Cross-site scripting attacks use known vulnerabilities in web-based applications, their servers, or the plug-in systems
+on which they rely.
+Exploiting one of these, attackers fold malicious content into the content being delivered from the compromised site.
+When the resulting combined content arrives at the client-side web browser, it has all been delivered from the trusted source,
+and thus operates under the permissions granted to that system.
+By finding ways of injecting malicious scripts into web pages, an attacker can gain elevated access-privileges
+to sensitive page content, to session cookies, and to a variety of other information maintained by the browser on
+behalf of the user.
+Cross-site scripting attacks are a case of code injection.

@@ -27,9 +27,98 @@ actors: server, communication channel, end-user.
 
 
 \section{Server vulnerabilities}\label{sec:server-vulnerabilities}
+%server
+
+\subsection{Revealing confidential information}\label{subsec:revealing-confidential-information}
+Revealing confidential information over an unsecured delivery channel.
+Public Instant Messaging transmits unencrypted information, so it should never be used for sensitive or confidential
+information.
+The information is on the Internet and may be accessed by anyone.
+
+%server
+
+\subsection{Spreading viruses and worms}\label{subsec:spreading-viruses-and-worms}
+Instant Message programs are fast becoming a preferred method for launching network viruses and worms.
+The lack of built-in security, the ability to download files and built-in "buddy list" of recipients create an
+environment in which viruses and worms can spread quickly.
+The threat is growing so fast that Instant Messenger is quickly catching up to e-mail as a primary point of attack.
+
+% server
+
+\subsection{Copyright infringement}\label{subsec:copyright-infringement}
+Copyright infringement [\cite{hardy2002criminal}] is the use of works protected by copyright law without
+permission for a usage where such permission is required, thereby infringing certain exclusive rights granted to the
+copyright holder, such as the right to reproduce, distribute, display or perform the protected work, or to make
+derivative works.
+The copyright holder is typically the work's creator, or a publisher or other business to whom copyright has been assigned.
+Copyright holders routinely invoke legal and technological measures to prevent and penalize copyright infringement.
+Copyright infringement disputes are usually resolved through direct negotiation, a notice and take down process, or
+litigation in civil court.
+Egregious or large-scale commercial infringement, especially when it involves counterfeiting, is sometimes prosecuted
+via the criminal justice system.
+Shifting public expectations, advances in digital technology and the increasing reach of the Internet have led to such
+widespread, anonymous infringement that copyright-dependent industries now focus less on pursuing individuals who seek
+and share copyright-protected content online, and more on expanding copyright law to recognize and
+penalize, as indirect infringers, the service providers and software distributors who are said to facilitate and
+encourage individual acts of infringement by others.
+Estimates of the actual economic impact of copyright infringement vary widely and depend on other factors.
+Nevertheless, copyright holders, industry representatives, and legislators have long characterized copyright
+infringement as piracy or theft -- language which some US courts now regard as pejorative or otherwise contentious,
+see~\cite{powell1984dowling, li2009intellectual}.
 
 
 \section{Communication channel vulnerabilities}\label{sec:communication-channel-vulnerabilities}
+
+% communication channel
+
+\subsection{Exposing the network to backdoor Trojans}\label{subsec:exposing-the-network-to-backdoor-trojans}
+Malware such as adware, spyware, worms, Trojans, and other viruses can easily be transmitted through the
+Instant Messaging program.
+This also includes phishing programs that disguise themselves as legitimate and then trick you into revealing
+your personal information.
+
+% communiation channel
+
+\subsection{Denial of Service Attacks}\label{subsec:denial-of-service-attacks}
+In computing, a denial-of-service attack (DoS attack) is a cyber-attack in which the perpetrator seeks to make a machine or
+network resource unavailable to its intended users by temporarily or indefinitely disrupting services of a host connected
+to the Internet.
+Denial of service is typically accomplished by flooding the targeted machine or resource with superfluous requests in
+an attempt to overload systems and prevent some or all legitimate requests from being fulfilled, see~\cite{gu2007denial}.
+In a distributed denial-of-service attack (DDoS attack), the incoming traffic flooding the victim originates from
+many different sources.
+This effectively makes it impossible to stop the attack simply by blocking a single source.
+A DoS or DDoS attack is analogous to a group of people crowding the entry door of a shop, making it hard for legitimate
+customers to enter, thus disrupting trade.
+
+Criminal perpetrators of DoS attacks often target sites or services hosted on high-profile web servers such as banks or
+credit card payment gateways.
+Researches at~\cite{prince2016empty, halpin2012philosophy} conclude that revenge, blackmail and activism can
+motivate these attacks.
+
+% communication channel
+
+\subsection{Hijacking Sessions}\label{subsec:hijacking-sessions}
+In computer science, session hijacking, sometimes also known as cookie hijacking is the exploitation of a valid computer
+session -- sometimes also called a session key to gain unauthorized access to information or services in a computer system.
+In particular, it is used to refer to the theft of a magic cookie used to authenticate a user to a remote server.
+It has particular relevance to web developers, as the HTTP cookies used to maintain a session on many web sites
+can be easily stolen by an attacker using an intermediary computer or with access to the saved cookies on the victim's
+computer (see HTTP cookie theft).
+After successfully stealing appropriate session cookies an adversary might use the Pass the Cookie technique to perform
+session hijacking.
+By~\cite{bugliesi2015cookiext}, the cookie hijacking is commonly used against client authentication on the internet.
+Modern web browsers use cookie protection mechanisms to protect the web from being attacked.
+A popular method is using source-routed IP packets.
+This allows an attacker at point B on the network to participate in a conversation between A and C by encouraging the
+IP packets to pass through B's machine.
+If source-routing is turned off, the attacker can use "blind" hijacking, whereby it guesses the responses of the two
+machines.
+Thus, the attacker can send a command, but can never see the response.
+However, a common command would be to set a password allowing access from elsewhere on the net.
+
+An attacker can also be "inline" between A and C using a sniffing program to watch the conversation.
+This is known as a "man-in-the-middle attack" [\cite{callegati2009man}].
 
 
 \section{Traits of a secure instant messenger}\label{sec:traits-of-a-secure-instant-messenger}

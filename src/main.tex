@@ -127,7 +127,8 @@
 
     \begin{declaration}
         \addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
-        \noindent We, \authorname, declare that this thesis titled, \enquote{\ttitle} and the work presented in it are our own.
+        \noindent We, \authorname, declare that this thesis titled, \enquote{\ttitle} and the work
+        presented in it are our own.
         We confirm that:
 
         \begin{itemize}
@@ -235,15 +236,14 @@
 
     \begin{abstract}
         \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
-        Among many types of social network applications, instant messaging is one of the applications that
-        consider the privacy and the security are two crucial features due to that data exchanged between users are
-        often private and not for public.
-        In this work,  a secure Instant Messenger mobile application is designed and implemented.
-        Many techniques are used to provide privacy and another to achieve security through suitable cryptographic method.
-        The limited and varied specifications of users' mobile devices are considered for implementing the concept of
-        end-to-end encryption.
-        The application also providing the main functions of instant messaging applications such as
-        profile creation, access control management, and finding friend.
+        In this thesis we analyze instant messaging system's security and user privacy vulnerabilities.
+        Next, we design and implement an instant messaging system that corresponds the required functionalities and
+        satisfies the defined security requirements, based on previous analyze.
+        We implement the following software modules: web-service (API), web-client, desktop-client and mobile-client.
+        Web service is implemented using latest for the moment on writing this thesis .NET 5 platform.
+        Web client is implemented using Angular front-end framework with TypeScript programming language.
+        Desktop client is implemented by means of existing web client and Electron framework.
+        Mobile client is implemented as an android application.
     \end{abstract}
 
 %----------------------------------------------------------------------------------------
@@ -323,13 +323,14 @@
 
 % Include the chapters of the thesis as separate files from the Chapters folder
 % Uncomment the lines as you write the chapters
-    \include{Chapters/01_Main_Aim_Of_The_Work}
-    \include{Chapters/02_Introduction}
-    \include{Chapters/03_System_Requirements}
-    \include{Chapters/04_Architectural_aspects}
-    \include{Chapters/05_Authentication_and_authorization}
-    \include{Chapters/06_Security_of_communication_channel}
-    \include{Chapters/07_User_interface}
+    \include{Chapters/MainAimOfTheWork}
+    \include{Chapters/Introduction}
+    \include{Chapters/SecurityAndUserPrivacyVulnerabilities}
+    \include{Chapters/SystemRequirements}
+    \include{Chapters/ArchitecturalAspectsOfTheSystem}
+    \include{Chapters/AuthenticationAndAuthorization}
+    \include{Chapters/SecurityAspectsOfCommunicationChannel}
+    \include{Chapters/UserInterfaceDesignAndDescription}
 
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
@@ -339,7 +340,7 @@
 
 %----------------------------------------------------------------------------------------
 
-    %----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES
 %----------------------------------------------------------------------------------------
 

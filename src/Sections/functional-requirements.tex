@@ -1,45 +1,57 @@
 To compete with successful and commonly used instant messaging platforms, your service has to offer great functionality.
 So first, let’s define the core features of a messaging app.
 \begin{itemize}
-    \item Registration, Authorization, Authentication
+    \item Registration
+    \item Authentication
+    \item Authorization
+    \item Adding contacts
     \item Sending messages and media to individuals
-    \item Manage contacts
     \item Creating groups
+    \item Sending messages and media to groups user stories
     \item Viewing message history
+    \item Profile settings
 \end{itemize}
 Note that Authentication [\cite{burrows1989logic}] means confirming your own identity,
 whereas Authorization [\cite{fagin1978authorization}] means being allowed access to the particular part of the system.
 
-\subsection{Registration, Authorization, Authentication}\label{subsec:registration-authorization-authentication}
+\subsection{Registration user stories}\label{subsec:registration}
 \begin{itemize}
-    \item As an unregistered user, I want to tap “sign up” so that I can see the registration form.
+    \item As an unregistered user, I want to tap “register” so that I can see the registration form.
     \item As an unregistered user, I want to use my phone number to register so that my account is tied to my phone number.
-    \item As an unregistered user, I want to add a display name so that other users can find my account not only by my phone number.
-    \item As an unregistered user, I want to receive the registration confirmation via SMS so that I can activate my account.
-    \item As an unregistered user, I want to receive the registration confirmation via Email so that I can activate my account.
-    \item As a registered user, I want to authorize myself using both combinations email-password and phone-password, so that I see the specified form with two inputs.
-    \item As a registered user, I want to tap "logout", so that only current device will be logged out.
-    \item As a registered user, I want to tap "logout all", so that all my authorized devices will be logged out.
-    \item As a registered user, I want my session on each device to be 7 days, so that after 7 days of inactivity device will be logged out automatically.
-    \item As a registered user, I want reset password, so that my password will change
+    \item As an unregistered user, I want to use my e-mail to register so that my account is tied to my phone number.
+    \item As an unregistered user, I want to add a display name during registration so that other users can find
+    my account not only by my phone number or e-mail.
+    \item As an unregistered user, I want to choose how to receive the registration confirmation via SMS or e-mail
+    so that notification is sent by SMS or e-email.
+    \item As an unregistered user, I want to receive the registration confirmation via SMS or Email so that
+    I can activate my account.
 \end{itemize}
 
-\subsection{Manage contacts feature user stories}\label{subsec:manage-contacts-feature-user-stories}
+\subsection{Authentication user stories}\label{subsec:authentication-user-stories}
 \begin{itemize}
-    \item As a registered user, I want to be able to add other users as contacts, so that each user profile has a dedicated button.
-    \item As a registered user, I want to be able to blacklist other users and do not receive any messages and notification from them,
-    so that each user profile has a dedicated button.
+    \item As an un-authenticated user, I want to authenticate myself using both combinations email-password
+    and phone-password so that I use the specified form with two inputs.
+    \item As an authenticated user, I want my session on each device to least 7 days
+    so that after 7 days of inactivity device will be logged out automatically.
 \end{itemize}
 
-\subsection{Sending messages and media feature user stories}\label{subsec:sending-messages-and-media-feature-user-stories}
+\subsection{Adding contacts user stories}\label{subsec:adding-contacts}
 \begin{itemize}
-    \item As a registered user, I want to send a text message so that another user gets a notification and sees my message.
-    \item As a registered user, I want to see the status of a sent message so that I know if it’s been seen.
-    \item As a registered user, I want to tap "details of message" -> "edit" on my message, so that edit the message sent by me.
-    \item As a registered user, I want to tap "details of message" -> "delete" on message, so that delete the message.
+    \item As an authorized user, I want to add other user to my contact list so that each user profile has a dedicated button.
+    \item As an authorized user, I want to remove the user from my contact list so that each contact profile has a dedicated button.
+    \item As an authorized user, I want to send message to the user from my contact list so that each contact profile has a dedicated button.
 \end{itemize}
 
-\subsection{Creating groups feature user stories}\label{subsec:creating-groups-feature-user-stories}
+\subsection{Sending messages and media to individuals user stories}
+\label{subsec:sending-messages-and-media-feature-user-stories}
+\begin{itemize}
+    \item As an authorized user, I want to send a text message so that another user sees my message.
+    \item As an authorized user, I want to send a document so that another user sees the document I sent.
+    \item As an authorized user, I want to tap "Edit" on my message, so that I edit the message sent by myself.
+    \item As an authorized user, I want to tap "Delete" on my message, so that I delete the message sent by myself.
+\end{itemize}
+
+\subsection{Creating groups user stories}\label{subsec:creating-groups-feature-user-stories}
 \begin{itemize}
     \item As a registered user, I want to tap "details" -> "create group" in sidebar so that create a new group.
     \item As a registered user, I want to tap "details" -> "new chat" in sidebar, so that create a new direct chat with specified user.
@@ -50,7 +62,26 @@ whereas Authorization [\cite{fagin1978authorization}] means being allowed access
     \item As a member of a secret chat, I want to get a notification when another member of the secret chat takes a screenshot of it.
 \end{itemize}
 
-\subsection{Viewing message history feature user stories}\label{subsec:viewing-message-history-feature-user-stories}
+\subsection{Sending messages and media to groups user stories}
+\label{subsec:sending-messages-and-media-to-groups}
 \begin{itemize}
-    \item As a registered user, I want to be able to view a message history of particular chat, so that there is a list of messages of specified chat.
+    \item As an authorized user, I want to send a text message so that all members of a group see my message.
+    \item As an authorized user, I want to send a document so that all members of a group see the document I sent.
+    \item As an authorized user, I want to tap "Edit" on my message, so that I edit the message sent by myself.
+    \item As an authorized user, I want to tap "Delete" on my message, so that I delete the message sent by myself.
+\end{itemize}
+
+\subsection{Viewing message history user stories}\label{subsec:viewing-message-history-feature-user-stories}
+\begin{itemize}
+    \item As an authorized user, I want to be able to view a message history of particular chat or group
+    so that I see a list of my active chats on the UI\@.
+\end{itemize}
+
+\subsection{Profile settings user stories}\label{subsec:profile-settings-user-stories}
+\begin{itemize}
+    \item As an authorized user, I want to be able to change my personal information so that I use a specified form.
+    \item As an authorized user, I want reset password, so that my password will change.
+    \item As an authorized user, I want to tap "Logout" button so that current device will be logged out from the system.
+    \item As an authorized user, I want to tap "Logout all" button, so that all my authorized devices will be
+    logged out from the system.
 \end{itemize}

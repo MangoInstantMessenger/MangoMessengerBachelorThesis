@@ -25,15 +25,16 @@ whereas Authorization [\cite{fagin1978authorization}] means being allowed access
 
 \subsection{Authentication user stories}\label{subsec:authentication-user-stories}
 \begin{itemize}
-    \item \textcolor{red}{As an un-authenticated user, I want to authenticate myself using both combinations email-password and phone-password so that I use the specified form with two inputs.}
-    \item \textcolor{red}{As a registered user, I want to restore my password if I forgot it so that I use specified form and restore my password.}
+    \item As an un-authenticated user, I want to authenticate myself using both combinations email-password and phone-password so that I use the specified form with two inputs.
+    \item \textcolor{red}{As a registered user, I want to restore my password if I forget it so that I use specified form and restore my password.}
     \item As an authenticated user, I want my session on each device to least 7 days so that after 7 days of inactivity device will be logged out automatically.
 \end{itemize}
 
 \subsection{Adding contacts user stories}\label{subsec:adding-contacts}
 \begin{itemize}
+    \item As an authorized user, I want to see my contact list so that there is a list of users who are my contacts.
+    \item As an authorized user, I want to search users so that I write user display name or phone number of e-mail address to specified input, click "Search user" button and see results.
     \item As an authorized user, I want to add other user to my contact list so that I click "Add contact" button on user profile and add him to my contact list.
-    \item \textcolor{red}{As an authorized user, I want to search users so that I write user display name or phone number of e-mail address to specified input, click "Search user" button and see results.}
     \item As an authorized user, I want user search input to accept empty or whitespace queries so that all users displayed as search result.
     \item As an authorized user, I want to remove the user from my contact list so that I click "Remove contact" button on user profile and remove him from my contact list.
     \item As an authorized user, I want to navigate to private chat with the user from my contact list so that I click "Message" button at user profile and get navigated to the private chat with him.
@@ -52,7 +53,7 @@ whereas Authorization [\cite{fagin1978authorization}] means being allowed access
 \begin{itemize}
     \item As a registered user, I want to tap "Create group" so that I create a new group of the one of the types: private channel, public channel, readonly channel.
     \item As a registered user, I want to join public groups so that I click button "Join group" to join the group.
-    \item \textcolor{red}{As a registered user, I want to start secret chats with users from my contact list so that our messages encrypted for anyone including system administrators.}
+    \item \textcolor{red}{As a registered user, I want to start secret chats with users from my contact list so that our are messages encrypted for anyone including system administrators.}
     \item As a registered user, I want my secret chats to be device-specific so that I can see a secret chat only on the device that I used to start this chat.
 \end{itemize}
 

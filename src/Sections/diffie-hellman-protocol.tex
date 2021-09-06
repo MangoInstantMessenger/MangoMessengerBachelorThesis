@@ -139,3 +139,23 @@ If it is not difficult for Alice to solve for Bob's private key (or vice versa),
 private / public key pair, plug Bob's public key into her private key, produce a fake shared secret key, and solve for
 Bob's private key (and use that to solve for the shared secret key.
 Eve may attempt to choose a public / private key pair that will make it easy for her to solve for Bob's private key).
+
+\subsection{Implementation}\label{subsec:implementation}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Pictures/Key_Exchange}
+    \caption{Secret chat encryption concept diagram. Source: }\label{fig:figure7}
+\end{figure}
+Assume that Alice wants to write a secret message to the Bob.
+The secret chat encryption implemented as follows
+\begin{enumerate}
+    \item Given two public constants of type BigInteger: $P, G$.
+    \item Alice generates a secret: Alice secret $a$, Prime BigInteger.
+    \item Alice generates public key $A$ as $A=G^a \bmod P$ and stores it to database.
+    \item Bob generates a secret: Bob secret $b$, Prime BigInteger.
+    \item Bob generates public key $B$ as $B=G^b \bmod P$ and stores it to database.
+    \item Alice reads Bob's public key $B$.
+    \item Alice calculates Common secret $S$ as $S = B^a \bmod P$.
+    \item Alice symmetrically encrypts message using Common secret and sends it to Bob among with her public key $A$.
+    \item Bob calculates Common secret $S$ as $S = A^b \bmod P$ and decrypts message from Alice.
+\end{enumerate}

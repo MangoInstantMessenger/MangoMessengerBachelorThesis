@@ -10,8 +10,8 @@ The Diffie–Hellman key exchange method allows two parties that have no prior k
 each other to jointly establish a shared secret key over an insecure channel.
 This key can then be used to encrypt subsequent communications using a symmetric-key cipher.
 Although Diffie–Hellman key agreement itself is a non-authenticated key-agreement protocol, it provides the basis for a
-variety of authenticated protocols, and is used to provide forward secrecy in Transport Layer Security's ephemeral modes
-(referred to as EDH or DHE depending on the cipher suite).
+variety of authenticated protocols, and is used to provide forward secrecy in Transport Layer Security's ephemeral modes,
+referred to as EDH or DHE [\cite{ahirwal2013elliptic}] depending on the cipher suite.
 
 \subsection{Description}\label{subsec:description}
 Diffie–Hellman key exchange establishes a shared secret between two parties that can be used for secret communication
@@ -149,13 +149,13 @@ Eve may attempt to choose a public / private key pair that will make it easy for
 Assume that Alice wants to write a secret message to the Bob.
 The secret chat encryption implemented as follows
 \begin{enumerate}
-    \item Given two public constants of type BigInteger: $P, G$.
-    \item Alice generates a secret: Alice secret $a$, Prime BigInteger.
-    \item Alice generates public key $A$ as $A=G^a \bmod P$ and stores it to database.
-    \item Bob generates a secret: Bob secret $b$, Prime BigInteger.
-    \item Bob generates public key $B$ as $B=G^b \bmod P$ and stores it to database.
+    \item Given two public constants: $P, G$.
+    \item Alice generates a secret: Alice secret $a$.
+    \item Alice generates public key $A$ as $A=G^a \bmod P$ and stores it to database as PUT request.
+    \item Bob generates a secret: Bob secret $b$.
+    \item Bob generates public key $B$ as $B=G^b \bmod P$ and stores it to database as PUT request.
     \item Alice reads Bob's public key $B$.
     \item Alice calculates Common secret $S$ as $S = B^a \bmod P$.
-    \item Alice symmetrically encrypts message using Common secret and sends it to Bob among with her public key $A$.
+    \item Alice encrypts message using AES encryption and Common secret, then sends it to Bob along her public key $A$.
     \item Bob calculates Common secret $S$ as $S = A^b \bmod P$ and decrypts message from Alice.
 \end{enumerate}

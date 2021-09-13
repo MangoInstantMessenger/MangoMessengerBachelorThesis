@@ -20,54 +20,66 @@ as it doesn't use cookies.
 Generally, the workflow is as follows
 % old
 \begin{enumerate}
-    \item The user has been successfully authenticated using their credentials.
-    \item The server checks in database the roles and other claims of the user.
-    \item The server generated token with specified roles and claims.
+    \item User provides credentials in order to authenticate to the system.
+    \item Server verifies user's authentication, fetches the login and password in database.
+    \item If authentication is successful, server creates session then writes this session to the database,
+    see table session in [REFERENCE\_DATABASE\_SCHEMA].
+    \item Server generates a pair of access token (JWT) and refresh token (GUID).
+    \item Server sends to client access token and refresh token.
+    \item Client saves the pair of access and refresh tokens.
     \item User requests resource using received token passed to the request header.
     \item The server check user's claims and proceeds or declines request.
 \end{enumerate}
 
-The fifth point is the authorization.
+The eighth point is the authorization.
 As a result, token stored on the client and used when it is necessary to authorize the requests.
 When a hacker tries to replace the data in the header or payload the token will become invalid,
 therefore the signature will not match the original values.
 So, the hacker hasn't any possibility to generate a new signature since that encryption secret key stored on the server.
 Access token (JWT) is used for request authorization and for storing the additional information about user like identifier,
 display name and others.
-
 Refresh Token (GUID) issued by server based on successful authentication results and used for get new access/refresh
 token pair.
-Every token has its own lifetime.
-For example, Access token's lifetime may be 5 minutes, and Refresh token's 7 days.
-
-\subsection{Creating sessions}\label{subsec:creating-sessions}
-
-\begin{enumerate}
-    \item The user logs into the application by transferring the login, password and fingerprint of the browser,
-    or some other unique device identifier if it is not a browser.
-    \item The server verifies the authenticity of the login and password.
-    \item If successful, creates and writes a session to the database, see table session in
-    [REFERENCE\_DATABASE\_SCHEMA].
-    \item The server generates Access token.
-    \item The server sends to client access token and refresh token, UUID\@.
-    \item Client saves the pair of access and refresh tokens.
-\end{enumerate}
-
-Before each request client preliminarily checks access token's lifetime and if it expired, client sends request for
-updating access token.
-For more confidence, we can update tokens a few seconds earlier.
-That is, the case when the API receives an expired access token is practically excluded.
-To use the authentication feature on more than one device, it is necessary to store all refresh tokens for each user.
-The following diagram demonstrates discussed processes
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{Pictures/jwt_auth_scheme.pdf}
-    \caption{JWT Authentication principle diagram.}\label{fig:figure3}
-\end{figure}
-
-Also, it is worth to add a few basic rules about JWT usage [\cite{RDegges}]
+Also, it is worth to add a few basic rules about JWT secure usage [\cite{RDegges}]
 \begin{itemize}
     \item JWT should have a short lifetime, since it cannot be revoked.
     \item JWT should be used in a single time, e.g JWT per request.
 \end{itemize}
+Therefore, we consider access token's lifetime to be 5 minutes and refresh token's 7 days.
+
+For each request client preliminarily checks access token's lifetime.
+If access token it expired, client sends request for updating a pair of access/refresh tokens.
+For more confidence, we can update tokens a few seconds earlier.
+That is, the case when the API receives an expired access token is practically excluded.
+However, we are able to consider the case of interception of the request on 401 http response code,
+that is unauthorized.
+The following diagram demonstrates the process of requesting the resource
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Pictures/jwt_auth_scheme.pdf}
+    \caption{JWT Authentication concept diagram.}\label{fig:figure3}
+\end{figure}
+
+By steps, the process is
+\begin{enumerate}
+    \item The client app sends request with credentials to the authentication endpoint of an API\@.
+    \item On authentication success, the server proceeds to generate a pair of access/refresh tokens,
+    otherwise returns 409Conflict Http code response to the client.
+    \item Server generates a pair of access/refresh tokens
+    \begin{itemize}
+        \item API fetches user data and claims.
+        \item Server creates new session instance in database.
+        \item Header base64 encoded.
+        \item Payload, or user claims are base64 encoded.
+        \item Encoded header and payload signed using the algorithm in the header.
+    \end{itemize}
+    \item Access token in serialized form and refresh token (GUID) returned in response to the client.
+    \item The client queries the API providing access token in request header.
+    \item API validates the token claims
+    \begin{itemize}
+        \item On success, goes to step 7.
+        \item On 401Unauthorized Http response code, goes to step 1.
+    \end{itemize}
+    \item API returns response to the client according to app's business logic.
+\end{enumerate}

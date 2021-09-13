@@ -22,6 +22,7 @@
 - RSA algorithm: https://youtu.be/vooHjWxmcIE
 - JWT: https://jwt.io/
 - JWT claims: https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.3
+- About JWT Auth: https://gist.github.com/zmts/802dc9c3510d79fd40f9dc38a12bccfc
 - Base64 Encoding: https://youtu.be/aUdKd0IFl34
 
 ## Links

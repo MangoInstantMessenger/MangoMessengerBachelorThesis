@@ -20,7 +20,7 @@
 
 ## Sources
 - RSA algorithm video: https://youtu.be/vooHjWxmcIE
-- RSA algorithm theory: https://www.di-mgt.com.au/rsa_alg.html#note3
+- RSA algorithm theory: https://www.di-mgt.com.au/rsa_alg.html
 - JWT: https://jwt.io
 - JWT claims: https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.3
 - About JWT Auth: https://gist.github.com/zmts/802dc9c3510d79fd40f9dc38a12bccfc

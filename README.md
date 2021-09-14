@@ -18,8 +18,16 @@
 - Configure Inverse Search in IDEA for SumatraPDF, Tool -> LaTeX -> Configure Inverse Search
 - Compile it, Shift + F10
 
+## Sources
+- RSA algorithm: https://youtu.be/vooHjWxmcIE
+- JWT: https://jwt.io
+- JWT claims: https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.3
+- About JWT Auth: https://gist.github.com/zmts/802dc9c3510d79fd40f9dc38a12bccfc
+- Base64 Encoding: https://youtu.be/aUdKd0IFl34
+
 ## Links
 - Figma: https://www.figma.com/file/cGtLvO1JuJgWmnzaSbM8Re/Mango-Thesis-Screens
+- Trello: https://trello.com/b/5kdQBsYE/bachelor-thesis-trello
 
 ## Git flow
 - Each task is assigned a number (THESIS-ID)

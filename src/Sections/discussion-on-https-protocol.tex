@@ -21,10 +21,15 @@ secure accounts;
 and to keep user communications, identity, and web browsing private [\cite{rescorla2000rfc2818}].
 
 \subsection{What is an SSL Certificate?}\label{subsec:what-is-an-ssl-certificate?}
+SSL stands for Secure Sockets Layer and, in short, it's the standard technology for keeping an internet connection
+secure and safeguarding any sensitive data that is being sent between two systems, preventing criminals from reading
+and modifying any information transferred, including potential personal details.
+The two systems can be a server and a client, for example, a shopping website and browser, or server to server,
+for example, an application with personal identifiable information or with payroll information.
 SSL certificates are what enable websites to move from HTTP to HTTPS, which is more secure.
 An SSL certificate is a data file hosted in a website's origin server.
-SSL certificates make SSL/TLS encryption possible, and they contain the website's public key and the website's identity,
-along with related information.
+SSL certificates make SSL or TLS (Transport Layer Security) encryption possible, and they contain the website's
+public key and the website's identity, along with related information.
 Devices attempting to communicate with the origin server will reference this file to obtain the public key and verify
 the server's identity.
 The private key is kept secret and secure.

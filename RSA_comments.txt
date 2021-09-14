@@ -1,0 +1,1 @@
+1) One way function -- is a function that is easy to compute on every input, but hard to invert given the image of a random input

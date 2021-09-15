@@ -105,8 +105,11 @@ The following image demonstrates the concept of RSA approach
 \end{figure}
 To summarize, the process by the steps is as follows
 \begin{itemize}
-    \item Alice defines her secrets: $P, \; Q, \; \phi, d$.
-    \item Alice defines public constants $e, N = P \cdot Q$ and shares them with Bob.
+    \item Alice defines the large secret prime numbers $P, \; Q$.
+    \item Alice computes $N = P \cdot Q$ and $\phi = (P-1)(Q-1)$
+    \item Alice chooses an integer $e$, $1<e< \phi$ such that $\gcd(e, \phi) = 1$.
+    \item Alice computes secret exponent $d$, $1<d< \phi$ such that $ed \equiv 1 \bmod \phi$.
+    \item Alice shares public key $(N,e)$ with Bob and keeps private key $(d, p, q)$ is secret.
     \item Bob defines the message $m$, encrypts it as $C = m^{e} \bmod N$.
     \item Bob sends $C$ to Alice.
     \item Alice decrypts $C$ using her secret $d$, so she gets $m$

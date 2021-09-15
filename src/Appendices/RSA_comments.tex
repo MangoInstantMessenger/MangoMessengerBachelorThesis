@@ -1,14 +1,19 @@
 \chapter{RSA Algorithm comments}\label{ch:rsa-algorithm-comments}
-One way function -- is a function that is easy to compute on every input, but hard to invert given the image of a random input.
-The function
-\[
-    m^e \bmod N \equiv C
-\]
+
+
+\section{Details}\label{sec:details}
+
+\subsection{One way functions}\label{subsec:one-way-functions}
+One way function -- is a function that is easy to compute on every input, but
+hard to invert given the image of a random input.
+For instance, the function
+\begin{equation*}
+    f(m) = m^e \bmod N \equiv C
+\end{equation*}
 where $e, N$ are public constants is one-awy function,
 because it is easy to compute $C$ given $m$, however it is hard to compute $m$ given $C$.
 
-
-\section{Euler function}\label{sec:euler-function}
+\subsection{Euler's totient theorem}\label{subsec:euler-function}
 Given a number $N$ and its prime factorization $p_1^{e_1}\cdot p_2^{e_2} \cdots p_k^{e_k}$, then Euler's totient function
 $\phi(N)$ is defined as
 
@@ -23,36 +28,19 @@ In particular, for positive number $M$ such that its factorization is $p1 \cdot 
 \]
 
 Euler's theorem relates the modular division and exponent as follows, given number $m$, then
-
 \[
     m^{\phi(N)} = 1 \bmod N
 \]
-
 It means that reminder of division $m^{\phi(N)}$ by $N$ is always 1.
 By the equality $1^K = 1$
 \[
     M^{K \cdot \phi(N)} = 1 \bmod N
 \]
-
 If we multiply both parts by $M$, we get
-
 \[
     M \cdot M^{K \cdot \phi(N)} = M^{K \cdot \phi(N) + 1} = M \bmod N
 \]
 
 
-\section{How it works}\label{sec:how-it-works}
-\begin{itemize}
-    \item Alice defines public constants $e, N$ and shares them with Bob.
-    \item Bob defines secret $m$, encrypts the message using $m$, so he has encrypted message $S$.
-    \item Bob calculates $C = m^e \bmod N$.
-    \item Bob sends to Alice: encrypted message $S$ and $C$.
-    \item To encrypt message, Alice must calculate the $m$ having $C$, it is $m^{ed} \bmod N = m$, where $d$ is secret.
-    \item To calculate $d$, Alice applies the equality $M^{K \cdot \phi(N) + 1} = M \bmod N$, therefore
-    \begin{gather*}
-        e \cdot d = K \cdot \phi(N) + 1\\
-        d = \frac{K \cdot \phi(N) + 1}{e}\\
-    \end{gather*}
-    \item Alice takes prime $P2$
-    \item Alice multiplies $P1$ and $P2$: $N = P1\cdot P2$
-\end{itemize}
+\section{RSA Encryption algorithm}\label{sec:rsa-encryption-algorithm}
+\input{Appendices/rsa-encryption-algorithm}

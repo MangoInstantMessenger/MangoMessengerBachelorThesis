@@ -18,7 +18,7 @@ for exchanging data over a public network.
 An analogy illustrates the concept of public key exchange by using colors instead of very large numbers:
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{Pictures/Diffie-Hellman.pdf}
+    \includegraphics[width=1\textwidth]{Pictures/Diffie-Hellman}
     \caption{Illustration of the concept behind Diffie–Hellman key exchange. Source: }\label{fig:figure4}
 \end{figure}
 The process begins by having the two parties, Alice and Bob, publicly agree on an arbitrary starting color that does
@@ -35,54 +35,35 @@ Bringing the analogy back to a real-life exchange using large numbers rather tha
 computationally expensive.
 It is impossible to compute in a practical amount of time even for modern supercomputers.
 
-The simplest and the original implementation of the protocol uses the multiplicative group of integers modulo $p$,
-where $p$ is prime, and $g$ is a primitive root modulo $p$.
-These two values are chosen in this way to ensure that the resulting shared secret can take on any value from $1$ to $p-1$.
-Here is an example of the protocol, with non-secret values in \textcolor{blue}{blue}, and secret values in \textcolor{red}{red}.
+The simplest and the original implementation of the protocol uses the multiplicative group of integers modulo $P$,
+where $P$ is prime, and the generator $G$ which is a primitive root modulo $P$.
+These two values are chosen in this way to ensure that the resulting shared secret can take on any value from $1$ to $P-1$.
+Here is an example of the protocol
 \begin{enumerate}
-    \item Alice and Bob publicly agree to use a modulus $\textcolor{blue}{p = 23}$ and base
-    $\textcolor{blue}{g = 5}$, which is a primitive root modulo 23.
-    \item Alice chooses a secret integer $\textcolor{red}{a} = 4$, then sends the
-    Bob $\textcolor{blue}{A} = \textcolor{blue}{g}^{\textcolor{red}{a}} \, mod  \, \textcolor{blue}{p}$
+    \item Given modulus $P$ and generator $G$.
+    \item Alice chooses her secret $a$.
+    \item Alice sends to Bob $A, \; A = G^a \bmod P$.
+    \item Bob chooses his secret $b$.
+    \item Bob sends to Alice $B, \; B = G^b \bmod P$.
+    \item Alice computes common secret $s, \; s = B^a \bmod P = (G^b \bmod P)^a \bmod P$.
+    \item Bob computes common secret $s, \; s = A^b \bmod P = (G^a \bmod P)^b \bmod P$.
+    \item Alice and Bob have arrived to the same value
     \[
-        \textcolor{blue}{A} = \textcolor{blue}{5}^{\textcolor{red}{4}} \, mod  \, \textcolor{blue}{23} = \textcolor{blue}{4}
+        A^b \bmod P = G^{ab} \bmod P = G^{ba} \bmod P = B^a \bmod P,
     \]
-    \item Bob chooses a secret integer $\textcolor{red}{b} = 3$,
-    then sends Alice $\textcolor{blue}{B} = \textcolor{blue}{g}^{\textcolor{red}{b}} \, mod  \, \textcolor{blue}{p}$
+    more specially,
     \[
-        \textcolor{blue}{B} = \textcolor{blue}{5}^{\textcolor{red}{3}} \, mod  \, \textcolor{blue}{23} = \textcolor{blue}{10}
+        (G^a \bmod P)^b \bmod P = (G^b \bmod P)^a
     \]
-
-    \item Alice computes $\textcolor{red}{s} = \textcolor{blue}{B}^{\textcolor{red}{a}} \, mod \, p$
-    \[
-        \textcolor{red}{s} = \textcolor{blue}{10}^{\textcolor{red}{4}} \, mod \, \textcolor{blue}{23} = \textcolor{red}{18}
-    \]
-    \item Bob computes $\textcolor{red}{s} = \textcolor{blue}{A}^{\textcolor{red}{b}} \, mod \, p$
-    \[
-        \textcolor{red}{s} = \textcolor{blue}{4}^{\textcolor{red}{3}} \, mod \, \textcolor{blue}{23} = \textcolor{red}{18}
-    \]
-    \item Alice and Bob now share a secret, the number $18$.
 \end{enumerate}
-Both Alice and Bob have arrived at the same values because under mod $p$:
-\[
-    \textcolor{blue}{A}^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{p}
-    = \textcolor{blue}{g}^{\textcolor{red}{ab}} \, mod \, \textcolor{blue}{p}
-    = \textcolor{blue}{g}^{\textcolor{red}{ba}} \, mod \, \textcolor{blue}{p}
-    = \textcolor{blue}{B}^{\textcolor{red}{a}} \, mod \, \textcolor{blue}{p}
-\]
-More specifically,
-\[
-    (\textcolor{blue}{g}^{\textcolor{red}{a}} \, mod \, \textcolor{blue}{p})^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{p}
-    = (\textcolor{blue}{g}^{\textcolor{red}{b}} \, mod \, \textcolor{blue}{p})^{\textcolor{red}{a}}
-\]
 However, to reach a satisfactory level of security through DH key exchange a few rules have to be satisfied.
 More precisely, Diffie-Hellman works in a multiplicative subgroup of integers modulo a given prime $p$.
 To do some DH, you use some DH parameters which are:
 \begin{itemize}
-    \item p -- a big prime, called the "modulus"/
+    \item p -- a big prime, called the "modulus"
     \item q -- a divisor of $p-1$, called the "subgroup order".
     \item g -- an integer modulo $p$ of order $q$, this means that the smallest integer $k > 0$ such that
-    $gk = 1 \bmod p$ is $k = q$.
+    $g^k = 1 \bmod p$ is $k = q$.
 \end{itemize}
 For DH to be safe, you need the following:
 
@@ -189,7 +170,6 @@ to allow you to sleep at night, then do it.
 %Bob's private key (and use that to solve for the shared secret key.
 %Eve may attempt to choose a public / private key pair that will make it easy for her to solve for Bob's private key).
 
-\subsection{Implementation}\label{subsec:implementation}
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Pictures/Key_Exchange}

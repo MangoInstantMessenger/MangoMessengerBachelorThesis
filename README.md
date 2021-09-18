@@ -23,6 +23,7 @@
 - RSA algorithm theory: https://www.di-mgt.com.au/rsa_alg.html
 - Diffie-Hellman key exchange video: https://youtu.be/M-0qt6tdHzk
 - Diffie-Hellman requirements: https://security.stackexchange.com/a/112318
+- Elliptic Curves: https://youtu.be/NF1pwjL9-DE
 - SHA256 Hash function video: https://youtu.be/f9EbD6iY9zI
 - JWT: https://jwt.io
 - JWT claims: https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.3

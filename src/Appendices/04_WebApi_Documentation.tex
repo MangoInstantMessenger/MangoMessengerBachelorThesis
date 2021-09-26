@@ -1,0 +1,81 @@
+\chapter{Web API Documentation}\label{ch:web-api-documentation}
+
+
+\section{Auth}\label{sec:auth}
+\input{Appendices/documentation_auth_section.tex}
+
+
+\section{Chats}\label{sec:chats}
+\input{Appendices/documentation_chats_section.tex}
+
+
+\section{Messages}\label{sec:messages}
+\input{Appendices/documentation_messages_section.tex}
+
+
+\section{User}\label{sec:user}
+\input{Appendices/documentation_user_section.tex}
+
+
+\section{Contacts}\label{sec:contacts}
+\input{Appendices/documentation_contacts_section.tex}
+
+
+\section{User Information}\label{sec:user-information}
+\begin{itemize}
+    %% Update User Info Endpoint
+    \item \textbf{Endpoint}: /api/contacts
+    \begin{itemize}
+        \item \textbf{Description}: Updates current user information
+        \item \textbf{Request type}: PUT
+        \item \textbf{Request body}:
+        \begin{spverbatim}
+        {
+            "firstName": "string",
+            "lastName": "string",
+            "birthDay": "timestamp",
+            "website": "string",
+            "address": "string",
+            "facebook": "string",
+            "twitter": "string",
+            "instagram": "string",
+            "linkedIn": "string",
+            "profilePicture": "string"
+        }
+        \end{spverbatim}
+        \item \textbf{Response example}:
+        \begin{itemize}
+            \item \textbf{200 Success}:
+            \begin{spverbatim}
+            {
+                "message": "string",
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{400 Bad Request}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{409 Conflict}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+        \end{itemize}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+        \end{enumerate}
+    \end{itemize}
+    %% Update User Info Endpoint
+\end{itemize}

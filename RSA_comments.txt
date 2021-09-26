@@ -1,0 +1,10 @@
+1) One way function -- is a function that is easy to compute on every input, but hard to invert given the image of
+a random input
+
+Questions:
+
+1) What is RSA? What stands for?
+2) Provide mathematical explanation?
+3) Provide key generation explanation and pseudocode
+3) Provide encryption steps
+4) Provide decryption steps

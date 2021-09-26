@@ -22,6 +22,7 @@
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
 \usepackage{float}% If comment this, figure moves to Page 2
+\usepackage{spverbatim}
 
 \usepackage{mathpazo} % Use the Palatino font by default
 
@@ -29,7 +30,10 @@
 
 \addbibresource{main.bib} % The filename of the bibliography
 
-\usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+\usepackage[autostyle=true]{csquotes}
+\usepackage{amsmath}
+\usepackage{bm} % Required to generate language-dependent quotes in the bibliography
+
 
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
@@ -81,7 +85,7 @@
 
     \begin{titlepage}
         \begin{center}
-            \includegraphics[width=0.5\textwidth]{wsb_logo} \\ % University/department logo - uncomment to place it
+            \includegraphics[width=0.5\textwidth]{Pictures/wsb_logo} \\ % University/department logo - uncomment to place it
             \vspace*{.06\textheight}
             {\scshape\LARGE \univname\par}\vspace{1.5cm} % University name
             \textsc{\Large Bachelor Thesis}\\[0.5cm] % Thesis type
@@ -125,23 +129,26 @@
 
     \begin{declaration}
         \addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
-        \noindent We, \authorname, declare that this thesis titled, \enquote{\ttitle} and the work presented in it are my own.
+        \noindent We, \authorname, declare that this thesis titled, \enquote{\ttitle} and the work
+        presented in it are our own.
         We confirm that:
 
         \begin{itemize}
-            \item This work was done wholly or mainly while in candidature for a research degree at this University.
-            \item Where any part of this thesis has previously been submitted for a degree or any other qualification at this University or any other institution, this has been clearly stated.
-            \item Where I have consulted the published work of others, this is always clearly attributed.
-            \item Where I have quoted from the work of others, the source is always given.
-            With the exception of such quotations, this thesis is entirely my own work.
-            \item I have acknowledged all main sources of help.
-            \item Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.\\
+            \item This work was done wholly or mainly while in candidature for a research degree at WSB in Poznan University.
+            \item Where any part of this thesis has previously been submitted for a degree or any other qualification
+            at this University or any other institution, this has been clearly stated.
+            \item Where We have consulted the published work of others, this is always clearly attributed.
+            \item Where We have quoted from the work of others, the source is always given.
+            With the exception of such quotations, this thesis is entirely our own work.
+            \item We have acknowledged all main sources of help.
+            \item Where the thesis is based on work done by ourselves jointly with others,
+            We have made clear exactly what was done by others and what I have contributed myself.\\
         \end{itemize}
 
-        \noindent Signed:\\
+        \noindent Signed: \\
         \rule[0.5em]{25em}{0.5pt} % This prints a line for the signature
 
-        \noindent Date:\\
+        \noindent Date: \\
         \rule[0.5em]{25em}{0.5pt} % This prints a line to write the date
     \end{declaration}
 
@@ -231,15 +238,14 @@
 
     \begin{abstract}
         \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
-        Among many types of social network applications, instant messaging is one of the applications that
-        consider the privacy and the security are two crucial features due to that data exchanged between users are
-        often private and not for public.
-        In this work,  a secure Instant Messenger (IM) mobile application is designed and implemented.
-        Many techniques are used to provide privacy and another to achieve security through suitable cryptographic method.
-        The limited and varied specifications of users' mobile devices are considered for implementing the concept of
-        end-to-end encryption.
-        The application also providing the main functions of instant messaging applications such as
-        profile creation, access control management, and finding friend.
+        In this thesis we analyze instant messaging system's security and user privacy vulnerabilities.
+        Next, we design and implement an instant messaging system that corresponds the required functionalities and
+        satisfies the defined security requirements, based on previous analyze.
+        We implement the following software modules: web-service (API), web-client, desktop-client and mobile-client.
+        Web service is implemented using latest for the moment on writing this thesis .NET 5 platform.
+        Web client is implemented using Angular front-end framework with TypeScript programming language.
+        Desktop client is implemented by means of existing web client and Electron framework.
+        Mobile client is implemented as an android application.
     \end{abstract}
 
 %----------------------------------------------------------------------------------------
@@ -268,9 +274,30 @@
 
     \begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
 
-        \textbf{IMS} & Instant Messaging System\\
-        \textbf{IM} & Instant Messenger\\
+        \textbf{HTTP} & Hypertext Transfer Protocol \\
+        \textbf{DoS} & Denial of Service \\
+        \textbf{DDoS} & Distributed Denial of Service \\
+        \textbf{XSRF, CSRF} & Cross-site request forgery \\
+        \textbf{XSS} & Cross-site scripting \\
+        \textbf{GRASP} & General Responsibility Assignment Software Patterns \\
+        \textbf{API} & Application Programming Interface \\
+        \textbf{IPC} & Institute of Printed Circuits \\
         \textbf{CQRS} & Command Query Responsibility Segregation\\
+        \textbf{CRUD} & Create Read Update Delete\\
+        \textbf{UUID} & Universally unique identifier \\
+        \textbf{GUID} & Globally Unique Identifier \\
+        \textbf{JSON} & JavaScript Object Notation \\
+        \textbf{JWT} & JSON Web Token \\
+        \textbf{RFC} & Request for Comments \\
+        \textbf{RSA} & Rivest-Shamir-Adleman \\
+        \textbf{HMAC} & Hash-Based Message Authentication Codes \\
+        \textbf{ECDSA} & Elliptic Curve Digital Signature Algorithm \\
+        \textbf{HTTPS} & Hypertext Transfer Protocol Secure \\
+        \textbf{TLS} & Transport Layer Security \\
+        \textbf{SSL} & Secure Sockets Layer \\
+        \textbf{E2E} & End-to-End \\
+        \textbf{EDH, DHE} & Elliptic-curve Diffie–Hellman \\
+        \textbf{AES} & Advanced Encryption Standard \\
 
     \end{abbreviations}
 
@@ -319,23 +346,14 @@
 
 % Include the chapters of the thesis as separate files from the Chapters folder
 % Uncomment the lines as you write the chapters
-    \include{Chapters/01_Introduction}
-    \include{Chapters/02_Secure_IMS_Requirements}
-    \include{Chapters/03_Secure_IMS_Implementation}
-    \include{Chapters/04_Mango_Messenger}
-
-%----------------------------------------------------------------------------------------
-%	THESIS CONTENT - APPENDICES
-%----------------------------------------------------------------------------------------
-
-%    \appendix % Cue to tell LaTeX that the following "chapters" are Appendices
-
-% Include the appendices of the thesis as separate files from the Appendices folder
-% Uncomment the lines as you write the Appendices
-
-    %\include{Appendices/AppendixA}
-%\include{Appendices/AppendixB}
-%\include{Appendices/AppendixC}
+    \include{Chapters/MainAimOfTheWork}
+    \include{Chapters/Introduction}
+    \include{Chapters/SecurityAndUserPrivacyVulnerabilities}
+    \include{Chapters/SystemRequirements}
+    \include{Chapters/ArchitecturalAspectsOfTheSystem}
+    \include{Chapters/AuthenticationAndAuthorization}
+    \include{Chapters/SecurityAspectsOfCommunicationChannel}
+    \include{Chapters/UserInterfaceDesignAndDescription}
 
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
@@ -345,4 +363,17 @@
 
 %----------------------------------------------------------------------------------------
 
+%----------------------------------------------------------------------------------------
+%	THESIS CONTENT - APPENDICES
+%----------------------------------------------------------------------------------------
+
+    \appendix % Cue to tell LaTeX that the following "chapters" are Appendices
+
+% Include the appendices of the thesis as separate files from the Appendices folder
+% Uncomment the lines as you write the Appendices
+
+    \include{Appendices/04_WebApi_Documentation}
+    %\include{Appendices/RSA_comments}
+%\include{Appendices/AppendixB}
+%\include{Appendices/AppendixC}
 \end{document}  

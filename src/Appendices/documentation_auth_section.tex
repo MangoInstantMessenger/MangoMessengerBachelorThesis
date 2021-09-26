@@ -1,0 +1,359 @@
+\begin{itemize}
+    %% Register Endpoint
+    \item \textbf{Endpoint}: /api/auth/register
+    \begin{itemize}
+        \item \textbf{Description}: Registers user in a messenger
+        \item \textbf{Request type}: POST
+        \item \textbf{Request body}:
+        \begin{spverbatim}
+        {
+            "phoneNumber": "string",
+            "email": "string",
+            "displayName": "string",
+            "password": "string",
+            "verificationMethod": number,
+            "termsAccepted": boolean
+        }
+        \end{spverbatim}
+        \item  \textbf{Response example}:
+        \begin{itemize}
+            \item \textbf{200 Success}:
+            \begin{spverbatim}
+            {
+                "message": "SUCCESS",
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{400 Bad Request}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{409 Conflict}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+        \end{itemize}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User already registered.
+            \item Weak password.
+            \item Invalid email.
+            \item Invalid verification method.
+            \item Invalid display name.
+            \item Phone occupied.
+        \end{enumerate}
+    \end{itemize}
+    %% Register Endpoint
+
+    %% Verify Email Endpoint
+    \item \textbf{Endpoint}: api/auth/verify-email
+    \begin{itemize}
+        \item \textbf{Description}: Sends verification request.
+        User receives confirmation link via email.
+        \item \textbf{Request type}: POST
+        \item \textbf{Request body}:
+        \begin{spverbatim}
+        {
+            "email": "string",
+            "userId": "string"
+        }
+        \end{spverbatim}
+        \item  \textbf{Response example}:
+        \begin{itemize}
+            \item \textbf{200 Success}:
+            \begin{spverbatim}
+            {
+                "message": "SUCCESS",
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{400 Bad Request}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{409 Conflict}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+        \end{itemize}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User already registered.
+            \item Weak password.
+            \item Invalid email.
+            \item Invalid verification method.
+            \item Invalid display name.
+            \item Phone occupied.
+        \end{enumerate}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item Invalid user id.
+            \item Email already verified.
+        \end{enumerate}
+    \end{itemize}
+    %% Verify Email Endpoint
+
+    %% Verify Phone Endpoint
+    \item \textbf{Endpoint}: api/auth/verify-phone
+    \begin{itemize}
+        \item \textbf{Description}: Sends SMS to user phone.
+        \item \textbf{Request type}: POST
+        \item \textbf{Request body}:
+        \begin{spverbatim}
+        {
+            "confirmationCode": 0,
+            "userId": "string"
+        }
+        \end{spverbatim}
+        \item  \textbf{Response example}:
+        \begin{itemize}
+            \item \textbf{200 Success}:
+            \begin{spverbatim}
+            {
+                "message": "SUCCESS",
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{400 Bad Request}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{409 Conflict}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+        \end{itemize}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item Invalid or expired.
+            \item Phone already verified
+        \end{enumerate}
+    \end{itemize}
+    %% Verify Phone Endpoint
+
+    %% Login Endpoint
+    \item \textbf{Endpoint}: api/auth/login
+    \begin{itemize}
+        \item \textbf{Description}: Performs login to the messenger.
+        \item \textbf{Request type}: POST
+        \item \textbf{Request body}:
+        \begin{spverbatim}
+        {
+            "email": "string",
+            "password": "string"
+        }
+        \end{spverbatim}
+        \item \textbf{Response example}:
+        \begin{itemize}
+            \item \textbf{200 Success}:
+            \begin{spverbatim}
+            {
+                "refreshTokenId": "string",
+                "accessToken": "string",
+                "message": "string",
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{400 Bad Request}:
+
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{409 Conflict}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+        \end{itemize}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item Invalid credentials.
+        \end{enumerate}
+    \end{itemize}
+    %% Login Endpoint
+
+
+    %% Refresh Token Endpoint
+    \item \textbf{Endpoint}: api/auth/refresh-token
+    \begin{itemize}
+        \item \textbf{Description}: Refreshes user's existing refresh token and access token.
+        \item \textbf{Request type}: POST
+        \item \textbf{Request body}:
+        \begin{spverbatim}
+        {
+            "refreshTokenId": "string"
+        }
+        \end{spverbatim}
+        \item  \textbf{Response example}:
+        \begin{itemize}
+            \item \textbf{200 Success}:
+            \begin{spverbatim}
+            {
+                "refreshTokenId": "string",
+                "accessToken": "string",
+                "message": "string",
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{400 Bad Request}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{409 Conflict}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+        \end{itemize}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item Invalid or empty refresh token.
+        \end{enumerate}
+    \end{itemize}
+    %% Refresh Token Endpoint
+
+    %% Logout Endpoint
+    \item \textbf{Endpoint}: api/auth/logout
+    \begin{itemize}
+        \item \textbf{Description}: Logs out from current device.
+        \item \textbf{Request type}: POST
+        \item \textbf{Request body}:
+        \begin{spverbatim}
+        {
+            "refreshTokenId": "string"
+        }
+        \end{spverbatim}
+        \item \textbf{Response example}:
+        \begin{itemize}
+            \item \textbf{200 Success}:
+            \begin{spverbatim}
+            {
+                "message": "SUCCESS",
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{400 Bad Request}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{409 Conflict}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+        \end{itemize}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+            \item Invalid or empty refresh token.
+        \end{enumerate}
+    \end{itemize}
+    %% Logout Endpoint
+
+    %% Logout All Endpoint
+    \item \textbf{Endpoint}: api/auth/logout-all
+    \begin{itemize}
+        \item \textbf{Description}: Logs out from all devices.
+        \item \textbf{Request type}: POST
+        \item \textbf{Request body}:
+        \begin{spverbatim}
+        {
+            "refreshTokenId": "string"
+        }
+        \end{spverbatim}
+        \item  \textbf{Response example}:
+        \begin{itemize}
+            \item \textbf{200 Success}:
+            \begin{spverbatim}
+            {
+                "message": "SUCCESS",
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{400 Bad Request}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{409 Conflict}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+        \end{itemize}
+    \end{itemize}
+    %% Logout All Endpoint
+
+\end{itemize}

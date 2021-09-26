@@ -1,0 +1,42 @@
+\chapter{System requirements}\label{ch:system-requirements}
+
+In previous sections we have briefly discussed Instant Messaging System, mainly from security and user privacy aspects.
+Prior to software module implementation, it is essentially important to define the functionality module will obtain.
+Not to overcomplicate this section, we discuss the secure Instant Messaging Systems requirements from customer's prospective.
+
+There are different types of product requirements: business, functional, and non-functional.
+Business requirements [\cite{dilworth2007creation}] typically answer how the product will address the needs of your company and its users.
+They also reveal the business model of the app and what problems it can solve.
+Functional requirements [\cite{malan2001functional}] are about functionalities that will be implemented in the app.
+Non-functional requirements [\cite{chung2012non}] describe how these functionalities will be implemented.
+
+In this article, we only focus on functional requirements.
+In simple words, functional requirements are not ideas of how to solve problems or which technologies to use but rather
+are descriptions of software functionality.
+Mostly common and simple way to define software product's functional requirements is User Stories.
+User stories [\cite{cohn2004user}] should be understandable both to developers and to you as the client, and should be written in simple words.
+The most popular way of writing a user story is with the following formula:
+
+\begin{center}
+    \begin{spverbatim}
+        "As a <user type>, I want <goal> so that <reason>."
+    \end{spverbatim}
+\end{center}
+
+
+\section{Functional requirements}\label{sec:functional-requirements}
+\input{Sections/functional-requirements.tex}
+
+
+\section{Non-functional requirements}\label{sec:non-functional-requirements}
+\input{Sections/non-functional-requirements.tex}
+
+
+\section{Modules}\label{sec:modules}
+The following modules are to be implemented:
+\begin{itemize}
+    \item \textbf{M01. Web Client} –- Web version of the Mango Messenger.
+    \item \textbf{M02. Mobile Client} –- Mobile version of the Mango Messenger for target platforms: Android, IOS\@.
+    \item \textbf{M03. Desktop Client} –- Desktop version of the Mango Messenger for target platforms Windows, Linux, MacOS\@.
+    \item \textbf{M04. Web API} –- Application Programming Interface that allows developers to create their own clients.
+\end{itemize}

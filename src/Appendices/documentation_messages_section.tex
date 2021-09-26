@@ -1,0 +1,199 @@
+\begin{itemize}
+    %% Get Chat Messages Endpoint
+    \item \textbf{Endpoint}: /api/messages/\{chatId\}
+    \begin{itemize}
+        \item \textbf{Description}: Returns chat including messages by chat id.
+        \item \textbf{Request type}: GET
+        \item \textbf{Parameters}:
+        \begin{enumerate}
+            \item Chat id (required).
+        \end{enumerate}
+        \item \textbf{Response example}:
+        \begin{itemize}
+            \item \textbf{200 Success}:
+            \begin{spverbatim}
+            {
+                "messages": [
+                    {
+                        "userDisplayName": "string",
+                        "messageText": "string",
+                        "sentAt": "string",
+                        "editedAt": "string",
+                        "self": true
+                    }
+                ],
+                "message": "string",
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{400 Bad Request}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{409 Conflict}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+        \end{itemize}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+        \end{enumerate}
+    \end{itemize}
+    %% Get Chat Messages Endpoint
+
+    %% Send Message Endpoint
+    \item \textbf{Endpoint}: /api/messages
+    \begin{itemize}
+        \item \textbf{Description}: Sends message to particular chat
+        \item \textbf{Request type}: POST
+        \item \textbf{Request body}:
+        \begin{spverbatim}
+        {
+            "messageId": "string",
+            "message": "string",
+            "success": true
+        }
+        \end{spverbatim}
+        \item \textbf{Response example}:
+        \begin{itemize}
+            \item \textbf{200 Success}:
+            \begin{spverbatim}
+            {
+                "message": "SUCCESS",
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{400 Bad Request}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{409 Conflict}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+        \end{itemize}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+        \end{enumerate}
+    \end{itemize}
+    %% Send Message Endpoint
+
+    %% Edit Message Endpoint
+    \item \textbf{Endpoint}: /api/messages
+    \begin{itemize}
+        \item \textbf{Description}: Updates particular message
+        \item \textbf{Request type}: PUT
+        \item \textbf{Request body}:
+        \begin{spverbatim}
+        {
+            "messageId": "string",
+            "modifiedText": "string"
+        }
+        \end{spverbatim}
+        \item \textbf{Response example}:
+        \begin{itemize}
+            \item \textbf{200 Success}:
+            \begin{spverbatim}
+            {
+                "message": "SUCCESS",
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{400 Bad Request}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{409 Conflict}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+        \end{itemize}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+        \end{enumerate}
+    \end{itemize}
+    %% Edit Message Endpoint
+
+    %% Delete Message Endpoint
+    \item \textbf{Endpoint}: /api/messages
+    \begin{itemize}
+        \item \textbf{Description}: Deletes particular message
+        \item \textbf{Request type}: DELETE
+        \item \textbf{Request body}:
+        \begin{spverbatim}
+        {
+            "messageId": "string"
+        }
+        \end{spverbatim}
+        \item \textbf{Response example}:
+        \begin{itemize}
+            \item \textbf{200 Success}:
+            \begin{spverbatim}
+            {
+                "message": "SUCCESS",
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{400 Bad Request}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+            \item \textbf{409 Conflict}:
+            \begin{spverbatim}
+            {
+                "errorMessage": "string",
+                "errorDetails": "string",
+                "statusCode": 0,
+                "success": true
+            }
+            \end{spverbatim}
+        \end{itemize}
+        \item \textbf{Response messages}:
+        \begin{enumerate}
+            \item Success.
+            \item User not found.
+        \end{enumerate}
+    \end{itemize}
+    %% Delete Message Endpoint
+\end{itemize}

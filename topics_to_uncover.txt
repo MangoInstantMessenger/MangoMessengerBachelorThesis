@@ -1,3 +1,0 @@
-Протокол Диффи — Хеллмана
-CORS
-https://en.wikipedia.org/wiki/Secure_instant_messaging

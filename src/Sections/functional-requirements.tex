@@ -44,7 +44,7 @@ whereas Authorization [\cite{fagin1978authorization}] means being allowed access
 \label{subsec:sending-messages-and-media-feature-user-stories}
 \begin{itemize}
     \item As an authorized user, I want to send a text message so that another user sees my message.
-    \item \textcolor{red}{As an authorized user, I want to send a document so that another user sees the document I sent.}
+    \item As an authorized user, I want to add an attachment to the message so that another user sees the attachment I sent.
     \item \textcolor{red}{As an authorized user, I want to tap "Edit" on my message so that I edit the message sent by myself.}
     \item As an authorized user, I want to tap "Delete" on my message so that I delete the message sent by myself.
     \item As a registered user, I want to share secret messages with users from my contact list so that our are
@@ -53,10 +53,15 @@ whereas Authorization [\cite{fagin1978authorization}] means being allowed access
     in real-time so that I do not reload page.
 \end{itemize}
 
-\subsection{Creating groups user stories}\label{subsec:creating-groups-feature-user-stories}
+\subsection{Managing chat and channels user stories}\label{subsec:creating-groups-feature-user-stories}
 \begin{itemize}
-    \item As a registered user, I want to tap "Create group" so that I create a new group of the one of the types: private channel, public channel, readonly channel.
+    \item As a registered user, I want to tap "Create channel" so that I create a new channel of the one of the types:
+    Private channel, Public channel, Readonly channel.
+    \item As a registered user, I want to tap "Start direct chat" so that I create a new direct chat with specified user.
+    \item As a registered user, I want to tap "Start secret chat" so that I create a new secret chat with specified user.
     \item As a registered user, I want to join public groups so that I click button "Join group" to join the group.
+    \item As a registered user, I want to tap "Archive" so that I archive the specified chat or channel.
+    \item As a registered user, I want to tap "Un-archive" so that I un-archive the specified archived chat or channel.
     \item As a registered user, I want my secret chats to be device-specific so that I can see a secret chat only on the device that I used to start this chat.
 \end{itemize}
 
@@ -64,10 +69,11 @@ whereas Authorization [\cite{fagin1978authorization}] means being allowed access
 \label{subsec:sending-messages-and-media-to-groups}
 \begin{itemize}
     \item As an authorized user, I want to send a text message so that all members of the group see the message I sent.
-    \item \textcolor{red}{As an authorized user, I want to send a document so that all members of the group see the document I sent.}
+    \item As an authorized user, I want to add an attachment to the message so that another user sees the attachment I sent.
     \item \textcolor{red}{As an authorized user, I want to tap "Edit" on my message, so that I edit the message sent by myself.}
     \item As an authorized user, I want to tap "Delete" on my message, so that I delete the message sent by myself.
-    \item As an authorized user, I want to search public groups by display name so that I enter display name to specified field, click button "Search chats" and see results.
+    \item As an authorized user, I want to search public groups by display name so that I enter display name to specified field,
+    click button "Search chats" and see results.
     \item As an authorized user, I want each new message in groups I participate to be displayed immediately in
     real-time so that I do not reload page.
 \end{itemize}

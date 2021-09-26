@@ -19,7 +19,12 @@
 - Compile it, Shift + F10
 
 ## Sources
-- RSA algorithm: https://youtu.be/vooHjWxmcIE
+- RSA algorithm video: https://youtu.be/vooHjWxmcIE
+- RSA algorithm theory: https://www.di-mgt.com.au/rsa_alg.html
+- Diffie-Hellman key exchange video: https://youtu.be/M-0qt6tdHzk
+- Diffie-Hellman requirements: https://security.stackexchange.com/a/112318
+- Elliptic Curves: https://youtu.be/NF1pwjL9-DE
+- SHA256 Hash function video: https://youtu.be/f9EbD6iY9zI
 - JWT: https://jwt.io
 - JWT claims: https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.3
 - About JWT Auth: https://gist.github.com/zmts/802dc9c3510d79fd40f9dc38a12bccfc

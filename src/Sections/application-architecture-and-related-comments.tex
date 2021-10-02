@@ -1,4 +1,4 @@
-As a programmers, I believe all we have faced the cases of crucial over-engineering during the implementation of some
+Obviously, all we have faced the cases of crucial over-engineering during the implementation of some
 software product.
 For the programmer, it is a vital point to follow two separated, but closely related software development principles,
 such that KISS [\cite{alwin2016kiss}], and YAGNI [\cite{da2018evolution}].
@@ -103,6 +103,12 @@ Other cons that stem from tight coupling include:
 \end{itemize}
 
 \subsection{Decoupling Monolith using CQRS}\label{subsec:decoupling-monolith-using-cqrs}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Pictures/Services}
+    \caption{CQRS Conceptual diagram.
+    Source: \href{https://martinfowler.com/bliki/CQRS.html}{Martin Fowler}.}\label{fig:figure9}
+\end{figure}
 As it stated in previous section, monolithic architecture provides a quite strong coupling between application
 components.
 Moreover, as monolith grow horizontally, its services layer grows as well.

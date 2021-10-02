@@ -6,7 +6,7 @@ In this section we describe the processes of Authentication and Authorization in
 It is worth to remember the meaning of Authentication and Authorization definitions.
 Authentication -- is the process of ascertaining that somebody really is who they claim to be [\cite{burrows1989logic}].
 Authorization refers to rules that determine who is allowed to do what [\cite{fagin1978authorization}].
-For example, Adam may be authorized to create and delete databases, while Eve is only authorized to read.
+For example, Adam may be authorized to create and delete databases, while Catherine is only authorized to read.
 The two concepts are completely orthogonal and independent, but both are central to security design, and the
 failure to get either one correct opens up the avenue to compromise.
 In terms of web apps, very crudely speaking, authentication is when you check login credentials to see if you recognize
@@ -53,7 +53,13 @@ Here are some scenarios where JSON Web Tokens are useful:
 In its compact form, JSON Web Tokens consist of three parts separated by dots, which are Header, Payload, Signature.
 Therefore, a JWT typically looks like
 \begin{center}
-    \texttt{xxxxx.yyyyy.zzzzz}.
+    \begin{spverbatim}
+        eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+        eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6I
+        kpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.
+        SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQ
+        ssw5c
+    \end{spverbatim}
 \end{center}
 Let's break down the different parts.
 \begin{itemize}
@@ -113,7 +119,7 @@ Let's break down the different parts.
     \item \textbf{Putting all together.} The output is three Base64-URL strings separated by dots that can be easily
     passed in HTML and HTTP environments, while being more compact when compared to XML-based standards such as SAML\@.
     The following shows a JWT that has the previous header and payload encoded, and it is signed with a secret.
-    
+
     \begin{spverbatim}
         eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
         eyJqdGkiOiJmZDNjNjdjNS1jNmZmLTRhNWQtY
@@ -127,7 +133,7 @@ Let's break down the different parts.
         locHt8ow1lFnGGZ_aFFvXI09dD4y1r594XQF2
         -6YxCw
     \end{spverbatim}
-    
+
 \end{itemize}
 
 As to the projects concerns, we should handle multiple client applications, e.g desktop,

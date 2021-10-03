@@ -1,4 +1,5 @@
-\subsection{What is JSON Web Token?}\label{subsec:what-is-json-web-token?}
+\subsection{JWT Tokens}\label{subsec:jwt-tokens}
+What is JSON Web Token?
 JSON Web Token (JWT) is an open standard [\cite{jones2015rfc}] that defines a compact and self-contained way for securely
 transmitting information between parties as a JSON object [\cite{jones2015json}].
 This information can be verified and trusted because it is digitally signed.
@@ -11,7 +12,7 @@ other parties.
 When tokens are signed using public/private key pairs, the signature also certifies that only the party holding the
 private key is the one that signed it.
 
-\subsection{When should you use JSON Web Tokens?}\label{subsec:when-should-you-use-json-web-tokens?}
+When should you use JSON Web Tokens?
 
 Here are some scenarios where JSON Web Tokens are useful:
 
@@ -29,7 +30,7 @@ Here are some scenarios where JSON Web Tokens are useful:
     hasn't been tampered with.
 \end{itemize}
 
-\subsection{What is the JSON Web Token structure?}\label{subsec:what-is-the-json-web-token-structure?}
+What is the JSON Web Token structure?
 In its compact form, JSON Web Tokens consist of three parts separated by dots, which are Header, Payload, Signature.
 Therefore, a JWT typically looks like
 \begin{center}

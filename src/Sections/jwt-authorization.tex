@@ -64,9 +64,9 @@ The following diagram demonstrates the process of requesting the resource
 
 By steps, the process is
 \begin{itemize}
-    \item \textbf{Step 1.} \textbf{Client} application sends \textbf{POST} authentication request to \textbf{/login} endpoint
-    provided user credentials in request body.
-    \item \textbf{Step 2.} Server responses to the client with the following HTTP response codes:
+    \item \textbf{Step 1.} \textbf{Client} application sends \textbf{POST} authentication request to
+    the \textbf{Auth server endpoint} provided user credentials in request body.
+    \item \textbf{Step 2.} \textbf{Auth server endpoint} responses to the \textbf{Client} with the following HTTP response codes:
     \begin{itemize}
         \item \textbf{409Conflict}: Invalid credentials.
         \item \textbf{200Success}: Returns a pair of access and refresh tokens.
@@ -78,9 +78,9 @@ By steps, the process is
                 \item Access token's \textbf{Header} Base64 encoded.
                 \item Access token's \textbf{Payload} with user claims is Base64 encoded.
                 \item Access token's \textbf{Signature} is generated using encoded token's Header and Payload signed by means of the
-                algorithm from the header and secret:
+                algorithm (HMACSHA256) from the header and secret:
                 \begin{spverbatim}
-                    HMACSHA256(
+                    Signature = HMACSHA256(
                     base64UrlEncode(header) + "." +
                     base64UrlEncode(payload),
                     secret)

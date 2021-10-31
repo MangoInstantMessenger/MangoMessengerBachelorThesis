@@ -1,4 +1,6 @@
-Diffie–Hellman key exchange [\cite{li2010research}] is a method of securely exchanging cryptographic keys over a public channel
+\section{Diffie-Hellman Key Exchange}\label{sec:diffie-hellman-key-exchange}
+
+Diffie-Hellman key exchange [\cite{li2010research}] is a method of securely exchanging cryptographic keys over a public channel
 and was one of the first public-key protocols
 as conceived by Ralph Merkle and named after Whitefield Diffie and Martin Hellman.
 DH is one of the earliest practical examples of public key exchange implemented within the field of cryptography.
@@ -6,14 +8,14 @@ Published in 1976 by Diffie and Hellman, this is the earliest publicly known wor
 key and a corresponding public key.
 Traditionally, secure encrypted communication between two parties required that they first exchange keys by some secure physical means,
 such as paper key lists transported by a trusted courier.
-The Diffie–Hellman key exchange method allows two parties that have no prior knowledge of
+The Diffie-Hellman key exchange method allows two parties that have no prior knowledge of
 each other to jointly establish a shared secret key over an insecure channel.
 This key can then be used to encrypt subsequent communications using a symmetric-key cipher.
-Although Diffie–Hellman key agreement itself is a non-authenticated key-agreement protocol, it provides the basis for a
+Although Diffie-Hellman key agreement itself is a non-authenticated key-agreement protocol, it provides the basis for a
 variety of authenticated protocols, and is used to provide forward secrecy in Transport Layer Security's ephemeral modes,
 referred to as EDH or DHE [\cite{ahirwal2013elliptic}] depending on the cipher suite.
 
-Diffie–Hellman key exchange establishes a shared secret between two parties that can be used for secret communication
+Diffie-Hellman key exchange establishes a shared secret between two parties that can be used for secret communication
 for exchanging data over a public network.
 An analogy illustrates the concept of public key exchange by using colors instead of very large numbers:
 \begin{figure}[H]
@@ -24,7 +26,7 @@ An analogy illustrates the concept of public key exchange by using colors instea
 The process begins by having the two parties, Alice and Bob, publicly agree on an arbitrary starting color that does
 not need to be kept secret (but should be different every time).
 In this example, the color is yellow.
-Each person also selects a secret color that they keep to themselves – in this case, red and blue-green.
+Each person also selects a secret color that they keep to themselves - in this case, red and blue-green.
 The crucial part of the process is that Alice and Bob each mix their own secret color together with their mutually
 shared color, resulting in orange-tan and light-blue mixtures respectively, and then publicly exchange the two mixed colors.
 Finally, each of them mixes the color they received from the partner with their own private color.

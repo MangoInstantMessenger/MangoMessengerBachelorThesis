@@ -1,0 +1,13 @@
+\subsection{Motivation}\label{subsec:motivation2}
+In this section we describe the processes of Authentication and Authorization in the system.
+It is worth to remember the meaning of Authentication and Authorization definitions.
+Authentication -- is the process of ascertaining that somebody really is who they claim to be [\cite{burrows1989logic}].
+Authorization refers to rules that determine who is allowed to do what [\cite{fagin1978authorization}].
+For example, Adam may be authorized to create and delete databases, while Catherine is only authorized to read.
+The two concepts are completely orthogonal and independent, but both are central to security design, and the
+failure to get either one correct opens up the avenue to compromise.
+In terms of web apps, very crudely speaking, authentication is when you check login credentials to see if you recognize
+a user as logged in, and authorization is when you look up in your access control whether you allow the user to view,
+edit, delete or create content.
+Currently, there are two widely-known authentication methods, that are cookie authentication and JWT authentication.
+We discuss JWTs in next section.

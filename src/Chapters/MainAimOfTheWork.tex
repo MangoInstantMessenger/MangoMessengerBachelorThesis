@@ -2,27 +2,30 @@
 
 The main aim of this thesis is to design and implement an instant messaging system
 that copes with the required functionalities and satisfies the defined security requirements.
-Implementation includes web-service (API), web-client, desktop-client and mobile-client.
-Desktop version considered to be cross-platform one.
-Web service to be implemented using latest for the moment on writing this thesis .NET 5 platform.
-Web client is to be implemented using Angular front-end framework with TypeScript programming language.
-Desktop client to be implemented by means of existing web client and ElectronJS framework.
-Mobile client to be implemented as an android application.
-More precisely, the following steps to be done
-\begin{itemize}
-    \item To analyze instant messaging system's security and user privacy vulnerabilities related to the three
-    actors: server, communication channel, end-user.
-    As a result, to propose user responsibilities among with traits of secure instant messenger application.
-    \item To propose the functional and non-functional requirements for instant messaging system, based on previous
-    research.
-    \item To design and discuss instant messaging system, more precisely,
+More precisely, the following steps
+\begin{enumerate}
+    \item To propose the functional and non-functional requirements for instant messaging system.
+    \item To eliminate security and user privacy vulnerabilities of the instant messaging system.
+    \item To propose traits of secure instant messenger application among with user responsibilities.
+    \item To design and discuss instant messaging system
     \begin{itemize}
-        \item To propose optimal web application architecture.
-        \item To design database and propose optimal database schema.
-        \item To propose planned technologies list for system's implementation.
+        \item To propose optimal web service architecture.
+        \item To propose mitigations for security and user privacy vulnerabilities (2).
+        \item To design database structure.
+        \item To propose planned technologies list to be used during implementation of the system.
     \end{itemize}
-    \item To propose and discuss optimal authentication/authorization mechanism for instant messaging system.
-    \item To discuss the security aspects of the communication channel of instant messaging system.
-    \item To design and describe user interface, which fits the functional requirements of instant messaging system.
-    \item To implement following modules: web-service (API), web-client, desktop-client and mobile-client.
-\end{itemize}
+    \item To discuss and propose the optimal authentication/authorization mechanism for instant messaging system.
+    \item To discuss and apply E2E Encryption.
+    \item To design user interface which fits the designated functional requirements.
+    \item To implement following modules
+    \begin{itemize}
+        \item \textbf{Web Service (API).} Backend part of the project.
+        Application Programming Interface that allows developers to create their own clients.
+        Web service to be implemented using latest for the moment of writing of this thesis .NET 5 platform.
+        \item \textbf{Web Client} –- Web version of the Mango Messenger.
+        Web client to be implemented using Angular front-end framework with TypeScript programming language.
+        \item \textbf{Mobile Client} –- Mobile version of the Mango Messenger for target platforms: Android, IOS\@.
+        \item \textbf{Desktop Client} –- Desktop version of the Mango Messenger for target platforms Windows, Linux, MacOS\@.
+        Desktop client to be implemented by means of existing web client and ElectronJS framework.
+    \end{itemize}
+\end{enumerate}

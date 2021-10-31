@@ -33,7 +33,17 @@
 \usepackage[autostyle=true]{csquotes}
 \usepackage{amsmath}
 \usepackage{bm} % Required to generate language-dependent quotes in the bibliography
+\usepackage{eso-pic}
 
+% adds header image to each page
+\AddToShipoutPictureBG{%
+    \AtPageUpperLeft{%
+        \raisebox{-\height}{\includegraphics[width=\paperwidth]{Pictures/wsb_logo}}
+    }
+    \AtPageLowerLeft{%
+        \makebox[\paperwidth]{\includegraphics[height=2.3cm]{Pictures/wsb_logo}}
+    }%
+}
 
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS

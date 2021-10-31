@@ -19,7 +19,8 @@ jobs:
       id: convert-to-pdf
       uses: closoco/pdflatex-action@v1.0.0
       with:
-        texFile: ./src/main.tex
+        texFile: main.tex
+        workDirectory: src
     - name: Store pdf
       uses: actions/upload-artifact@v2
       with:

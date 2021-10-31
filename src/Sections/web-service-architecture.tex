@@ -29,7 +29,7 @@ Following plot demonstrates this relation
 \end{figure}
 
 A layered architecture usually consists of Presentation layer, Business logic layer, Data access layer.
-By segregating the project into layers, developers reach the options to modifying or add a specific layer,
+By segregating the project into layers, developers reach the options to modify or add a specific layer
 without reworking the entire application.
 
 \begin{itemize}
@@ -83,46 +83,48 @@ Another disadvantages of the monoliths include:
     \item \textbf{Scalability.} Application's components cannot be scaled independently, an entire application should be scaled.
 \end{itemize}
 
-\subsection{Minimization of coupling using CQRS}\label{subsec:decoupling-monolith-using-cqrs}
+\subsection{Minimization of services coupling}\label{subsec:decoupling-monolith-using-cqrs}
 As we see, monolith has its own disadvantages, like for instance: understanding the project structure, reliability concerns,
 technology stack limitations, scalability limitations.
 Obviously, some of these disadvantages cannot be mitigated.
-However, the complexity and coupling problem can be minimized applying Command-Query Responsibility Segregation (CQRS)
-principle.
-Violation of single-responsibility principle of SOLID causes the over-complication of codebase.
-In general, service layer components keep the huge number of methods in order to handle all possible CRUD requests
-to database.
+However, the complexity and coupling problem can be minimized applying certain approaches.
+Frequent violation of the single-responsibility principle of SOLID during implementing service components
+in business logics layer causes the over-complication of codebase over the time.
+The reason is that service components keep the huge number of methods in order to handle all possible CRUD requests
+to database, without any bounded context.
+Schematically it is as follows
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Pictures/Services}
-    \caption{CQRS Conceptual diagram.
+    \caption{Service Conceptual diagram.
     Source: \href{https://martinfowler.com/bliki/CQRS.html}{Martin Fowler}.}\label{fig:figure9}
 \end{figure}
-As it stated in previous section, monolithic architecture provides a quite strong coupling between application
-components.
-Moreover, as monolith grow horizontally, its services layer grows as well.
-This process leads to very huge code base which is very difficult to support and extend.
-We attach the following
-\href{https://github.com/smartstore/SmartStoreNET/blob/4.x/src/Presentation/SmartStore.Web/Controllers/CatalogHelper.cs}
-{link}
-as an example of such approach.
-To avoid the natural results of monolithic architecture, that are huge classes for thousands lines, we have to dive into
-design patterns [\cite{rising1998design}].
-Precisely, the mediator design pattern would help to decouple the service layer from presentation layer.
-Mediator -- is a behavioral design pattern [\cite{rasche2016building}] that lets you reduce chaotic dependencies between objects.
-The pattern restricts direct communications between the objects and forces them to collaborate only via a mediator object.
-In other words, mediator allows the communication between two entities, such that entities doesn't know each other.
-The Mediator pattern suggests that you should cease all direct communication between the components which you want to make
-independent of each other.
-Instead, these components must collaborate indirectly, by calling a special mediator object that redirects the calls to
-appropriate components.
-As a result, the components depend only on a single mediator class instead of being coupled to dozens of their colleagues.
-In context of .NET platform there are multiple implementation of the Mediator, the most widely known and used is the
+Where the steps are
+\begin{enumerate}
+    \item User makes a change in UI\@.
+    \item Change forwarded to model.
+    \item Model executes validation and business logic.
+    \item Model updates the database.
+    \item Model reads from database.
+    \item Service updates presentation from query model.
+\end{enumerate}
+
+To minimize the natural disadvantages of the monolithic architecture like complexity and high tight coupling of the components
+we have to recall the design patterns [\cite{rising1998design}].
+In particular, the mediator pattern helps to decouple the components.
+Mediator -- is a behavioral design pattern [\cite{rasche2016building}] that allows the communication between two entities,
+such that entities doesn't know each other.
+Therefore, the program components depend only on a single mediator instance instead of being coupled to multiple of their
+colleagues.
+In context of .NET platform there are many implementations of the Mediator, the most widely known and used is the
 \href{https://github.com/jbogard/MediatR}{MediatR}, which we use in our project.
-Another, yet popular approach is the CQRS, which stands for Command-Query Responsibility Segregation.
+
+Another mindset we are going to use in order to minimize complexity and coupling of monolith is Command-Query
+Responsibility Segregation (CQRS) principle.
 In brief, it stands that read (query) and write (command) requests should be segregated by their responsibilities.
-The CQRS approach in couple with Mediator pattern greatly helps to solve the coupling problem of the monolith architecture.
-CQRS is a pattern that first described by Greg Young [\cite{young2010cqrs}].
+Using CQRS and Mediator together greatly simplifies the project structure and minimizes coupling between business
+logic layer components.
+CQRS is a pattern that first described by Greg Young [\cite{young2010cqrs}] and its conceptual diagram as follows
 
 \begin{figure}[H]
     \centering
@@ -153,16 +155,3 @@ As a short conclusion, we may state that CQRS and Mediator pattern will not enti
 however will make project much more simplistic and intuitively understood.
 It is worth to keep is simple,
 even relatively simple project may grow to the sizes of universe without proper architectural solutions.
-
-Over whole data entities, we prefer to use universally unique identifier (UUID) or namely globally unique identifier (GUID),
-a 128-bit label used for information in computer systems [\cite{leach2005universally}].
-Simply, because it does not force us to keep a sequence on database side.
-Sequence -- is a special entity provided in PostgreSQL relational databases.
-It is responsible for generating unique values and sometimes causes a problems during migration of the database.
-But still, are GUID identifiers are really always unique?
-Well, each generated GUID is not guaranteed to be unique, the total number of unique keys $2^{128}$ or $3.4 \times 10^{38}$
-is so large that the probability of the same number being generated twice is very small.
-For example, consider the observable universe, which contains about $5 \times 10^{22}$ stars.
-Every star could then have $6.8 \times 10^{15}$ universally unique GUIDs.
-If you are scared of the same GUID values then put two of them next to each other.
-If you are too paranoid then put three [\cite{GUIDSo}].

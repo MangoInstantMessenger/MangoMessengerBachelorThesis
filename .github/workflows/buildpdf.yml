@@ -17,12 +17,11 @@ jobs:
       uses: actions/checkout@v1
     - name: Convert to pdf
       id: convert-to-pdf
-      uses: closoco/pdflatex-action@v1.0.0
+      uses: xu-cheng/latex-action@v2
       with:
-        texFile: main.tex
-        workDirectory: src
-    - name: Store pdf
-      uses: actions/upload-artifact@v2
+        root_file: main.tex
+        working_directory: src
+    - uses: actions/upload-artifact@v2
       with:
-        name: file.pdf
-        path: file.pdf
+        name: PDF
+        path: src/main.pdf

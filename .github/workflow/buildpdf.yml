@@ -1,0 +1,27 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on: 
+  push:
+    branches: [ develop, MANGO-CI-1 ]
+
+
+jobs:
+  build-resume:
+    runs-on: ubuntu-latest
+    name: Create document
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Convert to pdf
+      id: convert-to-pdf
+      uses: closoco/pdflatex-action@v1.0.0
+      with:
+        texFile: ./src/main.tex
+    - name: Store pdf
+      uses: actions/upload-artifact@v2
+      with:
+        name: file.pdf
+        path: file.pdf

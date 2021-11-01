@@ -38,7 +38,10 @@
 % adds header image to each page
 \AddToShipoutPictureBG{%
     \AtPageUpperLeft{%
-        \raisebox{-2\height}{\includegraphics[width=0.5\paperwidth]{Pictures/wsb_logo}}
+        \raisebox{-2\height}{
+            \hspace*{3cm}
+            \includegraphics[height=2cm]{Pictures/wsb_logo}
+        }
     }
 %    \AtPageLowerLeft{%
 %        \makebox[\paperwidth]{\includegraphics[height=2.3cm]{Pictures/wsb_logo}}

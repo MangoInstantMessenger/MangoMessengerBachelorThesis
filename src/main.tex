@@ -13,7 +13,7 @@
 %toctotoc, % Uncomment to add the main table of contents to the table of contents
 %parskip, % Uncomment to add space between paragraphs
 %nohyperref, % Uncomment to not load the hyperref package
-    %headsepline, % Uncomment to get a line under the header
+%headsepline, % Uncomment to get a line under the header
 %chapterinoneline, % Uncomment to place the chapter title next to the number on one line
 %consistentlayout, % Uncomment to change the layout of the declaration, abstract and acknowledgements pages to match the default layout
     oneside, % uncomment for clear page spacing between sections
@@ -21,6 +21,7 @@
 
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage{newtxmath,newtxtext}
 \usepackage{float}% If comment this, figure moves to Page 2
 \usepackage{spverbatim}
 
@@ -34,6 +35,7 @@
 \usepackage{amsmath}
 \usepackage{bm} % Required to generate language-dependent quotes in the bibliography
 \usepackage{eso-pic}
+
 
 % adds header image to each page
 \AddToShipoutPictureBG{%
@@ -59,7 +61,7 @@
     top=1.5cm, % Top margin
     bottom=1.5cm, % Bottom margin
     headheight = 3.5cm
-    %showframe, % Uncomment to show how the type block is set on the page
+%showframe, % Uncomment to show how the type block is set on the page
 }
 
 %----------------------------------------------------------------------------------------

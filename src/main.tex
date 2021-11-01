@@ -3,7 +3,7 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass[
-    11pt,
+    12pt,
 %oneside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
     english, % ngerman for German
     singlespacing, % Single line spacing, alternatives: onehalfspacing or doublespacing
@@ -13,7 +13,7 @@
 %toctotoc, % Uncomment to add the main table of contents to the table of contents
 %parskip, % Uncomment to add space between paragraphs
 %nohyperref, % Uncomment to not load the hyperref package
-    headsepline, % Uncomment to get a line under the header
+    %headsepline, % Uncomment to get a line under the header
 %chapterinoneline, % Uncomment to place the chapter title next to the number on one line
 %consistentlayout, % Uncomment to change the layout of the declaration, abstract and acknowledgements pages to match the default layout
     oneside, % uncomment for clear page spacing between sections
@@ -47,7 +47,6 @@
 %        \makebox[\paperwidth]{\includegraphics[height=2.3cm]{Pictures/wsb_logo}}
 %    }%
 }
-
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
 %----------------------------------------------------------------------------------------
@@ -59,8 +58,8 @@
     bindingoffset=.5cm, % Binding offset
     top=1.5cm, % Top margin
     bottom=1.5cm, % Bottom margin
-    headheight = 150pt
-%showframe, % Uncomment to show how the type block is set on the page
+    headheight = 3.5cm
+    %showframe, % Uncomment to show how the type block is set on the page
 }
 
 %----------------------------------------------------------------------------------------
@@ -87,11 +86,14 @@
     \hypersetup{pdfkeywords=\keywordnames} % Set the PDF's keywords to your keywords
 }
 
+\pagestyle{myheadings}
+\ohead*{}\ofoot*{\pagemark}
+
 \begin{document}
 
     \frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
 
-    \pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
+    %\pagestyle{myheadings} % Default to the plain heading style until the thesis style is called for the body content
 
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE

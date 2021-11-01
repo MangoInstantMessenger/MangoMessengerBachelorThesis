@@ -38,11 +38,11 @@
 % adds header image to each page
 \AddToShipoutPictureBG{%
     \AtPageUpperLeft{%
-        \raisebox{-\height}{\includegraphics[width=\paperwidth]{Pictures/wsb_logo}}
+        \raisebox{-2\height}{\includegraphics[width=0.5\paperwidth]{Pictures/wsb_logo}}
     }
-    \AtPageLowerLeft{%
-        \makebox[\paperwidth]{\includegraphics[height=2.3cm]{Pictures/wsb_logo}}
-    }%
+%    \AtPageLowerLeft{%
+%        \makebox[\paperwidth]{\includegraphics[height=2.3cm]{Pictures/wsb_logo}}
+%    }%
 }
 
 %----------------------------------------------------------------------------------------
@@ -56,6 +56,7 @@
     bindingoffset=.5cm, % Binding offset
     top=1.5cm, % Top margin
     bottom=1.5cm, % Bottom margin
+    headheight = 150pt
 %showframe, % Uncomment to show how the type block is set on the page
 }
 
@@ -95,9 +96,10 @@
 
     \begin{titlepage}
         \begin{center}
-            \includegraphics[width=0.5\textwidth]{Pictures/wsb_logo} \\ % University/department logo - uncomment to place it
-            \vspace*{.06\textheight}
-            {\scshape\LARGE \univname\par}\vspace{1.5cm} % University name
+%            \includegraphics[width=0.5\textwidth]{Pictures/wsb_logo} \\ % University/department logo - uncomment to place it
+%            \vspace*{.06\textheight}
+        {\scshape\LARGE \univname\par}
+            \vspace{1.5cm} % University name
             \textsc{\Large Bachelor Thesis}\\[0.5cm] % Thesis type
 
             \HRule \\[0.4cm] % Horizontal line

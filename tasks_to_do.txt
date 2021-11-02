@@ -1,0 +1,4 @@
+1) details of the partner -- make table width as page width. Страница i -- сделать таблицу по ширине страницы
+2) после details of the partner добавить страницу PROJECT ASSUMPTIONS, текст такой же как в шаблоне, все точная копия
+3) после PROJECT ASSUMPTIONS добавить страницу IMPLEMENTATION, все точная копия как в темплейте
+4) Убрать заголовок главы Chapter N, пример: System Requirements, lines 1-2. В каждой главе убрать Chapter N как в System Requirements

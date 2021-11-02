@@ -41,8 +41,7 @@
 %\AddToShipoutPictureBG{
 %    \AtPageUpperLeft{
 %        \raisebox{-2\height}{
-%            \hspace*{6.5cm}
-%            \includegraphics[height=1.2cm]{Pictures/wsb_logo}
+%            \hspace*{6.0cm}\includegraphics[height=1.2cm]{Pictures/wsb_logo}
 %        }
 %    }
 %}
@@ -97,45 +96,48 @@
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
-
     \begin{titlepage}
         \begin{center}
 %            \includegraphics[width=0.5\textwidth]{Pictures/wsb_logo} \\ % University/department logo - uncomment to place it
 %            \vspace*{.06\textheight}
-        {\scshape\LARGE \univname\par}
-            \vspace{1.5cm} % University name
-            \textsc{\Large Bachelor Thesis}\\[0.5cm] % Thesis type
+%        {\scshape\LARGE \univname\par}
+            %\vspace{1.5cm} % University name
+            \textsc{DEPARTMENT OF COMPUTER SCIENCE}\\[0.5cm] % Thesis type
 
-            \HRule \\[0.4cm] % Horizontal line
-            {\huge \bfseries \ttitle\par}\vspace{0.4cm}
-            \HRule \\[1.5cm] % Horizontal line
+            %\HRule \\[0.4cm] % Horizontal line
+            \vspace{3cm}
+            {\huge \bfseries \ttitle\par}
+            \vspace{0.4cm}
+            %\HRule \\[1.5cm] % Horizontal line
 
-            \begin{minipage}[t]{0.4\textwidth}
-                \begin{flushleft}
-                    \large
-                    \emph{Authors:}\\
-                    \authorname % Author name - remove the \href bracket to remove the link
-                \end{flushleft}
-            \end{minipage}
-            \begin{minipage}[t]{0.4\textwidth}
-                \begin{flushright}
-                    \large
-                    \emph{Supervisor:} \\
-                    \supname % Supervisor name - remove the \href bracket to remove the link
-                \end{flushright}
-            \end{minipage}\\[3cm]
-
-            \vfill
-
-            \large \textit{A thesis submitted in fulfillment of the requirements\\ for the degree of \degreename}\\[0.3cm] % University requirement text
-            \textit{in the}\\[0.4cm]
-            \groupname\\\deptname\\[2cm] % Research group name and department name
+%            \begin{minipage}[t]{0.4\textwidth}
+%                \begin{flushleft}
+%                    \large
+%                    \emph{Authors:}\\
+%                    \authorname % Author name - remove the \href bracket to remove the link
+%                \end{flushleft}
+%            \end{minipage}
+%            \begin{minipage}[t]{0.4\textwidth}
+%                \begin{flushright}
+%                    \large
+%                    \emph{Supervisor:} \\
+%                    \supname % Supervisor name - remove the \href bracket to remove the link
+%                \end{flushright}
+%            \end{minipage}\\[3cm]
 
             \vfill
+            \textsc{\Large DIPLOMA PROJECT}\\[0.5cm]
 
-            {\large \today}\\[4cm] % Date
+%            \large \textit{A thesis submitted in fulfillment of the requirements\\ for the degree of \degreename}\\[0.3cm] % University requirement text
+%            \textit{in the}\\[0.4cm]
+%            \groupname\\\deptname\\[2cm] % Research group name and department name
 
-            \vfill
+%            \vfill
+
+            \vspace*{\fill}
+            {\large Poznan, \the\year{}}
+
+%            \vfill
         \end{center}
     \end{titlepage}
 
@@ -235,10 +237,6 @@
             \hline
         \end{tabular}
     \end{partnerdetailspage}
-
-    \clearpage
-
-    \include{Sections/project-assumptions}
 
 %----------------------------------------------------------------------------------------
 %	QUOTATION PAGE
@@ -366,6 +364,8 @@
 % Include the chapters of the thesis as separate files from the Chapters folder
 % Uncomment the lines as you write the chapters
 %    \include{Chapters/MainAimOfTheWork}
+    \include{Chapters/ProjectAssumptions}
+    \include{Chapters/Implementation}
     \include{Chapters/Introduction}
     \include{Chapters/SystemRequirements}
     \include{Chapters/SecurityAndUserPrivacyVulnerabilities}

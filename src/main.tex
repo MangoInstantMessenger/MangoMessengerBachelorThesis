@@ -3,7 +3,7 @@
 %----------------------------------------------------------------------------------------
 
 \documentclass[
-    11pt,
+    12pt,
 %oneside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
     english, % ngerman for German
     singlespacing, % Single line spacing, alternatives: onehalfspacing or doublespacing
@@ -13,7 +13,7 @@
 %toctotoc, % Uncomment to add the main table of contents to the table of contents
 %parskip, % Uncomment to add space between paragraphs
 %nohyperref, % Uncomment to not load the hyperref package
-    headsepline, % Uncomment to get a line under the header
+%headsepline, % Uncomment to get a line under the header
 %chapterinoneline, % Uncomment to place the chapter title next to the number on one line
 %consistentlayout, % Uncomment to change the layout of the declaration, abstract and acknowledgements pages to match the default layout
     oneside, % uncomment for clear page spacing between sections
@@ -21,6 +21,7 @@
 
 \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage{newtxmath,newtxtext}
 \usepackage{float}% If comment this, figure moves to Page 2
 \usepackage{spverbatim}
 
@@ -33,8 +34,17 @@
 \usepackage[autostyle=true]{csquotes}
 \usepackage{amsmath}
 \usepackage{bm} % Required to generate language-dependent quotes in the bibliography
+\usepackage{eso-pic}
 
 
+% adds header image to each page
+%\AddToShipoutPictureBG{
+%    \AtPageUpperLeft{
+%        \raisebox{-2\height}{
+%            \hspace*{6.0cm}\includegraphics[height=1.2cm]{Pictures/wsb_logo}
+%        }
+%    }
+%}
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
 %----------------------------------------------------------------------------------------
@@ -46,6 +56,7 @@
     bindingoffset=.5cm, % Binding offset
     top=1.5cm, % Top margin
     bottom=1.5cm, % Bottom margin
+    headheight = 3.5cm
 %showframe, % Uncomment to show how the type block is set on the page
 }
 
@@ -73,53 +84,60 @@
     \hypersetup{pdfkeywords=\keywordnames} % Set the PDF's keywords to your keywords
 }
 
+\pagestyle{myheadings}
+\ohead*{}\ofoot*{\pagemark}
+
 \begin{document}
 
     \frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
 
-    \pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
+    %\pagestyle{myheadings} % Default to the plain heading style until the thesis style is called for the body content
 
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
-
     \begin{titlepage}
         \begin{center}
-            \includegraphics[width=0.5\textwidth]{Pictures/wsb_logo} \\ % University/department logo - uncomment to place it
-            \vspace*{.06\textheight}
-            {\scshape\LARGE \univname\par}\vspace{1.5cm} % University name
-            \textsc{\Large Bachelor Thesis}\\[0.5cm] % Thesis type
+%            \includegraphics[width=0.5\textwidth]{Pictures/wsb_logo} \\ % University/department logo - uncomment to place it
+%            \vspace*{.06\textheight}
+%        {\scshape\LARGE \univname\par}
+            %\vspace{1.5cm} % University name
+            \textsc{DEPARTMENT OF COMPUTER SCIENCE}\\[0.5cm] % Thesis type
 
-            \HRule \\[0.4cm] % Horizontal line
-            {\huge \bfseries \ttitle\par}\vspace{0.4cm}
-            \HRule \\[1.5cm] % Horizontal line
+            %\HRule \\[0.4cm] % Horizontal line
+            \vspace{3cm}
+            {\huge \bfseries \ttitle\par}
+            \vspace{0.4cm}
+            %\HRule \\[1.5cm] % Horizontal line
 
-            \begin{minipage}[t]{0.4\textwidth}
-                \begin{flushleft}
-                    \large
-                    \emph{Authors:}\\
-                    \authorname % Author name - remove the \href bracket to remove the link
-                \end{flushleft}
-            \end{minipage}
-            \begin{minipage}[t]{0.4\textwidth}
-                \begin{flushright}
-                    \large
-                    \emph{Supervisor:} \\
-                    \supname % Supervisor name - remove the \href bracket to remove the link
-                \end{flushright}
-            \end{minipage}\\[3cm]
-
-            \vfill
-
-            \large \textit{A thesis submitted in fulfillment of the requirements\\ for the degree of \degreename}\\[0.3cm] % University requirement text
-            \textit{in the}\\[0.4cm]
-            \groupname\\\deptname\\[2cm] % Research group name and department name
+%            \begin{minipage}[t]{0.4\textwidth}
+%                \begin{flushleft}
+%                    \large
+%                    \emph{Authors:}\\
+%                    \authorname % Author name - remove the \href bracket to remove the link
+%                \end{flushleft}
+%            \end{minipage}
+%            \begin{minipage}[t]{0.4\textwidth}
+%                \begin{flushright}
+%                    \large
+%                    \emph{Supervisor:} \\
+%                    \supname % Supervisor name - remove the \href bracket to remove the link
+%                \end{flushright}
+%            \end{minipage}\\[3cm]
 
             \vfill
+            \textsc{\Large DIPLOMA PROJECT}\\[0.5cm]
 
-            {\large \today}\\[4cm] % Date
+%            \large \textit{A thesis submitted in fulfillment of the requirements\\ for the degree of \degreename}\\[0.3cm] % University requirement text
+%            \textit{in the}\\[0.4cm]
+%            \groupname\\\deptname\\[2cm] % Research group name and department name
 
-            \vfill
+%            \vfill
+
+            \vspace*{\fill}
+            {\large Poznan, \the\year{}}
+
+%            \vfill
         \end{center}
     \end{titlepage}
 
@@ -127,30 +145,30 @@
 %	DECLARATION PAGE
 %----------------------------------------------------------------------------------------
 
-    \begin{declaration}
-        \addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
-        \noindent We, \authorname, declare that this thesis titled, \enquote{\ttitle} and the work
-        presented in it are our own.
-        We confirm that:
-
-        \begin{itemize}
-            \item This work was done wholly or mainly while in candidature for a research degree at WSB in Poznan University.
-            \item Where any part of this thesis has previously been submitted for a degree or any other qualification
-            at this University or any other institution, this has been clearly stated.
-            \item Where We have consulted the published work of others, this is always clearly attributed.
-            \item Where We have quoted from the work of others, the source is always given.
-            With the exception of such quotations, this thesis is entirely our own work.
-            \item We have acknowledged all main sources of help.
-            \item Where the thesis is based on work done by ourselves jointly with others,
-            We have made clear exactly what was done by others and what I have contributed myself.\\
-        \end{itemize}
-
-        \noindent Signed: \\
-        \rule[0.5em]{25em}{0.5pt} % This prints a line for the signature
-
-        \noindent Date: \\
-        \rule[0.5em]{25em}{0.5pt} % This prints a line to write the date
-    \end{declaration}
+%    \begin{declaration}
+%        \addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
+%        \noindent We, \authorname, declare that this thesis titled, \enquote{\ttitle} and the work
+%        presented in it are our own.
+%        We confirm that:
+%
+%        \begin{itemize}
+%            \item This work was done wholly or mainly while in candidature for a research degree at WSB in Poznan University.
+%            \item Where any part of this thesis has previously been submitted for a degree or any other qualification
+%            at this University or any other institution, this has been clearly stated.
+%            \item Where We have consulted the published work of others, this is always clearly attributed.
+%            \item Where We have quoted from the work of others, the source is always given.
+%            With the exception of such quotations, this thesis is entirely our own work.
+%            \item We have acknowledged all main sources of help.
+%            \item Where the thesis is based on work done by ourselves jointly with others,
+%            We have made clear exactly what was done by others and what I have contributed myself.\\
+%        \end{itemize}
+%
+%        \noindent Signed: \\
+%        \rule[0.5em]{25em}{0.5pt} % This prints a line for the signature
+%
+%        \noindent Date: \\
+%        \rule[0.5em]{25em}{0.5pt} % This prints a line to write the date
+%    \end{declaration}
 
 %----------------------------------------------------------------------------------------
 %	PARTNER DETAILS PAGE
@@ -158,7 +176,7 @@
     \begin{partnerdetailspage}
         \textbf{Mentor's details} \\
 
-        \begin{tabular}{|p{5cm}|p{5cm}|}
+        \begin{tabular}{|p{7cm}|p{7cm}|}
             \hline
             First name and surname & Szymon Murawski \\
             \hline
@@ -171,7 +189,7 @@
 
         \textbf{Team members' details} \\
 
-        \begin{tabular}{|p{5cm}|p{5cm}|}
+        \begin{tabular}{|p{7cm}|p{7cm}|}
             \hline
             First name and surname & Petro Kolosov        \\
             \hline
@@ -220,43 +238,42 @@
         \end{tabular}
     \end{partnerdetailspage}
 
-    \clearpage
 %----------------------------------------------------------------------------------------
 %	QUOTATION PAGE
 %----------------------------------------------------------------------------------------
 
-    \vspace*{0.2\textheight}
-
-    \noindent\enquote{\itshape
-    I fear not the man who has practiced 10,000 kicks once, but I fear the man who has practiced one kick 10,000 times.}\bigbreak
-
-    \hfill Bruce Lee
+%    \vspace*{0.2\textheight}
+%
+%    \noindent\enquote{\itshape
+%    I fear not the man who has practiced 10,000 kicks once, but I fear the man who has practiced one kick 10,000 times.}\bigbreak
+%
+%    \hfill Bruce Lee
 
 %----------------------------------------------------------------------------------------
 %	ABSTRACT PAGE
 %----------------------------------------------------------------------------------------
 
-    \begin{abstract}
-        \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
-        Nowadays, instant messaging systems achieve a great success and became the main mean of communication
-        between people via an internet.
-        Thanks to the simplicity and quickness of the message exchanging more and more people over the world start to use
-        instant messengers on daily basis.
-        However, such a great attention forces us to discuss another aspect of these systems, an aspect of the
-        information security and user privacy.
-        The main aim of this thesis is to design and implement an instant messaging system
-        that copes with the required functionalities and satisfies the defined security requirements.
-    \end{abstract}
+%    \begin{abstract}
+%        \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
+%        Nowadays, instant messaging systems achieve a great success and became the main mean of communication
+%        between people via an internet.
+%        Thanks to the simplicity and quickness of the message exchanging more and more people over the world start to use
+%        instant messengers on daily basis.
+%        However, such a great attention forces us to discuss another aspect of these systems, an aspect of the
+%        information security and user privacy.
+%        The main aim of this thesis is to design and implement an instant messaging system
+%        that copes with the required functionalities and satisfies the defined security requirements.
+%    \end{abstract}
 
 %----------------------------------------------------------------------------------------
 %	ACKNOWLEDGEMENTS
 %----------------------------------------------------------------------------------------
 
-    \begin{acknowledgements}
-        \addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
-        We would like to thank our mentor Szymon Murawski for his useful comments and suggestions and support
-        over the whole process of writing this thesis.
-    \end{acknowledgements}
+%    \begin{acknowledgements}
+%        \addchaptertocentry{\acknowledgementname} % Add the acknowledgements to the table of contents
+%        We would like to thank our mentor Szymon Murawski for his useful comments and suggestions and support
+%        over the whole process of writing this thesis.
+%    \end{acknowledgements}
 
 %----------------------------------------------------------------------------------------
 %	LIST OF CONTENTS/FIGURES/TABLES PAGES
@@ -272,34 +289,34 @@
 %	ABBREVIATIONS
 %----------------------------------------------------------------------------------------
 
-    \begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
-
-        \textbf{HTTP} & Hypertext Transfer Protocol \\
-        \textbf{DoS} & Denial of Service \\
-        \textbf{DDoS} & Distributed Denial of Service \\
-        \textbf{XSRF, CSRF} & Cross-site request forgery \\
-        \textbf{XSS} & Cross-site scripting \\
-        \textbf{GRASP} & General Responsibility Assignment Software Patterns \\
-        \textbf{API} & Application Programming Interface \\
-        \textbf{IPC} & Institute of Printed Circuits \\
-        \textbf{CQRS} & Command Query Responsibility Segregation\\
-        \textbf{CRUD} & Create Read Update Delete\\
-        \textbf{UUID} & Universally unique identifier \\
-        \textbf{GUID} & Globally Unique Identifier \\
-        \textbf{JSON} & JavaScript Object Notation \\
-        \textbf{JWT} & JSON Web Token \\
-        \textbf{RFC} & Request for Comments \\
-        \textbf{RSA} & Rivest-Shamir-Adleman \\
-        \textbf{HMAC} & Hash-Based Message Authentication Codes \\
-        \textbf{ECDSA} & Elliptic Curve Digital Signature Algorithm \\
-        \textbf{HTTPS} & Hypertext Transfer Protocol Secure \\
-        \textbf{TLS} & Transport Layer Security \\
-        \textbf{SSL} & Secure Sockets Layer \\
-        \textbf{E2E} & End-to-End \\
-        \textbf{EDH, DHE} & Elliptic-curve Diffie–Hellman \\
-        \textbf{AES} & Advanced Encryption Standard \\
-
-    \end{abbreviations}
+%    \begin{abbreviations}{ll} % Include a list of abbreviations (a table of two columns)
+%
+%        \textbf{HTTP} & Hypertext Transfer Protocol \\
+%        \textbf{DoS} & Denial of Service \\
+%        \textbf{DDoS} & Distributed Denial of Service \\
+%        \textbf{XSRF, CSRF} & Cross-site request forgery \\
+%        \textbf{XSS} & Cross-site scripting \\
+%        \textbf{GRASP} & General Responsibility Assignment Software Patterns \\
+%        \textbf{API} & Application Programming Interface \\
+%        \textbf{IPC} & Institute of Printed Circuits \\
+%        \textbf{CQRS} & Command Query Responsibility Segregation\\
+%        \textbf{CRUD} & Create Read Update Delete\\
+%        \textbf{UUID} & Universally unique identifier \\
+%        \textbf{GUID} & Globally Unique Identifier \\
+%        \textbf{JSON} & JavaScript Object Notation \\
+%        \textbf{JWT} & JSON Web Token \\
+%        \textbf{RFC} & Request for Comments \\
+%        \textbf{RSA} & Rivest-Shamir-Adleman \\
+%        \textbf{HMAC} & Hash-Based Message Authentication Codes \\
+%        \textbf{ECDSA} & Elliptic Curve Digital Signature Algorithm \\
+%        \textbf{HTTPS} & Hypertext Transfer Protocol Secure \\
+%        \textbf{TLS} & Transport Layer Security \\
+%        \textbf{SSL} & Secure Sockets Layer \\
+%        \textbf{E2E} & End-to-End \\
+%        \textbf{EDH, DHE} & Elliptic-curve Diffie–Hellman \\
+%        \textbf{AES} & Advanced Encryption Standard \\
+%
+%    \end{abbreviations}
 
 %----------------------------------------------------------------------------------------
 %	PHYSICAL CONSTANTS/OTHER DEFINITIONS
@@ -347,6 +364,8 @@
 % Include the chapters of the thesis as separate files from the Chapters folder
 % Uncomment the lines as you write the chapters
 %    \include{Chapters/MainAimOfTheWork}
+    \include{Chapters/ProjectAssumptions}
+    \include{Chapters/Implementation}
     \include{Chapters/Introduction}
     \include{Chapters/SystemRequirements}
     \include{Chapters/SecurityAndUserPrivacyVulnerabilities}

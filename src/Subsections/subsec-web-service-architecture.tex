@@ -1,7 +1,4 @@
-\section{Web Service Architecture}\label{sec:web-service-architecture}
-
-\subsection{Motivation}\label{subsec:motivation}
-Implementing the instant messenger system, we consider applying a well-known N-tier
+\textbf{Motivation.} Implementing the instant messenger system, we consider applying a well-known N-tier
 Monolithic Architecture [\cite{bucchiarone2018monolithic}], which provides a time-proven model that allows software
 developers to create flexible and reusable applications.
 
@@ -46,9 +43,8 @@ without reworking the entire application.
     \caption{Monolithic architecture diagram.}\label{fig:figure2}
 \end{figure}
 
-\subsection{Monolithic Architecture: Cons and Props}\label{subsec:monolith-architecture:-cons-and-props}
-
-A monolith is built as a large system with a single code base and deployed as a single unit, usually behind a load balancer.
+\textbf{Monolithic Architecture: Cons and Props.} A monolith is built as a large system with a single code base and
+deployed as a single unit, usually behind a load balancer.
 Monoliths offer several advantages, particularly when it comes to operational overhead requirements.
 Here are some of those basic benefits:
 
@@ -83,8 +79,7 @@ Another disadvantages of the monoliths include:
     \item \textbf{Scalability.} Application's components cannot be scaled independently, an entire application should be scaled.
 \end{itemize}
 
-\subsection{Minimization of services coupling}\label{subsec:decoupling-monolith-using-cqrs}
-As we see, monolith has its own disadvantages, like for instance: understanding the project structure, reliability concerns,
+\textbf{Minimization of services coupling.} As we see, monolith has its own disadvantages, like for instance: understanding the project structure, reliability concerns,
 technology stack limitations, scalability limitations.
 Obviously, some of these disadvantages cannot be mitigated.
 However, the complexity and coupling problem can be minimized applying certain approaches.

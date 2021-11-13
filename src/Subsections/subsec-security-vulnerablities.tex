@@ -47,6 +47,19 @@ Like, for instance, it is done in our project
 
 \input{Subsections/attachment-cors}
 
+The next potential vulnerability is a misconfigured TLS / SSL certificate or a self-signed certificate,
+to eliminate the vulnerability of the TLS certificate, you must follow the instructions and
+\href{https://www.ssl.com/guide/ssl-best-practices/}{best practices}.
+In addition, a potential vulnerability lies in the possibility of SQL injection;
+this vulnerability is eliminated by using
+parameters in string literals of the SQL query to the database, you should also pay attention to the configuration used
+ORM\@.
+There is also the danger of an attacker receiving information about the application device through the error logs in the
+response from the server, thus, it is recommended to use the unified \href{https://datatracker.ietf.org/doc/html/rfc7231}{response format}
+from the server, which, in case of an error, will not contain the details of the error.
+It is also recommended using the system of roles for users in order to restrict an unauthorized client from using
+resources available only to administrators.
+
 %\begin{enumerate}
 %    \item \textbf{Browser UI Update Request}
 %    \begin{itemize}

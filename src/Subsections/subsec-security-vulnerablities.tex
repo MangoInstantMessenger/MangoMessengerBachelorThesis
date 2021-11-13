@@ -44,40 +44,8 @@ it is possible to log user actions and get personal data or an account.
 This vulnerability is addressed using a properly configured Cross-Origin Resource Sharing policy that will restrict
 Possibility of queries from domains that do not meet the policy.
 Like, for instance, it is done in our project
-\begin{spverbatim}
-    public static void Configure(
-    IApplicationBuilder app,
-    IWebHostEnvironment env)
-    {
-        ...
 
-        app.UseCors(CorsPolicy);
-
-        ...
-    }
-
-    public void ConfigureServices(IServiceCollection services)
-    {
-        ...
-
-        services.AddCors(options =>
-        {
-            options.AddPolicy(CorsPolicy, builder =>
-            {
-                var allowedOrigins = Configuration
-                        .GetSection("AllowedOrigins")
-                        .Get<string[]>();
-
-                builder.WithOrigins(allowedOrigins)
-                       .AllowAnyMethod()
-                       .AllowCredentials()
-                       .AllowAnyHeader();
-            });
-        });
-
-        ...
-    }
-\end{spverbatim}
+\input{Subsections/attachment-cors}
 
 %\begin{enumerate}
 %    \item \textbf{Browser UI Update Request}

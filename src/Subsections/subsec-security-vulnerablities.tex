@@ -12,31 +12,34 @@ The following diagram describes the basic concept of the system, and conveys the
     \caption{Database diagram.}\label{fig:figure6}
 \end{figure}
 
-Hence, communication between software components is structured as follows
+Hence, communication between software components is structured as follows\\
 
-Web Browser - Web Application - Server - Database
+\textit{Web Browser - Web Application - Server - Database communication model}
+\begin{itemize}
+    \item The web browser will send a request to update the interface to the web application.
+    \item The web application broadcasts the request to the server.
+    \item The server executes business logic and checks access rights, referring to the database.
+    \item The server responds to the web application.
+    \item Browser user interface updated.
+\end{itemize}
 
-- The web browser will send a request to update the interface to the web application
-- The web application broadcasts the request to the server
-- The server executes business logic and checks access rights, referring to the database
-- The server responds to the web application
-- Browser user interface updated
+\textit{Desktop Client - Server - Database communication model}
+\begin{itemize}
+    \item Desktop client sends a request to update the user interface.
+    \item The server executes business logic and checks access rights, referring to the database.
+    \item Server responds to desktop client.
+    \item Desktop app UI updated as per response from server.
+\end{itemize}
 
-Desktop Client - Server - Database
+\textit{Mobile Client - Server - Database communication model}
+\begin{itemize}
+    \item The mobile client sends a request to update the user interface.
+    \item The server executes business logic and checks access rights, referring to the database.
+    \item Server responds to desktop client.
+    \item The user interface of the mobile app has been updated according to the response from the server.
+\end{itemize}
 
-- Desktop client sends a request to update the user interface
-- The server executes business logic and checks access rights, referring to the database
-- Server responds to desktop client
-- Desktop app UI updated as per response from server
-
-Mobile Client - Server - Database
-
-- The mobile client sends a request to update the user interface
-- The server executes business logic and checks access rights, referring to the database
-- Server responds to desktop client
-- The user interface of the mobile app has been updated according to the response from the server
-
-However, such a communication model can carry certain security vulnerabilities, which are discussed below.
+However, such communication model can carry certain security vulnerabilities, which are discussed below.
 Consider communication Web browser - Web application - Server - Database, the first vulnerability that comes to mind
 this is phishing.
 An attacker could launch his own web application consuming the same web server, thus

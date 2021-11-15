@@ -9,7 +9,6 @@ In terms of web apps, very crudely speaking, authentication is when you check lo
 a user as logged in, and authorization is when you look up in your access control whether you allow the user to view,
 edit, delete or create content.
 Currently, there are two widely-known authentication methods, that are cookie authentication and JWT authentication.
-We discuss JWTs straightforward.
 
 \textbf{JWT Tokens.}
 JSON Web Token (JWT) is an open standard [\cite{jones2015rfc}] that defines a compact and self-contained way for securely
@@ -17,32 +16,26 @@ transmitting information between parties as a JSON object [\cite{jones2015json}]
 This information can be verified and trusted because it is digitally signed.
 JWTs can be signed using a secret with the HMAC [\cite{wang2004hmac}] algorithm or a public/private key pair using
 RSA [\cite{wiener1990cryptanalysis}] or ECDSA [\cite{johnson2001elliptic}].
-
 Although JWTs can be encrypted to also provide secrecy between parties, we will focus on signed tokens.
 Signed tokens can verify the integrity of the claims contained within it, while encrypted tokens hide those claims from
 other parties.
 When tokens are signed using public/private key pairs, the signature also certifies that only the party holding the
 private key is the one that signed it.
-
-When should you use JSON Web Tokens?
-
 Here are some scenarios where JSON Web Tokens are useful:
 
 \begin{itemize}
-    \item \textbf{Authorization.} This is the most common scenario for using JWT. Once the user is logged in, each
+    \item \textit{Authorization.} This is the most common scenario for using JWT. Once the user is logged in, each
     subsequent request will include the JWT, allowing the user to access routes, services, and resources that are permitted
     with that token.
     Single Sign On is a feature that widely uses JWT nowadays, because of its small overhead and its ability to be easily
     used across different domains.
-    \item \textbf{Information Exchange.} JSON Web Tokens are a good way of securely transmitting information between
+    \item \textit{Information Exchange.} JSON Web Tokens are a good way of securely transmitting information between
     parties.
     Because JWTs can be signed -- for example, using public/private key pairs -- you can be sure the senders are who they
     say they are.
     Additionally, as the signature is calculated using the header and the payload, you can also verify that the content
     hasn't been tampered with.
 \end{itemize}
-
-What is the JSON Web Token structure?
 In its compact form, JSON Web Tokens consist of three parts separated by dots, which are Header, Payload, Signature.
 Therefore, a JWT typically looks like
 \begin{center}
@@ -56,7 +49,7 @@ Therefore, a JWT typically looks like
 \end{center}
 Let's break down the different parts.
 \begin{itemize}
-    \item \textbf{Header.} Typically consists of two parts: the type of the token, which is JWT, and the signing algorithm
+    \item \textit{Header.} Typically, consists of two parts: the type of the token, which is JWT, and the signing algorithm
     being used, such as HMAC SHA256 or RSA\@.
     For example,
 
@@ -68,19 +61,19 @@ Let's break down the different parts.
     \end{spverbatim}
 
     Then, this JSON is \href{https://en.wikipedia.org/wiki/Base64}{Base64Url} encoded to form the first part of the JWT\@.
-    \item \textbf{Payload.} The second part of the token is the payload, which contains the claims.
+    \item \textit{Payload.} The second part of the token is the payload, which contains the claims.
     Claims are statements about an entity (typically, the user) and additional data.
     There are three types of claims: registered, public, and private claims.
     \begin{itemize}
-        \item \textbf{Registered claims.} These are a set of predefined claims which are not mandatory but recommended,
+        \item \texttt{Registered claims.} These are a set of predefined claims which are not mandatory but recommended,
         to provide a set of useful, interoperable claims.
         Some of them are: \textbf{iss} (issuer), \textbf{exp} (expiration time), \textbf{sub} (subject),
         \textbf{aud} (audience), and \href{https://tools.ietf.org/html/rfc7519#section-4.1}{others}.
         Notice that the claim names are only three characters long as JWT is meant to be compact.
-        \item \textbf{Public claims.} These can be defined at will by those using JWTs. But to avoid collisions they
+        \item \texttt{Public claims.} These can be defined at will by those using JWTs. But to avoid collisions they
         should be defined in the \href{https://www.iana.org/assignments/jwt/jwt.xhtml}{IANA JSON Web Token Registry}
         or be defined as a URI that contains a collision resistant namespace.
-        \item \textbf{Private claims.} These are the custom claims created to share information between parties that
+        \item \texttt{Private claims.} These are the custom claims created to share information between parties that
         agree on using them and are neither registered or public claims.
     \end{itemize}
     An example payload could be:
@@ -96,7 +89,7 @@ Let's break down the different parts.
     The payload is then Base64Url encoded to form the second part of the JSON Web Token.
     Do note that for signed tokens this information, though protected against tampering, is readable by anyone.
     Do not put secret information in the payload or header elements of a JWT unless it is encrypted.
-    \item \textbf{Signature.} To create the signature part you have to take the encoded header, the encoded payload, a secret,
+    \item \textit{Signature.} To create the signature part you have to take the encoded header, the encoded payload, a secret,
     the algorithm specified in the header, and sign that.
     For example if you want to use the HMAC SHA256 algorithm, the signature will be created in the following way:
 
@@ -109,7 +102,7 @@ Let's break down the different parts.
 
     The signature is used to verify the message wasn't changed along the way, and, in the case of tokens signed
     with a private key, it can also verify that the sender of the JWT is who it says it is.
-    \item \textbf{Putting all together.} The output is three Base64-URL strings separated by dots that can be easily
+    \item \textit{Putting all together.} The output is three Base64-URL strings separated by dots that can be easily
     passed in HTML and HTTP environments, while being more compact when compared to XML-based standards such as SAML\@.
     The following shows a JWT that has the previous header and payload encoded, and it is signed with a secret.
 
@@ -133,7 +126,8 @@ As to the projects concerns, we should handle multiple client applications, e.g 
 web, mobile etc.
 Therefore, HTTP cookie authorization doesn't fit our requirements, however the JWT one surely passes.
 
-\textbf{JWT Authorization.} In authentication, when the user successfully logs in using their credentials, a JSON Web Token will be returned.
+\textbf{JWT Authorization.} In authentication, when the user successfully logs in using their credentials,
+a JSON Web Token will be returned.
 Since tokens are credentials, great care must be taken to prevent security issues.
 In general, you should not keep tokens longer than required.
 You also should not store sensitive session data in browser storage due to lack of security.
@@ -153,12 +147,10 @@ though this may not always be the case.
 If the token is sent in the Authorization header, Cross-Origin Resource Sharing (CORS) won't be an issue
 as it doesn't use cookies.
 Generally, the workflow is as follows
-% old
 \begin{enumerate}
     \item User provides credentials in order to authenticate to the system.
     \item Server verifies user's authentication, fetches the login and password in database.
-    \item If authentication is successful, server creates session then writes this session to the database,
-    see table session in [REFERENCE\_DATABASE\_SCHEMA].
+    \item If authentication is successful, server creates session then writes this session to the database.
     \item Server generates a pair of access token (JWT) and refresh token (GUID).
     \item Server sends to client access token and refresh token.
     \item Client saves the pair of access and refresh tokens.
@@ -198,20 +190,20 @@ The following diagram demonstrates the process of requesting the resource
 
 By steps, the process is
 \begin{itemize}
-    \item \textbf{Step 1.} \textbf{Client} application sends \textbf{POST} authentication request to
-    the \textbf{Auth server endpoint} provided user credentials in request body.
-    \item \textbf{Step 2.} \textbf{Auth server endpoint} responses to the \textbf{Client} with the following HTTP response codes:
+    \item \textbf{Step 1.} \textit{Client} application sends POST authentication request to
+    the \textit{Auth server endpoint} provided user credentials in request body.
+    \item \textbf{Step 2.} \textit{Auth server endpoint} responses to the \textit{Client} with the following HTTP response codes:
     \begin{itemize}
-        \item \textbf{409Conflict}: Invalid credentials.
-        \item \textbf{200Success}: Returns a pair of access and refresh tokens.
+        \item \texttt{409CONFLICT}: Invalid credentials.
+        \item \texttt{200SUCCESS}: Returns a pair of access and refresh tokens.
         \begin{itemize}
             \item \textbf{Step 3.} Server generates a pair of access and refresh tokens
             \begin{itemize}
                 \item API fetches user data and claims.
                 \item Server creates new session instance in database.
-                \item Access token's \textbf{Header} Base64 encoded.
-                \item Access token's \textbf{Payload} with user claims is Base64 encoded.
-                \item Access token's \textbf{Signature} is generated using encoded token's Header and Payload signed by means of the
+                \item Access token's Header Base64 encoded.
+                \item Access token's Payload with user claims is Base64 encoded.
+                \item Access token's Signature is generated using encoded token's Header and Payload signed by means of the
                 algorithm (HMACSHA256) from the header and secret:
                 \begin{spverbatim}
                     Signature = HMACSHA256(
@@ -223,14 +215,14 @@ By steps, the process is
         \end{itemize}
     \end{itemize}
     \item \textbf{Step 4.} Access token in serialized form and refresh token (GUID) returned in response with
-    HTTP \textbf{200Success} code to the \textbf{Client}.
-    \item \textbf{Step 5.} \textbf{Client} queries the \textbf{API / Microservice} providing access token as
-    \textbf{Bearer} in request header.
-    \item \textbf{Step 6.} \textbf{API / Microservice} validates the token claims in order to authorize user
+    \texttt{200SUCCESS} http status code to the \textit{Client}.
+    \item \textbf{Step 5.} \textit{Client} queries the \textit{API / Microservice} providing access token as
+    Bearer in request header.
+    \item \textbf{Step 6.} \textit{API / Microservice} validates the token claims in order to authorize user
     \begin{itemize}
-        \item If authorized: \textbf{API / Microservice} does business logics and returns response \textbf{(Step 7)}.
-        \item Otherwise: returns \textbf{401Unauthorized} response code.
+        \item If authorized: \textit{API / Microservice} handles the request, goes to \textbf{Step 7}.
+        \item Otherwise: returns error with \texttt{401UNAUTHORIZED} http status code.
     \end{itemize}
-    \item \textbf{Step 7.} \textbf{API / Microservice} returns response \textbf{200Success} or \textbf{409Conflict}
-    to the client according to backend business logic.
+    \item \textbf{Step 7.} \textit{API / Microservice} returns response with \texttt{200SUCCESS} or \texttt{409CONFLICT}
+    http status codes to the client, according to business logic layer implementation.
 \end{itemize}

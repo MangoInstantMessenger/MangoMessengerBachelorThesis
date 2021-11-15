@@ -178,8 +178,7 @@ For each request client preliminarily checks access token's lifetime.
 If access token it expired, client sends request for updating a pair of access/refresh tokens.
 For more confidence, we can update tokens a few seconds earlier.
 That is, the case when the API receives an expired access token is practically excluded.
-However, we are able to consider the case of interception of the request on 401 http response code,
-that is unauthorized.
+However, we are able to consider the case of interception of the request on \texttt{401UNAUTHORIZED} http status code.
 The following diagram demonstrates the process of requesting the resource
 
 \begin{figure}[H]

@@ -107,7 +107,11 @@ Requested side may get all his public keys via the REST API using GET \texttt{ap
 \end{spverbatim}
 Now requested participant is able to derive the common secret.
 In order to provide an example, a simple command line interface is implemented.
-More precisely, the following CLI commands
+We have used an Elliptic Curve Diffie-Hellman implementation \texttt{ECDiffieHellmanCng Class} from the namespace
+\texttt{System.Security.Cryptography} of the .NET base class library.
+The \texttt{P-256} curve is used.
+
+More precisely, the following CLI commands are implemented
 \begin{itemize}
     \item \texttt{MangoAPI.DiffieHellmanConsole login SENDER\_EMAIL SENDER\_PASSWORD}
     \item \texttt{MangoAPI.DiffieHellmanConsole key-exchange RECEIVER\_ID}
@@ -124,3 +128,5 @@ An example of console output straightforward
     \caption{Secret chat encryption concept diagram. Source: }\label{fig:figure7}
 \end{figure}
 Finally, both test accounts reached the same common secret.
+In order to work with our implementation of the ECDH key exchange, the user is obligated to register an account
+at \href{messenger-mango.herokuapp.com}{https://messenger-mango.herokuapp.com}.

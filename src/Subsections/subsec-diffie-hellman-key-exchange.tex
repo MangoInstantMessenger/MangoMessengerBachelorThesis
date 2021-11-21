@@ -31,25 +31,96 @@ For instance, 521 bit modulus used in elliptic curve diffie hellman is equally s
 discrete logarithm diffie-hellman.
 To summarize, the flow of diffie hellman kay exchange is as follows
 \begin{enumerate}
-    \item Given modulus $P$ and generator $G$.
+    \item Given 2048 bits prime modulus $P$ and generator $G$, such that $G$ is primitive root modulo $P$.
     \item Alice chooses her secret $a$.
-    \item Alice sends to Bob $A, \; A = G^a \bmod P$.
+    \item Alice sends to Bob her public key $A = G^a \bmod P$.
     \item Bob chooses his secret $b$.
-    \item Bob sends to Alice $B, \; B = G^b \bmod P$.
-    \item Alice computes common secret $s, \; s = B^a \bmod P = (G^b \bmod P)^a \bmod P$.
-    \item Bob computes common secret $s, \; s = A^b \bmod P = (G^a \bmod P)^b \bmod P$.
+    \item Bob sends to Alice his public key $B = G^b \bmod P$.
+    \item Alice computes common secret $s = B^a \bmod P$.
+    \item Bob computes common secret $s = A^b \bmod P$.
     \item Alice and Bob have arrived to the same value
-    \[
-        A^b \bmod P = G^{ab} \bmod P = G^{ba} \bmod P = B^a \bmod P,
-    \]
-    more specially,
-    \[
-        (G^a \bmod P)^b \bmod P = (G^b \bmod P)^a
-    \]
+    \begin{eqnarray*}
+        A^b \bmod P = G^{ab} \bmod P \\
+        B^a \bmod P = G^{ba} \bmod P
+    \end{eqnarray*}
 \end{enumerate}
 
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=1\textwidth]{Pictures/Key_Exchange}
-%    \caption{Secret chat encryption concept diagram. Source: }\label{fig:figure7}
-%\end{figure}
+\textbf{Implementation.} Although, the idea of DH key exchange looks quite simple, some remarks on the concrete
+implementation should be added.
+Firstly, it is necessary to implement the mechanism of key exchange request between two or more parties.
+As it discussed above, each user has his own private / public keys pair, so in order to perform request between parties,
+it should be implemented dedicate REST API endpoint, for instance the POST one \texttt{api/key-exchange-requests} which
+takes the body of the form
+\begin{spverbatim}
+{
+    "requestedUserId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "publicKey": "RUNLMSAAAAC2lkqYcTGhutQPxcjvoqUELKoy0"
+}
+\end{spverbatim}
+So, request sender generates on the client side a key pair, keeps private on in the file system and shares the public
+in request to receiver.
+Therefore, the second party has received the key exchange request.
+In order to display all the key exchange requests awaiting the confirmation of decline decisions, it is worth to implement
+another REST endpoint such that GET \texttt{api/key-exchange-requests}, so that requested party will have the list of
+requests to proceed.
+This endpoint may return the data structure like follows
+\begin{spverbatim}
+{
+    "keyExchangeRequests": [
+        {
+            "requestId": "81d314c1-913f-4686-827e-ef2a65ccc370",
+            "senderId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "senderPublicKey": "RUNLMSAAAAC2lkqYcTGhutQPxcjvoqUELKoy0"
+        }
+    ],
+    "message": "SUCCESS",
+    "success": true
+}
+\end{spverbatim}
+Finally, requested party should be able to confirm or decline the key exchange request, the DELETE endpoint
+\texttt{api/key-exchange-requests} should be implemented then.
+The server is able to fetch the request thanks to the body endpoint takes
+\begin{spverbatim}
+{
+    "requestId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "confirmed": true,
+    "publicKey": "string"
+}
+\end{spverbatim}
+Therefore, an identifier of awaiting request is passed to the server among with boolean value
+indicating the confirmation.
+Under the roof of this operation are also generation of private / public keys pair for the requested party and
+generation of common secret stored in client's file system.
+As result, the initial request sender receives a public key as confirmation from requested party.
+Requested side may get all his public keys via the REST API using GET \texttt{api/public-keys}
+\begin{spverbatim}
+{
+    "publicKeys": [
+        {
+            "partnerId": "ae9e10a4-0c7e-4911-8450-4139d4a114a7",
+            "partnerPublicKey": "RUNLMSAAAAAbc49wfaZ+QF9J2cu1S66bkp0"
+        }
+    ],
+    "message": "SUCCESS",
+    "success": true
+}
+\end{spverbatim}
+Now requested participant is able to derive the common secret.
+In order to provide an example, a simple command line interface is implemented.
+More precisely, the following CLI commands
+\begin{itemize}
+    \item \texttt{MangoAPI.DiffieHellmanConsole login SENDER\_EMAIL SENDER\_PASSWORD}
+    \item \texttt{MangoAPI.DiffieHellmanConsole key-exchange RECEIVER\_ID}
+    \item \texttt{MangoAPI.DiffieHellmanConsole key-exchange-requests}
+    \item \texttt{MangoAPI.DiffieHellmanConsole confirm-key-exchange REQUEST\_ID}
+    \item \texttt{MangoAPI.DiffieHellmanConsole print-public-keys}
+    \item \texttt{MangoAPI.DiffieHellmanConsole create-common-secret RECEIVER\_ID}
+\end{itemize}
+Commands are self-explanatory, therefore we skip the detailed documentation on them.
+An example of console output straightforward
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Pictures/KeyExhangeConsole2}
+    \caption{Secret chat encryption concept diagram. Source: }\label{fig:figure7}
+\end{figure}
+Finally, both test accounts reached the same common secret.

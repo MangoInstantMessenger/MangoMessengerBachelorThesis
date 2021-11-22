@@ -5,7 +5,7 @@ therefore current discussion asserts the communication over HTTP protocol via RE
 Since that main task of this thesis is to implement software components that meet the specified security requirements,
 namely: \textit{Web Client, Web API (Application Programming Interface), Mobile client, Desktop client} which are
 considered to be the actors we focus our attention to.
-The following diagram describes the basic concept of the system, and conveys the relationships between the actors mentioned above.
+The following diagram describes the basic concept of the system and conveys the relationships between the actors mentioned above.
 
 \begin{figure}[H]
     \centering
@@ -40,7 +40,8 @@ Hence, communication between software components is organised as follows\\
     \item Mobile Client's user interface updated as per response from the Web API\@.
 \end{itemize}
 
-However, such communication models are under possible security vulnerabilities.
+However, such communication models are under possible security vulnerabilities, most of which are already fixed
+\textit{'out of the box'} in modern web frameworks, so we discuss these are requiring additional attention.
 The first vulnerability that comes to mind is phishing.
 An attacker could launch his own web application consuming our web API, therefore it is possible to log user actions
 and get access to personal data or credentials.
@@ -72,61 +73,3 @@ The fight against the worms generally dependent on the end-user's security best 
 not use the public unprotected wi-fi networks) and firewall settings of the network.
 However, the spread of viruses may be mitigated by the certain validation rules upon file upload, like for instance
 \input{Files/fluent-validator-code}
-
-%\begin{enumerate}
-%    \item \textbf{Browser UI Update Request}
-%    \begin{itemize}
-%        \item \textbf{Treat 1.1.} An adversary can perform action on behalf of other user due to lack of controls
-%        against cross domain requests.
-%        \item \textbf{Treat 1.5.} An adversary can spoof the target web application due to insecure TLS certificate configuration.
-%        \item \textbf{Treat 1.8.} An adversary can gain access to sensitive data by performing SQL injection through Web App.
-%        \item \textbf{Treat 1.10.} An adversary can deface the target web application by injecting malicious code or uploading dangerous files.
-%        \item \textbf{Treat 1.11.} An adversary may spoof Desktop Web Browser (Chrome) and gain access to Web Application.
-%        \item \textbf{Treat 1.12.} An adversary can create a fake website and launch phishing attacks.
-%        \item \textbf{Treat 1.18.} An adversary can gain access to sensitive information through error messages.
-%        \item \textbf{Treat 1.19.} An adversary can gain access to sensitive data by sniffing traffic to Web Application.
-%    \end{itemize}
-%    \item \textbf{Web App Request}
-%    \begin{itemize}
-%        \item \textbf{Treat 2.1.} An adversary may gain unauthorized access to Web API due to poor access control checks.
-%        \item \textbf{Treat 2.2.} An adversary can gain access to sensitive information from an API through error messages.
-%        \item \textbf{Treat 2.3.} An adversary can gain access to sensitive data by sniffing traffic to Web API\@.
-%        \item \textbf{Treat 2.5.} Attacker can deny a malicious act on an API leading to repudiation issues.
-%        \item \textbf{Treat 2.6.} An adversary may spoof Mango Web Application and gain access to Web API\@.
-%        \item \textbf{Treat 2.7.} An adversary may inject malicious inputs into an API and affect downstream processes.
-%        \item \textbf{Treat 2.8.} An adversary can gain access to sensitive data by performing SQL injection through Web API\@.
-%    \end{itemize}
-%    \item \textbf{Web API Response}
-%    \begin{itemize}
-%        \item \textbf{Treat 3.3.} An adversary can gain access to sensitive information through error messages.
-%        \item \textbf{Treat 3.5.} An adversary can spoof the target web application due to insecure TLS certificate configuration.
-%        \item \textbf{Treat 3.6.} An adversary can steal sensitive data like user credentials.
-%        \item \textbf{Treat 3.7.} An adversary can create a fake website and launch phishing attacks.
-%    \end{itemize}
-%    \item \textbf{CRUD Request}
-%    \begin{itemize}
-%        \item \textbf{Treat 4.1.} An adversary can gain unauthorized access to database due to loose authorization rules.
-%        \item \textbf{Treat 4.2.} An adversary can gain access to sensitive PII or HBI data in database.
-%        \item \textbf{Treat 4.3.} An adversary can gain access to sensitive data by performing SQL injection.
-%        \item \textbf{Treat 4.4.} An adversary can deny actions on database due to lack of auditing.
-%        \item \textbf{Treat 4.5.} An adversary can tamper critical database securables and deny the action.
-%        \item \textbf{Treat 4.7.} An adversary can gain unauthorized access to database due to lack of network access protection.
-%    \end{itemize}
-%    \item \textbf{Mobile UI Update}
-%    \begin{itemize}
-%        \item \textbf{Treat 5.1.} An adversary can gain access to sensitive data by performing SQL injection through Web API.
-%        \item \textbf{Treat 5.2.} An adversary can reverse engineer and tamper binaries.
-%        \item \textbf{Treat 5.3.} An adversary may inject malicious inputs into an API and affect downstream processes.
-%        \item \textbf{Treat 5.4.} An adversary may spoof Mobile App (IOS, Android) and gain access to Web API\@.
-%        \item \textbf{Treat 5.5.} An adversary obtains refresh or access tokens from Mobile App (IOS, Android) and uses them to
-%        obtain access to the Mango Web API\@.
-%        \item \textbf{Treat 5.6.} Attacker can deny a malicious act on an API leading to repudiation issues.
-%        \item \textbf{Treat 5.7.} An adversary can gain access to sensitive data stored in Web API's config files.
-%        \item \textbf{Treat 5.8.} An adversary can gain sensitive data from mobile device.
-%        \item \textbf{Treat 5.9.} An adversary can gain access to sensitive data by sniffing traffic to Web API\@.
-%        \item \textbf{Treat 5.10.} An adversary can gain access to sensitive data by sniffing traffic from Mobile client.
-%        \item \textbf{Treat 5.11.} An adversary can gain access to sensitive information from an API through error messages.
-%        \item \textbf{Treat 5.12.} An adversary may gain unauthorized access to Web API due to poor access control checks.
-%        \item \textbf{Treat 5.13.} An adversary may jail break into a mobile device and gain elevated privilege.
-%    \end{itemize}
-%\end{enumerate}

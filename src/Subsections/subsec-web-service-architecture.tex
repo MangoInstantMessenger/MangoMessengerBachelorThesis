@@ -89,15 +89,19 @@ Another disadvantages of the monoliths include:
     \item \textit{Scalability.} Application's components cannot be scaled independently, an entire application should be scaled.
 \end{itemize}
 
-\textbf{Minimization of services coupling.} As we see, monolith has its own disadvantages, like for instance: understanding the project structure, reliability concerns,
-technology stack limitations, scalability limitations.
-Obviously, some of these disadvantages cannot be mitigated.
+\textbf{Minimization of services coupling.} As we see, the monolith has its own disadvantages, like for instance:
+understanding the project structure, reliability concerns, technology stack limitations, scalability limitations.
+Obviously, some of these disadvantages cannot be mitigated because of the nature of the monolith.
 However, the complexity and coupling problem can be minimized applying certain approaches.
 Frequent violation of the single-responsibility principle of SOLID during implementing service components
 in business logics layer causes the over-complication of codebase over the time.
 The reason is that service components keep the huge number of methods in order to handle all possible CRUD requests
-to database, without any bounded context.
-Schematically it is as follows
+to the database without any bounded context.
+Although, the SOLID rules are very powerful in solving designated code issues, it is necessary to apply them very carefully,
+since that most of them require high level of abstractions, which increases in size the code base and complicates the
+solution.
+Do not overcomplicate the solution without any reason following \textit{Open-Closed Principle}.
+Schematically, the service entity is as follows
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Pictures/Services}

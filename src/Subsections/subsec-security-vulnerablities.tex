@@ -1,9 +1,10 @@
-We would like to start our thesis with a general description of the communication system, possible vulnerabilities, and the actors participating in it.
-Since the task of this thesis is to implement software components that meet the specified security requirements,
-namely: web client, web server, mobile client, desktop client and database, then it is these components that will be our
-actors.
-Communication between the components takes place over the HTTPS protocol.
-REST API is used as a backend, and therefore, the format of the data transmitted from the client to the server is JSON\@.
+\textbf{Security aspects of communication model.} We would like to start our thesis with a general description of the
+communication structure between an actors among with possible security and user privacy vulnerabilities.
+Communication model of the instant messaging system is a quite large topic since it implies various protocols, approaches etc,
+therefore current discussion asserts the communication over HTTP protocol via REST API\@ using JSON data format.
+Since that main task of this thesis is to implement software components that meet the specified security requirements,
+namely: \textit{Web Client, Web API (Application Programming Interface), Mobile client, Desktop client} which are
+considered to be the actors we focus our attention to.
 The following diagram describes the basic concept of the system, and conveys the relationships between the actors mentioned above.
 
 \begin{figure}[H]
@@ -12,31 +13,31 @@ The following diagram describes the basic concept of the system, and conveys the
     \caption{Database diagram.}\label{fig:figure6}
 \end{figure}
 
-Hence, communication between software components is structured as follows\\
+Hence, communication between software components is organised as follows\\
 
-\textit{Web Browser - Web Application - Server - Database communication model}
+\textit{Browser - Web Application - Web API - Database communication model}
 \begin{itemize}
-    \item The web browser will send a request to update the interface to the web application.
-    \item The web application broadcasts the request to the server.
-    \item The server executes business logic and checks access rights, referring to the database.
-    \item The server responds to the web application.
-    \item Browser user interface updated.
+    \item Browser downloads application static files from Web Application server.
+    \item Browser sends a request to Web API\@.
+    \item Web API checks access rights, executes business logic referring to the Database.
+    \item Web API responds to the Browser.
+    \item Browser user interface is being updated.
 \end{itemize}
 
-\textit{Desktop Client - Server - Database communication model}
+\textit{Desktop Client - Web API - Database communication model}
 \begin{itemize}
-    \item Desktop client sends a request to update the user interface.
-    \item The server executes business logic and checks access rights, referring to the database.
-    \item Server responds to desktop client.
-    \item Desktop app UI updated as per response from server.
+    \item Desktop Client sends a request to update the user interface.
+    \item Web API checks access rights, executes business logic referring to the Database.
+    \item Web API responds to Desktop Client.
+    \item Desktop Client's user interface updated as per response from the Web API\@.
 \end{itemize}
 
-\textit{Mobile Client - Server - Database communication model}
+\textit{Mobile Client - Web API - Database communication model}
 \begin{itemize}
-    \item The mobile client sends a request to update the user interface.
-    \item The server executes business logic and checks access rights, referring to the database.
-    \item Server responds to desktop client.
-    \item The user interface of the mobile app has been updated according to the response from the server.
+    \item Mobile Client sends a request to update the user interface.
+    \item Web API checks access rights, executes business logic referring to the Database.
+    \item Web API responds to the desktop Mobile Client.
+    \item Mobile Client's user interface updated as per response from the Web API\@.
 \end{itemize}
 
 However, such communication models are under possible security vulnerabilities.

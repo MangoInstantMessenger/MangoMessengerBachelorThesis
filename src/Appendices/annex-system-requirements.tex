@@ -1,27 +1,5 @@
-Mostly common and simple way to define software product's functional requirements is User Stories.
-User stories [\cite{cohn2004user}] should be understandable both to developers and to you as the client, and should be written in simple words.
-The most popular way of writing a user story is with the following formula:
-
-\begin{center}
-    \begin{spverbatim}
-        "As a <user type>, I want <goal> so that <reason>."
-    \end{spverbatim}
-\end{center}
-
-Now, let’s group the main features of the application as follows
-
-\begin{itemize}
-    \item Registration
-    \item Authentication
-    \item Managing contacts
-    \item Sending messages and media to individuals
-    \item Creating and managing groups
-    \item Sending messages and media to groups
-    \item Viewing messages history
-    \item Managing profile settings
-\end{itemize}
-
-\subsection{Registration user stories}\label{subsec:registration}
+\chapter{List of functional requirements}\label{ch:list-of-functional-requirements}
+\textbf{Registration user stories}
 \begin{itemize}
     \item As an unregistered user, I want to tap “Register” so that I see the registration form and register myself.
     \item As an unregistered user, I want to use my phone number to register so that my account is tied to my phone number.
@@ -34,7 +12,7 @@ Now, let’s group the main features of the application as follows
     \item As a registered user, I want to confirm my phone number so that I use specified form to do it.
 \end{itemize}
 
-\subsection{Authentication user stories}\label{subsec:authentication-user-stories}
+\textbf{Authentication user stories}
 \begin{itemize}
     \item As a registered user, I want to authenticate myself using both combinations email-password and phone-password
     so that I use the specified form with two inputs.
@@ -43,7 +21,7 @@ Now, let’s group the main features of the application as follows
     will be logged out automatically.
 \end{itemize}
 
-\subsection{Managing contacts user stories}\label{subsec:adding-contacts}
+\textbf{Managing contacts user stories}
 \begin{itemize}
     \item As an authorized user, I want to see my contact list so that there is a list of users who are my contacts.
     \item As an authorized user, I want to search users so that I write user display name or phone number of e-mail
@@ -58,8 +36,7 @@ Now, let’s group the main features of the application as follows
     "Message" button at user profile and get navigated to the private chat with him.
 \end{itemize}
 
-\subsection{Sending messages and media to individuals user stories}
-\label{subsec:sending-messages-and-media-feature-user-stories}
+\textbf{Sending messages and media to individuals user stories}
 \begin{itemize}
     \item As an authorized user, I want to send a text message so that another user sees my message.
     \item As an authorized user, I want to add an attachment to the message so that another user sees the message with attachment.
@@ -72,7 +49,7 @@ Now, let’s group the main features of the application as follows
     in real-time so that I do not reload page.
 \end{itemize}
 
-\subsection{Creating and managing groups user stories}\label{subsec:creating-groups-feature-user-stories}
+\textbf{Creating and managing groups user stories}
 \begin{itemize}
     \item As a registered user, I want to tap "Create channel" so that I create a new channel of the one of the types:
     Private channel, Public channel, Readonly channel.
@@ -85,8 +62,7 @@ Now, let’s group the main features of the application as follows
     on the device that I used to start this chat.
 \end{itemize}
 
-\subsection{Sending messages and media to groups user stories}
-\label{subsec:sending-messages-and-media-to-groups}
+\textbf{Sending messages and media to groups user stories}
 \begin{itemize}
     \item As an authorized user, I want to send a text message so that other members of the group see the message I sent.
     \item As an authorized user, I want to add an attachment to the message so that other members of the group see the
@@ -100,7 +76,7 @@ Now, let’s group the main features of the application as follows
     real-time so that I do not reload page.
 \end{itemize}
 
-\subsection{Viewing messages history user stories}\label{subsec:viewing-message-history-feature-user-stories}
+\textbf{Viewing messages history user stories}
 \begin{itemize}
     \item As an authorized user, I want to view a message history of particular chat or group so that I see a list of
     my active chats on the UI\@.
@@ -108,7 +84,7 @@ Now, let’s group the main features of the application as follows
     window of the chat.
 \end{itemize}
 
-\subsection{Managing profile settings user stories}\label{subsec:profile-settings-user-stories}
+\textbf{Managing profile settings user stories}
 \begin{itemize}
     \item As an authorized user, I want to update my personal information in profile settings so that other users my
     updated personal information.

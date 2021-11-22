@@ -172,71 +172,8 @@
 
 %----------------------------------------------------------------------------------------
 %	PARTNER DETAILS PAGE
-%----------------------------------------------------------------------------------------
-    \begin{partnerdetailspage}
-        \textbf{Mentor's details} \\
+%---------------------------------------------------------------------------------------
 
-        \begin{tabular}{|p{7cm}|p{7cm}|}
-            \hline
-            First name and surname & Szymon Murawski \\
-            \hline
-            Degree                 &                 \\
-            \hline
-            Date and signature     &                 \\
-            \hline
-            \multicolumn{2}{c}{\vspace{0.5cm}} \\
-        \end{tabular}
-
-        \textbf{Team members' details} \\
-
-        \begin{tabular}{|p{7cm}|p{7cm}|}
-            \hline
-            First name and surname & Petro Kolosov        \\
-            \hline
-            Course of study        &                      \\
-            \hline
-            Type of study program  &                      \\
-            \hline
-            Date and signature     &                      \\
-            \hline
-
-            \multicolumn{2}{c}{\vspace{0.5cm}} \\
-
-            \hline
-            First name and surname & Serhii Holishevskyi  \\
-            \hline
-            Course of study        &                      \\
-            \hline
-            Type of study program  &                      \\
-            \hline
-            Date and signature     &                      \\
-            \hline
-
-            \multicolumn{2}{c}{\vspace{0.5cm}} \\
-
-            \hline
-            First name and surname & Illia Zubachov       \\
-            \hline
-            Course of study        &                      \\
-            \hline
-            Type of study program  &                      \\
-            \hline
-            Date and signature     &                      \\
-            \hline
-
-            \multicolumn{2}{c}{\vspace{0.5cm}} \\
-
-            \hline
-            First name and surname & Arslanbek Temirbekov \\
-            \hline
-            Course of study        &                      \\
-            \hline
-            Type of study program  &                      \\
-            \hline
-            Date and signature     &                      \\
-            \hline
-        \end{tabular}
-    \end{partnerdetailspage}
 
 %----------------------------------------------------------------------------------------
 %	QUOTATION PAGE
@@ -363,19 +300,13 @@
 
 % Include the chapters of the thesis as separate files from the Chapters folder
 % Uncomment the lines as you write the chapters
-%    \include{Chapters/MainAimOfTheWork}
-    \include{Chapters/ProjectAssumptions}
-    \include{Chapters/Implementation}
-    \include{Chapters/Introduction}
-    \include{Chapters/SystemRequirements}
-    \include{Chapters/SecurityAndUserPrivacyVulnerabilities}
-    \include{Chapters//SystemDesign}
-    \include{Chapters/EndToEndEncryption}
-%    \include{Chapters/ArchitecturalAspectsOfTheSystem}
-%    \include{Chapters/AuthenticationAndAuthorization}
-%    \include{Chapters/SecurityAspectsOfCommunicationChannel}
-    \include{Chapters/UserInterfaceDesignAndDescription}
-    \include{Chapters/Conclusions}
+    \include{Chapters/ch-partner-details}
+    \include{Chapters/ch-project-assumptions}
+    \include{Chapters/ch-implementation}
+%    \include{Chapters/Implementation}
+%    \include{Chapters/SystemRequirements}
+%    \include{Chapters//SystemDesign}
+%    \include{Chapters/EndToEndEncryption}
 
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
@@ -395,7 +326,10 @@
 % Uncomment the lines as you write the Appendices
 
     %\include{Appendices/04_WebApi_Documentation}
+    \include{Appendices/annex-system-requirements}
+    \include{Files/non-functional-requirements}
     \include{Appendices/RSA_comments}
 %\include{Appendices/AppendixB}
 %\include{Appendices/AppendixC}
-\end{document}  
+
+\end{document}

@@ -11,101 +11,31 @@ edit, delete or create content.
 Currently, there are two widely-known authentication methods, that are cookie authentication and JWT authentication.
 
 \textbf{JWT Tokens.}
-JSON Web Token (JWT) is an open standard [\cite{jones2015rfc}] that defines a compact and self-contained way for securely
-transmitting information between parties as a JSON object [\cite{jones2015json}].
-This information can be verified and trusted because it is digitally signed.
-JWTs can be signed using a secret with the HMAC [\cite{wang2004hmac}] algorithm or a public/private key pair using
-RSA [\cite{wiener1990cryptanalysis}] or ECDSA [\cite{johnson2001elliptic}].
-Although JWTs can be encrypted to also provide secrecy between parties, we will focus on signed tokens.
-Signed tokens can verify the integrity of the claims contained within it, while encrypted tokens hide those claims from
-other parties.
-When tokens are signed using public/private key pairs, the signature also certifies that only the party holding the
-private key is the one that signed it.
-Here are some scenarios where JSON Web Tokens are useful:
+JSON Web Token or JWT is an open standard [\cite{jones2015rfc}] that defines a compact and self-contained way for securely
+exchanging information between parties as a Javascript Object Notation (JSON) object [\cite{jones2015json}].
+This information can be verified and trusted thanks to digital signature of the sender.
+JSON Web Tokens could be signed using a secret with the HMAC,
+stands for Hash-based Message Authentication Code algorithm [\cite{wang2004hmac}] or a public-private key pair using
+the Rivest, Shamir and Adleman algorithm [RSA~\cite{wiener1990cryptanalysis}] or Elliptic Curve Digital Signature Algorithm
+[ECDSA~\cite{johnson2001elliptic}].
+Here are some scenarios JSON Web Tokens are useful in:
 
 \begin{itemize}
-    \item \textit{Authorization.} This is the most common scenario for using JWT. Once the user is logged in, each
-    subsequent request will include the JWT, allowing the user to access routes, services, and resources that are permitted
-    with that token.
+    \item \textit{Authorization.} Is the most widely known scenario for using JWT\@.
+    Once the user logs in, each further request will include the JWT to request header, allowing the user to access routes,
+    services, and resources that are permitted with that token.
     Single Sign On is a feature that widely uses JWT nowadays, because of its small overhead and its ability to be easily
     used across different domains.
-    \item \textit{Information Exchange.} JSON Web Tokens are a good way of securely transmitting information between
-    parties.
-    Because JWTs can be signed -- for example, using public/private key pairs -- you can be sure the senders are who they
-    say they are.
-    Additionally, as the signature is calculated using the header and the payload, you can also verify that the content
-    hasn't been tampered with.
+    Thanks to JWTs we are able to use Single Sign On feature, because of the JWTs' small overhead and ability to be
+    used across different domains avoiding CORS errors.
+    \item \textit{Information Exchange.} JSON Web Tokens may be used as secure way of communication.
+    Because JWTs can be signed, it is simple to verify and identify the sender.
+    Moreover, since that signature is calculated combining the header and the payload of the token, it is possible to verify
+    that token has not been changed on the road.
 \end{itemize}
-In its compact form, JSON Web Tokens consist of three parts separated by dots, which are Header, Payload, Signature.
+JSON Web Token consists of the three parts separated by dots: Header, Payload, Signature.
 Therefore, a JWT typically looks like
 \begin{center}
-    \begin{spverbatim}
-        eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
-        eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6I
-        kpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.
-        SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQ
-        ssw5c
-    \end{spverbatim}
-\end{center}
-Let's break down the different parts.
-\begin{itemize}
-    \item \textit{Header.} Typically, consists of two parts: the type of the token, which is JWT, and the signing algorithm
-    being used, such as HMAC SHA256 or RSA\@.
-    For example,
-
-    \begin{spverbatim}
-    {
-        "alg": "HS256",
-        "typ": "JWT"
-    }
-    \end{spverbatim}
-
-    Then, this JSON is \href{https://en.wikipedia.org/wiki/Base64}{Base64Url} encoded to form the first part of the JWT\@.
-    \item \textit{Payload.} The second part of the token is the payload, which contains the claims.
-    Claims are statements about an entity (typically, the user) and additional data.
-    There are three types of claims: registered, public, and private claims.
-    \begin{itemize}
-        \item \texttt{Registered claims.} These are a set of predefined claims which are not mandatory but recommended,
-        to provide a set of useful, interoperable claims.
-        Some of them are: \textbf{iss} (issuer), \textbf{exp} (expiration time), \textbf{sub} (subject),
-        \textbf{aud} (audience), and \href{https://tools.ietf.org/html/rfc7519#section-4.1}{others}.
-        Notice that the claim names are only three characters long as JWT is meant to be compact.
-        \item \texttt{Public claims.} These can be defined at will by those using JWTs. But to avoid collisions they
-        should be defined in the \href{https://www.iana.org/assignments/jwt/jwt.xhtml}{IANA JSON Web Token Registry}
-        or be defined as a URI that contains a collision resistant namespace.
-        \item \texttt{Private claims.} These are the custom claims created to share information between parties that
-        agree on using them and are neither registered or public claims.
-    \end{itemize}
-    An example payload could be:
-
-    \begin{spverbatim}
-    {
-        "sub": "1234567890",
-        "name": "John Doe",
-        "admin": true
-    }
-    \end{spverbatim}
-
-    The payload is then Base64Url encoded to form the second part of the JSON Web Token.
-    Do note that for signed tokens this information, though protected against tampering, is readable by anyone.
-    Do not put secret information in the payload or header elements of a JWT unless it is encrypted.
-    \item \textit{Signature.} To create the signature part you have to take the encoded header, the encoded payload, a secret,
-    the algorithm specified in the header, and sign that.
-    For example if you want to use the HMAC SHA256 algorithm, the signature will be created in the following way:
-
-    \begin{spverbatim}
-        HMACSHA256(
-        base64UrlEncode(header) + "." +
-        base64UrlEncode(payload),
-        secret)
-    \end{spverbatim}
-
-    The signature is used to verify the message wasn't changed along the way, and, in the case of tokens signed
-    with a private key, it can also verify that the sender of the JWT is who it says it is.
-    \item \textit{Putting all together.} The output is three Base64-URL strings separated by dots that can be easily
-    passed in HTML and HTTP environments, while being more compact when compared to XML-based standards such as SAML\@.
-    The following shows a JWT that has the previous header and payload encoded, and it is signed with a secret.
-
     \begin{spverbatim}
         eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
         eyJqdGkiOiJmZDNjNjdjNS1jNmZmLTRhNWQtY
@@ -119,12 +49,73 @@ Let's break down the different parts.
         locHt8ow1lFnGGZ_aFFvXI09dD4y1r594XQF2
         -6YxCw
     \end{spverbatim}
+\end{center}
+Lets discuss each part separately.
+\begin{itemize}
+    \item \textit{Header.} Typically, consists of two parts: the type of the token (JWT), and the signing algorithm
+    being used, like for instance HMAC, SHA256 or RSA\@.
+    For example,
 
+    \begin{spverbatim}
+    {
+        "alg": "HS256",
+        "typ": "JWT"
+    }
+    \end{spverbatim}
+
+    After that, JSON is Base64 [\cite{josefsson2003rfc3548}] encoded to create the header part of the JWT\@.
+    \item \textit{Payload.} The second part of the token is the payload with the entity claims.
+    Claims are statements about the user and additional data.
+    Claims are of the following types: registered, public and private claims.
+    \begin{itemize}
+        \item \texttt{Registered claims.} A set of predefined claims.
+        Registered claims are not mandatory but recommended, to provide a set of useful and interoperable claims.
+        For example, the following are registered claims
+        \textbf{iss} (issuer),
+        \textbf{exp} (expiration time),
+        \textbf{sub} (subject),
+        \textbf{aud} (audience),
+        and \href{https://tools.ietf.org/html/rfc7519#section-4.1}{others}.
+        The claim names are only three characters long to maintain the compactness of the JWT\@.
+        \item \texttt{Public claims.} These claims can be defined freely.
+        In order to avoid collisions public claims should be defined in the
+        \href{https://www.iana.org/assignments/jwt/jwt.xhtml}{IANA JSON Web Token Registry}
+        or to be defined in a form of URI which contains a collision resistant namespace.
+        \item \texttt{Private claims.} These claims are the claims which can be created manually in order to share
+        the information between the parties.
+    \end{itemize}
+    An example payload could be:
+
+    \begin{spverbatim}
+    {
+        "sub": "10203040",
+        "name": "Alice Fox",
+        "approved": true
+    }
+    \end{spverbatim}
+
+    The payload is then Base64 encoded to form the second part of the JSON Web Token.
+    It is recommended to put secret information in payload or header only in encrypted form, since that Base64 is encoding
+    only and can be read by anyone.
+    \item \textit{Signature.} The signature part of the JWT is created combining the Base64 encoded
+    header and payload using the specified in header algorithm.
+    For instance, if the HMAC SHA256 algorithm is used, the signature will be created in the following way:
+
+    \begin{spverbatim}
+        HMACSHA256(
+        base64UrlEncode(header) + "." +
+        base64UrlEncode(payload),
+        secret)
+    \end{spverbatim}
+
+    The signature is used to ensure that tokens wasn't changed during the exchange between parties (Man in the middle attack).
+    \item \textit{Conclusions.} JWT is three Base64 encoded strings separated by dots that can be
+    used in authorization and information exchange over HTTP,
+    JWTs are more compact related to XML-based standards like SAML\@.
 \end{itemize}
 
 As to the projects concerns, we should handle multiple client applications, e.g desktop,
-web, mobile etc.
-Therefore, HTTP cookie authorization doesn't fit our requirements, however the JWT one surely passes.
+web, mobile etc, therefore JWT authorization fits perfectly.
 
 \textbf{JWT Authorization.} In authentication, when the user successfully logs in using their credentials,
 a JSON Web Token will be returned.

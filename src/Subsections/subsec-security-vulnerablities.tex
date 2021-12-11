@@ -5,7 +5,8 @@ therefore current discussion asserts the communication over HTTP protocol via RE
 Since that main task of this thesis is to implement software components that meet the specified security requirements,
 namely: \textit{Web Client, Web API (Application Programming Interface), Mobile client, Desktop client} which are
 considered to be the actors we focus our attention to.
-The following diagram describes the basic concept of the system and conveys the relationships between the actors mentioned above.
+The following diagram describes the basic concept of the system and conveys the relationships between the
+actors mentioned above.
 
 \begin{figure}[H]
     \centering
@@ -15,7 +16,7 @@ The following diagram describes the basic concept of the system and conveys the 
 
 Hence, communication between software components is organised as follows\\
 
-\textit{Browser - Web Application - Web API - Database communication model}
+\textit{Browser -- Web Application -- Web API -- Database communication model}
 \begin{itemize}
     \item Browser downloads application static files from Web Application server.
     \item Browser sends a request to Web API\@.
@@ -24,7 +25,7 @@ Hence, communication between software components is organised as follows\\
     \item Browser user interface is being updated.
 \end{itemize}
 
-\textit{Desktop Client - Web API - Database communication model}
+\textit{Desktop Client -- Web API -- Database communication model}
 \begin{itemize}
     \item Desktop Client sends a request to update the user interface.
     \item Web API checks access rights, executes business logic referring to the Database.
@@ -32,7 +33,7 @@ Hence, communication between software components is organised as follows\\
     \item Desktop Client's user interface updated as per response from the Web API\@.
 \end{itemize}
 
-\textit{Mobile Client - Web API - Database communication model}
+\textit{Mobile Client -- Web API -- Database communication model}
 \begin{itemize}
     \item Mobile Client sends a request to update the user interface.
     \item Web API checks access rights, executes business logic referring to the Database.
@@ -51,7 +52,7 @@ Like, for instance, it is done in our project
 
 \input{Subsections/attachment-cors}
 
-The next potential vulnerability is improper TLS / SSL certificate configuration or usage of self-signed certificate,
+The next potential vulnerability is improper TLS-SSL certificate configuration or usage of self-signed certificate,
 to eliminate the vulnerability of the improper TLS certificate, it is recommended to follow the instructions and
 \href{https://www.ssl.com/guide/ssl-best-practices/}{best practices}.
 
@@ -63,10 +64,10 @@ There is another danger that attacker may receive information about the applicat
 response from the server, thus, it is recommended to use the unified \href{https://datatracker.ietf.org/doc/html/rfc7231}{response format}
 from the server, which, in case of an error, will not contain the details of the error.
 
-In order to provide proper authorization, it is recommended to use the roles for users in order to restrict an unauthorized
-access to the resources available only to administrators.
+In order to provide proper authorization, it is recommended to use the roles for users in order to restrict
+unauthorized access to the resources available only to administrators.
 
-The last but not least possible vulnerability -- is a famous worm and virus spreading problem.
+The last, but not least possible vulnerability -- is a famous worm and virus spreading problem.
 Obviously, it is not a problem to get rid of the worms in local network with just a few devices connected,
 however worms are really dangerous for the huge networks, like messenger considered to be.
 The fight against the worms generally dependent on the end-user's security best practices education (at least user should

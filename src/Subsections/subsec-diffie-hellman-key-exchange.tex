@@ -1,35 +1,36 @@
 \textbf{Motivation.} Here is the motivation.
 
-\textbf{Diffie-Hellman key exchange.} Diffie-Hellman protocol is a method of asymmetric exchange of secrets for
-a group of two or more participants,
-developed in 1976 by cryptographers Ralph Merkle and Whitfield Diffie and Martin Hellman.
-In contrast to symmetric key exchange, the diffie-hellman protocol eliminates the direct transfer of the shared secret.
-between participants, each participant computes a shared secret with its own private / public key pair.
-The Diffie Hellman protocol is based on a one-way function of the form
+\textbf{Diffie–-Hellman key exchange.} Diffie--Hellman protocol is a method of asymmetric exchange
+of the cryptographic keys for a group of two or more participants,
+developed in 1976 by cryptographers Ralph Merkle, Whitfield Diffie and Martin Hellman.
+In contrast to symmetric key exchange, the Diffie–-Hellman protocol eliminates the direct transfer of the shared secret.
+between participants, each participant computes a shared secret with its own private-public key pair.
+The Diffie–-Hellman protocol is based on a one-way function of the form
 
 \[
-    A = G ^ a mod P,
+    A = G ^ a \bmod P,
 \]
 
-where A is the user's public key, a is the user's private key, P is modulus, which is at least 2048 bit prime,
-G - primitive root modulo P.
+where $A$ is the user's public key, $a$ is the user's private key, $P$ is modulus, which is at least 2048 bit prime,
+$G$ is primitive root modulo $P$.
 
-Thus, the safety of the Diffie-Hellman protocol is based on the discrete logarithm problem, which is unsolvable
-in polynomial time if the constants G and P are chosen correctly.
-Graphically, the essence of the Diffie Hellman protocol can be expressed through the analogy with mixing paints, as shown in
-image below
+Thus, the safety of the Diffie--Hellman protocol is based on the discrete logarithm problem, which is unsolvable
+in polynomial time if the constants $G$ and $P$ are chosen correctly.
+Graphically, the essence of the Diffie–-Hellman protocol can be expressed through the analogy with mixing paints,
+as shown in image below
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Pictures/Diffie-Hellman}
-    \caption{Illustration of the concept behind Diffie–Hellman key exchange. Source: }\label{fig:figure4}
+    \caption{Illustration of the concept behind Diffie–-Hellman key exchange.
+    Source: \href{https://en.wikipedia.org/wiki/Diffie-Hellman_key_exchange}{Wikipedia}.}\label{fig:figure4}
 \end{figure}
-In contrast to the diffie-hellman based on discrete logarithm problem, there is an elliptic curve diffie hellman
+In contrast to the Diffie–-Hellman based on discrete logarithm problem, there is an elliptic curve diffie hellman
 key exchange, which based on the elliptic curve discrete logarithm problem.
-Although, the idea is quite same, but elliptic curve diffie hellman ensures the same safety as discrete logarithm
-diffie-hellman with lesser value of the modulus P.
-For instance, 521 bit modulus used in elliptic curve diffie hellman is equally safe as 2048 bit modulus in
-discrete logarithm diffie-hellman.
-To summarize, the flow of diffie hellman kay exchange is as follows
+Although, the idea is quite same, the difference only in that elliptic curve Diffie–-Hellman ensures the same safety
+as discrete logarithm Diffie–-Hellman with lower value of the prime modulus $P$.
+For instance, 521 bit modulus used in elliptic curve Diffie–-Hellman is equally safe as 2048 bit modulus in
+discrete logarithm Diffie–-Hellman.
+To summarize, the flow of Diffie–-Hellman key exchange is as follows
 \begin{enumerate}
     \item Given 2048 bits prime modulus $P$ and generator $G$, such that $G$ is primitive root modulo $P$.
     \item Alice chooses her secret $a$.
@@ -48,7 +49,7 @@ To summarize, the flow of diffie hellman kay exchange is as follows
 \textbf{Implementation.} Although, the idea of DH key exchange looks quite simple, some remarks on the concrete
 implementation should be added.
 Firstly, it is necessary to implement the mechanism of key exchange request between two or more parties.
-As it discussed above, each user has his own private / public keys pair, so in order to perform request between parties,
+As it discussed above, each user has his own private-public keys pair, so in order to perform request between parties,
 it should be implemented dedicate REST API endpoint, for instance the POST one \texttt{api/key-exchange-requests} which
 takes the body of the form
 \begin{spverbatim}
@@ -89,7 +90,7 @@ The server is able to fetch the request thanks to the body endpoint takes
 \end{spverbatim}
 Therefore, an identifier of awaiting request is passed to the server among with boolean value
 indicating the confirmation.
-Under the roof of this operation are also generation of private / public keys pair for the requested party and
+Under the roof of this operation are also generation of private-public keys pair for the requested party and
 generation of common secret stored in client's file system.
 As result, the initial request sender receives a public key as confirmation from requested party.
 Requested side may get all his public keys via the REST API using GET \texttt{api/public-keys}
@@ -107,7 +108,7 @@ Requested side may get all his public keys via the REST API using GET \texttt{ap
 \end{spverbatim}
 Now requested participant is able to derive the common secret.
 In order to provide an example, a simple command line interface is implemented.
-We have used an Elliptic Curve Diffie-Hellman implementation \texttt{ECDiffieHellmanCng Class} from the namespace
+We have used an Elliptic Curve Diffie–-Hellman implementation \texttt{ECDiffieHellmanCng Class} from the namespace
 \texttt{System.Security.Cryptography} of the .NET base class library.
 The \texttt{P-256} curve is used.
 
@@ -125,8 +126,8 @@ An example of console output straightforward
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Pictures/KeyExhangeConsole2}
-    \caption{Secret chat encryption concept diagram. Source: }\label{fig:figure7}
+    \caption{Diffie–-Hellman key exchange console output.}\label{fig:figure7}
 \end{figure}
 Finally, both test accounts reached the same common secret.
 In order to work with our implementation of the ECDH key exchange, the user is obligated to register an account
-at \href{messenger-mango.herokuapp.com}{https://messenger-mango.herokuapp.com}.
+at \href{https://messenger-mango.herokuapp.com}{https://messenger-mango.herokuapp.com}.

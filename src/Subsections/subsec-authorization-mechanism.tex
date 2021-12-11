@@ -156,17 +156,17 @@ therefore the signature will not match the original values.
 So, the hacker hasn't any possibility to generate a new signature since that encryption secret key stored on the server.
 Access token (JWT) is used for request authorization and for storing the additional information about user like identifier,
 display name and others.
-Refresh Token (GUID) issued by server based on successful authentication results and used for get new access/refresh
+Refresh Token (GUID) issued by server based on successful authentication results and used for get new access-refresh
 token pair.
 Also, it is worth to add a few basic rules about JWT secure usage [\cite{RDegges}]
 \begin{itemize}
     \item JWT should have a short lifetime, since it cannot be revoked.
-    \item JWT should be used in a single time, e.g JWT per request.
+    \item JWT should be used in a single time, e.g.\ JWT per request.
 \end{itemize}
 Therefore, we consider access token's lifetime to be 5 minutes and refresh token's 7 days.
 
 For each request client preliminarily checks access token's lifetime.
-If access token it expired, client sends request for updating a pair of access/refresh tokens.
+If access token it expired, client sends request for updating a pair of access-refresh tokens.
 For more confidence, we can update tokens a few seconds earlier.
 That is, the case when the API receives an expired access token is practically excluded.
 However, we are able to consider the case of interception of the request on \texttt{401UNAUTHORIZED} http status code.
@@ -175,7 +175,7 @@ The following diagram demonstrates the process of requesting the resource
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Pictures/jwt_auth_scheme.pdf}
-    \caption{JWT Authentication concept diagram.}\label{fig:figure3}
+    \caption{JWT Authorization conceptual diagram.}\label{fig:figure3}
 \end{figure}
 
 By steps, the process is

@@ -158,11 +158,14 @@ Access token (JWT) is used for request authorization and for storing the additio
 display name and others.
 Refresh Token (GUID) issued by server based on successful authentication results and used for get new access-refresh
 token pair.
-Also, it is worth to add a few basic rules about JWT secure usage [\cite{RDegges}]
+Also, it is worth to add a few basic rules about JWT secure usage.
+The lifetime of JWT should not be long since that stolen JWT cannot be revoked.
+Randall Degges advices to follow the regulations [\cite{RDegges}]
 \begin{itemize}
     \item JWT should have a short lifetime, since it cannot be revoked.
     \item JWT should be used in a single time, e.g.\ JWT per request.
 \end{itemize}
+However, extremely short lifetimes of the tokens would affect the overall performance of the system.
 Therefore, we consider access token's lifetime to be 5 minutes and refresh token's 7 days.
 
 For each request client preliminarily checks access token's lifetime.

@@ -158,11 +158,14 @@ Access token (JWT) is used for request authorization and for storing the additio
 display name and others.
 Refresh Token (GUID) issued by server based on successful authentication results and used for get new access-refresh
 token pair.
-Also, it is worth to add a few basic rules about JWT secure usage [\cite{RDegges}]
+Also, it is worth to add a few basic rules about JWT secure usage.
+The lifetime of JWT should not be long since that stolen JWT cannot be revoked.
+Randall Degges advices to follow the regulations [\cite{RDegges}]
 \begin{itemize}
     \item JWT should have a short lifetime, since it cannot be revoked.
     \item JWT should be used in a single time, e.g.\ JWT per request.
 \end{itemize}
+However, extremely short lifetimes of the tokens would affect the overall performance of the system.
 Therefore, we consider access token's lifetime to be 5 minutes and refresh token's 7 days.
 
 For each request client preliminarily checks access token's lifetime.
@@ -187,10 +190,10 @@ By steps, the process is
         \item \texttt{409CONFLICT}: Invalid credentials.
         \item \texttt{200SUCCESS}: Returns a pair of access and refresh tokens.
         \begin{itemize}
-            \item \textbf{Step 3.} Server generates a pair of access and refresh tokens
+            \item \textbf{Step 3.} \textit{Auth server} generates a pair of access and refresh tokens
             \begin{itemize}
-                \item API fetches user data and claims.
-                \item Server creates new session instance in database.
+                \item \textit{Auth server} fetches user data and claims.
+                \item \textit{Auth server} creates new session instance in database.
                 \item Access token's Header Base64 encoded.
                 \item Access token's Payload with user claims is Base64 encoded.
                 \item Access token's Signature is generated using encoded token's Header and Payload signed by means of the
@@ -205,14 +208,14 @@ By steps, the process is
         \end{itemize}
     \end{itemize}
     \item \textbf{Step 4.} Access token in serialized form and refresh token (GUID) returned in response with
-    \texttt{200SUCCESS} http status code to the \textit{Client}.
-    \item \textbf{Step 5.} \textit{Client} queries the \textit{API / Microservice} providing access token as
+    \texttt{200SUCCESS} http status code to the \textit{Client} from the \textit{Auth server}.
+    \item \textbf{Step 5.} \textit{Client} queries the \textit{API} providing access token as
     Bearer in request header.
-    \item \textbf{Step 6.} \textit{API / Microservice} validates the token claims in order to authorize user
+    \item \textbf{Step 6.} \textit{API} validates the token claims in order to authorize user
     \begin{itemize}
-        \item If authorized: \textit{API / Microservice} handles the request, goes to \textbf{Step 7}.
+        \item If authorized: \textit{API} handles the request, goes to \textbf{Step 7}.
         \item Otherwise: returns error with \texttt{401UNAUTHORIZED} http status code.
     \end{itemize}
-    \item \textbf{Step 7.} \textit{API / Microservice} returns response with \texttt{200SUCCESS} or \texttt{409CONFLICT}
+    \item \textbf{Step 7.} \textit{} returns response with \texttt{200SUCCESS} or \texttt{409CONFLICT}
     http status codes to the client, according to business logic layer implementation.
 \end{itemize}

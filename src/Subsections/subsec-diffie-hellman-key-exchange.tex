@@ -1,4 +1,25 @@
-\textbf{Motivation.} Here is the motivation.
+\textbf{Motivation.} End-to-end encryption is an encryption such that the only communicating parties
+are able to decrypt the data.
+It means that even system administrators are not able to decrypt the messages transmitted between parties
+via their communication channel.
+End-to-enc encryption can be reached via numerous approaches.
+Generally, there are two ways to implement E2E encryption
+\begin{itemize}
+    \item Sharing public key to be used in decryption of the secret message, then encryption is done by the
+    public key's owner, so-called asymmetric encryption.
+    For example, RSA algorithm.
+    \item Asymmetric key exchange, where parties firstly exchanging the keys, then symmetrically encrypting
+    the transferred data.
+    For instance, Diffie--Hellman key exchange and AES256 encryption using common secret.
+\end{itemize}
+The most important aspect here is to securely store the secrets on the user's client application.
+Due to storage issues, it doesn't make sense to implement E2E encryption for web
+and desktop clients, like it is done in nowadays popular Telegram Messenger
+[\cite{job2015modified,suvsanka2017security,lee2017security}].
+Telegram uses the huge and heavy \texttt{MTProto 2.0} cryptographic protocol, based on DH key exchange and further AES256
+symmetric encryption.
+According to the project concerns, the E2E encryption via Diffie--Hellman key exchange and AES256
+to be considered and implemented, the next section is about.
 
 \textbf{Diffie–-Hellman key exchange.} Diffie--Hellman protocol is a method of asymmetric exchange
 of the cryptographic keys for a group of two or more participants,

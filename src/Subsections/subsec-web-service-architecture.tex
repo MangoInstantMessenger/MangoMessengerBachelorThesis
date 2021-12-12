@@ -151,16 +151,3 @@ CQRS is a pattern that first described by Greg Young [\cite{young2010cqrs}] and 
     \item Query model reads from database.
     \item Query service update presentation from query model.
 \end{enumerate}
-
-Despite these benefits, you should be very cautious about using CQRS\@.
-Many information systems fit well with the notion of an information base that is updated in the same way that it's read,
-adding CQRS to such a system can add significant complexity.
-I've certainly seen cases where it's made a significant drag on productivity, adding an unwarranted amount of risk to the
-project, even in the hands of a capable team.
-So while CQRS is a pattern that's good to have in the toolbox, beware that it is difficult to use well and you can easily
-chop off important bits if you mishandle it.
-
-As a short conclusion, we may state that CQRS and Mediator pattern will not entirely solve the coupling problems the monolith,
-however will make project much more simplistic and intuitively understood.
-It is worth to keep is simple,
-even relatively simple project may grow to the sizes of universe without proper architectural solutions.

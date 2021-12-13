@@ -5,7 +5,7 @@ name: CI
 # Controls when the workflow will run
 on: 
   push:
-    branches: [ develop, MANGO-CI-1, THESIS-68 ]
+    branches: [ master, develop, THESIS-68 ]
 
 
 jobs:
@@ -31,16 +31,9 @@ jobs:
     - name: Clone repository and add document
       run: |
         git clone https://${{ secrets.GH_ACCESS_TOKEN }}@github.com/MangoInstantMessenger/MangoInstantMessenger.github.io.git ~/MangoInstantMessenger.github.io
-        echo "Permission to folder"
-        #chmod ugo+rwx MangoInstantMessenger.github.io
-        echo "current dir"
-        ls -l
-        echo "src dir"
-        ls -l src
-        echo "out dir"
-        ls -l out
         cp out/main.pdf  ~/MangoInstantMessenger.github.io/main.pdf
     - name: Commit report
+      if: git diff --exit-code ~/MangoInstantMessenger.github.io == '1'
       run: |
         cd ~/MangoInstantMessenger.github.io
         git config --global user.name '${{ secrets.GH_NAME }}'

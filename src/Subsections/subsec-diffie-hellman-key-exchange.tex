@@ -2,10 +2,10 @@
 are able to decrypt the data.
 It means that even system administrators are not able to decrypt the messages transmitted between parties
 via their communication channel.
-End-to-enc encryption can be reached via numerous approaches.
+End-to-end encryption can be reached via numerous approaches.
 Generally, there are two ways to implement E2E encryption
 \begin{itemize}
-    \item Sharing public key to be used in decryption of the secret message, then encryption is done by the
+    \item Sharing public key to be used in encryption of the secret message, then encryption is done by the
     public key's owner, so-called asymmetric encryption.
     For example, RSA algorithm.
     \item Asymmetric key exchange, where parties firstly exchanging the keys, then symmetrically encrypting
@@ -24,32 +24,37 @@ to be considered and implemented, the next section is about.
 \textbf{Diffie–-Hellman key exchange.} Diffie--Hellman protocol is a method of asymmetric exchange
 of the cryptographic keys for a group of two or more participants,
 developed in 1976 by cryptographers Ralph Merkle, Whitfield Diffie and Martin Hellman.
-In contrast to symmetric key exchange, the Diffie–-Hellman protocol eliminates the direct transfer of the shared secret.
-between participants, each participant computes a shared secret with its own private-public key pair.
+In contrast to symmetric key exchange, the Diffie–-Hellman protocol eliminates the direct transfer of the shared secret
+between the participants, each participant computes a shared secret with its own private-public key pair.
 The Diffie–-Hellman protocol is based on a one-way function of the form
 
 \[
     A = G ^ a \bmod P,
 \]
 
-where $A$ is the user's public key, $a$ is the user's private key, $P$ is modulus, which is at least 2048 bit prime,
-$G$ is primitive root modulo $P$.
+where $A$ is the user's public key,
+$a$ is the user's private key,
+$P=2Q+1$ is modulus, such that 2048 bits safe-prime because $Q$ is also prime,
+$G$ is generator such that $G$ is primitive root modulo $P$.
+We say that $G$ is primitive root modulo $P$ if for each $1 \leq a \leq P - 1$ the $A = G ^ a \bmod P$
+is unique and belong to the set $\{1, 2, \dots, P-1\}$.
+The period of such cyclic group $\mathbb{Z}_{P}$ is $P-1$ then.
 
 Thus, the safety of the Diffie--Hellman protocol is based on the discrete logarithm problem, which is unsolvable
 in polynomial time if the constants $G$ and $P$ are chosen correctly.
-Graphically, the essence of the Diffie–-Hellman protocol can be expressed through the analogy with mixing paints,
-as shown in image below
+Graphically, the flow of the Diffie Hellman protocol can be expressed through the
+analogy with mixing paints, as below picture shows
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{Pictures/Diffie-Hellman}
-    \caption{Illustration of the concept behind Diffie–-Hellman key exchange.
+    \includegraphics[width=1\textwidth]{Pictures/07_Diffie-Hellman_keyexchange_concept_diagram}
+    \caption{Diffie–-Hellman key exchange concept diagram.
     Source: \href{https://en.wikipedia.org/wiki/Diffie-Hellman_key_exchange}{Wikipedia}.}\label{fig:figure4}
 \end{figure}
-In contrast to the Diffie–-Hellman based on discrete logarithm problem, there is an elliptic curve diffie hellman
+In contrast to the Diffie–-Hellman based on discrete logarithm problem, there is an Elliptic Curve Diffie–-Hellman
 key exchange, which based on the elliptic curve discrete logarithm problem.
-Although, the idea is quite same, the difference only in that elliptic curve Diffie–-Hellman ensures the same safety
+Although, the idea is quite same, the difference only in that Elliptic Curve Diffie–-Hellman ensures the same safety
 as discrete logarithm Diffie–-Hellman with lower value of the prime modulus $P$.
-For instance, 521 bit modulus used in elliptic curve Diffie–-Hellman is equally safe as 2048 bit modulus in
+For instance, 521 bit modulus used in Elliptic Curve Diffie–-Hellman is equally safe as 2048 bit modulus in
 discrete logarithm Diffie–-Hellman.
 To summarize, the flow of Diffie–-Hellman key exchange is as follows
 \begin{enumerate}
@@ -73,12 +78,9 @@ Firstly, it is necessary to implement the mechanism of key exchange request betw
 As it discussed above, each user has his own private-public keys pair, so in order to perform request between parties,
 it should be implemented dedicate REST API endpoint, for instance the POST one \texttt{api/key-exchange-requests} which
 takes the body of the form
-\begin{spverbatim}
-{
-    "requestedUserId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "publicKey": "RUNLMSAAAAC2lkqYcTGhutQPxcjvoqUELKoy0"
-}
-\end{spverbatim}
+
+\input{Files/post-keyexchange-body}
+
 So, request sender generates on the client side a key pair, keeps private on in the file system and shares the public
 in request to receiver.
 Therefore, the second party has received the key exchange request.
@@ -86,47 +88,24 @@ In order to display all the key exchange requests awaiting the confirmation of d
 another REST endpoint such that GET \texttt{api/key-exchange-requests}, so that requested party will have the list of
 requests to proceed.
 This endpoint may return the data structure like follows
-\begin{spverbatim}
-{
-    "keyExchangeRequests": [
-        {
-            "requestId": "81d314c1-913f-4686-827e-ef2a65ccc370",
-            "senderId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "senderPublicKey": "RUNLMSAAAAC2lkqYcTGhutQPxcjvoqUELKoy0"
-        }
-    ],
-    "message": "SUCCESS",
-    "success": true
-}
-\end{spverbatim}
+
+\input{Files/get-keyexchangerequests-response}
+
 Finally, requested party should be able to confirm or decline the key exchange request, the DELETE endpoint
 \texttt{api/key-exchange-requests} should be implemented then.
 The server is able to fetch the request thanks to the body endpoint takes
-\begin{spverbatim}
-{
-    "requestId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "confirmed": true,
-    "publicKey": "string"
-}
-\end{spverbatim}
+
+\input{Files/delete-keyexchangerequest-body}
+
 Therefore, an identifier of awaiting request is passed to the server among with boolean value
 indicating the confirmation.
 Under the roof of this operation are also generation of private-public keys pair for the requested party and
 generation of common secret stored in client's file system.
 As result, the initial request sender receives a public key as confirmation from requested party.
 Requested side may get all his public keys via the REST API using GET \texttt{api/public-keys}
-\begin{spverbatim}
-{
-    "publicKeys": [
-        {
-            "partnerId": "ae9e10a4-0c7e-4911-8450-4139d4a114a7",
-            "partnerPublicKey": "RUNLMSAAAAAbc49wfaZ+QF9J2cu1S66bkp0"
-        }
-    ],
-    "message": "SUCCESS",
-    "success": true
-}
-\end{spverbatim}
+
+\input{Files/get-publickeys-response}
+
 Now requested participant is able to derive the common secret.
 In order to provide an example, a simple command line interface is implemented.
 We have used an Elliptic Curve Diffie–-Hellman implementation \texttt{ECDiffieHellmanCng Class} from the namespace
@@ -146,7 +125,7 @@ Commands are self-explanatory, therefore we skip the detailed documentation on t
 An example of console output straightforward
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{Pictures/KeyExhangeConsole2}
+    \includegraphics[width=1\textwidth]{Pictures/08_Diffie-Hellman_console_output}
     \caption{Diffie–-Hellman key exchange console output.}\label{fig:figure7}
 \end{figure}
 Finally, both test accounts reached the same common secret.

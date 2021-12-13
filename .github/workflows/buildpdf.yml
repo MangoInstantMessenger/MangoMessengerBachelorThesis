@@ -32,17 +32,17 @@ jobs:
       run: |
         git clone https://${{ secrets.GH_ACCESS_TOKEN }}@github.com/MangoInstantMessenger/MangoInstantMessenger.github.io.git ~/
         echo "Permission to folder"
-        chmod ugo+rwx MangoInstantMessenger.github.io
+        #chmod ugo+rwx MangoInstantMessenger.github.io
         echo "current dir"
         ls -l
         echo "src dir"
         ls -l src
         echo "out dir"
         ls -l out
-        cp main.pdf  ~/MangoInstantMessenger.github.io/main.pdf
+        cp out/main.pdf  ~/MangoInstantMessenger.github.io/main.pdf
     - name: Commit report
       run: |
-        cd MangoInstantMessenger.github.io
+        cd ~/MangoInstantMessenger.github.io
         git config --global user.name '${{ secrets.GH_NAME }}'
         git config --global user.email '${{ secrets.GH_EMAIL }}'
         git commit -am "CICD deploy from main repo"

@@ -35,7 +35,9 @@ jobs:
     - name: Commit document changes if any
       run: |
         cd ~/MangoInstantMessenger.github.io
-        export FILE_CHANGED=$(git diff --exit-code ~/MangoInstantMessenger.github.io)
+        export FILE_CHANGED=$(git diff --exit-code ~/MangoInstantMessenger.github.io/main.pdf)
+        git status
+        echo $FILE_CHANGED
         if [ "$FILE_CHANGED" -eq 1 ] ;
         then
         git config --global user.name '${{ secrets.GH_NAME }}'

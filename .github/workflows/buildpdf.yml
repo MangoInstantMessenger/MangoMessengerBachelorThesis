@@ -39,7 +39,7 @@ jobs:
         ls -l src
         echo "out dir"
         ls -l out
-        ~/main.pdf > MangoInstantMessenger.github.io/main.pdf
+        out/main.pdf > MangoInstantMessenger.github.io/main.pdf
     - name: Commit report
       run: |
         cd MangoInstantMessenger.github.io

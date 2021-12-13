@@ -5,7 +5,7 @@ name: CI
 # Controls when the workflow will run
 on: 
   push:
-    branches: [ develop, MANGO-CI-1 ]
+    branches: [ develop, MANGO-CI-1, THESIS-68 ]
 
 
 jobs:
@@ -25,3 +25,17 @@ jobs:
       with:
         name: PDF
         path: src/main.pdf
+    - uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.GH_ACCESS_TOKEN }}
+    - name: Clone repository and add document
+      run: |
+        git clone https://github.com/MangoInstantMessenger/MangoMessengerBachelorThesis.git
+        cd MangoMessengerBachelorThesis
+        ../src/main.pdf > main.pdf
+    - name: Commit report
+      run: |
+        git config --global user.name '${{ secrets.GH_NAME }}'
+        git config --global user.email '${{ secrets.GH_EMAIL }}'
+        git commit -am "CICD deploy from main repo"
+        git push

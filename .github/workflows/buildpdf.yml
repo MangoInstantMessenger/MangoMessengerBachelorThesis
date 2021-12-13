@@ -31,6 +31,8 @@ jobs:
     - name: Clone repository and add document
       run: |
         git clone https://${{ secrets.GH_ACCESS_TOKEN }}@github.com/MangoInstantMessenger/MangoInstantMessenger.github.io.git
+        echo "Permission to folder"
+        chmod ugo+rwx MangoInstantMessenger.github.io
         echo "current dir"
         ls -l
         echo "src dir"

@@ -30,7 +30,7 @@ jobs:
         token: ${{ secrets.GH_ACCESS_TOKEN }}
     - name: Clone repository and add document
       run: |
-        git clone https://${{ secrets.GH_ACCESS_TOKEN }}@github.com/MangoInstantMessenger/MangoInstantMessenger.github.io.git ~/
+        git clone https://${{ secrets.GH_ACCESS_TOKEN }}@github.com/MangoInstantMessenger/MangoInstantMessenger.github.io.git ~/MangoInstantMessenger.github.io
         echo "Permission to folder"
         #chmod ugo+rwx MangoInstantMessenger.github.io
         echo "current dir"

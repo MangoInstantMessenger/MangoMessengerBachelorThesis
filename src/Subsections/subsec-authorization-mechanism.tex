@@ -50,11 +50,11 @@ Therefore, a JWT typically looks like
         -6YxCw
     \end{spverbatim}
 \end{center}
-Lets discuss each part separately.
+Let's discuss each part separately.
 \begin{itemize}
-    \item \textit{Header.} Typically, consists of two parts: the type of the token (JWT), and the signing algorithm
-    being used, like for instance HMAC, SHA256 or RSA\@.
-    For example,
+    \item \textit{Header.} Typically, consists of two parts: the type of the token, and the signing algorithm
+    being used, like \texttt{HMAC SHA256} or \texttt{RSA}.
+    Example of header is as follows
 
     \begin{spverbatim}
     {
@@ -68,20 +68,22 @@ Lets discuss each part separately.
     Claims are statements about the user and additional data.
     Claims are of the following types: registered, public and private claims.
     \begin{itemize}
-        \item \texttt{Registered claims.} A set of predefined claims.
+        \item Registered claims.
+        A set of predefined claims.
         Registered claims are not mandatory but recommended, to provide a set of useful and interoperable claims.
         For example, the following are registered claims
-        \textbf{iss} (issuer),
-        \textbf{exp} (expiration time),
-        \textbf{sub} (subject),
-        \textbf{aud} (audience),
+        \texttt{iss} stands for issuer,
+        \texttt{exp} stands for expiration time,
+        \texttt{sub} stands for subject,
+        \texttt{aud} stands for audience,
         and \href{https://tools.ietf.org/html/rfc7519#section-4.1}{others}.
         The claim names are only three characters long to maintain the compactness of the JWT\@.
-        \item \texttt{Public claims.} These claims can be defined freely.
+        \item Public claims.
+        These claims can be defined freely.
         In order to avoid collisions public claims should be defined in the
         \href{https://www.iana.org/assignments/jwt/jwt.xhtml}{IANA JSON Web Token Registry}
         or to be defined in a form of URI which contains a collision resistant namespace.
-        \item \texttt{Private claims.} These claims are the claims which can be created manually in order to share
+        \item Private claims. These claims are the claims which can be created manually in order to share
         the information between the parties.
     \end{itemize}
     An example payload could be:
@@ -108,7 +110,8 @@ Lets discuss each part separately.
         secret)
     \end{spverbatim}
 
-    The signature is used to ensure that tokens wasn't changed during the exchange between parties (Man in the middle attack).
+    The signature is used to ensure that tokens wasn't changed during the exchange between parties,
+    so-called Man in the middle attack.
     \item \textit{Conclusions.} JWT is three Base64 encoded strings separated by dots that can be
     used in authorization and information exchange over HTTP,
     JWTs are more compact related to XML-based standards like SAML\@.
@@ -142,7 +145,7 @@ Generally, the workflow is as follows
     \item User provides credentials in order to authenticate to the system.
     \item Server verifies user's authentication, fetches the login and password in database.
     \item If authentication is successful, server creates session then writes this session to the database.
-    \item Server generates a pair of access token (JWT) and refresh token (GUID).
+    \item Server generates a pair of access JWT token and refresh token as GUID.
     \item Server sends to client access token and refresh token.
     \item Client saves the pair of access and refresh tokens.
     \item User requests resource using received token passed to the request header.
@@ -154,10 +157,10 @@ As a result, token stored on the client and used when it is necessary to authori
 When a hacker tries to replace the data in the header or payload the token will become invalid,
 therefore the signature will not match the original values.
 So, the hacker hasn't any possibility to generate a new signature since that encryption secret key stored on the server.
-Access token (JWT) is used for request authorization and for storing the additional information about user like identifier,
-display name and others.
-Refresh Token (GUID) issued by server based on successful authentication results and used for get new access-refresh
-token pair.
+Access token in form of JWT is used for request authorization and for storing the additional information
+about user like identifier, display name and others.
+Refresh token in form of GUID issued by server based on successful authentication results and used
+to get new access-refresh token pair.
 Also, it is worth to add a few basic rules about JWT secure usage.
 The lifetime of JWT should not be long since that stolen JWT cannot be revoked.
 Randall Degges advices to follow the regulations [\cite{RDegges}]
@@ -183,7 +186,7 @@ The following diagram demonstrates the process of requesting the resource
 
 By steps, the process is
 \begin{itemize}
-    \item \textbf{Step 1.} \textit{Client} application sends POST authentication request to
+    \item \textbf{Step 1.} \textit{Client} application sends authentication request to
     the \textit{Auth server endpoint} provided user credentials in request body.
     \item \textbf{Step 2.} \textit{Auth server endpoint} responses to the \textit{Client} with the following
     HTTP response codes:
@@ -195,21 +198,15 @@ By steps, the process is
             \begin{itemize}
                 \item \textit{Auth server} fetches user data and claims.
                 \item \textit{Auth server} creates new session instance in database.
-                \item Access token's Header Base64 encoded.
-                \item Access token's Payload with user claims is Base64 encoded.
-                \item Access token's Signature is generated using encoded token's Header and Payload signed by means of the
-                algorithm (HMACSHA256) from the header and secret:
-                \begin{spverbatim}
-                    Signature = HMACSHA256(
-                    base64UrlEncode(header) + "." +
-                    base64UrlEncode(payload),
-                    secret)
-                \end{spverbatim}
+                \item \textit{Auth server} Base64 encodes access token's Header.
+                \item \textit{Auth server} Base64 encodes access token's Payload.
+                \item \textit{Auth server} generates access token's Signature using encoded token's
+                Header and Payload signed by means of the \texttt{HMACSHA256} algorithm and secret.
             \end{itemize}
         \end{itemize}
     \end{itemize}
-    \item \textbf{Step 4.} Access token in serialized form and refresh token (GUID) returned in response with
-    \texttt{200SUCCESS} http status code to the \textit{Client} from the \textit{Auth server}.
+    \item \textbf{Step 4.} JWT access token in serialized form and refresh token in form of GUID are
+    returned in response with \texttt{200SUCCESS} http status code to the \textit{Client} from the \textit{Auth server}.
     \item \textbf{Step 5.} \textit{Client} queries the \textit{API} providing access token as
     Bearer in request header.
     \item \textbf{Step 6.} \textit{API} validates the token claims in order to authorize user

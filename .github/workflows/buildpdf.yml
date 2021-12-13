@@ -34,8 +34,8 @@ jobs:
         cp out/main.pdf  ~/MangoInstantMessenger.github.io/main.pdf
     - name: Commit report
       run: |
-        export FILE_CHANGED = $(git diff --exit-code ~/MangoInstantMessenger.github.io)
-        if[ "$FILE_CHANGED" -eq 1 ] ;
+        FILE_CHANGED=$(git diff --exit-code ~/MangoInstantMessenger.github.io)
+        if [ "$FILE_CHANGED" -eq 1 ] ;
         then
         cd ~/MangoInstantMessenger.github.io
         git config --global user.name '${{ secrets.GH_NAME }}'

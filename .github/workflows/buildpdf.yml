@@ -33,14 +33,13 @@ jobs:
         git clone https://${{ secrets.GH_ACCESS_TOKEN }}@github.com/MangoInstantMessenger/MangoInstantMessenger.github.io.git
         echo "Permission to folder"
         chmod ugo+rwx MangoInstantMessenger.github.io
-#        chmod ugo+rwx out
         echo "current dir"
         ls -l
         echo "src dir"
         ls -l src
         echo "out dir"
         ls -l out
-        cp ~/main.pdf > MangoInstantMessenger.github.io
+        ~/main.pdf > MangoInstantMessenger.github.io/main.pdf
     - name: Commit report
       run: |
         cd MangoInstantMessenger.github.io

@@ -24,21 +24,26 @@ to be considered and implemented, the next section is about.
 \textbf{Diffie–-Hellman key exchange.} Diffie--Hellman protocol is a method of asymmetric exchange
 of the cryptographic keys for a group of two or more participants,
 developed in 1976 by cryptographers Ralph Merkle, Whitfield Diffie and Martin Hellman.
-In contrast to symmetric key exchange, the Diffie–-Hellman protocol eliminates the direct transfer of the shared secret.
-between participants, each participant computes a shared secret with its own private-public key pair.
+In contrast to symmetric key exchange, the Diffie–-Hellman protocol eliminates the direct transfer of the shared secret
+between the participants, each participant computes a shared secret with its own private-public key pair.
 The Diffie–-Hellman protocol is based on a one-way function of the form
 
 \[
     A = G ^ a \bmod P,
 \]
 
-where $A$ is the user's public key, $a$ is the user's private key, $P$ is modulus, which is at least 2048 bit prime,
-$G$ is primitive root modulo $P$.
+where $A$ is the user's public key,
+$a$ is the user's private key,
+$P=2Q+1$ is modulus, such that 2048 bits safe-prime because $Q$ is also prime,
+$G$ is generator such that $G$ is primitive root modulo $P$.
+We say that $G$ is primitive root modulo $P$ if for each $1 \leq a \leq P - 1$ the $A = G ^ a \bmod P$
+is unique and belong to the set $\{1, 2, \dots, P-1\}$.
+The period of such cyclic group $\mathbb{Z}_{P}$ is $P-1$ then.
 
 Thus, the safety of the Diffie--Hellman protocol is based on the discrete logarithm problem, which is unsolvable
 in polynomial time if the constants $G$ and $P$ are chosen correctly.
-Graphically, the essence of the Diffie–-Hellman protocol can be expressed through the analogy with mixing paints,
-as shown in image below
+Graphically, the flow of the Diffie Hellman protocol can be expressed through the
+analogy with mixing paints, as below picture shows
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Pictures/07_Diffie-Hellman_keyexchange_concept_diagram}

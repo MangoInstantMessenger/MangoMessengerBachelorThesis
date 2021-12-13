@@ -40,7 +40,7 @@ jobs:
         ls -l src
         echo "out dir"
         ls -l out
-        sudo cp ~/main.pdf > MangoInstantMessenger.github.io
+        cp ~/main.pdf > MangoInstantMessenger.github.io
     - name: Commit report
       run: |
         cd MangoInstantMessenger.github.io

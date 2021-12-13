@@ -1,0 +1,76 @@
+\textbf{Security aspects of communication model.} We would like to start our thesis with a general description of the
+communication structure between an actors among with possible security and user privacy vulnerabilities.
+Communication model of the instant messaging system is a quite large topic since it implies various protocols, approaches etc,
+therefore current discussion asserts the communication over HTTP protocol via REST API\@ using JSON data format.
+Since that main task of this thesis is to implement software components that meet the specified security requirements,
+namely: \textit{Web Client, Web API (Application Programming Interface), Mobile client, Desktop client} which are
+considered to be the actors we focus our attention to.
+The following diagram describes the basic concept of the system and conveys the relationships between the
+actors mentioned above.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Pictures/01_Software_modules_communication_diagram}
+    \caption{Software modules communication diagram.}\label{fig:figure6}
+\end{figure}
+
+Hence, communication between software components is organised as follows\\
+
+\textit{Browser -- Web Application -- Web API -- Database communication model}
+\begin{itemize}
+    \item Browser downloads application static files from Web Application server.
+    \item Browser sends a request to Web API\@.
+    \item Web API checks access rights, executes business logic referring to the Database.
+    \item Web API responds to the Browser.
+    \item Browser user interface is being updated.
+\end{itemize}
+
+\textit{Desktop Client -- Web API -- Database communication model}
+\begin{itemize}
+    \item Desktop Client sends a request to update the user interface.
+    \item Web API checks access rights, executes business logic referring to the Database.
+    \item Web API responds to Desktop Client.
+    \item Desktop Client's user interface updated as per response from the Web API\@.
+\end{itemize}
+
+\textit{Mobile Client -- Web API -- Database communication model}
+\begin{itemize}
+    \item Mobile Client sends a request to update the user interface.
+    \item Web API checks access rights, executes business logic referring to the Database.
+    \item Web API responds to the desktop Mobile Client.
+    \item Mobile Client's user interface updated as per response from the Web API\@.
+\end{itemize}
+
+However, such communication models are under possible security vulnerabilities, most of which are already fixed
+\textit{'out of the box'} in modern web frameworks, so we discuss these are requiring additional attention.
+The first vulnerability that comes to mind is phishing.
+An attacker could launch his own web application consuming our web API, therefore it is possible to log user actions
+and get access to personal data or credentials.
+Phishing attack could be mitigated using a properly configured Cross-Origin Resource Sharing policy that will restrict
+the queries from the domains that do not meet the policy.
+Like, for instance, it is done in our project
+
+\input{Files/cors-code.tex}
+
+The next potential vulnerability is improper TLS-SSL certificate configuration or usage of self-signed certificate,
+to eliminate the vulnerability of the improper TLS certificate, it is recommended to follow the instructions and
+\href{https://www.ssl.com/guide/ssl-best-practices/}{best practices}.
+
+In addition, a potential vulnerability lies in the possibility of SQL injection.
+The SQL injection vulnerability is eliminated by using parameters in string literals of the SQL query.
+Also, it is necessary to pay attention to the configuration used ORM\@.
+
+There is another danger that attacker may receive information about the application infrastructure through the error messages in the
+response from the server, thus, it is recommended to use the unified \href{https://datatracker.ietf.org/doc/html/rfc7231}{response format}
+from the server, which, in case of an error, will not contain the details of the error.
+
+In order to provide proper authorization, it is recommended to use the roles for users in order to restrict
+unauthorized access to the resources available only to administrators.
+
+The last, but not least possible vulnerability -- is a famous worm and virus spreading problem.
+Obviously, it is not a problem to get rid of the worms in local network with just a few devices connected,
+however worms are really dangerous for the huge networks, like messenger considered to be.
+The fight against the worms generally dependent on the end-user's security best practices education (at least user should
+not use the public unprotected wi-fi networks) and firewall settings of the network.
+However, the spread of viruses may be mitigated by the certain validation rules upon file upload, like for instance
+\input{Files/fluent-validator-code}

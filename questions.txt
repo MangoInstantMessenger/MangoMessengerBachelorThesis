@@ -1,8 +1,0 @@
-1) What is JWT audience? https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.3
-2) What is JWT issuer? https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.3
-3) What SSL stands for? Secure Sockets Layer
-4) What SSH stands for? Secure Shell
-5) What TLS stands for? Transport Layer Security
-6) What is claim?
-7) What is principal?
-8) What RSA stands for? Rivest, Shamir, and Adleman

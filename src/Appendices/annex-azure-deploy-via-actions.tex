@@ -85,6 +85,18 @@ the code is as follows
     \end{spverbatim}
 \end{center}
 Remains only to create service inside VM and copy code there
+
 \begin{itemize}
     \item \texttt{sudo vim /etc/systemd/system/mangoback.service}
 \end{itemize}
+
+To start service use
+
+\begin{center}
+    \begin{spverbatim}
+        sudo systemctl start mangoback
+    \end{spverbatim}
+\end{center}
+
+Right after the call, migrations should be applied to database.
+Next, we have to configure SSL certificate for our server.

@@ -1,0 +1,27 @@
+\chapter{Azure deployment via GitHub Actions}\label{ch:azure-deloyment-via-github-actions}
+In this attachment deployment process to Azure via GitHub pages is described.
+
+
+\section{Setting up Azure environment}\label{sec:setting-up-azure-environment}
+As for student, Azure offers a lot of 100USD limited "free" opportunities,
+provided that we won't pay in the future.
+We require only a few things: Ubuntu based virtual machine, database, static IP address.
+Azure provides such discounts for the
+\begin{itemize}
+    \item Virtual machine \texttt{Standard B1s (1 vcpu, 1 GiB memory)}
+    \item Database \texttt{Burstable, B1ms, 1 vCores, 2 GiB RAM, 32 GiB storage}
+\end{itemize}
+And that's enough for our purposes.
+Approximate cost per month for \texttt{Standard B1s (1 vcpu, 1 GiB memory)} is 8,25 USD/month as for December 2021.
+Let's create \texttt{Standard B1s (1 vcpu, 1 GiB memory)} virtual machine with the following parameters
+\begin{itemize}
+    \item VM name: MangoMessengerWSBProject-Backend
+    \item Region: (Europe) North Europe
+    \item Image: Ubuntu Server LTS 20.04 - Gen2
+    \item Authentication type: SSH public key, paste key to the field
+    \item Public inbound ports: 80, 443, 22
+    \item OS disk type: Standard SSD
+    \item IP Address: SKU -- Basic, Assignment -- Static
+    \item Azure Security Center, Enable basic plan for free: disabled
+    \item Monitoring, Boots diagnostics: disabled
+\end{itemize}

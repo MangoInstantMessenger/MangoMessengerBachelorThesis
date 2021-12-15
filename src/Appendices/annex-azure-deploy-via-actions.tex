@@ -57,7 +57,7 @@ the code is as follows
 
 \begin{center}
     \begin{spverbatim}
-        [Unit]
+    [Unit]
         Description=Mango Messenger Backend Service
         After=network.target
 
@@ -99,4 +99,58 @@ To start service use
 \end{center}
 
 Right after the call, migrations should be applied to database.
+
+Let's validate the server response via get request using curl
+
+\begin{center}
+    \begin{spverbatim}
+        curl -I http://localhost:8080/swagger/index.html
+    \end{spverbatim}
+\end{center}
+
+To expose the server outside, we have to setup nginx server following way
+
+\begin{center}
+    %! language = Latex
+    \begin{spverbatim}
+        server {
+            listen 80;
+            server_name SERVER_IP;
+
+            location / {
+                include proxy_params;
+                proxy_pass http://127.0.0.1:8080;
+            }
+
+            location /swagger {
+                include proxy_params;
+                proxy_pass http://127.0.0.1:8080;
+            }
+
+            location /api {
+                include proxy_params;
+                proxy_pass http://127.0.0.1:8080;
+            }
+
+            # used in realtime communication
+            location /notify {
+                proxy_pass http://127.0.0.1:8080;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+                proxy_set_header Host $host;
+                proxy_cache_bypass $http_upgrade;
+            }
+        }
+    \end{spverbatim}
+\end{center}
+
+However, the data transmission won't be secured.
 Next, we have to configure SSL certificate for our server.
+Install the packages
+\begin{itemize}
+    \item \texttt{sudo apt update -y}
+    \item \texttt{sudo apt install -y python3 python3-pip python3-dev build-essential}
+    \item \texttt{sudo pip3 install --upgrade pip}
+    \item \texttt{sudo pip3 install certbot}
+\end{itemize}

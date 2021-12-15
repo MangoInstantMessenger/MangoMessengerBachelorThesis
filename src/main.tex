@@ -39,13 +39,13 @@
 
 
 % adds header image to each page
-\AddToShipoutPictureBG{
-    \AtPageUpperLeft{
-        \raisebox{-2\height}{
-            \hspace*{6.5cm}\includegraphics[height=1.2cm]{Pictures/wsb_logo}
-        }
-    }
-}
+%\AddToShipoutPictureBG{
+%    \AtPageUpperLeft{
+%        \raisebox{-2\height}{
+%            \hspace*{6.5cm}\includegraphics[height=1.2cm]{Pictures/wsb_logo}
+%        }
+%    }
+%}
 %----------------------------------------------------------------------------------------
 %	MARGIN SETTINGS
 %----------------------------------------------------------------------------------------
@@ -326,11 +326,9 @@
 % Include the appendices of the thesis as separate files from the Appendices folder
 % Uncomment the lines as you write the Appendices
 
-    %\include{Appendices/04_WebApi_Documentation}
-    \include{Appendices/annex-system-requirements}
-    \include{Files/non-functional-requirements}
-    \include{Appendices/RSA_comments}
-%\include{Appendices/AppendixB}
-%\include{Appendices/AppendixC}
+    \include{Appendices/annex-functional-requirements}
+    \include{Appendices/annex-non-functional-requirements}
+    \include{Appendices/annex-rsa-algorithm}
+    \include{Appendices/annex-azure-deploy-via-actions}
 
 \end{document}

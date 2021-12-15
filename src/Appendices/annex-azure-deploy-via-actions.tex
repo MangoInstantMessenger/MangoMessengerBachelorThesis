@@ -1,0 +1,156 @@
+\chapter{Azure deployment via GitHub Actions}\label{ch:azure-deloyment-via-github-actions}
+In this attachment deployment process to Azure via GitHub pages is described.
+
+
+\section{Creating Database}\label{sec:creating-database}
+
+
+\section{Setting up Azure Virtual Machine}\label{sec:setting-up-azure-environment}
+As for student, Azure offers a lot of 100USD limited "free" opportunities,
+provided that we won't pay in the future.
+We require only a few things: Ubuntu based virtual machine, database, static IP address.
+Azure provides such discounts for the
+\begin{itemize}
+    \item Virtual machine \texttt{Standard B1s (1 vcpu, 1 GiB memory)}
+    \item Database \texttt{Burstable, B1ms, 1 vCores, 2 GiB RAM, 32 GiB storage}
+\end{itemize}
+And that's enough for our purposes.
+Approximate cost per month for \texttt{Standard B1s (1 vcpu, 1 GiB memory)} is 8,25 USD/month as for December 2021.
+Let's create \texttt{Standard B1s (1 vcpu, 1 GiB memory)} virtual machine with the following parameters
+\begin{itemize}
+    \item VM name: MangoMessengerWSBProject-Backend
+    \item Region: (Europe) North Europe
+    \item Image: Ubuntu Server LTS 20.04 - Gen2
+    \item Authentication type: SSH public key, paste key to the field
+    \item Public inbound ports: 80, 443, 22
+    \item OS disk type: Standard SSD
+    \item IP Address: SKU -- Basic, Assignment -- Static
+    \item Azure Security Center, Enable basic plan for free: disabled
+    \item Monitoring, Boots diagnostics: disabled
+\end{itemize}
+Next, let's connect to our recently created VM via SSH, we use WSL2 Ubuntu 20.04 under Windows.
+The command to connect as follows
+
+\begin{spverbatim}
+    ssh -i /home/pkolosov/.ssh/id_rsa razumovsky_r@IP_ADDRESS
+\end{spverbatim}
+
+Therefore, we have connected successfully.
+Let's install \texttt{nginx} server following commands under SSH connection on target VM
+\begin{itemize}
+    \item \texttt{sudo apt update -y}
+    \item \texttt{sudo apt install -y nginx build-essential}
+\end{itemize}
+Now let's build our backend project, provided we work under WSL2 Ubuntu 20.04.
+Prior to the build, we have to install dotnet build tools, see
+\href{https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu}{MSDN}.
+To build project and copy project to remote server,
+navigate to its folder under WSL, then execute
+
+\begin{itemize}
+    \item \texttt{dotnet publish "Project.csproj" -r linux-x64 -o /build/path}
+    \item \texttt{scp -r -i "privateKey/path" "build/path" user@IP:"remote/path"}
+\end{itemize}
+
+Now we have to configure the service, which will be responsible to run application,
+the code is as follows
+
+\begin{center}
+    \begin{spverbatim}
+    [Unit]
+        Description=Mango Messenger Backend Service
+        After=network.target
+
+        [Service]
+        Environment=ASPNETCORE_URLS=http://+:8080/
+        Environment=BACKEND_ADDRESS="https://backend.address/"
+        Environment=DATABASE_URL="connection string"
+        Environment=EMAIL_SENDER_ADDRESS="notifications email"
+        Environment=EMAIL_SENDER_PASSWORD="password"
+        Environment=FRONTEND_ADDRESS="https://frontend.address/"
+        Environment=JWT_LIFETIME="5"
+        Environment=MANGO_AUDIENCE="https://backend.address/"
+        Environment=MANGO_ISSUER="https://frontend.address/"
+        Environment=MANGO_TOKEN_KEY="token sign secret"
+        Environment=REFRESH_TOKEN_LIFETIME="token lifetime integer"
+        Environment=SEED_PASSWORD="seed users password"
+        Type=simple
+        WorkingDirectory=/home/razumovsky_r/mango-backend
+        ExecStart=/home/razumovsky_r/mango-backend/MangoAPI.Presentation
+        User=razumovsky_r
+        Group=razumovsky_r
+
+        [Install]
+        WantedBy=multi-user.target
+    \end{spverbatim}
+\end{center}
+Remains only to create service inside VM and copy code there
+
+\begin{itemize}
+    \item \texttt{sudo vim /etc/systemd/system/mangoback.service}
+\end{itemize}
+
+To start service use
+
+\begin{center}
+    \begin{spverbatim}
+        sudo systemctl start mangoback
+    \end{spverbatim}
+\end{center}
+
+Right after the call, migrations should be applied to database.
+
+Let's validate the server response via get request using curl
+
+\begin{center}
+    \begin{spverbatim}
+        curl -I http://localhost:8080/swagger/index.html
+    \end{spverbatim}
+\end{center}
+
+To expose the server outside, we have to setup nginx server following way
+
+\begin{center}
+    %! language = Latex
+    \begin{spverbatim}
+        server {
+            listen 80;
+            server_name SERVER_IP;
+
+            location / {
+                include proxy_params;
+                proxy_pass http://127.0.0.1:8080;
+            }
+
+            location /swagger {
+                include proxy_params;
+                proxy_pass http://127.0.0.1:8080;
+            }
+
+            location /api {
+                include proxy_params;
+                proxy_pass http://127.0.0.1:8080;
+            }
+
+            # used in realtime communication
+            location /notify {
+                proxy_pass http://127.0.0.1:8080;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+                proxy_set_header Host $host;
+                proxy_cache_bypass $http_upgrade;
+            }
+        }
+    \end{spverbatim}
+\end{center}
+
+However, the data transmission won't be secured.
+Next, we have to configure SSL certificate for our server.
+Install the packages
+\begin{itemize}
+    \item \texttt{sudo apt update -y}
+    \item \texttt{sudo apt install -y python3 python3-pip python3-dev build-essential}
+    \item \texttt{sudo pip3 install --upgrade pip}
+    \item \texttt{sudo pip3 install certbot}
+\end{itemize}

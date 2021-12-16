@@ -3,7 +3,7 @@ communication structure between an actors among with possible security and user 
 Communication model of the instant messaging system is a quite large topic since it implies various protocols, approaches etc,
 therefore current discussion asserts the communication over HTTP protocol via REST API\@ using JSON data format.
 Since that main task of this thesis is to implement software components that meet the specified security requirements,
-namely: \textit{Web Client, Web API (Application Programming Interface), Mobile client, Desktop client} which are
+namely: \textit{Web Client, Web API, Mobile client, Desktop client} which are
 considered to be the actors we focus our attention to.
 The following diagram describes the basic concept of the system and conveys the relationships between the
 actors mentioned above.
@@ -43,31 +43,34 @@ Hence, communication between software components is organised as follows\\
 
 However, such communication models are under possible security vulnerabilities, most of which are already fixed
 \textit{'out of the box'} in modern web frameworks, so we discuss these are requiring additional attention.
-The first vulnerability that comes to mind is phishing.
+The first vulnerability that comes to mind is phishing [\cite{dhamija2006phishing}].
 An attacker could launch his own web application consuming our web API, therefore it is possible to log user actions
 and get access to personal data or credentials.
-Phishing attack could be mitigated using a properly configured Cross-Origin Resource Sharing policy that will restrict
-the queries from the domains that do not meet the policy.
+Phishing attack could be mitigated using a properly configured Cross-Origin Resource Sharing [\cite{gibbinscross}]
+policy that will restrict the queries from the domains that do not meet the policy.
 Like, for instance, it is done in our project
 
 \input{Files/cors-code.tex}
 
-The next potential vulnerability is improper TLS-SSL certificate configuration or usage of self-signed certificate,
-to eliminate the vulnerability of the improper TLS certificate, it is recommended to follow the instructions and
+The next potential vulnerability is improper SSL certificate configuration [\cite{georgiev2012most, el2012most}]
+or usage of self-signed certificate [\cite{kappenberger2012true}],
+to eliminate the vulnerability of the improper SSL certificate, it is recommended to follow the instructions and
 \href{https://www.ssl.com/guide/ssl-best-practices/}{best practices}.
 
-In addition, a potential vulnerability lies in the possibility of SQL injection.
+In addition, a potential vulnerability lies in the possibility of SQL injection [\cite{halfond2006classification}].
 The SQL injection vulnerability is eliminated by using parameters in string literals of the SQL query.
-Also, it is necessary to pay attention to the configuration used ORM\@.
+Also, it is necessary to pay attention to the configuration used ORM [\cite{tiwari2015study}].
 
-There is another danger that attacker may receive information about the application infrastructure through the error messages in the
-response from the server, thus, it is recommended to use the unified \href{https://datatracker.ietf.org/doc/html/rfc7231}{response format}
-from the server, which, in case of an error, will not contain the details of the error.
+There is another danger that attacker may receive information about the application infrastructure
+through the error messages in the response from the server, thus, it is recommended to use the unified
+\href{https://datatracker.ietf.org/doc/html/rfc7231}{response format} according to
+RFC 7231-Hypertext Transfer Protocol [\cite{fielding2014rfc}].
+Therefore, in case of an error response will not contain any details.
 
 In order to provide proper authorization, it is recommended to use the roles for users in order to restrict
 unauthorized access to the resources available only to administrators.
 
-The last, but not least possible vulnerability -- is a famous worm and virus spreading problem.
+The last, but not least possible vulnerability -- is a famous worm and virus spreading problem [\cite{mannan2005instant}].
 Obviously, it is not a problem to get rid of the worms in local network with just a few devices connected,
 however worms are really dangerous for the huge networks, like messenger considered to be.
 The fight against the worms generally dependent on the end-user's security best practices education (at least user should

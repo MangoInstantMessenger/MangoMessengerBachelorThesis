@@ -52,11 +52,12 @@ Like, for instance, it is done in our project
 
 \input{Files/cors-code.tex}
 
-The next potential vulnerability is improper TLS-SSL certificate configuration or usage of self-signed certificate,
-to eliminate the vulnerability of the improper TLS certificate, it is recommended to follow the instructions and
+The next potential vulnerability is improper SSL certificate configuration [\cite{georgiev2012most, el2012most}]
+or usage of self-signed certificate [\cite{kappenberger2012true}],
+to eliminate the vulnerability of the improper SSL certificate, it is recommended to follow the instructions and
 \href{https://www.ssl.com/guide/ssl-best-practices/}{best practices}.
 
-In addition, a potential vulnerability lies in the possibility of SQL injection.
+In addition, a potential vulnerability lies in the possibility of SQL injection [\cite{halfond2006classification}].
 The SQL injection vulnerability is eliminated by using parameters in string literals of the SQL query.
 Also, it is necessary to pay attention to the configuration used ORM\@.
 

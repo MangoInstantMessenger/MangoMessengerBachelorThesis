@@ -146,6 +146,41 @@ To expose the server outside, we have to setup nginx server following way
 \end{center}
 
 However, the data transmission won't be secured.
+Prior to that, it is necessary to attach a domain name to the IP address of our server.
+Continue in cloudflare, provided that domain is already exists.
+For instance, our domain name is \texttt{domain.example.com}, then \texttt{nginx}
+configuration is as follows
+\begin{center}
+    \begin{spverbatim}
+        server {
+            server_name domain.example.com;
+
+            location / {
+                include proxy_params;
+                proxy_pass http://127.0.0.1:8080;
+            }
+
+            location /swagger {
+                include proxy_params;
+                proxy_pass http://127.0.0.1:8080;
+            }
+
+            location /api {
+                include proxy_params;
+                proxy_pass http://127.0.0.1:8080;
+            }
+
+            location /notify {
+                proxy_pass http://127.0.0.1:8080;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+                proxy_set_header Host $host;
+                proxy_cache_bypass $http_upgrade;
+            }
+        }
+    \end{spverbatim}
+\end{center}
 Next, we have to configure SSL certificate for our server.
 Install the packages
 \begin{itemize}

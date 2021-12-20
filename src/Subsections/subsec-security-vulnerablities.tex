@@ -54,8 +54,8 @@ Like, for instance, it is done in our project
 
 The next potential vulnerability is improper SSL certificate configuration [\cite{georgiev2012most, el2012most}]
 or usage of self-signed certificate [\cite{kappenberger2012true}],
-to eliminate the vulnerability of the improper SSL certificate, it is recommended to follow the instructions and
-\href{https://www.ssl.com/guide/ssl-best-practices/}{best practices}.
+to eliminate the vulnerability of the improper SSL certificate, it is recommended to follow the instructions
+and best practices [\cite{rapp2021web}].
 
 In addition, a potential vulnerability lies in the possibility of SQL injection [\cite{halfond2006classification}].
 The SQL injection vulnerability is eliminated by using parameters in string literals of the SQL query.
@@ -63,14 +63,13 @@ Also, it is necessary to pay attention to the configuration used ORM [\cite{tiwa
 
 There is another danger that attacker may receive information about the application infrastructure
 through the error messages in the response from the server, thus, it is recommended to use the unified
-\href{https://datatracker.ietf.org/doc/html/rfc7231}{response format} according to
-RFC 7231-Hypertext Transfer Protocol [\cite{fielding2014rfc}].
+response format according to RFC 7231-Hypertext Transfer Protocol [\cite{fielding2014rfc}].
 Therefore, in case of an error response will not contain any details.
 
 In order to provide proper authorization, it is recommended to use the roles for users in order to restrict
 unauthorized access to the resources available only to administrators.
 
-The last, but not least possible vulnerability -- is a famous worm and virus spreading problem [\cite{mannan2005instant}].
+The last, but not the least possible vulnerability -- is a famous worm and virus spreading problem [\cite{mannan2005instant}].
 Obviously, it is not a problem to get rid of the worms in local network with just a few devices connected,
 however worms are really dangerous for the huge networks, like messenger considered to be.
 The fight against the worms generally dependent on the end-user's security best practices education (at least user should

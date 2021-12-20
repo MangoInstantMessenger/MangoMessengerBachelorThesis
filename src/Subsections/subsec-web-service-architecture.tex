@@ -5,17 +5,14 @@ developers to create flexible and reusable applications.
 However, during the implementation of monolith it is very important to avoid the cases of crucial over-engineering
 of the system that leads to useless complication of the code base.
 For the developers, it is a vital point to follow the KISS [\cite{alwin2016kiss}] and YAGNI [\cite{da2018evolution}]
-software development principles in order not to reach
-\href{https://github.com/smartstore/SmartStoreNET/blob/4.x/src/Presentation/SmartStore.Web/Controllers/CatalogHelper.cs}
-{thousands lines}
-of code in a single class.
+software development principles in order not to reach thousands lines of code in a single class.
 
 One would suggest to use nowadays popular Microservices Architecture, thinking about scalability [\cite{brataas2004exploring}],
 an ability of the system to handle large numbers of users distributed over geographically large areas without
 notably affecting the overall performance of the system.
 However, the effect of Microservices is being felt only for quite large and complex systems,
 not the case of our yet simple application.
-According to \href{https://martinfowler.com/bliki/MonolithFirst.html}{Martin Fowler},
+According to Martin Fowler [\cite{fowler2015monolith}],
 \begin{quote}
     \textit{you shouldn't start a new project with microservices, even if you're sure your application will be big enough to
     make it worthwhile.}
@@ -28,8 +25,7 @@ Following plot demonstrates the relation between the complexity and profits betw
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Pictures/02_Monolith_and_Microservices_complexity}
-    \caption{Relation between system complexity and architectures.
-    Source: \href{https://martinfowler.com/bliki/MicroservicePremium.html}{Martin Fowler.}}
+    \caption{Relation between system complexity and architectures [\cite{fowler2015microsevices}].}
     \label{fig:monolith_vs_microservice}
 \end{figure}
 
@@ -106,8 +102,7 @@ Schematically, the service entity is as follows
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Pictures/04_Service_entity_concept_diagram}
-    \caption{Service entity concept diagram.
-    Source: \href{https://martinfowler.com/bliki/CQRS.html}{Martin Fowler}.}\label{fig:figure9}
+    \caption{Service entity concept diagram [\cite{fowler2011cqrs}].}\label{fig:figure9}
 \end{figure}
 Where the steps are
 \begin{enumerate}
@@ -139,8 +134,7 @@ CQRS is a pattern that first described by Greg Young [\cite{young2010cqrs}] and 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Pictures/05_CQRS_concept_diagram}
-    \caption{CQRS concept diagram.
-    Source: \href{https://martinfowler.com/bliki/CQRS.html}{Martin Fowler}.}
+    \caption{CQRS concept diagram [\cite{fowler2011cqrs}].}
     \label{fig:figure}
 \end{figure}
 

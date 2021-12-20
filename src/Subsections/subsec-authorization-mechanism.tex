@@ -76,14 +76,14 @@ Let's discuss each part separately.
         \texttt{exp} stands for expiration time,
         \texttt{sub} stands for subject,
         \texttt{aud} stands for audience,
-        and \href{https://tools.ietf.org/html/rfc7519#section-4.1}{others}.
+        and others at section 4.1 of [\cite{jones2015rfc}].
         The claim names are only three characters long to maintain the compactness of the JWT\@.
         \item Public claims.
         These claims can be defined freely.
-        In order to avoid collisions public claims should be defined in the
-        \href{https://www.iana.org/assignments/jwt/jwt.xhtml}{IANA JSON Web Token Registry}
+        In order to avoid collisions public claims should be defined in the IANA JSON Web Token Registry
         or to be defined in a form of URI which contains a collision resistant namespace.
-        \item Private claims. These claims are the claims which can be created manually in order to share
+        \item Private claims.
+        These claims are the claims which can be created manually in order to share
         the information between the parties.
     \end{itemize}
     An example payload could be:

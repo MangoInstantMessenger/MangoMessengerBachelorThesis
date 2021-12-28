@@ -1,5 +1,28 @@
-End-to-end encryption is an encryption such that the only communicating parties
-are able to decrypt the data.
+Historically, the process of encryption is considered to be symmetric one.
+It means that prior the communication, the parties conclude on the common secret key to be used in
+an encryption and decryption.
+This process is similar to the sharing keys first, then sharing the locked chest with the message.
+Such approach is highly cost since it requires to share the defined keys between each party taking place in
+secured communication.
+Much more simpler is to think about secured communication channel in terms of asymmetric encryption.
+The real life example would be
+\begin{center}
+    \begin{quote}
+        \textit{Alice shares with all the actors an opened lock, but keeps the key with herself.}
+    \end{quote}
+\end{center}
+So that Bob receives an opened lock, writes letter to Alice, puts letter to the chest, locks the chest with received
+from Alice lock.
+This way only Alice would be able to open the chest and to read the letter.
+This is an idea of the asymmetric encryption.
+However, such a simple communication concept sometimes requires complex number theory approach.
+A concept of opened lock may be interpreted in terms of one-way functions.
+One way function is the function that is easy to compute on every input, but hard to invert given the image of
+a random input.
+Thus, it is much simpler to close the lock without key, but very difficult to open lock combining various
+keys.
+
+End-to-end encryption is an asymmetric encryption such that the only communicating parties are able to decrypt the data.
 It means that even system administrators are not able to decrypt the messages transmitted between parties
 via their communication channel.
 End-to-end encryption can be reached via numerous approaches.
@@ -13,11 +36,10 @@ Generally, there are two ways to implement E2E encryption
     For instance, Diffie--Hellman key exchange and AES256 encryption using common secret.
 \end{itemize}
 The most important aspect here is to securely store the secrets on the user's client application.
-Due to storage issues, it doesn't make sense to implement E2E encryption for web
-and desktop clients, like it is done in nowadays popular Telegram Messenger
-[\cite{job2015modified,suvsanka2017security,lee2017security}].
-Telegram uses the huge and heavy \texttt{MTProto 2.0} cryptographic protocol, based on DH key exchange and further AES256
-symmetric encryption.
+Looking to the Telegram example, we can conclude that it does not make sense to implement end-to-end encryption for web
+and desktop clients [\cite{job2015modified,suvsanka2017security,lee2017security}], due to the storage security issues.
+Telegram uses the huge and heavy \texttt{MTProto 2.0} cryptographic protocol based on Diffie–-Hellman key exchange and
+further AES256 symmetric encryption.
 According to the project concerns, the E2E encryption via Diffie--Hellman key exchange and AES256
 to be considered and implemented, the next section is about.
 

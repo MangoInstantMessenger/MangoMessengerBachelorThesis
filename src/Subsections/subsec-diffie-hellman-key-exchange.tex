@@ -28,9 +28,9 @@ In contrast to symmetric key exchange, the Diffie–-Hellman protocol eliminates
 between the participants, each participant computes a shared secret with its own private-public key pair.
 The Diffie–-Hellman protocol is based on a one-way function of the form
 
-\[
-    A = G ^ a \bmod P,
-\]
+\begin{equation}
+    A = G ^ a \bmod P \label{eq:equation}
+\end{equation}
 
 where $A$ is the user's public key,
 $a$ is the user's private key,
@@ -65,10 +65,10 @@ To summarize, the flow of Diffie–-Hellman key exchange is as follows
     \item Alice computes common secret $s = B^a \bmod P$.
     \item Bob computes common secret $s = A^b \bmod P$.
     \item Alice and Bob have arrived to the same value
-    \begin{eqnarray*}
+    \begin{eqnarray}
         A^b \bmod P = G^{ab} \bmod P \\
         B^a \bmod P = G^{ba} \bmod P
-    \end{eqnarray*}
+    \end{eqnarray}
 \end{enumerate}
 
 \textbf{Implementation.} Although, the idea of DH key exchange looks quite simple, some remarks on the concrete

@@ -1,4 +1,4 @@
-\textbf{Motivation.} Implementing the instant messenger system, we consider applying a well-known N-tier
+Implementing the instant messenger system, we consider applying a well-known N-tier
 Monolithic Architecture [\cite{bucchiarone2018monolithic}], which provides a time-proven model that allows software
 developers to create flexible and reusable applications.
 
@@ -97,12 +97,14 @@ to the database without any bounded context.
 Although, the SOLID rules are very powerful in solving designated code issues, it is necessary to apply them very carefully,
 since that most of them require high level of abstractions, which increases in size the code base and complicates the
 solution.
-Do not overcomplicate the solution without any reason following \textit{Open-Closed Principle}.
+Do not overcomplicate the solution blindly following without any reason for instance \textit{Open-Closed principle}
+or \textit{Dependency inversion principle} from SOLID\@.
+These two principles require high abstraction layers for each service entity, keep in mind that you are not going to change
+data access layer provider every day, however, the code base becomes more complex and abstract.
 Schematically, the service entity is as follows
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{Pictures/04_Service_entity_concept_diagram}
-    \caption{Service entity concept diagram. Source: [\cite{fowler2011cqrs}].}\label{fig:figure9}
+    \includegraphics[width=1\textwidth]{Pictures/04_Service_entity_concept_diagram}~\caption{Service entity concept diagram. Source: [\cite{fowler2011cqrs}].}\label{fig:figure9}
 \end{figure}
 Where the steps are
 \begin{enumerate}
@@ -116,15 +118,15 @@ Where the steps are
 
 To minimize the natural disadvantages of the monolithic architecture like complexity and high tight coupling of the components
 we have to recall the design patterns [\cite{rising1998design}].
-In particular, the mediator pattern helps to decouple the components.
-Mediator -- is a behavioral design pattern [\cite{rasche2016building}] that allows the communication between two entities,
-such that entities doesn't know each other.
+In particular, the Mediator pattern helps us to decouple the software components from each other.
+Generally, Mediator is a behavioral design pattern [\cite{rasche2016building}] that allows the communication between two entities,
+such way that entities do not know each other.
 Therefore, the program components depend only on a single mediator instance instead of being coupled to multiple of their
 colleagues.
-In context of .NET platform there are many implementations of the Mediator, the most widely known and used is the
-\href{https://github.com/jbogard/MediatR}{MediatR}, which we use in our project.
+In context of the .NET platform, there are many implementations of the Mediator pattern,
+the most widely known and used among them is the \texttt{MediatR} library which is used as well in our project.
 
-Another mindset we are going to use in order to minimize complexity and coupling of monolith is Command-Query
+Another principle we are going to follow in order to minimize complexity and coupling of monolith is Command-Query
 Responsibility Segregation (CQRS) principle.
 In brief, it stands that read (query) and write (command) requests should be segregated by their responsibilities.
 Using CQRS and Mediator together greatly simplifies the project structure and minimizes coupling between business
@@ -134,7 +136,7 @@ CQRS is a pattern that first described by Greg Young [\cite{young2010cqrs}] and 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Pictures/05_CQRS_concept_diagram}
-    \caption{CQRS concept diagram. Source: [\cite{fowler2011cqrs}].}
+    ~\caption{CQRS concept diagram. Source: [\cite{fowler2011cqrs}].}
     \label{fig:figure}
 \end{figure}
 

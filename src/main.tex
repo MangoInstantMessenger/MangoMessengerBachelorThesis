@@ -38,12 +38,16 @@
 \usepackage{amsfonts}
 \usepackage{listings}
 
+\usepackage{ragged2e}
+\justifying
+\linespread{1.25}
+
 
 % adds header image to each page
 \AddToShipoutPictureBG{
     \AtPageUpperLeft{
         \raisebox{-2\height}{
-            \hspace*{6.0cm}\includegraphics[height=1.2cm]{Pictures/wsb_logo}
+            \hspace*{6.8cm}\includegraphics[height=1.2cm]{Pictures/wsb_logo}
         }
     }
 }
@@ -53,12 +57,10 @@
 
 \geometry{
     paper=a4paper, % Change to letterpaper for US letter
-    inner=2.5cm, % Inner margin
-    outer=3.8cm, % Outer margin
-    bindingoffset=.5cm, % Binding offset
-    top=1.5cm, % Top margin
-    bottom=1.5cm, % Bottom margin
-    headheight = 3.5cm
+    top=3.5cm, % Top margin
+    bottom=0.95cm, % Bottom margin
+    left=3.5cm,
+    right=2.5cm
 %showframe, % Uncomment to show how the type block is set on the page
 }
 
@@ -329,7 +331,7 @@
 
     \include{Appendices/annex-functional-requirements}
     \include{Appendices/annex-non-functional-requirements}
-    \include{Appendices/annex-rsa-algorithm}
+%    \include{Appendices/annex-rsa-algorithm}
 %    \include{Appendices/annex-azure-deploy-via-actions}
 
 \end{document}

@@ -1,7 +1,7 @@
-\chapter{RSA Algorithm comments}\label{ch:rsa-algorithm-comments}
+\chapter*{RSA Algorithm comments}\label{ch:rsa-algorithm-comments}
 
 
-\section{One way functions}\label{sec:one-way-functions}
+\section*{One way functions}\label{sec:one-way-functions}
 One way function -- is a function that is easy to compute on every input, but
 hard to invert given the image of a random input.
 For instance, the function
@@ -11,7 +11,8 @@ For instance, the function
 where $e, N$ are public constants is one-awy function,
 because it is easy to compute $C$ given $m$, however it is hard to compute $m$ given $C$.
 
-\section{Euler's totient theorem}\label{sec:euler's-totient-theorem}
+
+\section*{Euler's totient theorem}\label{sec:euler's-totient-theorem}
 Given a number $N$ and its prime factorization $p_1^{e_1}\cdot p_2^{e_2} \cdots p_k^{e_k}$, then Euler's totient function
 $\phi(N)$ is defined as
 
@@ -41,7 +42,9 @@ If we multiply both parts by $M$, we get
 
 
 %! suppress = TooLargeSection
-\section{RSA Encryption algorithm}\label{sec:rsa-encryption-algorithm}
+
+
+\section*{RSA Encryption algorithm}\label{sec:rsa-encryption-algorithm}
 The RSA algorithm is named after Ron Rivest, Adi Shamir and Len Adleman, who invented it in 1977 [\cite{rivest1978method}].
 The basic technique was first discovered in 1973 by Clifford Cocks [\cite{cocks1973note}] of CESG (part of the British GCHQ)
 but this was a secret until 1997.
@@ -125,7 +128,7 @@ The following image demonstrates the concept of RSA approach
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Pictures/12_RSA_encryption_concept_diagram}
-    \caption{RSA algorithm concept diagram.}\label{fig:figure8}
+    ~\caption{RSA algorithm concept diagram. Source: [\cite{mango2021figma}].}\label{fig:figure8}
 \end{figure}
 To summarize, the process by the steps is as follows
 \begin{itemize}

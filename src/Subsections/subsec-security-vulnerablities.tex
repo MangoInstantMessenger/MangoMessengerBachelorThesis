@@ -1,4 +1,4 @@
-\textbf{Security aspects of communication model.} We would like to start our thesis with a general description of the
+We would like to start our thesis with a general description of the
 communication structure between an actors among with possible security and user privacy vulnerabilities.
 Communication model of the instant messaging system is a quite large topic since it implies various protocols, approaches etc,
 therefore current discussion asserts the communication over HTTP protocol via REST API\@ using JSON data format.
@@ -11,7 +11,7 @@ actors mentioned above.
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Pictures/01_Software_modules_communication_diagram}
-    \caption{Software modules communication diagram.}\label{fig:figure6}
+    ~\caption{Software modules communication diagram. Source: [\cite{mango2021figma}].}\label{fig:figure6}
 \end{figure}
 
 Hence, communication between software components is organised as follows\\
@@ -48,7 +48,7 @@ An attacker could launch his own web application consuming our web API, therefor
 and get access to personal data or credentials.
 Phishing attack could be mitigated using a properly configured Cross-Origin Resource Sharing [\cite{gibbinscross}]
 policy that will restrict the queries from the domains that do not meet the policy.
-Like, for instance, it is done in our project
+For instance, in our project the CORS configured as follows
 
 \input{Files/cors-code.tex}
 
@@ -74,5 +74,5 @@ Obviously, it is not a problem to get rid of the worms in local network with jus
 however worms are really dangerous for the huge networks, like messenger considered to be.
 The fight against the worms generally dependent on the end-user's security best practices education (at least user should
 not use the public unprotected wi-fi networks) and firewall settings of the network.
-However, the spread of viruses may be mitigated by the certain validation rules upon file upload, like for instance
+However, the spread of viruses may be mitigated by the certain validation rules upon file upload such as follows
 \input{Files/fluent-validator-code}

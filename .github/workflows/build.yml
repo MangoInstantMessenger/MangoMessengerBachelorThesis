@@ -27,9 +27,9 @@ jobs:
         with:
           name: PDF
           path: main.pdf
-      - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GH_ACCESS_TOKEN }}
+#      - uses: actions/checkout@v2
+#        with:
+#          token: ${{ secrets.GH_ACCESS_TOKEN }}
 #      - name: Clone repository and add document
 #        run: |
 #          git clone https://${{ secrets.GH_ACCESS_TOKEN }}@github.com/MangoInstantMessenger/MangoInstantMessenger.github.io.git ~/MangoInstantMessenger.github.io

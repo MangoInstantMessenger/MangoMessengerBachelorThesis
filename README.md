@@ -1,7 +1,7 @@
 # Mango Messenger Bachelor's Thesis
 
 [![Build PDF](https://github.com/kolosovpetro/MangoMessengerBachelorThesis/actions/workflows/build.yml/badge.svg)](https://github.com/MangoInstantMessenger/MangoMessengerBachelorThesis/actions/workflows/build.yml/badge.svg)
-[![Build and Deploy PDF](https://github.com/kolosovpetro/MangoMessengerBachelorThesis/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/MangoInstantMessenger/MangoMessengerBachelorThesis/actions/workflows/build-and-deploy.yml/badge.svg)
+[![Build and Deploy PDF](https://github.com/kolosovpetro/MangoMessengerBachelorThesis/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/kolosovpetro/MangoMessengerBachelorThesis/actions/workflows/build-and-deploy.yml/badge.svg)
 ![contributors count](https://img.shields.io/github/contributors/kolosovpetro/MangoMessengerBachelorThesis)
 
 ## Build

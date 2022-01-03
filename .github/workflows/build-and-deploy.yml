@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - THESIS-88
 
 jobs:
   build-resume:

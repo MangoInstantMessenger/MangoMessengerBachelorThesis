@@ -1,4 +1,28 @@
-\textbf{Motivation.} End-to-end encryption is an encryption such that the only communicating parties
+Historically, the process of encryption is considered to be symmetric one [\cite{bellare1997concrete}].
+It means that prior the communication, the parties conclude on the common secret key to be used in
+an encryption and decryption.
+This process is similar to the sharing keys first, then sharing the locked chest with the message.
+Such approach is highly cost since it requires to share the defined keys between each party taking place in
+secured communication.
+Much more simpler is to think about secured communication channel in terms of asymmetric encryption [\cite{simmons1979symmetric}].
+The real life example would be
+\begin{center}
+    \begin{quote}
+        \textit{Alice shares with all the actors an opened lock, but keeps the key with herself.}
+    \end{quote}
+\end{center}
+So that Bob receives an opened lock, writes letter to Alice, puts letter to the chest, locks the chest with received
+from Alice lock.
+This way only Alice would be able to open the chest and to read the letter.
+This is an idea of the asymmetric encryption.
+However, such a simple communication concept sometimes requires complex number theory approach.
+A concept of opened lock may be interpreted in terms of one-way functions [\cite{rompel1990one}].
+One way function is the function that is easy to compute on every input, but hard to invert given the image of
+a random input.
+Thus, it is much simpler to close the lock without key, but very difficult to open lock combining various
+keys.
+
+End-to-end encryption [\cite{schillinger2019end}] is an asymmetric encryption such that the only communicating parties
 are able to decrypt the data.
 It means that even system administrators are not able to decrypt the messages transmitted between parties
 via their communication channel.
@@ -7,30 +31,30 @@ Generally, there are two ways to implement E2E encryption
 \begin{itemize}
     \item Sharing public key to be used in encryption of the secret message, then encryption is done by the
     public key's owner, so-called asymmetric encryption.
+    Public key owner is able then to decrypt secret message.
     For example, RSA algorithm.
-    \item Asymmetric key exchange, where parties firstly exchanging the keys, then symmetrically encrypting
-    the transferred data.
+    \item Asymmetric key exchange where parties exchanging the keys first, then symmetrically encrypting
+    and decrypting the transferred data.
     For instance, Diffie--Hellman key exchange and AES256 encryption using common secret.
 \end{itemize}
 The most important aspect here is to securely store the secrets on the user's client application.
-Due to storage issues, it doesn't make sense to implement E2E encryption for web
-and desktop clients, like it is done in nowadays popular Telegram Messenger
-[\cite{job2015modified,suvsanka2017security,lee2017security}].
-Telegram uses the huge and heavy \texttt{MTProto 2.0} cryptographic protocol, based on DH key exchange and further AES256
-symmetric encryption.
+Looking to the Telegram example, we can conclude that it does not make sense to implement end-to-end encryption for web
+and desktop clients [\cite{job2015modified,suvsanka2017security,lee2017security}], due to the storage security issues.
+Telegram uses the huge and heavy \texttt{MTProto 2.0} cryptographic protocol based on Diffie–-Hellman key exchange and
+further AES256 symmetric encryption.
 According to the project concerns, the E2E encryption via Diffie--Hellman key exchange and AES256
 to be considered and implemented, the next section is about.
 
-\textbf{Diffie–-Hellman key exchange.} Diffie--Hellman protocol is a method of asymmetric exchange
+\textbf{Diffie–-Hellman key exchange.} Diffie--Hellman (DH) protocol is a method of asymmetric exchange
 of the cryptographic keys for a group of two or more participants,
 developed in 1976 by cryptographers Ralph Merkle, Whitfield Diffie and Martin Hellman.
 In contrast to symmetric key exchange, the Diffie–-Hellman protocol eliminates the direct transfer of the shared secret
-between the participants, each participant computes a shared secret with its own private-public key pair.
+between the participants, each participant computes a shared secret with his own private-public key pair.
 The Diffie–-Hellman protocol is based on a one-way function of the form
 
-\[
-    A = G ^ a \bmod P,
-\]
+\begin{equation}
+    A = G ^ a \bmod P \label{eq:equation}
+\end{equation}
 
 where $A$ is the user's public key,
 $a$ is the user's private key,
@@ -42,13 +66,12 @@ The period of such cyclic group $\mathbb{Z}_{P}$ is $P-1$ then.
 
 Thus, the safety of the Diffie--Hellman protocol is based on the discrete logarithm problem, which is unsolvable
 in polynomial time if the constants $G$ and $P$ are chosen correctly.
-Graphically, the flow of the Diffie Hellman protocol can be expressed through the
+Graphically, the flow of the Diffie--Hellman protocol can be expressed through the
 analogy with mixing paints, as below picture shows
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Pictures/07_Diffie-Hellman_keyexchange_concept_diagram}
-    \caption{Diffie–-Hellman key exchange concept diagram.
-    Source: \href{https://en.wikipedia.org/wiki/Diffie-Hellman_key_exchange}{Wikipedia}.}\label{fig:figure4}
+    ~\caption{Diffie–-Hellman key exchange concept diagram. Source: [\cite{mango2021figma}].}\label{fig:figure4}
 \end{figure}
 In contrast to the Diffie–-Hellman based on discrete logarithm problem, there is an Elliptic Curve Diffie–-Hellman
 key exchange, which based on the elliptic curve discrete logarithm problem.
@@ -66,18 +89,18 @@ To summarize, the flow of Diffie–-Hellman key exchange is as follows
     \item Alice computes common secret $s = B^a \bmod P$.
     \item Bob computes common secret $s = A^b \bmod P$.
     \item Alice and Bob have arrived to the same value
-    \begin{eqnarray*}
+    \begin{eqnarray}
         A^b \bmod P = G^{ab} \bmod P \\
         B^a \bmod P = G^{ba} \bmod P
-    \end{eqnarray*}
+    \end{eqnarray}
 \end{enumerate}
 
-\textbf{Implementation.} Although, the idea of DH key exchange looks quite simple, some remarks on the concrete
-implementation should be added.
+\textbf{Diffie–-Hellman key exchange implementation via REST.} Although, the idea of Diffie–-Hellman key exchange looks quite simple,
+some remarks on the concrete implementation should be added.
 Firstly, it is necessary to implement the mechanism of key exchange request between two or more parties.
 As it discussed above, each user has his own private-public keys pair, so in order to perform request between parties,
-it should be implemented dedicate REST API endpoint, for instance the POST one \texttt{api/key-exchange-requests} which
-takes the body of the form
+it should be implemented dedicate REST [\cite{ong2015materials}] web--service endpoint,
+for instance the \texttt{POST: api/key-exchange-requests} which takes the request body of the form
 
 \input{Files/post-keyexchange-body}
 
@@ -85,14 +108,14 @@ So, request sender generates on the client side a key pair, keeps private on in 
 in request to receiver.
 Therefore, the second party has received the key exchange request.
 In order to display all the key exchange requests awaiting the confirmation of decline decisions, it is worth to implement
-another REST endpoint such that GET \texttt{api/key-exchange-requests}, so that requested party will have the list of
+another REST endpoint such that \texttt{GET: api/key-exchange-requests}, so that requested party will have the list of
 requests to proceed.
 This endpoint may return the data structure like follows
 
 \input{Files/get-keyexchangerequests-response}
 
-Finally, requested party should be able to confirm or decline the key exchange request, the DELETE endpoint
-\texttt{api/key-exchange-requests} should be implemented then.
+Finally, requested party should be able to confirm or decline the key exchange request, the
+\texttt{DELETE: api/key-exchange-requests} endpoint should be implemented then.
 The server is able to fetch the request thanks to the body endpoint takes
 
 \input{Files/delete-keyexchangerequest-body}
@@ -102,7 +125,7 @@ indicating the confirmation.
 Under the roof of this operation are also generation of private-public keys pair for the requested party and
 generation of common secret stored in client's file system.
 As result, the initial request sender receives a public key as confirmation from requested party.
-Requested side may get all his public keys via the REST API using GET \texttt{api/public-keys}
+Requested side may get all his public keys via the REST web--service using the resource \texttt{GET: api/public-keys}
 
 \input{Files/get-publickeys-response}
 
@@ -126,8 +149,6 @@ An example of console output straightforward
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Pictures/08_Diffie-Hellman_console_output}
-    \caption{Diffie–-Hellman key exchange console output.}\label{fig:figure7}
+    ~\caption{Diffie–-Hellman key exchange console output. Source: [\cite{mango2021figma}].}\label{fig:figure7}
 \end{figure}
 Finally, both test accounts reached the same common secret.
-In order to work with our implementation of the ECDH key exchange, the user is obligated to register an account
-at \href{https://messenger-mango.herokuapp.com}{https://messenger-mango.herokuapp.com}.

@@ -1,12 +1,11 @@
+# Mango Messenger Bachelor's Thesis
 
-# Mango Messenger Diploma Thesis
-
-![Build](https://img.shields.io/badge/Build-succeeded-brightgreen)
-![License](https://img.shields.io/badge/License-MIT-%23bfc400)
-[![Trello board](https://img.shields.io/badge/Task%20Board-Trello-blue)](https://trello.com/b/5kdQBsYE/bachelor-thesis-trello)
-[![Contributors](https://img.shields.io/badge/Contributors-2-red)](https://github.com/kolosovpetro/MangoAPI/graphs/contributors)
+[![Build PDF](https://github.com/MangoInstantMessenger/MangoMessengerBachelorThesis/actions/workflows/build.yml/badge.svg)](https://github.com/MangoInstantMessenger/MangoMessengerBachelorThesis/actions/workflows/build.yml/badge.svg)
+[![Build and Deploy PDF](https://github.com/MangoInstantMessenger/MangoMessengerBachelorThesis/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/MangoInstantMessenger/MangoMessengerBachelorThesis/actions/workflows/build-and-deploy.yml/badge.svg)
+![contributors count](https://img.shields.io/github/contributors/MangoInstantMessenger/MangoMessengerBachelorThesis)
 
 ## Build
+
 - Install MikTeX (https://miktex.org/download)
 - Update MikTeX
 - Install SumatraPDF viewer (https://www.sumatrapdfreader.org/download-free-pdf-viewer)
@@ -19,6 +18,7 @@
 - Compile it, Shift + F10
 
 ## Sources
+
 - RSA algorithm video: https://youtu.be/vooHjWxmcIE
 - RSA algorithm theory: https://www.di-mgt.com.au/rsa_alg.html
 - Diffie-Hellman key exchange video: https://youtu.be/M-0qt6tdHzk
@@ -31,16 +31,18 @@
 - Base64 Encoding: https://youtu.be/aUdKd0IFl34
 
 ## Links
+
 - Figma: https://www.figma.com/file/cGtLvO1JuJgWmnzaSbM8Re/Mango-Thesis-Screens
 - Trello: https://trello.com/b/5kdQBsYE/bachelor-thesis-trello
 
 ## Git flow
+
 - Each task is assigned a number (THESIS-ID)
 - Tasks are at Trello board https://trello.com/b/5kdQBsYE/bachelor-thesis-trello
 - There are two main branches: master, develop
 - Develop will be merged with master when diploma will be ready
 - In order to contribute:
-  - Clone this repo locally, or pull last changes fropm develop
-  - Create new branch, based on develop, name it as task ID, e.g MANGO-ID
-  - Solve the task
-  - Create pull request to develop
+    - Clone this repo locally, or pull last changes fropm develop
+    - Create new branch, based on develop, name it as task ID, e.g MANGO-ID
+    - Solve the task
+    - Create pull request to develop

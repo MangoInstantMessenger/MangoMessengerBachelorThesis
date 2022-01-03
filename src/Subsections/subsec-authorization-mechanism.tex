@@ -1,4 +1,4 @@
-\textbf{Motivation.} In this section we describe the processes of Authentication and Authorization in the system.
+In this section we describe the processes of Authentication and Authorization in the system.
 It is worth to remember the meaning of Authentication and Authorization definitions.
 Authentication -- is the process of ascertaining that somebody really is who they claim to be [\cite{burrows1989logic}].
 Authorization refers to rules that determine who is allowed to do what [\cite{fagin1978authorization}].
@@ -76,14 +76,14 @@ Let's discuss each part separately.
         \texttt{exp} stands for expiration time,
         \texttt{sub} stands for subject,
         \texttt{aud} stands for audience,
-        and \href{https://tools.ietf.org/html/rfc7519#section-4.1}{others}.
+        and others at section 4.1 of [\cite{jones2015rfc}].
         The claim names are only three characters long to maintain the compactness of the JWT\@.
         \item Public claims.
         These claims can be defined freely.
-        In order to avoid collisions public claims should be defined in the
-        \href{https://www.iana.org/assignments/jwt/jwt.xhtml}{IANA JSON Web Token Registry}
+        In order to avoid collisions public claims should be defined in the IANA JSON Web Token Registry
         or to be defined in a form of URI which contains a collision resistant namespace.
-        \item Private claims. These claims are the claims which can be created manually in order to share
+        \item Private claims.
+        These claims are the claims which can be created manually in order to share
         the information between the parties.
     \end{itemize}
     An example payload could be:
@@ -181,7 +181,7 @@ The following diagram demonstrates the process of requesting the resource
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Pictures/06_JWT_authorization_concept_diagram}
-    \caption{JWT Authorization concept diagram.}\label{fig:figure3}
+    ~\caption{JWT Authorization concept diagram. Source: [\cite{mango2021figma}]}\label{fig:figure3}
 \end{figure}
 
 By steps, the process is

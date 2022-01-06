@@ -84,15 +84,16 @@ The opened tasks and issues to be organized and handled as follows:
 
 ## Git flow
 
-- Each task is assigned a number (THESIS-ID)
-- Tasks are at Trello board https://trello.com/b/5kdQBsYE/bachelor-thesis-trello
-- There are two main branches: master, develop
-- Develop will be merged with master when diploma will be ready
-- In order to contribute:
-    - Clone this repo locally, or pull last changes fropm develop
-    - Create new branch, based on develop, name it as task ID, e.g MANGO-ID
-    - Solve the task
-    - Create pull request to develop
+Version control to be organized as follows:
+
+- Fork this repository
+- Clone this repository using `git clone https://github.com/${{ username }}/MangoMessengerBachelorThesis.git`
+- If repository is cloned already then pull last changes from `develop` using
+    - `git checkout develop`
+    - `git pull`
+- Create new branch based on `develop` with name according to `THESIS-ID` of the task
+- Solve the task
+- Create pull request to `develop`
 
 ## Logo Attribution
 

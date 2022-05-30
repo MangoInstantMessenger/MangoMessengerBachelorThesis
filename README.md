@@ -1,7 +1,8 @@
 # Mango Messenger Bachelor's Thesis
 
+
 <p align="center">
-  <img src="src/Pictures/mango.png"  alt="Mango Messenger Logo"/>
+  <img src="https://github.com/MangoInstantMessenger/MangoInstantMessenger.github.io/blob/MANGO-414/src/img/logo.png" width="100" height="100"  alt="Mango Messenger Logo"/>
 </p>
 
 [![Build PDF](https://github.com/MangoInstantMessenger/MangoMessengerBachelorThesis/actions/workflows/build.yml/badge.svg)](https://github.com/MangoInstantMessenger/MangoMessengerBachelorThesis/actions/workflows/build.yml/badge.svg)

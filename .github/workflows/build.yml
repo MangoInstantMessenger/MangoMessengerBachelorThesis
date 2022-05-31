@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Create document
     steps:
-      - name: Checkout
+      - name: ⚙ Checkout ⚙
         uses: actions/checkout@v1
-      - name: Convert to pdf
+      - name: 🔄 Convert to pdf 🔄
         id: convert-to-pdf
         uses: xu-cheng/latex-action@v2
         with:

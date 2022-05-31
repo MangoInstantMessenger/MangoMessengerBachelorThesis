@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Create document
     steps:
-      - name: Checkout
+      - name: ⚙ Checkout ⚙
         uses: actions/checkout@v1
-      - name: Convert to pdf
+      - name: 🔄 Convert to pdf 🔄
         id: convert-to-pdf
         uses: xu-cheng/latex-action@v2
         with:
@@ -25,11 +25,11 @@ jobs:
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.GH_ACCESS_TOKEN }}
-      - name: Clone repository and add document
+      - name: 📝 Clone repository and add document 📝
         run: |
           git clone https://${{ secrets.GH_ACCESS_TOKEN }}@github.com/MangoInstantMessenger/MangoInstantMessenger.github.io.git ~/MangoInstantMessenger.github.io
           cp out/main.pdf  ~/MangoInstantMessenger.github.io/main.pdf
-      - name: Commit document changes if any
+      - name: 🛠 Commit document changes if any 🛠
         run: |
           cd ~/MangoInstantMessenger.github.io
           git config --global user.name '${{ secrets.GH_NAME }}'

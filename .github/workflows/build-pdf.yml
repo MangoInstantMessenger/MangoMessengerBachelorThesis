@@ -5,7 +5,7 @@ on:
     branches:
       - develop
       - master
-      - main
+      - minor-edits
   pull_request:
     branches:
       - main

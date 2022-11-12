@@ -1,0 +1,37 @@
+name: Build PDF
+
+on:
+  push:
+    branches:
+      - develop
+      - master
+      - main
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+env:
+  FILE_NAME: "main"
+
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+    name: Build PDF
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build PDF
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: "${{ env.FILE_NAME }}.tex"
+          working_directory: src
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: "drop"
+          path: "src/${{ env.FILE_NAME }}.pdf"

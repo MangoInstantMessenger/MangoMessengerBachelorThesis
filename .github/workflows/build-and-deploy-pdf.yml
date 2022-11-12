@@ -1,0 +1,67 @@
+name: Build and Deploy PDF
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+env:
+  FILE_NAME: "main"
+
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+    name: Build and Deploy PDF
+
+    env:
+      USERNAME: "kolosovpetro"
+      EMAIL: "kolosovp94@gmail.com"
+      MESSAGE: "CICD deploy of PDF document"
+      TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build PDF
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: "${{ env.FILE_NAME }}.tex"
+          working_directory: src
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: "drop"
+          path: "src/${{ env.FILE_NAME }}.pdf"
+
+      - name: Clone kolosovpetro.github.io
+        continue-on-error: true
+        run: |
+          git clone https://$TOKEN@github.com/kolosovpetro/kolosovpetro.github.io.git ~/kolosovpetro.github.io
+          cp src/${{ env.FILE_NAME }}.pdf ~/kolosovpetro.github.io/pdf/MangoMessengerThesis.pdf
+
+      - name: Commit to kolosovpetro.github.io
+        continue-on-error: true
+        run: |
+          cd ~/kolosovpetro.github.io
+          git config --global user.name "$USERNAME"
+          git config --global user.email "$EMAIL"
+          git add .
+          git commit -m "$MESSAGE"
+          git push
+
+      - name: Clone MangoInstantMessenger.github.io
+        run: |
+          git clone https://$TOKEN@github.com/MangoInstantMessenger/MangoInstantMessenger.github.io.git ~/MangoInstantMessenger.github.io
+          cp out/main.pdf  ~/MangoInstantMessenger.github.io/main.pdf
+
+      - name: Commit to MangoInstantMessenger.github.io
+        run: |
+          cd ~/MangoInstantMessenger.github.io
+          git config --global user.name "$USERNAME"
+          git config --global user.email "$EMAIL"
+          git add .
+          git commit -m "$MESSAGE"
+          git push

@@ -1,13 +1,8 @@
 # Mango Messenger Bachelor's Thesis
 
-
 <p align="center">
-  <img src="https://github.com/MangoInstantMessenger/MangoInstantMessenger.github.io/blob/MANGO-414/src/img/logo.png" width="100" height="100"  alt="Mango Messenger Logo"/>
+  <img src="./img/mango.png" width="150" height="150"  alt="Mango Messenger Logo"/>
 </p>
-
-[![Build PDF](https://github.com/MangoInstantMessenger/MangoMessengerBachelorThesis/actions/workflows/build.yml/badge.svg)](https://github.com/MangoInstantMessenger/MangoMessengerBachelorThesis/actions/workflows/build.yml/badge.svg)
-[![Build and Deploy PDF](https://github.com/MangoInstantMessenger/MangoMessengerBachelorThesis/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/MangoInstantMessenger/MangoMessengerBachelorThesis/actions/workflows/build-and-deploy.yml/badge.svg)
-![contributors count](https://img.shields.io/github/contributors/MangoInstantMessenger/MangoMessengerBachelorThesis)
 
 ## What is all about
 
